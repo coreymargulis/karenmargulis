@@ -48,7 +48,6 @@
 				<div id="inner-header" class="wrap cf">
 
 					<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a></p>
-change
 
 					<nav role="navigation">
 						<?php wp_nav_menu(array(
