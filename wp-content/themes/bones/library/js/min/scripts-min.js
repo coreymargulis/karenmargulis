@@ -1,1 +1,1 @@
-var container=document.querySelector(".products"),msnry=new Masonry(container,{itemSelector:".product",columnWidth:container.querySelector(".product")});
+var container=document.querySelector(".products"),msnry;imagesLoaded(container,function(){msnry=new Masonry(container)});

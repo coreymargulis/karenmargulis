@@ -13,11 +13,19 @@
 */
 
 
+/*
 var container = document.querySelector('.products');
 var msnry = new Masonry( container, {
   // options
   itemSelector: '.product',
   columnWidth: container.querySelector('.product')
+*/
+
+var container = document.querySelector('.products');
+var msnry;
+// initialize Masonry after all images have loaded
+imagesLoaded( container, function() {
+  msnry = new Masonry( container );
  
 
 

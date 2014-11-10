@@ -286,7 +286,7 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 */
 
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
-add_filter( 'woocommerce_show_page_title',false); //hide page title
+//add_filter( 'woocommerce_show_page_title',false); //hide page title
 add_filter( 'wc_product_sku_enabled', '__return_false' );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
