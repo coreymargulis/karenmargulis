@@ -292,15 +292,42 @@ LAYOUT & GRID STYLES
 /*********************
 HEADER STYLES
 *********************/
+a.menu-link {
+  display: none; }
+
+#logo .psa {
+  font-size: .5em;
+  visibility: visible; }
+
+/*********************
+NAVIGATION STYLES
+*********************/
+.js nav[role=navigation] {
+  max-height: none; }
+
+nav[role=navigation] ul {
+  margin: 0 0 0 -0.25em;
+  border: 0; }
+
+nav[role=navigation] li {
+  display: inline-block;
+  margin: 0 0.25em; }
+
+nav[role=navigation] li a {
+  border: 0; }
+
+.top-nav {
+  float: right; }
+
 /*********************
 WOOCOMMERCE
 *********************/
+ul.products .grid-sizer {
+  width: 33%; }
 ul.products li.product {
-  float: left;
   padding: 0 1.5%;
   width: 33%;
   margin-bottom: 1.5em;
-  position: relative;
   transition: all .3s ease-in-out; }
   ul.products li.product:hover, ul.products li.product:focus {
     opacity: .9; }
@@ -338,10 +365,6 @@ ul.products :after {
   content: ' ';
   display: block;
   clear: both; }
-
-.woocommerce-ordering {
-  margin-bottom: 2em;
-  padding-left: 1.5em; }
 
 /*********************
 NAVIGATION STYLES
@@ -480,52 +503,11 @@ be seen on the Desktop.
 WOOCOMMERCE
 *********************/
 ul.products li.product {
-  float: left;
-  padding: 0 1.5%;
-  width: 25%;
-  margin-bottom: 2.25em;
-  position: relative;
-  transition: all .3s ease-in-out; }
-  ul.products li.product:hover, ul.products li.product:focus {
-    opacity: .9; }
-  ul.products li.product .text-content {
-    /*
-    background: rgba(0,0,0,0.5);
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 9999;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    visibility: hidden;
-    */ }
-    ul.products li.product .text-content span {
-      /*
-      display: table-cell;
-      text-align: center;
-      vertical-align: middle;
-      */ }
-  ul.products li.product img {
-    width: 100%;
-    height: auto; }
-  ul.products li.product .onsale {
-    display: none; }
-  ul.products li.product strong {
-    display: block;
-    font-family: "scalabold"; }
-ul.products li.first {
-  clear: both; }
-ul.products :after {
-  content: ' ';
-  display: block;
-  clear: both; }
-
-.woocommerce-ordering {
-  margin-bottom: 2em;
-  padding-left: 1.5em; }
+  		/*
+  	padding: 0 1.5%;
+  			width: 33%;
+  			margin-bottom: 1.5em;
+  */ }
 
 /*
 you can call the larger styles if you want, but there's really no need

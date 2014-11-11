@@ -33,20 +33,51 @@ HEADER STYLES
 
 .header {}
 
-	#logo {}
+	a.menu-link {
+		display: none;
+	}
+
+	#logo {
+		.psa {
+			font-size: .5em;
+			visibility: visible;
+		}
+	}
+	
+/*********************
+NAVIGATION STYLES
+*********************/
+.js nav[role=navigation] {
+				max-height: none;
+			}
+			nav[role=navigation] ul {
+				margin: 0 0 0 -0.25em;
+				border: 0;
+			}
+			
+			nav[role=navigation]  li {
+				display: inline-block;
+				margin: 0 0.25em;
+			}
+			nav[role=navigation] li a {
+				border: 0;
+			}
+.top-nav {
+	float: right;
+}
 	
 /*********************
 WOOCOMMERCE
 *********************/
 ul.products {
 	
-	
+		.grid-sizer {
+			width: 33%;
+		}
 		li.product {
-			float:left;
 			padding: 0 1.5%;
 			width: 33%;
 			margin-bottom: 1.5em;
-			position: relative;
 			transition: all .3s ease-in-out;
 
 			
@@ -125,11 +156,6 @@ ul.products {
 			clear: both;
 		}
 
-}
-
-.woocommerce-ordering {
-	margin-bottom: 2em;
-	padding-left: 1.5em;
 }
 
 //end woocommerce

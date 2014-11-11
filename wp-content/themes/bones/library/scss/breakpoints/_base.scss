@@ -150,25 +150,58 @@ h5, .h5 {
 /*********************
 HEADER STYLES
 *********************/
-
+a.menu-link {
+  	    float: right;
+		    display: block;
+		    padding: 1em;
+		}
+		nav[role=navigation] {
+			clear: both;
+			-webkit-transition: all 0.3s ease-out;  
+			-moz-transition: all 0.3s ease-out;
+			-ms-transition: all 0.3s ease-out;
+			-o-transition: all 0.3s ease-out;
+			transition: all 0.3s ease-out;
+		}
+		.js nav[role=navigation] {
+			overflow: hidden;
+			max-height: 0;
+		}
+		nav[role=navigation].active {
+			max-height: 15em;
+		}
+		nav[role=navigation] ul {
+			margin: 0;
+			padding: 0;
+			border-top: 1px solid #808080;
+		}
+		nav[role=navigation] li a {
+			display: block;
+			padding: 0.8em;
+			border-bottom: 1px solid #808080;
+    }
 .header {
-	// background-color: $black;
+	//background-color: $black;
 }
 	#inner-header {
 		border-bottom: 1px solid $purple;
 		margin-top: 40px;
-		/*
-padding-left: 1em;
-		padding-right: 1em;
-*/
 	}
-	
+	a.menu-link {
+		display: block;
+		float: right;
+		padding: 1em;
+	}
 	#logo {
 		margin: 0;
 		padding: .77em 1em .85em 1em;
 		float: left;
 		font-family: $caps;
 		font-size: 1.35em;
+		
+		.psa {
+			visibility: hidden;
+		}
 
 		a {
 			 color: $text-color;
@@ -179,19 +212,33 @@ padding-left: 1em;
 NAVIGATION STYLES
 *********************/
 
-/*
-all navs have a .nav class applied via
-the wp_menu function; this is so we can
-easily write one group of styles for
-the navs on the site so our css is cleaner
-and more scalable.
-*/
-
+		
 .top-nav {
-	float: right;
+	float: left;
 	font-size: 1.25em;
-
+	clear: both;
+	transition: all 0.3s ease-out;
+	
+	ul {
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
+		position: relative;
+		display: inline-table;
+		
+		li {
+			padding: 0;
+			display: inline-block;
+			
+			a {
+				display: block;
+				height: 60px;
+				padding: 20px 12px;
+			}
+		}
 	}
+
+}
 
 .nav {
 	border-bottom: 0;
@@ -699,6 +746,7 @@ ul.products {
 			width: 50%;
 			margin-bottom: 1.25em;
 			position: relative;
+			transition: all .3s ease-in-out;
 			
 			.text-content{
 				//background: rgba(0,0,0,0.5);
@@ -734,6 +782,7 @@ ul.products {
 			}
 			a {
 				text-decoration:none;
+				display: block;
 				
 				&:hover, &:focus {
 
@@ -785,7 +834,7 @@ ul.products {
 
 .woocommerce-ordering {
 	margin-bottom: 2em;
-	padding-left: 1.5em;
+	padding-left: 0;
 }
 
 //end woocommerce

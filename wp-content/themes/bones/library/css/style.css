@@ -1388,13 +1388,44 @@ h5, .h5 {
 /*********************
 HEADER STYLES
 *********************/
+a.menu-link {
+  float: right;
+  display: block;
+  padding: 1em; }
+
+nav[role=navigation] {
+  clear: both;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out; }
+
+.js nav[role=navigation] {
+  overflow: hidden;
+  max-height: 0; }
+
+nav[role=navigation].active {
+  max-height: 15em; }
+
+nav[role=navigation] ul {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #808080; }
+
+nav[role=navigation] li a {
+  display: block;
+  padding: 0.8em;
+  border-bottom: 1px solid #808080; }
+
 #inner-header {
   border-bottom: 1px solid #a991de;
-  margin-top: 40px;
-  		/*
-  padding-left: 1em;
-  		padding-right: 1em;
-  */ }
+  margin-top: 40px; }
+
+a.menu-link {
+  display: block;
+  float: right;
+  padding: 1em; }
 
 #logo {
   margin: 0;
@@ -1402,22 +1433,32 @@ HEADER STYLES
   float: left;
   font-family: "scala_capsregular";
   font-size: 1.35em; }
+  #logo .psa {
+    visibility: hidden; }
   #logo a {
     color: #484848; }
 
 /*********************
 NAVIGATION STYLES
 *********************/
-/*
-all navs have a .nav class applied via
-the wp_menu function; this is so we can
-easily write one group of styles for
-the navs on the site so our css is cleaner
-and more scalable.
-*/
 .top-nav {
-  float: right;
-  font-size: 1.25em; }
+  float: left;
+  font-size: 1.25em;
+  clear: both;
+  transition: all 0.3s ease-out; }
+  .top-nav ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    position: relative;
+    display: inline-table; }
+    .top-nav ul li {
+      padding: 0;
+      display: inline-block; }
+      .top-nav ul li a {
+        display: block;
+        height: 60px;
+        padding: 20px 12px; }
 
 .nav {
   border-bottom: 0;
@@ -1720,7 +1761,8 @@ ul.products {
     padding: 0 3%;
     width: 50%;
     margin-bottom: 1.25em;
-    position: relative; }
+    position: relative;
+    transition: all .3s ease-in-out; }
     ul.products li.product .text-content {
       text-align: left;
       margin-bottom: 2em; }
@@ -1732,7 +1774,8 @@ ul.products {
     ul.products li.product h3 {
       margin-bottom: 0; }
     ul.products li.product a {
-      text-decoration: none; }
+      text-decoration: none;
+      display: block; }
     ul.products li.product strong {
       display: block;
       font-family: "scalabold"; }
@@ -1760,7 +1803,7 @@ ul.products {
 
 .woocommerce-ordering {
   margin-bottom: 2em;
-  padding-left: 1.5em; }
+  padding-left: 0; }
 
 /******************************************************************
 PAGE NAVI STYLES
@@ -2088,15 +2131,42 @@ you can add resource intensive styles.
   /*********************
   HEADER STYLES
   *********************/
+  a.menu-link {
+    display: none; }
+
+  #logo .psa {
+    font-size: .5em;
+    visibility: visible; }
+
+  /*********************
+  NAVIGATION STYLES
+  *********************/
+  .js nav[role=navigation] {
+    max-height: none; }
+
+  nav[role=navigation] ul {
+    margin: 0 0 0 -0.25em;
+    border: 0; }
+
+  nav[role=navigation] li {
+    display: inline-block;
+    margin: 0 0.25em; }
+
+  nav[role=navigation] li a {
+    border: 0; }
+
+  .top-nav {
+    float: right; }
+
   /*********************
   WOOCOMMERCE
   *********************/
+  ul.products .grid-sizer {
+    width: 33%; }
   ul.products li.product {
-    float: left;
     padding: 0 1.5%;
     width: 33%;
     margin-bottom: 1.5em;
-    position: relative;
     transition: all .3s ease-in-out; }
     ul.products li.product:hover, ul.products li.product:focus {
       opacity: .9; }
@@ -2134,10 +2204,6 @@ you can add resource intensive styles.
     content: ' ';
     display: block;
     clear: both; }
-
-  .woocommerce-ordering {
-    margin-bottom: 2em;
-    padding-left: 1.5em; }
 
   /*********************
   NAVIGATION STYLES
@@ -2283,52 +2349,11 @@ you can add resource intensive styles.
   WOOCOMMERCE
   *********************/
   ul.products li.product {
-    float: left;
-    padding: 0 1.5%;
-    width: 25%;
-    margin-bottom: 2.25em;
-    position: relative;
-    transition: all .3s ease-in-out; }
-    ul.products li.product:hover, ul.products li.product:focus {
-      opacity: .9; }
-    ul.products li.product .text-content {
-      /*
-      background: rgba(0,0,0,0.5);
-      color: white;
-      cursor: pointer;
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 9999;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      visibility: hidden;
-      */ }
-      ul.products li.product .text-content span {
-        /*
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
-        */ }
-    ul.products li.product img {
-      width: 100%;
-      height: auto; }
-    ul.products li.product .onsale {
-      display: none; }
-    ul.products li.product strong {
-      display: block;
-      font-family: "scalabold"; }
-  ul.products li.first {
-    clear: both; }
-  ul.products :after {
-    content: ' ';
-    display: block;
-    clear: both; }
-
-  .woocommerce-ordering {
-    margin-bottom: 2em;
-    padding-left: 1.5em; } }
+    		/*
+    	padding: 0 1.5%;
+    			width: 33%;
+    			margin-bottom: 1.5em;
+    */ } }
 /*********************
 LARGE VIEWING SIZE
 This is for the larger monitors and possibly full screen viewers.
@@ -2345,7 +2370,16 @@ This is for the larger monitors and possibly full screen viewers.
   
   ******************************************************************/
   .wrap {
-    width: 1200px; } }
+    width: 1200px; }
+
+  /*********************
+  WOOCOMMERCE
+  *********************/
+  ul.products .grid-sizer {
+    width: 25%; }
+  ul.products li.product {
+    width: 25%;
+    margin-bottom: 2.25em; } }
 /*********************
 RETINA (2x RESOLUTION DEVICES)
 This applies to the retina iPhone (4s) and iPad (2,3) along with

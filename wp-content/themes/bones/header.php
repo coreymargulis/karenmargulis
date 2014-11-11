@@ -36,6 +36,8 @@
 
 		<?php // drop Google Analytics Here ?>
 		<?php // end analytics ?>
+		
+
 
 	</head>
 
@@ -46,10 +48,21 @@
 			<header class="header" role="banner">
 
 				<div id="inner-header" class="wrap cf">
-
-					<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a></p>
-
-					<nav role="navigation">
+					
+					<a href="#menu" class="menu-link">Menu</a>
+					<nav id="menu" role="navigation">
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Products</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</nav>
+					<!--
+<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a> <span class="psa">PSA</span></p>
+					<a href="#menu"class="menu-link">Menu</a>
+					<nav id="menu" role="navigation">
 						<?php wp_nav_menu(array(
     					'container' => false,                           // remove nav container
     					'container_class' => 'menu cf',                 // class of container (should you choose to use it)
@@ -65,6 +78,7 @@
 						)); ?>
 
 					</nav>
+-->
 
 				</div>
 

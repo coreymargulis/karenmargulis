@@ -64,7 +64,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 				
 				if( !empty($image) ): ?>
 			
-				<img src="<?php echo $thumb; ?>" alt="<?php echo $alt; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" />		
+				<img src="<?php echo $thumb; ?>" alt="<?php echo $alt; ?>" />		
 			<?php endif; ?>
 			
 			<span class="text-content">

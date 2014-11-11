@@ -46,7 +46,7 @@ get_header( 'shop' ); ?>
 			<?php woocommerce_product_loop_start(); ?>
 
 				<?php woocommerce_product_subcategories(); ?>
-
+<div class="grid-sizer"></div>
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php wc_get_template_part( 'content', 'product' ); ?>
