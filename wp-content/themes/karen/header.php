@@ -49,7 +49,7 @@
 
 				<div id="inner-header" class="wrap cf">
 					
-					<a href="#menu" class="menu-link">Menu</a>
+<!-- 					<a href="#menu" class="menu-link">Menu</a>
 					<nav id="menu" role="navigation">
 						<ul>
 							<li><a href="#">Home</a></li>
@@ -58,9 +58,9 @@
 							<li><a href="#">Services</a></li>
 							<li><a href="#">Contact</a></li>
 						</ul>
-					</nav>
-					<!--
-<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a> <span class="psa">PSA</span></p>
+					</nav> -->
+					
+					<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?> <span class="psa">PSA</span></a></p>
 					<a href="#menu"class="menu-link">Menu</a>
 					<nav id="menu" role="navigation">
 						<?php wp_nav_menu(array(
@@ -78,7 +78,7 @@
 						)); ?>
 
 					</nav>
--->
+
 
 				</div>
 
