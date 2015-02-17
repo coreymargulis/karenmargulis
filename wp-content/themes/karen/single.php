@@ -17,14 +17,13 @@
 				                </p>	
 				                	
 				                <h1 class="entry-title single-title" itemprop="headline"><?php the_title(); ?></h1>
-				                
+
 								<section class="featured-image-wrap">
 											
 									<?php
 	
 										$post_object = get_field('featured_painting');
 	
-										 
 										if( $post_object ): 
 										 
 											// override $post
@@ -34,7 +33,8 @@
 									?>
 	
 								    <div class="featured-image">
-								    	<a href="<?php the_permalink(); ?>">
+
+								    	<!-- <a href="<?php the_permalink(); ?>"> -->
 								    		<?php 
 									    		$image = get_field('painting', $post->ID);
 
@@ -42,11 +42,12 @@
 
 													<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
 									    	<?php endif; ?>
-								    	</a>
+								    	<!-- </a> -->
 								    	
 								    	<div class="featured-image-caption">
 											<?php the_title(); ?>, <?php the_field('width'); ?> x <?php the_field('height'); ?> <a class="price" href="<?php the_permalink(); ?>">$<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?></a>
 								    	</div>
+
 								    </div>
 								    
 								    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
@@ -58,6 +59,8 @@
 			                </header> <?php // end article header ?>
 			
 			                <section class="entry-content cf" itemprop="articleBody">
+
+			                	<p><?php the_field('introduction'); ?></p>
 			                
 			                </section> <?php // end article section ?>
 			

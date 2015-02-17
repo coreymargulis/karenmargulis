@@ -1280,7 +1280,7 @@ GENERAL STYLES
 *********************/
 body {
   font-family: "scalaregular", "Georgia", Cambria, Times New Roman, Times, serif;
-  font-size: 100%;
+  font-size: 20px;
   line-height: 1.5;
   color: #484848;
   background-color: #f8f9fa;
@@ -1362,16 +1362,16 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
     text-decoration: none; }
 
 h1, .h1 {
-  font-size: 2.5em;
+  font-size: 36px;
   line-height: 1.333em; }
 
 h2, .h2 {
-  font-size: 1.75em;
+  font-size: 20px;
   line-height: 1.4em;
   margin-bottom: 0.375em; }
 
 h3, .h3 {
-  font-size: 1.125em;
+  font-size: 16px;
   margin-bottom: .375em;
   margin-top: 0; }
 
@@ -1388,13 +1388,7 @@ h5, .h5 {
 /*********************
 HEADER STYLES
 *********************/
-a.menu-link {
-  float: right;
-  display: block;
-  padding: 1em; }
-
 nav[role=navigation] {
-  clear: both;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -ms-transition: all 0.3s ease-out;
@@ -1410,40 +1404,50 @@ nav[role=navigation].active {
 
 nav[role=navigation] ul {
   margin: 0;
-  padding: 0;
-  border-top: 1px solid #808080; }
+  padding: 0; }
 
 nav[role=navigation] li a {
   display: block;
-  padding: 0.8em;
-  border-bottom: 1px solid #808080; }
+  padding: 0 1em; }
 
 #inner-header {
   border-bottom: 1px solid #a991de;
-  margin-top: 40px; }
+  text-align: left;
+  margin: 75px auto 0;
+  padding: 0;
+  height: 55px; }
+
+#menu {
+  float: right;
+  margin: 0;
+  padding-top: 5px; }
+  #menu ul {
+    padding: 0;
+    margin: 0; }
+
+#logo {
+  margin-right: 20px;
+  float: left;
+  font-family: "scala_capsregular";
+  font-size: 24px;
+  padding-left: .9em;
+  display: inline-block; }
+  #logo .psa {
+    visibility: hidden; }
+  #logo a {
+    color: #484848; }
 
 a.menu-link {
   display: block;
   float: right;
   padding: 1em; }
 
-#logo {
-  margin: 0;
-  padding: .77em 1em .85em 1em;
-  float: left;
-  font-family: "scala_capsregular";
-  font-size: 1.35em; }
-  #logo .psa {
-    visibility: hidden; }
-  #logo a {
-    color: #484848; }
-
 /*********************
 NAVIGATION STYLES
 *********************/
 .top-nav {
   float: left;
-  font-size: 1.25em;
+  font-size: 20px;
   clear: both;
   transition: all 0.3s ease-out; }
   .top-nav ul {
@@ -1505,10 +1509,10 @@ POSTS & CONTENT STYLES
 
 .hentry {
   border-radius: 3px;
-  margin-bottom: 1.5em; }
+  margin-bottom: 1.15em; }
   .hentry header {
     border-bottom: 1px solid #f8f9fa;
-    padding: 1.5em; }
+    padding: 0 1.15em; }
   .hentry footer {
     padding: 1.5em;
     border-top: 1px solid #f8f9fa; }
@@ -1519,7 +1523,8 @@ POSTS & CONTENT STYLES
 .single-title,
 .page-title,
 .entry-title {
-  margin: 0; }
+  margin: 0;
+  margin-bottom: 0.75em; }
 
 /* want to style individual post classes? Booya! */
 /* post by id (i.e. post-3) */
@@ -1537,7 +1542,7 @@ POSTS & CONTENT STYLES
 
 /* entry content */
 .entry-content {
-  padding: 1.5em 1.5em 0;
+  padding: 0em 1em;
   /*
   image alignment on a screen this size may be
   a bit difficult. It's set to start aligning
@@ -1545,7 +1550,7 @@ POSTS & CONTENT STYLES
   but it's up to you. Feel free to change it up.
   */ }
   .entry-content p {
-    margin: 0 0 1.5em; }
+    margin: 0 0 1em; }
   .entry-content table {
     width: 100%;
     border: 1px solid #484848;
@@ -2149,8 +2154,7 @@ you can add resource intensive styles.
     border: 0; }
 
   nav[role=navigation] li {
-    display: inline-block;
-    margin: 0 0.25em; }
+    display: inline-block; }
 
   nav[role=navigation] li a {
     border: 0; }

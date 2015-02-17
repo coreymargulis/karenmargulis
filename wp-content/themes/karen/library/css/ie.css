@@ -310,8 +310,7 @@ nav[role=navigation] ul {
   border: 0; }
 
 nav[role=navigation] li {
-  display: inline-block;
-  margin: 0 0.25em; }
+  display: inline-block; }
 
 nav[role=navigation] li a {
   border: 0; }

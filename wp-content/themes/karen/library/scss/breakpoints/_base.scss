@@ -17,7 +17,7 @@ GENERAL STYLES
 
 body {
 	font-family: $serif;
-	font-size: 100%;
+	font-size: 20px;
 	line-height: 1.5;
 	color: $text-color;
 	background-color: $light-gray;
@@ -119,18 +119,18 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-	font-size: 2.5em;
+	font-size: 36px;
 	line-height: 1.333em;
 }
 
 h2, .h2 {
-	font-size: 1.75em;
+	font-size: 20px;
 	line-height: 1.4em;
 	margin-bottom: 0.375em;
 }
 
 h3, .h3 {
-	font-size: 1.125em;
+	font-size: 16px;
 	margin-bottom: .375em;
 	margin-top: 0;
 }
@@ -150,63 +150,75 @@ h5, .h5 {
 /*********************
 HEADER STYLES
 *********************/
-a.menu-link {
-  	    float: right;
-		    display: block;
-		    padding: 1em;
-		}
-		nav[role=navigation] {
-			clear: both;
-			-webkit-transition: all 0.3s ease-out;  
-			-moz-transition: all 0.3s ease-out;
-			-ms-transition: all 0.3s ease-out;
-			-o-transition: all 0.3s ease-out;
-			transition: all 0.3s ease-out;
-		}
-		.js nav[role=navigation] {
-			overflow: hidden;
-			max-height: 0;
-		}
-		nav[role=navigation].active {
-			max-height: 15em;
-		}
-		nav[role=navigation] ul {
-			margin: 0;
-			padding: 0;
-			border-top: 1px solid #808080;
-		}
-		nav[role=navigation] li a {
-			display: block;
-			padding: 0.8em;
-			border-bottom: 1px solid #808080;
-    }
+
+nav[role=navigation] {
+	//clear: both;
+	-webkit-transition: all 0.3s ease-out;  
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+.js nav[role=navigation] {
+	overflow: hidden;
+	max-height: 0;
+}
+nav[role=navigation].active {
+	max-height: 15em;
+}
+nav[role=navigation] ul {
+	margin: 0;
+	padding: 0;
+}
+nav[role=navigation] li a {
+	display: block;
+	padding: 0 1em;
+}
 .header {
 	//background-color: $black;
 }
-	#inner-header {
-		border-bottom: 1px solid $purple;
-		margin-top: 40px;
-	}
-	a.menu-link {
-		display: block;
-		float: right;
-		padding: 1em;
-	}
-	#logo {
-		margin: 0;
-		padding: .77em 1em .85em 1em;
-		float: left;
-		font-family: $caps;
-		font-size: 1.35em;
-		
-		.psa {
-			visibility: hidden;
-		}
+#inner-header {
+	border-bottom: 1px solid $purple;
 
-		a {
-			 color: $text-color;
-		}
+	text-align: left;
+	margin: 75px auto 0;
+	padding: 0;
+	height: 55px;
+}
+#menu {
+	float: right;
+	margin: 0;
+	padding-top: 5px;
+
+	ul {
+		padding: 0;
+		margin: 0;
 	}
+}
+
+#logo {
+	margin-right: 20px;
+	float: left;
+	font-family: $caps;
+	font-size: 24px;
+	padding-left: .9em;
+
+	display: inline-block;
+	
+	.psa {
+		visibility: hidden;
+	}
+
+	a {
+		 color: $text-color;
+	}
+}
+
+a.menu-link {
+	display: block;
+	float: right;
+	padding: 1em;
+}
 
 /*********************
 NAVIGATION STYLES
@@ -215,7 +227,7 @@ NAVIGATION STYLES
 		
 .top-nav {
 	float: left;
-	font-size: 1.25em;
+	font-size: 20px;
 	clear: both;
 	transition: all 0.3s ease-out;
 	
@@ -327,11 +339,11 @@ POSTS & CONTENT STYLES
 
 		.hentry {
 			border-radius: 3px;
-			margin-bottom: 1.5em;
+			margin-bottom: 1.15em;
 
 			header {
 				border-bottom: 1px solid $light-gray;
-				padding: 1.5em;
+				padding: 0 1.15em;
 			}
 
 			footer {
@@ -349,6 +361,7 @@ POSTS & CONTENT STYLES
 		.page-title,
 		.entry-title {
 			margin: 0;
+			margin-bottom: 0.75em;
 		}
 
 		.single-title {}
@@ -379,10 +392,10 @@ POSTS & CONTENT STYLES
 
 		/* entry content */
 		.entry-content {
-			padding: 1.5em 1.5em 0;
+			padding: 0em 1em;
 
 			p {
-				margin: 0 0 1.5em;
+				margin: 0 0 1em;
 			}
 
 
