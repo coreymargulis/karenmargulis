@@ -80,7 +80,7 @@ class acf_field_flexible_content extends acf_field {
 			'key'			=> uniqid(),
 			'name'			=> '',
 			'label'			=> '',
-			'display'		=> 'row',
+			'display'		=> 'block',
 			'sub_fields'	=> array(),
 			'min'			=> '',
 			'max'			=> '',
@@ -1017,6 +1017,11 @@ class acf_field_flexible_content extends acf_field {
 						} elseif( isset($row[ $sub_field['name'] ]) ) {
 							
 							$v = $row[ $sub_field['name'] ];
+							
+						} else {
+							
+							// input is not set (hidden by conditioanl logic)
+							continue;
 							
 						}
 						

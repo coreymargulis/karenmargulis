@@ -650,7 +650,7 @@ function have_rows( $selector, $post_id = false ) {
 *  @return	(array) the current row data
 */
 
-function the_row() {
+function the_row( $format = false ) {
 	
 	// vars
 	$depth = count($GLOBALS['acf_field']) - 1;
@@ -661,32 +661,51 @@ function the_row() {
 	
 	
 	// return
-	return get_row();
+	return get_row( $format );
 	
 }
 
-function get_row() {
+function get_row( $format = false ) {
 	
 	// vars
 	$row = acf_get_row();
 	
 	
 	// bail early if no row
-	if( $row ) {
+	if( !$row ) {
 		
-		return $row['value'][ $row['i'] ];
+		return false;
+		
+	}
+	
+	
+	// get value
+	$value = $row['value'][ $row['i'] ];
+	
+	
+	// format
+	if( $format ) {
+		
+		// temp wrap value in array
+		$value = array( $value );
+		
+		// format the value (1 row of data)
+		$value = acf_format_value( $value, $row['post_id'], $row['field'] );
+		
+		// extract value from array
+		$value = $value[0];
 		
 	}
 	
 	
 	// return
-	return false;
+	return $value;
 	
 }
 
 function acf_get_row() {
 	
-	// no field?
+	// check and return row
 	if( !empty($GLOBALS['acf_field']) ) {
 		
 		return end( $GLOBALS['acf_field'] );
@@ -1229,7 +1248,7 @@ function _acf_pre_save_post( $post_id, $form ) {
 function acf_form( $args = array() ) {
 	
 	// vars
-	$url = home_url( $_SERVER['REQUEST_URI'] );
+	$url = acf_get_current_url();
 	
 	
 	// defaults
@@ -1324,7 +1343,7 @@ function acf_form( $args = array() ) {
 		
 		foreach( $args['fields'] as $selector ) {
 		
-			$fields[] = acf_get_field( $selector );
+			$fields[] = get_field_object( $selector, $post_id, false, false );
 			
 		}
 		

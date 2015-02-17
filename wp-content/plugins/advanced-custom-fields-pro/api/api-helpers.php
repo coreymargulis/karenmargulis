@@ -41,6 +41,26 @@ function acf_get_setting( $name, $allow_filter = true ) {
 
 
 /*
+*  acf_get_compatibility
+*
+*  This function will return true or false for a given compatibility setting
+*
+*  @type	function
+*  @date	20/01/2015
+*  @since	5.1.5
+*
+*  @param	$name (string)
+*  @return	(boolean)
+*/
+
+function acf_get_compatibility( $name ) {
+	
+	return apply_filters( "acf/compatibility/{$name}", true );
+	
+}
+
+
+/*
 *  acf_update_setting
 *
 *  This function will update a value into the settings array found in the acf object
@@ -418,29 +438,48 @@ function acf_render_field_wrap( $field, $el = 'div', $instruction = 'label' ) {
 	);
 	
 	
-	// merge in atts
-	$wrapper = acf_merge_atts( $wrapper, $field['wrapper'] );
-	
-	
-	// add type
-	$wrapper['class'] .= " field_type-{$field['type']}";
-	
-	
-	// add key
-	if( $field['key'] ) {
-		
-		$wrapper['class'] .= " field_key-{$field['key']}";
-		$wrapper['data-key'] = $field['key'];
-		
-	}
-	
-	
 	// add required
 	if( $field['required'] ) {
 		
 		$wrapper['data-required'] = 1;
 		
 	}
+	
+	
+	// add type
+	$wrapper['class'] .= " acf-field-{$field['type']}";
+	
+	
+	// add key
+	if( $field['key'] ) {
+		
+		$wrapper['class'] .= " acf-field-{$field['key']}";
+		$wrapper['data-key'] = $field['key'];
+		
+	}
+	
+	
+	// replace
+	$wrapper['class'] = str_replace('_', '-', $wrapper['class']);
+	$wrapper['class'] = str_replace('field-field-', 'field-', $wrapper['class']);
+	
+	
+	// compatibility
+	if( acf_get_compatibility('field_wrapper_class') ) {
+		
+		$wrapper['class'] .= " field_type-{$field['type']}";
+		
+		if( $field['key'] ) {
+			
+			$wrapper['class'] .= " field_key-{$field['key']}";
+			
+		}
+		
+	}
+		
+	
+	// merge in atts
+	$wrapper = acf_merge_atts( $wrapper, $field['wrapper'] );
 	
 	
 	// add width
@@ -450,11 +489,9 @@ function acf_render_field_wrap( $field, $el = 'div', $instruction = 'label' ) {
 		
 		$width = 0;
 		
-	}
-	
-	if( $width > 0 && $width < 100 ) {
+	} elseif( $width > 0 && $width < 100 ) {
 		
-		$wrapper['data-width'] .= $width;
+		$wrapper['data-width'] = $width;
 		$wrapper['style'] .= " width:{$width}%;";
 		
 	}
@@ -1657,6 +1694,7 @@ function acf_get_posts( $args ) {
 			$match_id = $this_posts[ 0 ]->ID;
 			$offset = 0;
 			$length = count($this_posts);
+			$parent = acf_maybe_get( $args, 'post_parent', 0 );
 			
 			
 			// reset $this_posts
@@ -1686,7 +1724,7 @@ function acf_get_posts( $args ) {
 			
 			
 			// order posts
-			$all_posts = get_page_children( 0, $all_posts );
+			$all_posts = get_page_children( $parent, $all_posts );
 			
 			
 			for( $i = $offset; $i < ($offset + $length); $i++ ) {
@@ -2153,22 +2191,16 @@ function acf_get_updates() {
 
 function acf_encode_choices( $array = array() ) {
 	
-	// bail early if already string
-	if( is_string($array) ) {
+	// bail early if not array
+	if( !is_array($array) ) {
 		
 		return $array;
+		
 	}
 	
 	
 	// vars
 	$string = '';
-	
-	
-	// bail ealry if not array
-	if( !is_array($array) ) {
-		
-		return $string;
-	}
 	
 	
 	if( !empty($array) ) {
@@ -2195,10 +2227,17 @@ function acf_encode_choices( $array = array() ) {
 
 function acf_decode_choices( $string = '' ) {
 	
-	// bail early if already array
-	if( is_array($string) ) {
+	// validate
+	if( is_numeric($string) ) {
 		
+		// force array on single numeric values
+		return array( $string );
+		
+	} elseif( !is_string($string) ) {
+		
+		// bail early if not a a string
 		return $string;
+		
 	}
 	
 	
@@ -2206,39 +2245,32 @@ function acf_decode_choices( $string = '' ) {
 	$array = array();
 	
 	
-	// bail ealry if not string
-	if( !is_string($string) ) {
-		
-		return $array;
-	}
+	// explode
+	$lines = explode("\n", $string);
 	
 	
-	// explode choices from each line
-	if( !empty($string) ) {
+	// key => value
+	foreach( $lines as $line ) {
 		
-		// stripslashes ("")
-		$string = stripslashes_deep($string);
-		
-		
-		// explode
-		$temp = explode("\n", $string);
+		// vars
+		$k = trim($line);
+		$v = trim($line);
 		
 		
-		// key => value
-		foreach( $temp as $v ) {
+		// look for ' : '
+		if( acf_str_exists(' : ', $line) ) {
+		
+			$line = explode(' : ', $line);
 			
-			if( acf_str_exists(' : ', $v) ) {
+			$k = trim($line[0]);
+			$v = trim($line[1]);
 			
-				$v = explode(' : ', $v);
-				
-				$array[ trim($v[0]) ] = trim($v[1]);
-				
-			}
-			else
-			{
-				$array[ trim($v) ] = trim($v);
-			}
 		}
+		
+		
+		// append
+		$array[ $k ] = $v;
+		
 	}
 	
 	
@@ -2777,6 +2809,271 @@ function acf_update_nested_array( &$array, $ancestors, $value ) {
 	
 	// return 
 	return false;
+}
+
+
+/*
+*  acf_is_screen
+*
+*  This function will return true if all args are matched for the current screen
+*
+*  @type	function
+*  @date	9/12/2014
+*  @since	5.1.5
+*
+*  @param	$post_id (int)
+*  @return	$post_id (int)
+*/
+
+function acf_is_screen( $id = '' ) {
+	
+	// vars
+	$current_screen = get_current_screen();
+	
+	
+	// return
+	return ($id === $current_screen->id);
+	
+}
+
+
+/*
+*  acf_maybe_get
+*
+*  This function will return a var if it exists in an array
+*
+*  @type	function
+*  @date	9/12/2014
+*  @since	5.1.5
+*
+*  @param	$array (array) the array to look within
+*  @param	$key (key) the array key to look for
+*  @param	$default (mixed) the value returned if not found
+*  @return	$post_id (int)
+*/
+
+function acf_maybe_get( $array, $key, $default = null ) {
+	
+	// check if exists
+	if( isset($array[ $key ]) ) {
+		
+		return $array[ $key ];
+		
+	}
+	
+	
+	// return
+	return $default;
+	
+}
+
+
+/*
+*  acf_get_attachment
+*
+*  This function will return an array of attachment data
+*
+*  @type	function
+*  @date	5/01/2015
+*  @since	5.1.5
+*
+*  @param	$post (mixed) either post ID or post object
+*  @return	(array)
+*/
+
+function acf_get_attachment( $post ) {
+	
+	// get post
+	if ( !$post = get_post( $post ) ) {
+		
+		return false;
+		
+	}
+	
+	
+	// vars
+	$thumb_id = 0;
+	$id = $post->ID;
+	$a = array(
+		'ID'			=> $id,
+		'id'			=> $id,
+		'title'       	=> $post->post_title,
+		'filename'    	=> wp_basename( $post->guid ),
+		'url'			=> wp_get_attachment_url( $id ),
+		'alt'			=> get_post_meta($id, '_wp_attachment_image_alt', true),
+		'author'		=> $post->post_author,
+		'description'	=> $post->post_content,
+		'caption'		=> $post->post_excerpt,
+		'name'			=> $post->post_name,
+		'date'			=> $post->post_date_gmt,
+		'modified'		=> $post->post_modified_gmt,
+		'mime_type'		=> $post->post_mime_type,
+		'type'			=> acf_maybe_get( explode('/', $post->post_mime_type), 0, '' ),
+		'icon'			=> wp_mime_type_icon( $id )
+	);
+	
+	
+	// video may use featured image
+	if( $a['type'] === 'image' ) {
+		
+		$thumb_id = $id;
+		$src = wp_get_attachment_image_src( $id, 'full' );
+		
+		$a['url'] = $src[0];
+		$a['width'] = $src[1];
+		$a['height'] = $src[2];
+		
+		
+	} elseif( $a['type'] === 'audio' || $a['type'] === 'video' ) {
+		
+		// video dimentions
+		if( $a['type'] == 'video' ) {
+			
+			$meta = wp_get_attachment_metadata( $id );
+			$a['width'] = acf_maybe_get($meta, 'width', 0);
+			$a['height'] = acf_maybe_get($meta, 'height', 0);
+		
+		}
+		
+		
+		// feature image
+		if( $featured_id = get_post_thumbnail_id($id) ) {
+		
+			$thumb_id = $featured_id;
+			
+		}
+						
+	}
+	
+	
+	// sizes
+	if( $thumb_id ) {
+		
+		// find all image sizes
+		if( $sizes = get_intermediate_image_sizes() ) {
+			
+			$a['sizes'] = array();
+			
+			foreach( $sizes as $size ) {
+				
+				// url
+				$src = wp_get_attachment_image_src( $thumb_id, $size );
+				
+				// add src
+				$a['sizes'][ $size ] = $src[0];
+				$a['sizes'][ $size . '-width' ] = $src[1];
+				$a['sizes'][ $size . '-height' ] = $src[2];
+				
+			}
+			
+		}
+		
+	}
+	
+	
+	// return
+	return $a;
+	
+}
+
+
+/*
+*  acf_get_truncated
+*
+*  This function will truncate and return a string
+*
+*  @type	function
+*  @date	8/08/2014
+*  @since	5.0.0
+*
+*  @param	$text (string)
+*  @param	$length (int)
+*  @return	(string)
+*/
+
+function acf_get_truncated( $text, $length = 64 ) {
+	
+	// vars
+	$text = trim($text);
+	$the_length = strlen( $text );
+	
+	
+	// cut
+	$return = substr( $text, 0, ($length - 3) );
+	
+	
+	// ...
+	if( $the_length > ($length - 3) ) {
+	
+		$return .= '...';
+		
+	}
+	
+	
+	// return
+	return $return;
+	
+}
+
+
+/*
+*  acf_get_current_url
+*
+*  This function will return the current URL
+*
+*  @type	function
+*  @date	23/01/2015
+*  @since	5.1.5
+*
+*  @param	n/a
+*  @return	(string)
+*/
+
+function acf_get_current_url() {
+	
+	// vars
+	$home = home_url();
+	$url = home_url($_SERVER['REQUEST_URI']);
+	
+	
+	// test
+	//$home = 'http://acf5/dev/wp-admin';
+	//$url = $home . '/dev/wp-admin/api-template/acf_form';
+	
+	
+	// explode url (4th bit is the sub folder)
+	$bits = explode('/', $home, 4);
+	
+	
+	/*
+	Array (
+	    [0] => http:
+	    [1] => 
+	    [2] => acf5
+	    [3] => dev
+	)
+	*/
+	
+	
+	// handle sub folder
+	if( !empty($bits[3]) ) {
+		
+		$find = '/' . $bits[3];
+		$pos = strpos($url, $find);
+		$length = strlen($find);
+		
+		if( $pos !== false ) {
+			
+		    $url = substr_replace($url, '', $pos, $length);
+		    
+		}
+				
+	}
+	
+	
+	// return
+	return $url;
+	
 }
 
 
