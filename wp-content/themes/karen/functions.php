@@ -244,21 +244,16 @@ function bones_fonts() {
 
 add_action('wp_enqueue_scripts ', 'bones_fonts');
 
+// Remove caption from image upload
+add_filter( 'disable_captions', create_function('$a', 'return true;') );
+
+
+
+
+
 
 /************* WOOCOMMERCE *********************/
 
-/*
-add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
- 
-function woo_remove_product_tabs( $tabs ) {
- 
-    unset( $tabs['description'] );      	// Remove the description tab
-    unset( $tabs['reviews'] ); 			// Remove the reviews tab
-    unset( $tabs['additional_information'] );  	// Remove the additional information tab
- 
-    return $tabs;
- 
-}*/
 
 /*
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
@@ -276,76 +271,53 @@ function my_theme_wrapper_end() {
 }
 */
 
-/* Disable Woocommerce CSS */
-//remove_filter( 'woocommerce_enqueue_styles', array( $this, 'backwards_compat' ) );
-//define( 'WOOCOMMERCE_USE_CSS', false );
+// Disable Woocommerce CSS
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
-/*
- hide things: 
-*/
+
+/*--------------------
+HIDE THINGS 
+--------------------*/
 
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
-//add_filter( 'woocommerce_show_page_title',false); //hide page title
 add_filter( 'wc_product_sku_enabled', '__return_false' );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 add_filter( 'wc_product_weight_enabled', '__return_false' );
 add_filter( 'wc_product_dimensions_enabled', '__return_false' );
-// add_filter( 'wc_product_virtual_enabled', '__return_false' );
-
-
-//define ( 'woocommerce-breadcrumb', false );
-
 add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
- 
+
+// Remove tabs 
 function woo_remove_product_tabs( $tabs ) {
  
     unset( $tabs['description'] );      	// Remove the description tab
-    //unset( $tabs['reviews'] ); 			// Remove the reviews tab
+    unset( $tabs['reviews'] ); 			// Remove the reviews tab
     unset( $tabs['additional_information'] );  	// Remove the additional information tab
  
     return $tabs;
  
 }
-// remove "buy" button from product list page
+// Remove "buy" button from product list page
 add_action( 'woocommerce_after_shop_loop_item', 'remove_add_to_cart_buttons', 1 );
 
 function remove_add_to_cart_buttons() {
     remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
 }
 
-// Display # products per page
-add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 20 );
+// Hide default sorting drop-down from WooCommerce
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
-/*
-change texts:
-*/
+
+
+/*--------------------
+TEXT CHANGES
+--------------------*/
 
 // Change "add to cart" text
 
-add_filter( 'add_to_cart_text', 'woo_custom_cart_button_text' );                        // < 2.1
-add_filter( 'woocommerce_product_add_to_cart_text', 'woo_custom_cart_button_text' );    // 2.1 +
- 
-function woo_custom_cart_button_text() {
- 
-        return __( 'Buy', 'woocommerce' );
- 
-}
 
 
-/*
-//out of stock message
-add_filter( 'woocommerce_get_availability', 'custom_get_availability', 1, 2);
-
-// Our hooked in function $availablity is passed via the filter!
-function custom_get_availability( $availability, $_product ) {
-if ( !$_product->is_in_stock() ) $availability['availability'] = __('Sold', 'woocommerce');
-return $availability;
-}
-*/
-
-
+// Out of stock message
 
 add_filter('woocommerce_get_availability', 'availability_filter_func');
 
@@ -354,7 +326,6 @@ function availability_filter_func($availability)
 $availability['availability'] = str_ireplace('Out of stock', 'Sold', $availability['availability']);
 return $availability;
 }
-
 
 /*
 if (!function_exists('woocommerce_template_loop_add_to_cart')) {
@@ -372,10 +343,86 @@ if (!function_exists('woocommerce_template_loop_add_to_cart')) {
 }
 */
 
-/*
-exclude demos from gallery page
-*/
 
+/*--------------------
+VISUAL/LAYOUT CHANGES
+--------------------*/
+
+// cart column
+add_filter('woocommerce_cart_item_subtotal','additional_shipping_cost',10,3);
+function additional_shipping_cost($subtotal, $values, $cart_item_key) {
+    //Get the custom field value
+    $custom_shipping_cost = get_post_meta($post->ID, 'custom_shipping_cost', true);
+
+    //Just for testing, you can remove this line
+    $custom_shipping_cost = 10;
+
+    //Check if we have a custom shipping cost, if so, display it below the item price
+    if ($custom_shipping_cost) {
+        return $subtotal.'<br>+'.woocommerce_price($custom_shipping_cost).' Shipping Cost';
+    } else {
+        return $subtotal;   
+    }
+}
+
+// Thumbnails
+function woocommerce_template_loop_product_thumbnail() {
+  $image = get_field('painting');
+  
+  $url = $image['url'];
+  $alt = $image['alt'];
+  $caption = $image['caption'];
+
+  // thumbnail
+  $size = 'medium';
+  $thumb = $image['sizes'][ $size ];
+  
+  if( !empty($image) ):
+
+    echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
+
+  endif;
+}
+
+// Single Product Page Image
+function woocommerce_show_product_images() {
+  $image = get_field('painting');
+  
+  $url = $image['url'];
+  $alt = $image['alt'];
+  $caption = $image['caption'];
+
+  // thumbnail
+  $size = 'large';
+  $thumb = $image['sizes'][ $size ];
+  
+  if( !empty($image) ):
+
+    echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
+
+  endif;
+}
+
+/*function woocommerce_cart_item_thumbnail() {
+  $image = get_field('painting');
+  
+  $url = $image['url'];
+  $alt = $image['alt'];
+  $caption = $image['caption'];
+
+  // thumbnail
+  $size = 'large';
+  $thumb = $image['sizes'][ $size ];
+  
+  if( !empty($image) ):
+
+    echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
+
+  endif;
+
+}*/
+
+// Exclude demos from gallery page
 add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
  
 function custom_pre_get_posts_query( $q ) {
@@ -398,15 +445,10 @@ function custom_pre_get_posts_query( $q ) {
  
 }
 
-// Simple products
-add_filter( 'woocommerce_quantity_input_args', 'jk_woocommerce_quantity_input_args', 10, 2 );
-function jk_woocommerce_quantity_input_args( $args, $product ) {
-    $args['input_value'] 	= 1;	// Starting value
-    return $args;
-}
+// Display # products per page
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 20 );
 
-/* custom columns */
-
+//Custom columns
 function my_page_columns($columns)
 {
 	$columns = array(
@@ -454,11 +496,52 @@ add_action("manage_posts_custom_column", "my_custom_columns");
 add_filter("manage_edit-post_columns", "my_page_columns");
 
 
-/* masonry */
+//Masonry
 add_action( 'wp_enqueue_scripts', 'slug_masonry' );
 function slug_masonry( ) {
 	wp_enqueue_script( 'masonry' );
 	wp_enqueue_script( 'masonry-init', get_template_directory_uri().'/js/masonry-min.js', array( 'masonry' ), null, true );
 }
+
+
+
+
+/*--------------------
+ADMIN CHANGES
+--------------------*/
+
+// Set default quantity to 1
+
+add_filter( 'woocommerce_quantity_input_args', 'jk_woocommerce_quantity_input_args', 10, 2 );
+function jk_woocommerce_quantity_input_args( $args, $product ) {
+    $args['input_value']  = 1;  // Starting value
+    $args['max_value']    = 1;   // Maximum value
+    $args['min_value']    = 1;    // Minimum value
+    $args['step']     = 1;    // Quantity steps
+    return $args;
+}
+
+// Stock management default
+
+add_action('save_post', 'myWoo_savePost', 10, 2);
+
+function myWoo_savePost($postID, $post) {
+    if (isset($post->post_type) && $post->post_type == 'product') {
+
+        update_post_meta($post->ID, '_manage_stock', 'yes');
+
+        update_post_meta($post->ID, '_stock', '1');
+    }
+}
+
+// Sold individually
+
+function default_no_quantities( $individually, $product ){
+$individually = true;
+return $individually;
+}
+add_filter( 'woocommerce_is_sold_individually', 'default_no_quantities', 10, 2 );
+
+
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

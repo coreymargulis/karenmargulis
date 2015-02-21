@@ -47,6 +47,17 @@
 
 			<header class="header" role="banner">
 
+				<div id="inner-header-top" class="wrap cf">
+
+					<a id="nav-cart" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your Cart' ); ?>">
+						
+						<span class="nav-cart-total"><?php echo WC()->cart->get_cart_total(); ?></span>
+						<span class="nav-cart-icon-full">Cart</span>
+
+					</a>
+
+				</div>
+
 				<div id="inner-header" class="wrap cf"> 
 					
 					<div id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?> <span class="psa">PSA</span></a></div>

@@ -185,6 +185,14 @@ nav[role=navigation] li a {
 	padding: 0;
 	height: 55px;
 }
+
+#inner-header-top {
+	text-align: right;
+	margin-top: 4px;
+	padding-right: .9em;
+
+}
+
 #menu {
 	float: right;
 	margin: 0;
@@ -201,7 +209,7 @@ nav[role=navigation] li a {
 	float: left;
 	font-family: $caps;
 	font-size: 24px;
-	padding-left: .9em;
+	padding-left: .8em;
 
 	display: inline-block;
 	
@@ -617,7 +625,22 @@ POSTS & CONTENT STYLES
 				margin-top: 0.35em;
 			}
 		}
+
+		/*home*/
+		#featured-image-home-container {
+			height: 500px;
+		}
 		
+		#featured-image-home {
+			position: relative;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+		}
+
 		/*single post*/
 		.featured-image-wrap {
 			text-align: center;
