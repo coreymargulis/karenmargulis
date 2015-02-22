@@ -38,10 +38,23 @@
 
 					                    <?php woocommerce_show_product_sale_flash( $post, $product ); ?>
 										
-										<?php if (has_post_thumbnail( $loop->post->ID )) 
-											echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); 
-											else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="Placeholder" width="300px" height="300px" />'; 
-										?>
+										<?php
+										$image = get_field('painting');
+  
+  $url = $image['url'];
+  $alt = $image['alt'];
+
+  // thumbnail
+  $size = 'large';
+  $thumb = $image['sizes'][ $size ];
+  
+  if( !empty($image) ):
+
+    echo '<img id="painting" src="' . $thumb . '" alt="' . $alt . '" />';
+
+  endif;
+
+?>
 					
 					                    <h3><?php the_title(); ?></h3>
 					

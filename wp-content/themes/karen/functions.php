@@ -73,8 +73,8 @@ if ( ! isset( $content_width ) ) {
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
-add_image_size( 'bones-thumb-600', 600, 150, true );
-add_image_size( 'bones-thumb-300', 300, 100, true );
+// add_image_size( 'bones-thumb-600', 600, 150, true );
+// add_image_size( 'bones-thumb-300', 300, 100, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -96,14 +96,14 @@ You can change the names and dimensions to whatever
 you like. Enjoy!
 */
 
-add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
+// add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
 
-function bones_custom_image_sizes( $sizes ) {
-    return array_merge( $sizes, array(
-        'bones-thumb-600' => __('600px by 150px'),
-        'bones-thumb-300' => __('300px by 100px'),
-    ) );
-}
+// function bones_custom_image_sizes( $sizes ) {
+//     return array_merge( $sizes, array(
+//         'bones-thumb-600' => __('600px by 150px'),
+//         'bones-thumb-300' => __('300px by 100px'),
+//     ) );
+// }
 
 /*
 The function above adds the ability to use the dropdown menu to select
@@ -252,7 +252,7 @@ add_filter( 'disable_captions', create_function('$a', 'return true;') );
 
 
 
-/************* WOOCOMMERCE *********************/
+/********************** WOOCOMMERCE *********************/
 
 
 /*
@@ -318,7 +318,6 @@ TEXT CHANGES
 
 
 // Out of stock message
-
 add_filter('woocommerce_get_availability', 'availability_filter_func');
 
 function availability_filter_func($availability)
@@ -327,21 +326,9 @@ $availability['availability'] = str_ireplace('Out of stock', 'Sold', $availabili
 return $availability;
 }
 
-/*
-if (!function_exists('woocommerce_template_loop_add_to_cart')) {
-	function woocommerce_template_loop_add_to_cart() {
-		global $product;
-		if (!$product->is_in_stock()) return;
-		woocommerce_get_template('loop/add-to-cart.php');
-*/
-/*
-		else {
-			echo 'Sold';
-		}
 
-	}
-}
-*/
+
+
 
 
 /*--------------------
@@ -384,12 +371,6 @@ function woocommerce_show_product_images() {
   endif;
 }
 
-// Show images in cart
-
-
-
-
-
 
 // Exclude demos from gallery page
 add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
@@ -417,12 +398,86 @@ function custom_pre_get_posts_query( $q ) {
 // Display # products per page
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 20 );
 
-//Masonry
+// Masonry
 add_action( 'wp_enqueue_scripts', 'slug_masonry' );
 function slug_masonry( ) {
 	wp_enqueue_script( 'masonry' );
 	wp_enqueue_script( 'masonry-init', get_template_directory_uri().'/js/masonry-min.js', array( 'masonry' ), null, true );
 }
+
+// Custom single product pages for demos, workshops, paintings
+function my_custom_product_template($template, $slug, $name) {
+    if ($name === 'single-product' && $slug === 'content') {
+        global $product_cat;
+        $temp = locate_template(array("{$slug}-{$name}-{$product_cat}.php", WC()->template_path() . "{$slug}-{$name}-{$product_cat}.php"));
+        if($temp) {
+           $template = $temp;
+        }
+    }
+    return $template;
+}
+// Display custom attributes (need to work on this)
+add_filter('wc_get_template_part', 'my_custom_product_template', 10, 3);
+
+function isa_woocommerce_all_pa(){
+ 
+    global $product;
+    $attributes = $product->get_attributes();
+ 
+    if ( ! $attributes ) {
+        return;
+    }
+ 
+    $out = '<ul class="custom-attributes">';
+ 
+    foreach ( $attributes as $attribute ) {
+ 
+ 
+        // skip variations
+        if ( $attribute['is_variation'] ) {
+        continue;
+        }
+ 
+ 
+        if ( $attribute['is_taxonomy'] ) {
+ 
+            $terms = wp_get_post_terms( $product->id, $attribute['name'], 'all' );
+ 
+            // get the taxonomy
+            $tax = $terms[0]->taxonomy;
+ 
+            // get the tax object
+            $tax_object = get_taxonomy($tax);
+ 
+            // get tax label
+            if ( isset ($tax_object->labels->name) ) {
+                $tax_label = $tax_object->labels->name;
+            } elseif ( isset( $tax_object->label ) ) {
+                $tax_label = $tax_object->label;
+            }
+ 
+            foreach ( $terms as $term ) {
+ 
+                $out .= '<li class="' . esc_attr( $attribute['name'] ) . ' ' . esc_attr( $term->slug ) . '">';
+                $out .= '<span class="attribute-label">' . $tax_label . ': </span> ';
+                $out .= '<span class="attribute-value">' . $term->name . '</span></li>';
+ 
+            }
+ 
+        } else {
+ 
+            $out .= '<li class="' . sanitize_title($attribute['name']) . ' ' . sanitize_title($attribute['value']) . '">';
+            $out .= '<span class="attribute-label">' . $attribute['name'] . ': </span> ';
+            $out .= '<span class="attribute-value">' . $attribute['value'] . '</span></li>';
+        }
+    }
+ 
+    $out .= '</ul>';
+ 
+    echo $out;
+}
+add_action('woocommerce_single_product_summary', 'isa_woocommerce_all_pa', 25);
+
 
 /*--------------------
 CHECKOUT FORM CHANGES
@@ -487,21 +542,12 @@ function custom_override_default_address_fields( $address_fields ) {
 ADMIN CHANGES
 --------------------*/
 
-// Set default quantity to 1
-add_filter( 'woocommerce_quantity_input_args', 'jk_woocommerce_quantity_input_args', 10, 2 );
-function jk_woocommerce_quantity_input_args( $args, $product ) {
-    $args['input_value']  = 1;  // Starting value
-    $args['max_value']    = 1;   // Maximum value
-    $args['min_value']    = 1;    // Minimum value
-    $args['step']     = 1;    // Quantity steps
-    return $args;
-}
 
 // Stock management default
 add_action('save_post', 'myWoo_savePost', 10, 2);
 
 function myWoo_savePost($postID, $post) {
-    if (isset($post->post_type) && $post->post_type == 'product') {
+    if (isset($post->post_type) && $post->post_type == 'product')  {
 
         update_post_meta($post->ID, '_manage_stock', 'yes');
 
@@ -515,6 +561,16 @@ $individually = true;
 return $individually;
 }
 add_filter( 'woocommerce_is_sold_individually', 'default_no_quantities', 10, 2 );
+
+// Hide tabs in admin for mom
+function remove_admin_tabs($tabs){
+    unset($tabs['linked_product']);
+    unset($tabs['shipping']);
+    unset($tabs['attribute']);
+    unset($tabs['advanced']);
+    return($tabs);
+}
+add_filter('woocommerce_product_data_tabs', 'remove_admin_tabs', 10, 1);
 
 
 
