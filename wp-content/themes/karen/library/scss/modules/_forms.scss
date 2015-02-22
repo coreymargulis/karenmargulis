@@ -16,6 +16,8 @@ http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/
 
 ******************************************************************/
 
+input:focus {outline:0 !important;}
+
 /*********************
 INPUTS
 *********************/
@@ -39,11 +41,13 @@ select,
 textarea,
 .field {
   display: block;
-  height: 40px;
+  height: 44px;
   line-height: 40px;
   padding: 0 12px;
   margin-bottom: 14px;
-  font-size: 1em;
+
+  font-size: 16px;
+  font-family: $sans-serif;
   color: $text-color;
   border-radius: 2px;
   vertical-align: middle;
@@ -57,7 +61,8 @@ textarea,
   // a focused input (or hovered on)
   &:focus,
   &:active {
-    background-color: lighten($gray, 4%);
+    //background-color: lighten($light-gray, 0%);
+    border: 1px solid lighten($purple, 10%);
   } // end hover or focus
 
   // error notification
@@ -101,9 +106,9 @@ textarea,
 } // end input defaults
 
 // spacing out the password (thx @murtaugh)
-input[type="password"] {
+/*input[type="password"] {
   letter-spacing: 0.3em;
-}
+}*/
 
 // textareas
 textarea {

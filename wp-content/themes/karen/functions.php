@@ -348,30 +348,12 @@ if (!function_exists('woocommerce_template_loop_add_to_cart')) {
 VISUAL/LAYOUT CHANGES
 --------------------*/
 
-// cart column
-add_filter('woocommerce_cart_item_subtotal','additional_shipping_cost',10,3);
-function additional_shipping_cost($subtotal, $values, $cart_item_key) {
-    //Get the custom field value
-    $custom_shipping_cost = get_post_meta($post->ID, 'custom_shipping_cost', true);
-
-    //Just for testing, you can remove this line
-    $custom_shipping_cost = 10;
-
-    //Check if we have a custom shipping cost, if so, display it below the item price
-    if ($custom_shipping_cost) {
-        return $subtotal.'<br>+'.woocommerce_price($custom_shipping_cost).' Shipping Cost';
-    } else {
-        return $subtotal;   
-    }
-}
-
 // Thumbnails
 function woocommerce_template_loop_product_thumbnail() {
   $image = get_field('painting');
   
   $url = $image['url'];
   $alt = $image['alt'];
-  $caption = $image['caption'];
 
   // thumbnail
   $size = 'medium';
@@ -384,13 +366,12 @@ function woocommerce_template_loop_product_thumbnail() {
   endif;
 }
 
-// Single Product Page Image
+// Single Product Image
 function woocommerce_show_product_images() {
   $image = get_field('painting');
   
   $url = $image['url'];
   $alt = $image['alt'];
-  $caption = $image['caption'];
 
   // thumbnail
   $size = 'large';
@@ -398,29 +379,17 @@ function woocommerce_show_product_images() {
   
   if( !empty($image) ):
 
-    echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
+    echo '<img id="painting" src="' . $thumb . '" alt="' . $alt . '" />';
 
   endif;
 }
 
-/*function woocommerce_cart_item_thumbnail() {
-  $image = get_field('painting');
-  
-  $url = $image['url'];
-  $alt = $image['alt'];
-  $caption = $image['caption'];
+// Show images in cart
 
-  // thumbnail
-  $size = 'large';
-  $thumb = $image['sizes'][ $size ];
-  
-  if( !empty($image) ):
 
-    echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
 
-  endif;
 
-}*/
+
 
 // Exclude demos from gallery page
 add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
@@ -448,54 +417,6 @@ function custom_pre_get_posts_query( $q ) {
 // Display # products per page
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 20 );
 
-//Custom columns
-function my_page_columns($columns)
-{
-	$columns = array(
-		'cb'	 	=> '<input type="checkbox" />',
-		'thumbnail'	=>	'Thumbnail',
-		'title' 	=> 'Title',
-		'featured' 	=> 'Featured',
-		'author'	=>	'Author',
-		'date'		=>	'Date',
-	);
-	return $columns;
-}
-
-function my_custom_columns($column)
-{
-	global $post;
-	if($column == 'thumbnail')
-	{
-		/*
-echo $post_object = get_field('featured_painting');
-
-											 
-											if( $post_object ): 
-											 
-												// override $post
-												$post = $post_object;
-												setup_postdata( $post );
-												
-*/
-	}
-	elseif($column == 'featured')
-	{
-		if(get_field('featured'))
-		{
-			echo 'Yes';
-		}
-		else
-		{
-			echo 'No';
-		}
-	}
-}
-
-add_action("manage_posts_custom_column", "my_custom_columns");
-add_filter("manage_edit-post_columns", "my_page_columns");
-
-
 //Masonry
 add_action( 'wp_enqueue_scripts', 'slug_masonry' );
 function slug_masonry( ) {
@@ -503,7 +424,63 @@ function slug_masonry( ) {
 	wp_enqueue_script( 'masonry-init', get_template_directory_uri().'/js/masonry-min.js', array( 'masonry' ), null, true );
 }
 
+/*--------------------
+CHECKOUT FORM CHANGES
+--------------------*/
 
+// Checkout Field Changes
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+
+   // Change label text
+   $fields['order']['order_comments']['placeholder'] = 'Notes or instructions (optional)';
+   $fields['account']['account_password']['placeholder'] = '*******';
+   $fields['billing']['billing_first_name']['placeholder'] = 'First name';
+   $fields['billing']['billing_last_name']['placeholder'] = 'Last name';
+   $fields['billing']['billing_email']['placeholder'] = 'Email address';
+   $fields['billing']['billing_address_1']['placeholder'] = 'Address';
+   $fields['billing']['billing_address_2']['placeholder'] = 'Apartment number, suite, unit, etc. (optional)';
+   $fields['billing']['billing_city']['placeholder'] = 'City';
+   $fields['billing']['billing_postcode']['placeholder'] = 'Zip / Postal code';
+   $fields['billing']['billing_state']['placeholder'] = 'State / Province';
+
+   // Remove labels above input fields
+   unset ($fields['order']['order_comments']['label']);
+   unset ($fields['account']['account_password']['label']);
+   unset ($fields['billing']['billing_last_name']['label']);
+   unset ($fields['billing']['billing_first_name']['label']);
+   unset ($fields['billing']['billing_email']['label']);
+   unset ($fields['billing']['billing_address_1']['label']);
+   unset ($fields['billing']['billing_address_2']['label']);
+   unset ($fields['billing']['billing_city']['label']);
+   unset ($fields['billing']['billing_postcode']['label']);
+   unset ($fields['billing']['billing_state']['label']);
+   unset ($fields['billing']['billing_country']['label']);
+   unset ($fields['billing']['billing_country']['required']);
+
+    return $fields;
+}
+
+// Make phone number not required
+add_filter( 'woocommerce_billing_fields', 'wc_npr_filter_phone', 10, 1 );
+
+function wc_npr_filter_phone( $address_fields ) {
+  $address_fields['billing_phone']['required'] = false;
+  return $address_fields;
+}
+
+
+// Hook in
+add_filter( 'woocommerce_default_address_fields' , 'custom_override_default_address_fields' );
+
+// Our hooked in function - $address_fields is passed via the filter!
+function custom_override_default_address_fields( $address_fields ) {
+     $address_fields['country']['placeholder'] = 'United States';
+
+     return $address_fields;
+}
 
 
 /*--------------------
@@ -511,7 +488,6 @@ ADMIN CHANGES
 --------------------*/
 
 // Set default quantity to 1
-
 add_filter( 'woocommerce_quantity_input_args', 'jk_woocommerce_quantity_input_args', 10, 2 );
 function jk_woocommerce_quantity_input_args( $args, $product ) {
     $args['input_value']  = 1;  // Starting value
@@ -522,7 +498,6 @@ function jk_woocommerce_quantity_input_args( $args, $product ) {
 }
 
 // Stock management default
-
 add_action('save_post', 'myWoo_savePost', 10, 2);
 
 function myWoo_savePost($postID, $post) {
@@ -535,7 +510,6 @@ function myWoo_savePost($postID, $post) {
 }
 
 // Sold individually
-
 function default_no_quantities( $individually, $product ){
 $individually = true;
 return $individually;

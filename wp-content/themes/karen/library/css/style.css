@@ -938,26 +938,29 @@ Here's a quick video to show how it works:
 http://www.youtube.com/watch?v=hwdVpKiJzac
 
 *********************/
-.blue-btn, .comment-reply-link, #submit {
+button:focus {
+  outline: 0 !important; }
+
+.blue-btn, .comment-reply-link, #submit, .alt {
   display: inline-block;
   position: relative;
   font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
   color: #fff;
   font-size: 0.9em;
-  font-size: 34px;
+  font-size: 16px;
   line-height: 34px;
   font-weight: normal;
-  padding: 0 24px;
-  border-radius: 4px;
+  padding: 10px 24px;
+  border-radius: 2px;
   border: 0;
   cursor: pointer;
   -webkit-transition: background-color 0.14s ease-in-out;
   transition: background-color 0.14s ease-in-out; }
-  .blue-btn:hover, .comment-reply-link:hover, #submit:hover, .blue-btn:focus, .comment-reply-link:focus, #submit:focus {
+  .blue-btn:hover, .comment-reply-link:hover, #submit:hover, .alt:hover, .blue-btn:focus, .comment-reply-link:focus, #submit:focus, .alt:focus {
     color: #fff;
     text-decoration: none; }
-  .blue-btn:active, .comment-reply-link:active, #submit:active {
+  .blue-btn:active, .comment-reply-link:active, #submit:active, .alt:active {
     top: 1px; }
 
 /*
@@ -971,6 +974,14 @@ and it will create a button dependant on those variables.
     background-color: #2574a8; }
   .blue-btn:active, .comment-reply-link:active, #submit:active {
     background-color: #2472a4; }
+
+.alt {
+  background-color: #8D74C5;
+  font-size: 20px; }
+  .alt:hover, .alt:focus {
+    background-color: #9982cb; }
+  .alt:active {
+    background-color: #7e62bd; }
 
 /******************************************************************
 Site Name:
@@ -989,6 +1000,9 @@ If you want to create your own, use this helpful link:
 http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/
 
 ******************************************************************/
+input:focus {
+  outline: 0 !important; }
+
 /*********************
 INPUTS
 *********************/
@@ -1010,11 +1024,12 @@ select,
 textarea,
 .field {
   display: block;
-  height: 40px;
+  height: 44px;
   line-height: 40px;
   padding: 0 12px;
   margin-bottom: 14px;
-  font-size: 1em;
+  font-size: 16px;
+  font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #484848;
   border-radius: 2px;
   vertical-align: middle;
@@ -1058,7 +1073,7 @@ textarea,
   textarea:active,
   .field:focus,
   .field:active {
-    background-color: #525252; }
+    border: 1px solid #ab98d4; }
   input[type="text"].error, input[type="text"].is-invalid,
   input[type="password"].error,
   input[type="password"].is-invalid,
@@ -1242,9 +1257,9 @@ textarea,
     .field.is-disabled:active {
       background-color: #d5edf8; }
 
-input[type="password"] {
-  letter-spacing: 0.3em; }
-
+/*input[type="password"] {
+  letter-spacing: 0.3em;
+}*/
 textarea {
   max-width: 100%;
   min-height: 120px;
@@ -1283,9 +1298,12 @@ body {
   font-size: 20px;
   line-height: 1.5;
   color: #484848;
-  background-color: #f8f9fa;
+  background-color: #F8F9FA;
   -webkit-font-smoothing: antialiased; }
 
+/*#painting {
+	width: 250px;
+}*/
 /********************
 WORDPRESS BODY CLASSES
 style a page via class
@@ -1336,14 +1354,14 @@ LAYOUT & GRID STYLES
 LINK STYLES
 *********************/
 a, a:visited {
-  color: #a991de;
+  color: #8D74C5;
   text-decoration: none;
   transition: all .3s ease-in-out;
   /* on hover */
   /* on click */
   /* mobile tap color */ }
   a:hover, a:focus, a:visited:hover, a:visited:focus {
-    color: #8d6ed3; }
+    color: #a894d3; }
   a:link, a:visited:link {
     /*
     this highlights links on iPhones/iPads.
@@ -1411,7 +1429,7 @@ nav[role=navigation] li a {
   padding: 0 1em; }
 
 #inner-header {
-  border-bottom: 1px solid #a991de;
+  border-bottom: 1px solid #8D74C5;
   text-align: left;
   margin: 75px auto 0;
   padding: 0;
@@ -1495,7 +1513,7 @@ NAVIGATION STYLES
       keep this file as small as possible!
       */ }
       .nav li a:active {
-        color: #a991de; }
+        color: #8D74C5; }
     .nav li ul.sub-menu li a,
     .nav li ul.children li a {
       padding-left: 30px; }
@@ -1503,7 +1521,7 @@ NAVIGATION STYLES
   .nav li.current_page_item a,
   .nav li.current_page_ancestor a,
   .nav li.current_page_parent a {
-    color: #a991de; }
+    color: #8D74C5; }
 
 /* end .nav */
 /*********************
@@ -1516,11 +1534,11 @@ POSTS & CONTENT STYLES
   border-radius: 3px;
   margin-bottom: 1.15em; }
   .hentry header {
-    border-bottom: 1px solid #f8f9fa;
+    border-bottom: 1px solid #F8F9FA;
     padding: 0 1.15em; }
   .hentry footer {
     padding: 1.5em;
-    border-top: 1px solid #f8f9fa; }
+    border-top: 1px solid #F8F9FA; }
     .hentry footer p {
       margin: 0; }
 
@@ -1569,14 +1587,14 @@ POSTS & CONTENT STYLES
   .entry-content tr {
     border-bottom: 1px solid #484848; }
     .entry-content tr:nth-child(even) {
-      background-color: #f8f9fa; }
+      background-color: #F8F9FA; }
   .entry-content td {
     padding: 7px;
     border-right: 1px solid #484848; }
     .entry-content td:last-child {
       border-right: 0; }
   .entry-content th {
-    background-color: #f8f9fa;
+    background-color: #F8F9FA;
     border-bottom: 1px solid #484848;
     border-right: 1px solid #484848; }
     .entry-content th:last-child {
@@ -1584,7 +1602,7 @@ POSTS & CONTENT STYLES
   .entry-content blockquote {
     margin: 0 0 1.5em 0.75em;
     padding: 0 0 0 0.75em;
-    border-left: 3px solid #a991de;
+    border-left: 3px solid #8D74C5;
     color: #959595; }
   .entry-content dd {
     margin-left: 0;
@@ -1604,7 +1622,7 @@ POSTS & CONTENT STYLES
     height: auto; }
   .entry-content pre {
     background: #323944;
-    color: #f8f9fa;
+    color: #F8F9FA;
     font-size: 0.9em;
     padding: 1.5em;
     margin: 0 0 1.5em;
@@ -1710,7 +1728,7 @@ POSTS & CONTENT STYLES
   right: 0;
   padding: 10px 12px;
   font-family: "scalasansregular";
-  font-size: .545em;
+  font-size: 12px;
   z-index: 300;
   text-align: right;
   max-width: 80%; }
@@ -1725,7 +1743,7 @@ POSTS & CONTENT STYLES
     margin-left: 5px;
     color: #fff; }
     .featured-image-caption .price:hover, .featured-image-caption .price:focus {
-      color: #9d81d9; }
+      color: #8166bf; }
 
 .image-caption {
   color: #959595;
@@ -1828,6 +1846,12 @@ ul.products {
   margin-bottom: 2em;
   padding-left: 0; }
 
+/*------
+CHECKOUT FORMS
+------*/
+input[type="password"] {
+  letter-spacing: 0em; }
+
 /******************************************************************
 PAGE NAVI STYLES
 ******************************************************************/
@@ -1867,7 +1891,7 @@ PAGE NAVI STYLES
       color: #fff; }
   .pagination .current {
     cursor: default;
-    color: #a991de; }
+    color: #8D74C5; }
     .pagination .current:hover, .pagination .current:focus {
       background-color: #fff;
       color: #484848; }
@@ -1887,7 +1911,7 @@ COMMENT STYLES
 #comments-title {
   padding: 0.75em;
   margin: 0;
-  border-top: 1px solid #f8f9fa;
+  border-top: 1px solid #F8F9FA;
   /* number of comments span */ }
 
 .commentlist {
@@ -1899,7 +1923,7 @@ COMMENT STYLES
   clear: both;
   overflow: hidden;
   padding: 1.5em;
-  border-bottom: 1px solid #f8f9fa;
+  border-bottom: 1px solid #F8F9FA;
   /* vcard */
   /* end .commentlist .vcard */
   /* end children */
@@ -1943,7 +1967,7 @@ COMMENT STYLES
   .comment.odd {
     background-color: #fff; }
   .comment.even {
-    background: #f8f9fa; }
+    background: #F8F9FA; }
 
 /* comment meta */
 /* comment content */
@@ -1971,7 +1995,7 @@ COMMENT FORM STYLES
 ******************************************************************/
 .comment-respond {
   padding: 1.5em;
-  border-top: 1px solid #f8f9fa; }
+  border-top: 1px solid #F8F9FA; }
 
 #reply-title {
   margin: 0; }
@@ -1988,7 +2012,7 @@ COMMENT FORM STYLES
 
 .form-allowed-tags {
   padding: 1.5em;
-  background-color: #f8f9fa;
+  background-color: #F8F9FA;
   font-size: 0.9em; }
 
 /* comment submit button */
@@ -2253,7 +2277,7 @@ you can add resource intensive styles.
         has the possibility of being a mobile device.
         */ }
         .nav li a:hover, .nav li a:focus {
-          color: #8d6ed3; }
+          color: #a894d3; }
       .nav li ul.sub-menu,
       .nav li ul.children {
         margin-top: 0;
@@ -2290,14 +2314,14 @@ you can add resource intensive styles.
         .nav li ul.children li.current-menu-item a,
         .nav li ul.children li.current_page_item a,
         .nav li ul.children li.current_page_ancestor a {
-          color: #a991de; }
+          color: #8D74C5; }
       .nav li:hover > ul {
         top: auto;
         visibility: visible; }
     .nav li.current-menu-item a,
     .nav li.current_page_item a,
     .nav li.current_page_ancestor a {
-      color: #a991de; }
+      color: #8D74C5; }
 
   /* end .nav */
   /*********************

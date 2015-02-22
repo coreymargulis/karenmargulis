@@ -14,21 +14,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** @global WC_Checkout $checkout */
 ?>
 <div class="woocommerce-billing-fields">
-	<?php if ( WC()->cart->ship_to_billing_address_only() && WC()->cart->needs_shipping() ) : ?>
-
-		<h3><?php _e( 'Billing &amp; Shipping', 'woocommerce' ); ?></h3>
-
-	<?php else : ?>
-
-		<h3><?php _e( 'Billing Details', 'woocommerce' ); ?></h3>
-
-	<?php endif; ?>
+	
+	<h2><?php _e( 'Contact Information', 'woocommerce' ); ?></h2>
 
 	<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 
-	<?php foreach ( $checkout->checkout_fields['billing'] as $key => $field ) : ?>
+	<?php
+		$mybillingfields=array(
+		"billing_first_name",
+		"billing_last_name",
+		"billing_email",
 
-		<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+		
+		);
+	?>
+	<?php foreach ($mybillingfields as $key) : ?>
+
+		<?php woocommerce_form_field( $key, $checkout->checkout_fields['billing'][$key], $checkout->get_value( $key ) ); ?>
+
+	<?php endforeach; ?>
+
+	<h2><?php _e( 'Billing Address', 'woocommerce' ); ?></h2>
+
+	<?php
+		$mybillingfields=array(
+
+		"billing_address_1",
+		"billing_address_2",
+		"billing_city",
+		"billing_state",
+		"billing_postcode",
+		"billing_country",
+		);
+	?>
+	<?php foreach ($mybillingfields as $key) : ?>
+
+		<?php woocommerce_form_field( $key, $checkout->checkout_fields['billing'][$key], $checkout->get_value( $key ) ); ?>
 
 	<?php endforeach; ?>
 
@@ -50,7 +71,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<div class="create-account">
 
-				<p><?php _e( 'Create an account by entering the information below. If you are a returning customer please login at the top of the page.', 'woocommerce' ); ?></p>
+				<p><?php _e( 'Create an account by entering a password below. If you are a returning customer please login !here.', 'woocommerce' ); ?></p>
 
 				<?php foreach ( $checkout->checkout_fields['account'] as $key => $field ) : ?>
 

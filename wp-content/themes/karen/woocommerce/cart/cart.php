@@ -34,13 +34,26 @@ do_action( 'woocommerce_before_cart' ); ?>
 				<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
 					<td class="product-thumbnail">
-						<!--<?php
+
+						<?php
 							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+								
+								$image = get_field('painting', $product_id);
+  
+								  $url = $image['url'];
+								  $alt = $image['alt'];
 
-								echo $thumbnail;
-						?>-->
+								  // thumbnail
+								  $size = 'thumbnail';
+								  $thumb = $image['sizes'][ $size ];
+								  
+								  if( !empty($image) ):
 
-						
+								    echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
+
+								  endif;
+
+						?>
 
 					</td>
 

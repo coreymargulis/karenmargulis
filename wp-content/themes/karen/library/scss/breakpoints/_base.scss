@@ -24,6 +24,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/*#painting {
+	width: 250px;
+}*/
+
 /********************
 WORDPRESS BODY CLASSES
 style a page via class
@@ -671,7 +675,7 @@ POSTS & CONTENT STYLES
 			
 			padding: 10px 12px;
 			font-family: "scalasansregular";
-			font-size: .545em;
+			font-size: 12px;
 			z-index: 300;
 			text-align: right;
 			max-width: 80%;
@@ -871,6 +875,14 @@ ul.products {
 .woocommerce-ordering {
 	margin-bottom: 2em;
 	padding-left: 0;
+}
+
+/*------
+CHECKOUT FORMS
+------*/
+
+input[type="password"] {
+letter-spacing: 0em;
 }
 
 //end woocommerce

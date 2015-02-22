@@ -618,7 +618,7 @@ body#tinymce.wp-editor {
     /* on hover */
     /* on click */ }
     body#tinymce.wp-editor a:hover, body#tinymce.wp-editor a:focus, body#tinymce.wp-editor a:visited:hover, body#tinymce.wp-editor a:visited:focus {
-      color: #8d6ed3; }
+      color: #c5b4e9; }
     body#tinymce.wp-editor a:link, body#tinymce.wp-editor a:visited:link {
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3); }
   body#tinymce.wp-editor h1, body#tinymce.wp-editor .h1, body#tinymce.wp-editor h2, body#tinymce.wp-editor .h2, body#tinymce.wp-editor h3, body#tinymce.wp-editor .h3, body#tinymce.wp-editor h4, body#tinymce.wp-editor .h4, body#tinymce.wp-editor h5, body#tinymce.wp-editor .h5 {
@@ -658,14 +658,14 @@ body#tinymce.wp-editor {
   body#tinymce.wp-editor tr {
     border-bottom: 1px solid #484848; }
     body#tinymce.wp-editor tr:nth-child(even) {
-      background-color: #f8f9fa; }
+      background-color: #F8F9FA; }
   body#tinymce.wp-editor td {
     padding: 7px;
     border-right: 1px solid #484848; }
     body#tinymce.wp-editor td:last-child {
       border-right: 0; }
   body#tinymce.wp-editor th {
-    background-color: #f8f9fa;
+    background-color: #F8F9FA;
     border-bottom: 1px solid #484848;
     border-right: 1px solid #484848; }
     body#tinymce.wp-editor th:last-child {
@@ -694,7 +694,7 @@ body#tinymce.wp-editor {
     height: auto; }
   body#tinymce.wp-editor pre {
     background: #323944;
-    color: #f8f9fa;
+    color: #F8F9FA;
     font-size: 0.9em;
     padding: 1.5em;
     margin: 0 0 1.5em;

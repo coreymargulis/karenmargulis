@@ -30,7 +30,7 @@
 
 								    	<!-- <a href="<?php the_permalink(); ?>"> -->
 								    		<?php 
-									    		$image = get_field('painting', $post->ID);
+									    		$image = get_field('painting');
 
 													if( !empty($image) ): ?>
 
