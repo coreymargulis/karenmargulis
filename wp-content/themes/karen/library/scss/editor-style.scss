@@ -114,7 +114,7 @@ body#tinymce.wp-editor {
 			caption {
 				margin: 0 0 7px;
 				font-size: 0.75em;
-				color: $meta-gray;
+				color: $light-gray;
 				text-transform: uppercase;
 				letter-spacing: 1px;
 			}
@@ -151,7 +151,7 @@ body#tinymce.wp-editor {
 			padding: 0 0 0 0.75em;
 			border-left: 3px solid $blue;
 			font-style: italic;
-			color: $meta-gray;
+			color: $light-gray;
 
 			&:before {}
 

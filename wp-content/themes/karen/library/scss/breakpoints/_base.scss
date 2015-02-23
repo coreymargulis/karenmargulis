@@ -20,7 +20,7 @@ body {
 	font-size: 20px;
 	line-height: 1.5;
 	color: $text-color;
-	background-color: $light-gray;
+	background-color: $background;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -128,13 +128,14 @@ h1, .h1 {
 }
 
 h2, .h2 {
-	font-size: 20px;
+	font-size: 28px;
 	line-height: 1.4em;
 	margin-bottom: 0.375em;
 }
 
 h3, .h3 {
-	font-size: 16px;
+	font-size: 20px;
+	line-height: 1.25em;
 	margin-bottom: .375em;
 	margin-top: 0;
 }
@@ -354,7 +355,7 @@ POSTS & CONTENT STYLES
 			margin-bottom: 1.15em;
 
 			header {
-				border-bottom: 1px solid $light-gray;
+				/*border-bottom: 1px solid $light-gray;*/
 				padding: 0 1.15em;
 			}
 
@@ -396,7 +397,9 @@ POSTS & CONTENT STYLES
 
 		/* post meta */
 		.byline {
-			color: $meta-gray;
+			color: $gray-text;
+			font-family: $sans-serif;
+			font-size: 12px;
 			margin: 0;
 
 			time {}
@@ -433,39 +436,48 @@ POSTS & CONTENT STYLES
 
 			table {
 				width: 100%;
-				border: 1px solid $gray;
+				/*border: 1px solid $gray;*/
 				margin-bottom: 1.5em;
 
 				caption {
 					margin: 0 0 7px;
 					font-size: 0.75em;
-					color: $meta-gray;
+					color: $light-gray;
 					text-transform: uppercase;
 					letter-spacing: 1px;
 				}
 			}
 
 			tr {
-				border-bottom: 1px solid $gray;
+				border-bottom: 1px solid $light-gray;
+				&:first-child {
+					td {
+						padding-top: 0 !important;
+					}
+				}
 
 				&:nth-child(even) {
-					background-color: $light-gray;
+					/*background-color: $background-shade;*/
 				}
 			}
 
 			td {
-				padding: 7px;
-				border-right: 1px solid $gray;
+				/*padding: 7px;*/
+				/*border-right: 1px solid $gray;*/
+				vertical-align: top;
+				padding-top: 2em;
 
 				&:last-child {
 					border-right: 0;
 				}
+
+
 			}
 
 			th {
 				background-color: $light-gray;
-				border-bottom: 1px solid $gray;
-				border-right: 1px solid $gray;
+				/*border-bottom: 1px solid $gray;
+				border-right: 1px solid $gray;*/
 
 				&:last-child {
 					border-right: 0;
@@ -772,6 +784,9 @@ POSTS & CONTENT STYLES
 WOOCOMMERCE
 *********************/
 
+/*-----------------
+PRODUCT PAGES
+-----------------*/
 ul.products {
 	width: 100%;
 	margin: 0 auto;
@@ -806,26 +821,29 @@ ul.products {
 			img {
 				width: 100%;
 				height: auto;
-				//box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-				//-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+				/*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+				-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);*/
 			}
 			.onsale {
 			display: none;
-			//position: absolute;
-			//top: 0;
-			//right: 0;
-			//left:auto;
-			//margin: -6px -6px 0 0;
+			/*position: absolute;
+			top: 0;
+			right: 0;
+			left:auto;
+			margin: -6px -6px 0 0;*/
 			}
 			h3 {
 				margin-bottom: 0;
+				text-align: left;
+			
 			}
 			a {
 				text-decoration:none;
 				display: block;
+				color: $gray;
 				
 				&:hover, &:focus {
-
+					color: lighten($gray, 10%);
 				}
 			}
 			strong {
@@ -834,9 +852,11 @@ ul.products {
 			}
 			.price {
 				.amount {
-				float: left;
-				color: lighten($gray, 40%);
-				margin-top: -4px;
+					font-family: $sans-serif;
+					font-size: 16px;
+					float: left;
+					color: $purple;
+					margin-top: -4px;
 				}
 				del {
 					font-size: 0.67em;
@@ -877,9 +897,49 @@ ul.products {
 	padding-left: 0;
 }
 
-/*------
+/*-----------------
+CART
+-----------------*/
+.woocommerce {
+	tr {
+		a {
+			color: $gray-text;
+		}
+	}
+	td {
+		.amount {
+			font-family: $sans-serif;
+			font-size: 16px;
+		}
+	}
+	.wc-proceed-to-checkout {
+		a {
+			color: $white;
+		}
+	}
+
+	th {
+		font-family: $caps;
+		font-weight: normal;
+		font-size: 14px;
+	}
+	.cart_totals {
+		tbody{
+			background-color: $background-shade;
+		}
+	}
+	.place-order {
+		text-align: center;
+	}
+	#place_order {
+		padding: 20px 30px;
+	}
+}
+
+
+/*-----------------
 CHECKOUT FORMS
-------*/
+-----------------*/
 
 input[type="password"] {
 letter-spacing: 0em;
@@ -1006,6 +1066,8 @@ COMMENT STYLES
 	/* vcard */
 	.vcard {
 		margin-left: 50px;
+		font-family: $sans-serif;
+		color: $black;
 
 		cite.fn {
 			font-weight: 700;
@@ -1018,10 +1080,9 @@ COMMENT STYLES
 		time {
 			display: block;
 			font-size: 0.9em;
-			font-style: italic;
 
 			a {
-				color: $meta-gray;
+				color: $gray-text;
 				text-decoration: none;
 
 				&:hover {
@@ -1168,7 +1229,7 @@ COMMENT FORM STYLES
 	}
 
 	.logged-in-as {
-		color: $meta-gray;
+		color: $light-gray;
 		font-style: italic;
 		margin: 0;
 

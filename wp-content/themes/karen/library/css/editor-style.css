@@ -205,13 +205,6 @@ body#tinymce.wp-editor {
   http://0to255.com/
   *********************/
   /*
-  $tan:               #eceee5;
-  
-  $green:             #7dd667;
-  
-  $bones-pink:        #f01d4f;
-  */
-  /*
   Here's a great tutorial on how to
   use color variables properly:
   http://sachagreif.com/sass-color-variables/
@@ -614,11 +607,11 @@ body#tinymce.wp-editor {
     -o-font-feature-settings: "liga", "dlig";
     font-feature-settings: "liga", "dlig"; }
   body#tinymce.wp-editor a, body#tinymce.wp-editor a:visited {
-    color: #a991de;
+    color: #8D74C5;
     /* on hover */
     /* on click */ }
     body#tinymce.wp-editor a:hover, body#tinymce.wp-editor a:focus, body#tinymce.wp-editor a:visited:hover, body#tinymce.wp-editor a:visited:focus {
-      color: #c5b4e9; }
+      color: #a894d3; }
     body#tinymce.wp-editor a:link, body#tinymce.wp-editor a:visited:link {
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3); }
   body#tinymce.wp-editor h1, body#tinymce.wp-editor .h1, body#tinymce.wp-editor h2, body#tinymce.wp-editor .h2, body#tinymce.wp-editor h3, body#tinymce.wp-editor .h3, body#tinymce.wp-editor h4, body#tinymce.wp-editor .h4, body#tinymce.wp-editor h5, body#tinymce.wp-editor .h5 {
@@ -652,20 +645,20 @@ body#tinymce.wp-editor {
     body#tinymce.wp-editor table caption {
       margin: 0 0 7px;
       font-size: 0.75em;
-      color: #959595;
+      color: #f1f2f3;
       text-transform: uppercase;
       letter-spacing: 1px; }
   body#tinymce.wp-editor tr {
     border-bottom: 1px solid #484848; }
     body#tinymce.wp-editor tr:nth-child(even) {
-      background-color: #F8F9FA; }
+      background-color: #f1f2f3; }
   body#tinymce.wp-editor td {
     padding: 7px;
     border-right: 1px solid #484848; }
     body#tinymce.wp-editor td:last-child {
       border-right: 0; }
   body#tinymce.wp-editor th {
-    background-color: #F8F9FA;
+    background-color: #f1f2f3;
     border-bottom: 1px solid #484848;
     border-right: 1px solid #484848; }
     body#tinymce.wp-editor th:last-child {
@@ -675,7 +668,7 @@ body#tinymce.wp-editor {
     padding: 0 0 0 0.75em;
     border-left: 3px solid #2980b9;
     font-style: italic;
-    color: #959595; }
+    color: #f1f2f3; }
   body#tinymce.wp-editor dd {
     margin-left: 0;
     font-size: 0.9em;
@@ -694,7 +687,7 @@ body#tinymce.wp-editor {
     height: auto; }
   body#tinymce.wp-editor pre {
     background: #323944;
-    color: #F8F9FA;
+    color: #f1f2f3;
     font-size: 0.9em;
     padding: 1.5em;
     margin: 0 0 1.5em;

@@ -25,19 +25,16 @@ $alert-blue:        #d5edf8;
 $black:             #323944;
 $white:             #fff;
 
-$light-gray:        #F8F9FA;
 $gray:              #484848;
-$text-color:        #484848;
-$meta-gray:         lighten($gray, 30%);
+$text-color:        $gray;
+$gray-text:			lighten($gray, 40%);
+
+$background:        #F8F9FA;
+$background-shade:	#f1f2f3;
+
+$light-gray:        $background-shade;
 ;
 
-/*
-$tan:               #eceee5;
-
-$green:             #7dd667;
-
-$bones-pink:        #f01d4f;
-*/
 $purple:        	#8D74C5;
 
 $blue:              #2980b9;

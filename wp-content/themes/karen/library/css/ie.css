@@ -35,13 +35,6 @@ Need help w/ choosing your colors? Try this site out:
 http://0to255.com/
 *********************/
 /*
-$tan:               #eceee5;
-
-$green:             #7dd667;
-
-$bones-pink:        #f01d4f;
-*/
-/*
 Here's a great tutorial on how to
 use color variables properly:
 http://sachagreif.com/sass-color-variables/
@@ -391,7 +384,7 @@ NAVIGATION STYLES
       has the possibility of being a mobile device.
       */ }
       .nav li a:hover, .nav li a:focus {
-        color: #c5b4e9; }
+        color: #a894d3; }
     .nav li ul.sub-menu,
     .nav li ul.children {
       margin-top: 0;
@@ -428,14 +421,14 @@ NAVIGATION STYLES
       .nav li ul.children li.current-menu-item a,
       .nav li ul.children li.current_page_item a,
       .nav li ul.children li.current_page_ancestor a {
-        color: #a991de; }
+        color: #8D74C5; }
     .nav li:hover > ul {
       top: auto;
       visibility: visible; }
   .nav li.current-menu-item a,
   .nav li.current_page_item a,
   .nav li.current_page_ancestor a {
-    color: #a991de; }
+    color: #8D74C5; }
 
 /* end .nav */
 /*********************
