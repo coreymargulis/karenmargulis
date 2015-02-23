@@ -23,7 +23,7 @@ msgid "Advanced Custom Fields"
 msgstr "高级自定义字段"
 
 #: ../acf.php:244
-msgid "Field&nbsp;Groups"
+msgid "Field Groups"
 msgstr "字段和表单域"
 
 #: ../acf.php:245

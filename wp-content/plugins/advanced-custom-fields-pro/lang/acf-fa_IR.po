@@ -26,7 +26,7 @@ msgid "Advanced Custom Fields"
 msgstr "زمینه های دلخواه پیشرفته"
 
 #: ../acf.php:247
-msgid "Field&nbsp;Groups"
+msgid "Field Groups"
 msgstr "گروه های زمینه"
 
 #: ../acf.php:248

@@ -25,7 +25,7 @@ msgstr "Advanced Custom Fields"
 
 #: acf.php:244
 #, fuzzy
-msgid "Field&nbsp;Groups"
+msgid "Field Groups"
 msgstr "Pole a skupiny"
 
 #: acf.php:245

@@ -22,7 +22,7 @@ msgstr ""
 
 #: acf.php:245
 #@ acf
-msgid "Field&nbsp;Groups"
+msgid "Field Groups"
 msgstr "Felder-Gruppen"
 
 #: acf.php:247

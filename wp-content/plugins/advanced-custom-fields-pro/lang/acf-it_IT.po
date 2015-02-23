@@ -23,8 +23,8 @@ msgid "Advanced Custom Fields"
 msgstr "Campi Personalizzati Avanzati"
 
 #: acf.php:240
-msgid "Field&nbsp;Groups"
-msgstr "Campi&nbsp;Gruppo"
+msgid "Field Groups"
+msgstr "Campi Gruppo"
 
 #: acf.php:241
 msgid "Field Group"

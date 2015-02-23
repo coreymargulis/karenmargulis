@@ -24,8 +24,8 @@ msgid "Advanced Custom Fields"
 msgstr "Gelişmiş Özel Alanlar"
 
 #: acf.php:244
-msgid "Field&nbsp;Groups"
-msgstr "Alan&nbsp;Grupları"
+msgid "Field Groups"
+msgstr "Alan Grupları"
 
 #: acf.php:245
 msgid "Field Group"

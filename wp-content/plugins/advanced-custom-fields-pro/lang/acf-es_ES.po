@@ -39,8 +39,8 @@ msgid "No ACF groups selected"
 msgstr "No hay grupos de ACF seleccionados"
 
 #: core/actions/init.php:107
-msgid "Field&nbsp;Groups"
-msgstr "Field&nbsp;Groups"
+msgid "Field Groups"
+msgstr "Field Groups"
 
 #: core/actions/init.php:108 core/admin/page_acf.php:14
 msgid "Advanced Custom Fields"

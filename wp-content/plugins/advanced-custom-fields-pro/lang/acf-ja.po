@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 
 #: acf.php:325
-msgid "Field&nbsp;Groups"
+msgid "Field Groups"
 msgstr "フィールドグループ"
 
 #: acf.php:326 core/controllers/field_groups.php:214

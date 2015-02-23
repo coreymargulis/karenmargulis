@@ -23,7 +23,7 @@ msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
 #: acf.php:246
-msgid "Field&nbsp;Groups"
+msgid "Field Groups"
 msgstr "Groepen"
 
 #: acf.php:247

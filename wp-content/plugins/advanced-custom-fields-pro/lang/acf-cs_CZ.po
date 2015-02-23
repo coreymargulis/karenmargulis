@@ -18,8 +18,8 @@ msgid "Custom Fields"
 msgstr "Vlastní pole"
 
 #: acf.php:302
-msgid "Field&nbsp;Groups"
-msgstr "Skupiny&nbsp;polí"
+msgid "Field Groups"
+msgstr "Skupiny polí"
 
 #: acf.php:303 core/controllers/field_groups.php:283
 #: core/controllers/upgrade.php:70

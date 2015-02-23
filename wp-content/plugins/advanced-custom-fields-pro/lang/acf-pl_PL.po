@@ -23,8 +23,8 @@ msgid "Advanced Custom Fields"
 msgstr "Zaawansowane własne pola"
 
 #: ../acf.php:244
-msgid "Field&nbsp;Groups"
-msgstr "Grupy&nbsp;Pól"
+msgid "Field Groups"
+msgstr "Grupy Pól"
 
 #: ../acf.php:245
 #, fuzzy
@@ -2841,5 +2841,5 @@ msgstr "Maksymalna liczba rzędów"
 #~ msgid "Adv Upgrade"
 #~ msgstr "Zaawansowana aktualizacja"
 
-#~ msgid "Advanced&nbsp;Custom&nbsp;Fields"
-#~ msgstr "Zaawansowane&nbsp;Włąsne&nbsp;Pola"
+#~ msgid "Advanced Custom Fields"
+#~ msgstr "Zaawansowane Włąsne Pola"

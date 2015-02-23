@@ -26,7 +26,7 @@ msgstr "Advanced Custom Fields"
 
 # @ acf
 #: ../acf.php:244
-msgid "Field&nbsp;Groups"
+msgid "Field Groups"
 msgstr "Groupes de champs"
 
 # @ acf

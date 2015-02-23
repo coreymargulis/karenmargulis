@@ -24,7 +24,7 @@ msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
 #: acf.php:240
-msgid "Field&nbsp;Groups"
+msgid "Field Groups"
 msgstr "Mezőcsoportok"
 
 #: acf.php:241
