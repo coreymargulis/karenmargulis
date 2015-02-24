@@ -934,7 +934,7 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 button:focus {
   outline: 0 !important; }
 
-.blue-btn, .comment-reply-link, #submit, .alt {
+.blue-btn, .comment-reply-link, #submit, .alt, .secondary {
   display: inline-block;
   position: relative;
   font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -944,16 +944,18 @@ button:focus {
   font-size: 16px;
   line-height: 34px;
   font-weight: normal;
-  padding: 10px 24px;
+  padding: 8px 24px;
   border-radius: 2px;
   border: 0;
   cursor: pointer;
   -webkit-transition: background-color 0.14s ease-in-out;
-  transition: background-color 0.14s ease-in-out; }
-  .blue-btn:hover, .comment-reply-link:hover, #submit:hover, .alt:hover, .blue-btn:focus, .comment-reply-link:focus, #submit:focus, .alt:focus {
+  transition: background-color 0.14s ease-in-out;
+  -webkit-transition: border-color 0.14s ease-in-out;
+  transition: border-color 0.14s ease-in-out; }
+  .blue-btn:hover, .comment-reply-link:hover, #submit:hover, .alt:hover, .secondary:hover, .blue-btn:focus, .comment-reply-link:focus, #submit:focus, .alt:focus, .secondary:focus {
     color: #fff;
     text-decoration: none; }
-  .blue-btn:active, .comment-reply-link:active, #submit:active, .alt:active {
+  .blue-btn:active, .comment-reply-link:active, #submit:active, .alt:active, .secondary:active {
     top: 1px; }
 
 /*
@@ -974,6 +976,16 @@ and it will create a button dependant on those variables.
   .alt:hover, .alt:focus {
     background-color: #9982cb; }
   .alt:active {
+    background-color: #7e62bd; }
+
+.secondary {
+  background-color: #F8F9FA;
+  border: 1px solid #c8bce3;
+  color: #8D74C5; }
+  .secondary:hover, .secondary:focus {
+    border-color: #8D74C5;
+    color: #8D74C5; }
+  .secondary:active {
     background-color: #7e62bd; }
 
 /******************************************************************
@@ -1388,8 +1400,17 @@ h3, .h3 {
   margin-top: 0; }
 
 h4, .h4 {
-  font-size: 1.1em;
-  font-weight: 700; }
+  font-size: 14px;
+  font-family: "scala_capsregular";
+  text-transform: lowercase;
+  border-bottom: 1px solid #aeaeae;
+  /*display: inline-block;
+  position: relative;*/ }
+  h4:before, .h4:before {
+    /*position: absolute;
+    height: 1px;
+    width: 120%;
+    bottom: 0;*/ }
 
 h5, .h5 {
   font-size: 0.846em;
@@ -1525,14 +1546,14 @@ POSTS & CONTENT STYLES
   margin-top: 4em; }
 
 .hentry {
-  border-radius: 3px;
-  margin-bottom: 1.15em; }
+  /*border-radius: 3px;
+  margin-bottom: 1.15em;*/ }
   .hentry header {
     /*border-bottom: 1px solid $light-gray;*/
     padding: 0 1.15em; }
   .hentry footer {
-    padding: 1.5em;
-    border-top: 1px solid #f1f2f3; }
+    /*padding: 1.5em;
+    border-top: 1px solid $light-gray;*/ }
     .hentry footer p {
       margin: 0; }
 
@@ -1558,10 +1579,12 @@ POSTS & CONTENT STYLES
   font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   margin: 0; }
+  .byline .category {
+    margin-left: 8px; }
 
 /* entry content */
 .entry-content {
-  padding: 0em 1em;
+  padding: 0em 1.15em;
   /*
   image alignment on a screen this size may be
   a bit difficult. It's set to start aligning
@@ -1647,50 +1670,8 @@ POSTS & CONTENT STYLES
 /* image gallery styles */
 /* end .gallery */
 /* gallery caption styles */
-/* added by me */
+/*--------------------- added by me */
 /*list*/
-.list-image-link {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1; }
-
-.relative {
-  position: relative;
-  float: left; }
-
-.featured-image-wrap-list {
-  text-align: left; }
-
-.featured-image-list {
-  position: relative;
-  display: inline-block;
-  float: left;
-  margin-right: 0; }
-  .featured-image-list img {
-    width: 400px;
-    height: auto;
-    max-width: 100%;
-    vertical-align: top; }
-
-.blog-post-list {
-  float: left;
-  padding-left: 25px;
-  max-width: 380px; }
-  .blog-post-list h1 {
-    padding: 0;
-    float: none;
-    margin: 0; }
-  .blog-post-list h2 {
-    padding: 0;
-    float: none;
-    margin: 0; }
-  .blog-post-list .excerpt {
-    padding: 0;
-    margin-top: 0.35em; }
-
 /*home*/
 #featured-image-home-container {
   height: 500px; }
@@ -1784,110 +1765,22 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.01); }
 
-.tags {
-  margin: 0; }
+/* related posts */
+#read-next {
+  background-color: #e9eaec;
+  padding: 1.15em; }
 
-/*********************
-WOOCOMMERCE
-*********************/
-/*-----------------
-PRODUCT PAGES
------------------*/
-ul.products {
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 5em;
-  padding: 0;
-  text-align: center;
-  list-style-type: none; }
-  ul.products li.product {
-    float: left;
-    padding: 0 3%;
-    width: 50%;
-    margin-bottom: 1.25em;
-    position: relative;
-    transition: all .3s ease-in-out; }
-    ul.products li.product .text-content {
-      text-align: left;
-      margin-bottom: 2em; }
-    ul.products li.product img {
-      width: 100%;
-      height: auto;
-      /*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-      -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);*/ }
-    ul.products li.product .onsale {
-      display: none;
-      /*position: absolute;
-      top: 0;
-      right: 0;
-      left:auto;
-      margin: -6px -6px 0 0;*/ }
-    ul.products li.product h3 {
-      margin-bottom: 0;
-      text-align: left; }
-    ul.products li.product a {
-      text-decoration: none;
-      display: block;
-      color: #484848; }
-      ul.products li.product a:hover, ul.products li.product a:focus {
-        color: #626262; }
-    ul.products li.product strong {
-      display: block;
-      font-family: "scalabold"; }
-    ul.products li.product .price .amount {
-      font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: 16px;
-      float: left;
-      color: #8D74C5;
-      margin-top: -4px; }
-    ul.products li.product .price del {
-      font-size: 0.67em;
-      color: fade(#484848, 50%);
-      margin: -2px 0 0 0; }
-    ul.products li.product .price ins {
-      background: none; }
-    ul.products li.product .price .from {
-      font-size: 0.67em;
-      margin: -2px 0 0 0;
-      text-transform: uppercase;
-      color: fade(#484848, 50%); }
-  ul.products li.first {
-    clear: both; }
-  ul.products :after {
-    content: ' ';
-    display: block;
-    clear: both; }
+#related-posts {
+  background-color: #f1f2f3;
+  padding: 1.15em; }
+  #related-posts a h2 {
+    color: #484848; }
+  #related-posts h2 {
+    margin-top: 0;
+    margin-bottom: 1em; }
 
-.woocommerce-ordering {
-  margin-bottom: 2em;
-  padding-left: 0; }
-
-/*-----------------
-CART
------------------*/
-.woocommerce tr a {
-  color: #aeaeae; }
-.woocommerce td .amount {
-  font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px; }
-.woocommerce .wc-proceed-to-checkout a {
-  color: #fff; }
-.woocommerce th {
-  font-family: "scala_capsregular";
-  font-weight: normal;
-  font-size: 14px; }
-.woocommerce .cart_totals tbody {
-  background-color: #f1f2f3; }
-.woocommerce .place-order {
-  text-align: center; }
-.woocommerce #place_order {
-  padding: 20px 30px; }
-
-/*-----------------
-CHECKOUT FORMS
------------------*/
-input[type="password"] {
-  letter-spacing: 0em; }
+.related-post-image img {
+  width: 100%; }
 
 /******************************************************************
 PAGE NAVI STYLES
@@ -1934,13 +1827,6 @@ PAGE NAVI STYLES
       color: #484848; }
 
 /* end .bones_page_navi */
-/* fallback previous & next links */
-.wp-prev-next .prev-link {
-  float: left; }
-.wp-prev-next .next-link {
-  float: right; }
-
-/* end .wp-prev-next */
 /******************************************************************
 COMMENT STYLES
 ******************************************************************/
@@ -2089,11 +1975,16 @@ SIDEBARS & ASIDES
 /*********************
 FOOTER STYLES
 *********************/
+.article-footer {
+  padding: 0 1.15em;
+  margin-top: 2em;
+  margin-bottom: 4em; }
+
 .footer {
   clear: both;
   background-color: #fff;
   color: #484848;
-  margin-top: 4em; }
+  /*margin-top: 4em;*/ }
 
 /*
 if you checked out the link above:
@@ -2105,6 +1996,111 @@ override these styles for the desktop
 view.
 */
 /* end .footer-links */
+/*********************
+WOOCOMMERCE
+*********************/
+/*-----------------
+PRODUCT PAGES
+-----------------*/
+ul.products {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5em;
+  padding: 0;
+  text-align: center;
+  list-style-type: none; }
+  ul.products li.product {
+    float: left;
+    padding: 0 3%;
+    width: 50%;
+    margin-bottom: 1.25em;
+    position: relative;
+    transition: all .3s ease-in-out; }
+    ul.products li.product .text-content {
+      text-align: left;
+      margin-bottom: 2em; }
+    ul.products li.product img {
+      width: 100%;
+      height: auto;
+      /*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);*/ }
+    ul.products li.product .onsale {
+      display: none;
+      /*position: absolute;
+      top: 0;
+      right: 0;
+      left:auto;
+      margin: -6px -6px 0 0;*/ }
+    ul.products li.product h3 {
+      margin-bottom: 0;
+      text-align: left; }
+    ul.products li.product a {
+      text-decoration: none;
+      display: block;
+      color: #484848; }
+      ul.products li.product a:hover, ul.products li.product a:focus {
+        color: #626262; }
+    ul.products li.product strong {
+      display: block;
+      font-family: "scalabold"; }
+    ul.products li.product .price .amount {
+      font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      float: left;
+      color: #8D74C5;
+      margin-top: -4px; }
+    ul.products li.product .price del {
+      font-size: 0.67em;
+      color: fade(#484848, 50%);
+      margin: -2px 0 0 0; }
+    ul.products li.product .price ins {
+      background: none; }
+    ul.products li.product .price .from {
+      font-size: 0.67em;
+      margin: -2px 0 0 0;
+      text-transform: uppercase;
+      color: fade(#484848, 50%); }
+  ul.products li.first {
+    clear: both; }
+  ul.products :after {
+    content: ' ';
+    display: block;
+    clear: both; }
+
+.woocommerce-ordering {
+  margin-bottom: 2em;
+  padding-left: 0; }
+
+#related-products-container {
+  background-color: #8D74C5; }
+
+/*-----------------
+CART
+-----------------*/
+.woocommerce tr a {
+  color: #aeaeae; }
+.woocommerce td .amount {
+  font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px; }
+.woocommerce .wc-proceed-to-checkout a {
+  color: #fff; }
+.woocommerce th {
+  font-family: "scala_capsregular";
+  font-weight: normal;
+  font-size: 14px; }
+.woocommerce .cart_totals tbody {
+  background-color: #f1f2f3; }
+.woocommerce .place-order {
+  text-align: center; }
+.woocommerce #place_order {
+  padding: 20px 30px; }
+
+/*-----------------
+CHECKOUT FORMS
+-----------------*/
+input[type="password"] {
+  letter-spacing: 0em; }
+
 /*********************
 LARGER MOBILE DEVICES
 This is for devices like the Galaxy Note or something that's

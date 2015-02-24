@@ -52,6 +52,7 @@
 
 								<p class="byline vcard">
 				                    <?php printf( __( '<time class="updated" datetime="%1$s" pubdate>%2$s</time>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
+				                	<?php printf( '<span class="category">' . __('', 'bonestheme' ) . '%1$s</span>' , get_the_category_list(', ') ); ?>
 				                </p>	
 				                	
 				                <h1 class="entry-title single-title" itemprop="headline"><?php the_title(); ?></h1>
@@ -66,17 +67,102 @@
 			
 			                <footer class="article-footer">
 			
-			                  <?php printf( __( 'Filed under: %1$s', 'bonestheme' ), get_the_category_list(', ') ); ?>
-			
-			                  <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
-			
+			                	<?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+								<button type="submit" class="secondary">Comments</button>
+								<button type="submit" class="secondary">Share</button>
+
 			                </footer> <?php // end article footer ?>
 			
 							<?php // comments go here eventually ?>
 			
 			                </article> <?php // end article ?>
 
+			                <section id="read-next" class="full-width-bkgd">
+
+			                	<div id="next-post">
+
+			                		<h4>Next Post</h4>
+
+				                	<?php
+										$prev_post = get_previous_post();
+										if (!empty( $prev_post )): ?>
+										  <a href="<?php echo get_permalink( $prev_post->ID ); ?>"><h2><?php echo $prev_post->post_title; ?></h2></a>
+									<?php endif; ?>
+
+								</div>
+
+			                	<!-- <div id="prev-post">
+			                		<h4>Previous Post</h4>
+			                	</div> -->
+
+			                </section>
+
+			                <section id="related-posts" class="full-width-bkgd">
+
+			                	<h4>Related Posts</h4>
+
+				                <?php
+									$args = array(
+										'numberposts' => 3,
+										'orderby' => 'rand',
+										'category__in' => wp_get_post_categories($post->ID),
+										'post_status' => 'publish'
+									);
+									$postslist = get_posts( $args );
+									foreach ( $postslist as $post ) : setup_postdata( $post ); ?> 		
+
+									<div>
+										
+											
+									<?php
+	
+										$post_object = get_field('featured_painting');
+	
+										if( $post_object ): 
+										 
+											// override $post
+											$post = $post_object;
+											setup_postdata( $post ); 
+										 
+									?>
+	
+								    <div class="related-post-image">
+
+								    	<a href="<?php the_permalink(); ?>">
+								    		<?php 
+									    		$image = get_field('painting');
+
+													if( !empty($image) ): ?>
+
+													<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+									    	<?php endif; ?>
+									    </a>
+
+								    </div>
+								    
+								    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+									
+									<?php endif; ?>
+														
+
+										<p class="byline vcard">
+						                    <?php printf( __( '<time class="updated" datetime="%1$s" pubdate>%2$s</time>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
+						                	<?php printf( '<span class="category">' . __('', 'bonestheme' ) . '%1$s</span>' , get_the_category_list(', ') ); ?>
+						                </p>
+										
+										<a href="<?php echo get_permalink( $post->ID ); ?>"><h2><?php the_title(); ?></h2></a>   
+									</div>
+
+								<?php
+									endforeach; 
+									wp_reset_postdata();
+								?>
+
+							</section>
+
 						<?php endwhile; ?>
+
+
 
 						<?php else : ?>
 

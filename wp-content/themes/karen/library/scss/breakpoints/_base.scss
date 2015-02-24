@@ -141,8 +141,21 @@ h3, .h3 {
 }
 
 h4, .h4 {
-	font-size: 1.1em;
-	font-weight: 700;
+	font-size: 14px;
+	font-family: $caps;
+	text-transform: lowercase;
+	border-bottom: 1px solid $gray-text;
+
+	/*display: inline-block;
+	position: relative;*/
+
+	&:before {
+		/*position: absolute;
+		height: 1px;
+		width: 120%;
+		bottom: 0;*/
+
+	}
 }
 
 h5, .h5 {
@@ -350,602 +363,417 @@ POSTS & CONTENT STYLES
 	margin-top: 4em;
 }
 
-		.hentry {
-			border-radius: 3px;
-			margin-bottom: 1.15em;
+	.hentry {
+		/*border-radius: 3px;
+		margin-bottom: 1.15em;*/
 
-			header {
-				/*border-bottom: 1px solid $light-gray;*/
-				padding: 0 1.15em;
-			}
-
-			footer {
-				padding: 1.5em;
-				border-top: 1px solid $light-gray;
-
-				p {
-					margin: 0;
-				}
-			}
-
-		} /* end .hentry */
-
-		.single-title,
-		.page-title,
-		.entry-title {
-			margin: 0;
-			margin-bottom: 0.75em;
+		header {
+			/*border-bottom: 1px solid $light-gray;*/
+			padding: 0 1.15em;
 		}
 
-		.single-title {}
-
-		.page-title {}
-
-		.entry-title {}
-
-		.archive-title {}
-
-		/* want to style individual post classes? Booya! */
-		.post-id {}         /* post by id (i.e. post-3) */
-		.post {}            /* general post style */
-		.page {}            /* general article on a page style */
-		.attachment {}      /* general style on an attatchment */
-		.sticky {}          /* sticky post style */
-		.hentry {}          /* hentry class */
-		.category-slug {}   /* style by category (i.e. category-videos) */
-		.tag-slug {}        /* style by tag (i.e. tag-news) */
-
-		/* post meta */
-		.byline {
-			color: $gray-text;
-			font-family: $sans-serif;
-			font-size: 12px;
-			margin: 0;
-
-			time {}
-		}
-
-		/* entry content */
-		.entry-content {
-			padding: 0em 1em;
+		footer {
+			/*padding: 1.5em;
+			border-top: 1px solid $light-gray;*/
 
 			p {
-				margin: 0 0 1em;
-			}
-
-
-			ul, ol, table, dl {}
-
-			ul, ol {
-
-				li {}
-
-			}
-
-			ul {
-
-				li {}
-
-			}
-
-			ol {
-
-				li {}
-
-			}
-
-			table {
-				width: 100%;
-				/*border: 1px solid $gray;*/
-				margin-bottom: 1.5em;
-
-				caption {
-					margin: 0 0 7px;
-					font-size: 0.75em;
-					color: $light-gray;
-					text-transform: uppercase;
-					letter-spacing: 1px;
-				}
-			}
-
-			tr {
-				border-bottom: 1px solid $light-gray;
-				&:first-child {
-					td {
-						padding-top: 0 !important;
-					}
-				}
-
-				&:nth-child(even) {
-					/*background-color: $background-shade;*/
-				}
-			}
-
-			td {
-				/*padding: 7px;*/
-				/*border-right: 1px solid $gray;*/
-				vertical-align: top;
-				padding-top: 2em;
-
-				&:last-child {
-					border-right: 0;
-				}
-
-
-			}
-
-			th {
-				background-color: $light-gray;
-				/*border-bottom: 1px solid $gray;
-				border-right: 1px solid $gray;*/
-
-				&:last-child {
-					border-right: 0;
-				}
-			}
-
-			blockquote {
-				margin: 0 0 1.5em 0.75em;
-				padding: 0 0 0 0.75em;
-				border-left: 3px solid $purple;
-				color: lighten($gray, 30%);
-
-				&:before {}
-
-			}
-
-			dl {}
-
-			dt {}
-
-			dd {
-				margin-left: 0;
-				font-size: 0.9em;
-				color: #787878;
-				margin-bottom: 1.5em;
-			}
-
-			img {
-				margin: 0 0 1.5em 0;
-				max-width: 100%;
-				height: auto;
-			}
-
-			/*
-			image alignment on a screen this size may be
-			a bit difficult. It's set to start aligning
-			and floating images at the next breakpoint,
-			but it's up to you. Feel free to change it up.
-			*/
-			.alignleft, img.alignleft {}
-			.alignright, img.alignright {}
-			.aligncenter, img.aligncenter {}
-
-			.size-auto,
-			.size-full,
-			.size-large,
-			.size-medium,
-			.size-thumbnail {
-				max-width: 100%;
-				height: auto;
-			}
-
-			pre {
-				background: $black;
-				color: $light-gray;
-				font-size: 0.9em;
-				padding: 1.5em;
-				margin: 0 0 1.5em;
-				border-radius: 3px;
-			}
-
-		} /* end .entry-content */
-
-		.wp-caption {
-			max-width: 100%;
-			background: #eee;
-			padding: 5px;
-
-			/* images inside wp-caption */
-			img {
-				max-width: 100%;
-				margin-bottom: 0;
-				width: 100%;
-			}
-
-			p.wp-caption-text {
-				font-size: 0.85em;
-				margin: 4px 0 7px;
-				text-align: center;
-			}
-
-		} /* end .wp-caption */
-
-		/* image gallery styles */
-		.gallery {
-
-			dl {
-
-				a {}
-
-				img {}
-
-			}
-
-			dt {}
-
-			dd {}
-
-		} /* end .gallery */
-
-		/* gallery caption styles */
-		.gallery-caption {}
-
-		.size-full {}
-		.size-large {}
-		.size-medium {}
-		.size-thumbnail {}
-		
-		/* added by me */
-		
-		
-		/*list*/
-		.list-image-link {
-			position:absolute; width:100%; height:100%; top:0; left: 0; z-index: 1;
-		}
-		
-		.relative {
-			position: relative;
-			float: left;
-		}
-		
-		.featured-image-wrap-list {
-			
-			text-align: left;
-			//margin-bottom: 25px;
-		}
-		
-		.featured-image-list {
-			position: relative;
-			display: inline-block;
-			
-			float: left;
-			margin-right: 0;
-			//margin-bottom: 50px;
-			
-				img {
-					width: 400px;
-					height: auto;
-					max-width: 100%;
-					//max-height: 300px;
-					vertical-align: top;	
-				}
-		}
-		
-		.blog-post-list {
-			float: left;
-			padding-left: 25px;
-			max-width: 380px;
-			h1 {
-				padding:0;
-				float: none;
 				margin: 0;
 			}
-			h2 {
-				padding: 0;
-				float: none;
-				margin: 0;
-			}
-			.excerpt {
-				padding:0;
-				margin-top: 0.35em;
-			}
 		}
 
-		/*home*/
-		#featured-image-home-container {
-			height: 500px;
+	} /* end .hentry */
+
+	.single-title,
+	.page-title,
+	.entry-title {
+		margin: 0;
+		margin-bottom: 0.75em;
+	}
+
+	.single-title {}
+
+	.page-title {}
+
+	.entry-title {}
+
+	.archive-title {}
+
+	/* want to style individual post classes? Booya! */
+	.post-id {}         /* post by id (i.e. post-3) */
+	.post {}            /* general post style */
+	.page {}            /* general article on a page style */
+	.attachment {}      /* general style on an attatchment */
+	.sticky {}          /* sticky post style */
+	.hentry {}          /* hentry class */
+	.category-slug {}   /* style by category (i.e. category-videos) */
+	.tag-slug {}        /* style by tag (i.e. tag-news) */
+
+	/* post meta */
+	.byline {
+		color: $gray-text;
+		font-family: $sans-serif;
+		font-size: 12px;
+		margin: 0;
+
+		time {}
+
+		.category {
+			margin-left: 8px;
 		}
-		
-		#featured-image-home {
-			position: relative;
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: 50% 50%;
-			overflow: hidden;
+	}
+
+	/* entry content */
+	.entry-content {
+		padding: 0em 1.15em;
+
+		p {
+			margin: 0 0 1em;
+		}
+
+
+		ul, ol, table, dl {}
+
+		ul, ol {
+
+			li {}
+
+		}
+
+		ul {
+
+			li {}
+
+		}
+
+		ol {
+
+			li {}
+
+		}
+
+		table {
 			width: 100%;
-			height: 100%;
+			/*border: 1px solid $gray;*/
+			margin-bottom: 1.5em;
+
+			caption {
+				margin: 0 0 7px;
+				font-size: 0.75em;
+				color: $light-gray;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
 		}
 
-		/*single post*/
-		.featured-image-wrap {
+		tr {
+			border-bottom: 1px solid $light-gray;
+			&:first-child {
+				td {
+					padding-top: 0 !important;
+				}
+			}
+
+			&:nth-child(even) {
+				/*background-color: $background-shade;*/
+			}
+		}
+
+		td {
+			/*padding: 7px;*/
+			/*border-right: 1px solid $gray;*/
+			vertical-align: top;
+			padding-top: 2em;
+
+			&:last-child {
+				border-right: 0;
+			}
+
+
+		}
+
+		th {
+			background-color: $light-gray;
+			/*border-bottom: 1px solid $gray;
+			border-right: 1px solid $gray;*/
+
+			&:last-child {
+				border-right: 0;
+			}
+		}
+
+		blockquote {
+			margin: 0 0 1.5em 0.75em;
+			padding: 0 0 0 0.75em;
+			border-left: 3px solid $purple;
+			color: lighten($gray, 30%);
+
+			&:before {}
+
+		}
+
+		dl {}
+
+		dt {}
+
+		dd {
+			margin-left: 0;
+			font-size: 0.9em;
+			color: #787878;
+			margin-bottom: 1.5em;
+		}
+
+		img {
+			margin: 0 0 1.5em 0;
+			max-width: 100%;
+			height: auto;
+		}
+
+		/*
+		image alignment on a screen this size may be
+		a bit difficult. It's set to start aligning
+		and floating images at the next breakpoint,
+		but it's up to you. Feel free to change it up.
+		*/
+		.alignleft, img.alignleft {}
+		.alignright, img.alignright {}
+		.aligncenter, img.aligncenter {}
+
+		.size-auto,
+		.size-full,
+		.size-large,
+		.size-medium,
+		.size-thumbnail {
+			max-width: 100%;
+			height: auto;
+		}
+
+		pre {
+			background: $black;
+			color: $light-gray;
+			font-size: 0.9em;
+			padding: 1.5em;
+			margin: 0 0 1.5em;
+			border-radius: 3px;
+		}
+
+	} /* end .entry-content */
+
+	.wp-caption {
+		max-width: 100%;
+		background: #eee;
+		padding: 5px;
+
+		/* images inside wp-caption */
+		img {
+			max-width: 100%;
+			margin-bottom: 0;
+			width: 100%;
+		}
+
+		p.wp-caption-text {
+			font-size: 0.85em;
+			margin: 4px 0 7px;
 			text-align: center;
 		}
-		
-		.featured-image {
-			position: relative;
-			display: inline-block;
-			
-			margin-bottom: 1em;
-			
-				img {
-					width: auto;
-					height: auto;
-					max-width: 100%;
-					max-height: 660px;
-					vertical-align: top;	
-				}
-		}
-		
-		.featured-image-caption {
-			background: rgba(0,0,0,0.5);
-			color: #fff;
-			display: block;
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			
-			padding: 10px 12px;
-			font-family: "scalasansregular";
-			font-size: 12px;
-			z-index: 300;
-			text-align: right;
-			max-width: 80%;
-			
-				a {
-					color: #fff;
-					&:hover,
-					&:focus{
-						color: darken($white, 20%);	
-					}
-				}
-				.price {
-					border: 1px solid;
-					border-radius: 2px;
-					padding: 5px;
-					margin-left: 5px;
-					color: #fff;
-					//border-color: rgba(255,255,255,0.8);
-					
-						&:hover,
-						&:focus {
-							color: darken($purple, 4%);
-							
-						}
-					
-				}
-		}
-		
-		.image-caption {
-			color: lighten($gray, 30%);
-			font-family: "scalasansregular";
-			font-size: .545em;
-			text-align: left;
-			margin-top: 5px;
-			//top: -20px;
-			//max-width: 80%;
-		}
-		
-		.post-image {
-			width: 80%;
-			margin-bottom: 60px;
-			padding-top: 30px;
-		}
-		
-		.demo {
-		
-			//width: 100%;
-			
-			hr {
-				padding: 25px 0;
-				margin: 0px;
-				border: none;
-			}
-			
-			.demo-image {
-				float: left;
-				margin-right: 0px;
-				
-				img {
-					max-width: 300px;
-				}
-			}
-			
-			.demo-text {
-				float: left;
-				//margin-left: 10px;
-				font-size: .7em;
-				max-width: 380px;
-				padding-left: 25px;
-			}
-		}
-		
-		.spacer {
-			margin-top:70px;
-			margin-bottom:60px;				
-		}
-		
-		hr {
-			clear: both;
-			display: block;
-			border: 0;
-			height: 0;			
-			border-top: 1px solid rgba(0,0,0,0.05);
-			border-bottom: 1px solid rgba(255,255,255,0.01);
-			
+
+	} /* end .wp-caption */
+
+	/* image gallery styles */
+	.gallery {
+
+		dl {
+
+			a {}
+
+			img {}
+
 		}
 
-	// the tag output
-	.tags {
-		margin: 0;
+		dt {}
+
+		dd {}
+
+	} /* end .gallery */
+
+	/* gallery caption styles */
+	.gallery-caption {}
+
+	.size-full {}
+	.size-large {}
+	.size-medium {}
+	.size-thumbnail {}
+	
+
+/*--------------------- added by me */
+	
+	
+	/*list*/
+	
+
+
+	/*home*/
+	#featured-image-home-container {
+		height: 500px;
 	}
 	
-/*********************
-WOOCOMMERCE
-*********************/
-
-/*-----------------
-PRODUCT PAGES
------------------*/
-ul.products {
-	width: 100%;
-	margin: 0 auto;
-	margin-bottom: 5em;
-	padding: 0;
-	text-align: center;
-	list-style-type: none;
-	
-		li.product {
-			float:left;
-			padding: 0 3%;
-			width: 50%;
-			margin-bottom: 1.25em;
-			position: relative;
-			transition: all .3s ease-in-out;
-			
-			.text-content{
-				//background: rgba(0,0,0,0.5);
-				//position: relative;
-
-				text-align: left;
-				margin-bottom: 2em;
-				
-									  
-			  	&:hover, &:focus {
-				}
-				
-				span {
-				}
-			}
-			
-			img {
-				width: 100%;
-				height: auto;
-				/*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-				-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);*/
-			}
-			.onsale {
-			display: none;
-			/*position: absolute;
-			top: 0;
-			right: 0;
-			left:auto;
-			margin: -6px -6px 0 0;*/
-			}
-			h3 {
-				margin-bottom: 0;
-				text-align: left;
-			
-			}
-			a {
-				text-decoration:none;
-				display: block;
-				color: $gray;
-				
-				&:hover, &:focus {
-					color: lighten($gray, 10%);
-				}
-			}
-			strong {
-				display:block;
-				font-family: $bold;
-			}
-			.price {
-				.amount {
-					font-family: $sans-serif;
-					font-size: 16px;
-					float: left;
-					color: $purple;
-					margin-top: -4px;
-				}
-				del {
-					font-size: 0.67em;
-					color:fade( desaturate( $gray, 75% ), 50% );
-					margin: -2px 0 0 0;
-				}
-				ins {
-					background:none;
-				}
-				.from {
-					font-size: 0.67em;
-					margin: -2px 0 0 0;
-					text-transform: uppercase;
-					color:fade( desaturate( $gray, 75% ), 50% );
-				}
-			}
-
-		}
-		
-		li.first {
-			clear:both;
-			//padding-left:0;
-		}
-		li.last {
-			//margin-right: 0;
-			//padding-right:0;
-		}
-		:after {
-			content: ' ';
-			display: block;
-			clear: both;
-		}
-
-}
-
-.woocommerce-ordering {
-	margin-bottom: 2em;
-	padding-left: 0;
-}
-
-/*-----------------
-CART
------------------*/
-.woocommerce {
-	tr {
-		a {
-			color: $gray-text;
-		}
-	}
-	td {
-		.amount {
-			font-family: $sans-serif;
-			font-size: 16px;
-		}
-	}
-	.wc-proceed-to-checkout {
-		a {
-			color: $white;
-		}
+	#featured-image-home {
+		position: relative;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
 	}
 
-	th {
-		font-family: $caps;
-		font-weight: normal;
-		font-size: 14px;
-	}
-	.cart_totals {
-		tbody{
-			background-color: $background-shade;
-		}
-	}
-	.place-order {
+	/*single post*/
+	.featured-image-wrap {
 		text-align: center;
 	}
-	#place_order {
-		padding: 20px 30px;
+	
+	.featured-image {
+		position: relative;
+		display: inline-block;
+		
+		margin-bottom: 1em;
+		
+			img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 660px;
+				vertical-align: top;	
+			}
 	}
+	
+	.featured-image-caption {
+		background: rgba(0,0,0,0.5);
+		color: #fff;
+		display: block;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		
+		padding: 10px 12px;
+		font-family: "scalasansregular";
+		font-size: 12px;
+		z-index: 300;
+		text-align: right;
+		max-width: 80%;
+		
+			a {
+				color: #fff;
+				&:hover,
+				&:focus{
+					color: darken($white, 20%);	
+				}
+			}
+			.price {
+				border: 1px solid;
+				border-radius: 2px;
+				padding: 5px;
+				margin-left: 5px;
+				color: #fff;
+				//border-color: rgba(255,255,255,0.8);
+				
+					&:hover,
+					&:focus {
+						color: darken($purple, 4%);
+						
+					}
+				
+			}
+	}
+	
+	.image-caption {
+		color: lighten($gray, 30%);
+		font-family: "scalasansregular";
+		font-size: .545em;
+		text-align: left;
+		margin-top: 5px;
+		//top: -20px;
+		//max-width: 80%;
+	}
+	
+	.post-image {
+		width: 80%;
+		margin-bottom: 60px;
+		padding-top: 30px;
+	}
+	
+	.demo {
+	
+		//width: 100%;
+		
+		hr {
+			padding: 25px 0;
+			margin: 0px;
+			border: none;
+		}
+		
+		.demo-image {
+			float: left;
+			margin-right: 0px;
+			
+			img {
+				max-width: 300px;
+			}
+		}
+		
+		.demo-text {
+			float: left;
+			//margin-left: 10px;
+			font-size: .7em;
+			max-width: 380px;
+			padding-left: 25px;
+		}
+	}
+	
+	.spacer {
+		margin-top:70px;
+		margin-bottom:60px;				
+	}
+	
+	hr {
+		clear: both;
+		display: block;
+		border: 0;
+		height: 0;			
+		border-top: 1px solid rgba(0,0,0,0.05);
+		border-bottom: 1px solid rgba(255,255,255,0.01);
+		
+	}
+
+/* related posts */
+
+#read-next {
+	background-color: darken($background-shade, 3%);
+	padding: 1.15em;
+}
+
+#related-posts {
+	background-color: $background-shade;
+	padding: 1.15em;
+
+	a {
+		h2 {color: $text-color;}
+	}
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 1em;
+	}
+
+}
+
+.related-post-image {
+	img {width: 100%;}
 }
 
 
-/*-----------------
-CHECKOUT FORMS
------------------*/
 
-input[type="password"] {
-letter-spacing: 0em;
-}
 
-//end woocommerce
+
 
 /******************************************************************
 PAGE NAVI STYLES
@@ -1006,20 +834,7 @@ PAGE NAVI STYLES
 
   } /* end .bones_page_navi */
 
-	/* fallback previous & next links */
-	.wp-prev-next {
-
-		ul {}
-
-		.prev-link {
-			float: left;
-		}
-
-		.next-link {
-			float: right;
-		}
-
-	} /* end .wp-prev-next */
+	
 
 /******************************************************************
 COMMENT STYLES
@@ -1164,9 +979,6 @@ COMMENT STYLES
 	&.thread-odd {}
 	&.thread-even {}
 }
-
-
-
 
 	/* comment meta */
 	.comment-meta {
@@ -1320,11 +1132,17 @@ SIDEBARS & ASIDES
 FOOTER STYLES
 *********************/
 
+.article-footer {
+	padding: 0 1.15em;
+	margin-top: 2em;
+	margin-bottom: 4em;
+}
+
 .footer {
 	clear: both;
 	background-color: $white;
 	color: $text-color;
-	margin-top: 4em;
+	/*margin-top: 4em;*/
 }
 
 	/*
@@ -1348,3 +1166,177 @@ FOOTER STYLES
 
 
 	.copyright {}
+
+/*********************
+WOOCOMMERCE
+*********************/
+
+/*-----------------
+PRODUCT PAGES
+-----------------*/
+ul.products {
+	width: 100%;
+	margin: 0 auto;
+	margin-bottom: 5em;
+	padding: 0;
+	text-align: center;
+	list-style-type: none;
+	
+		li.product {
+			float:left;
+			padding: 0 3%;
+			width: 50%;
+			margin-bottom: 1.25em;
+			position: relative;
+			transition: all .3s ease-in-out;
+			
+			.text-content{
+				//background: rgba(0,0,0,0.5);
+				//position: relative;
+
+				text-align: left;
+				margin-bottom: 2em;
+				
+									  
+			  	&:hover, &:focus {
+				}
+				
+				span {
+				}
+			}
+			
+			img {
+				width: 100%;
+				height: auto;
+				/*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+				-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);*/
+			}
+			.onsale {
+			display: none;
+			/*position: absolute;
+			top: 0;
+			right: 0;
+			left:auto;
+			margin: -6px -6px 0 0;*/
+			}
+			h3 {
+				margin-bottom: 0;
+				text-align: left;
+			
+			}
+			a {
+				text-decoration:none;
+				display: block;
+				color: $gray;
+				
+				&:hover, &:focus {
+					color: lighten($gray, 10%);
+				}
+			}
+			strong {
+				display:block;
+				font-family: $bold;
+			}
+			.price {
+				.amount {
+					font-family: $sans-serif;
+					font-size: 16px;
+					float: left;
+					color: $purple;
+					margin-top: -4px;
+				}
+				del {
+					font-size: 0.67em;
+					color:fade( desaturate( $gray, 75% ), 50% );
+					margin: -2px 0 0 0;
+				}
+				ins {
+					background:none;
+				}
+				.from {
+					font-size: 0.67em;
+					margin: -2px 0 0 0;
+					text-transform: uppercase;
+					color:fade( desaturate( $gray, 75% ), 50% );
+				}
+			}
+
+		}
+		
+		li.first {
+			clear:both;
+			//padding-left:0;
+		}
+		li.last {
+			//margin-right: 0;
+			//padding-right:0;
+		}
+		:after {
+			content: ' ';
+			display: block;
+			clear: both;
+		}
+
+}
+
+.woocommerce-ordering {
+	margin-bottom: 2em;
+	padding-left: 0;
+}
+
+#related-products-container {
+	background-color: $purple;
+}
+	
+
+
+
+/*-----------------
+CART
+-----------------*/
+.woocommerce {
+	tr {
+		a {
+			color: $gray-text;
+		}
+	}
+	td {
+		.amount {
+			font-family: $sans-serif;
+			font-size: 16px;
+		}
+	}
+	.wc-proceed-to-checkout {
+		a {
+			color: $white;
+		}
+	}
+
+	th {
+		font-family: $caps;
+		font-weight: normal;
+		font-size: 14px;
+	}
+	.cart_totals {
+		tbody{
+			background-color: $background-shade;
+		}
+	}
+	.place-order {
+		text-align: center;
+	}
+	#place_order {
+		padding: 20px 30px;
+	}
+}
+
+
+/*-----------------
+CHECKOUT FORMS
+-----------------*/
+
+input[type="password"] {
+letter-spacing: 0em;
+}
+
+//end woocommerce

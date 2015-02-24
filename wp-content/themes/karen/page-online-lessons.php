@@ -36,25 +36,24 @@
 				
 					                    
 
-					                    <?php woocommerce_show_product_sale_flash( $post, $product ); ?>
-										
+										<!-- <?php woocommerce_show_product_sale_flash( $post, $product ); ?> -->										
 										<?php
 										$image = get_field('painting');
   
-  $url = $image['url'];
-  $alt = $image['alt'];
+										  $url = $image['url'];
+										  $alt = $image['alt'];
 
-  // thumbnail
-  $size = 'large';
-  $thumb = $image['sizes'][ $size ];
-  
-  if( !empty($image) ):
+										  // thumbnail
+										  $size = 'large';
+										  $thumb = $image['sizes'][ $size ];
+										  
+										  if( !empty($image) ):
 
-    echo '<img id="painting" src="' . $thumb . '" alt="' . $alt . '" />';
+										    echo '<img id="painting" src="' . $thumb . '" alt="' . $alt . '" />';
 
-  endif;
+										  endif;
 
-?>
+										?>
 					
 					                    <h3><?php the_title(); ?></h3>
 					

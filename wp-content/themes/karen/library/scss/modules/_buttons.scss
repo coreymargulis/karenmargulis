@@ -36,11 +36,12 @@ button:focus {outline:0 !important;}
   font-size: 16px;
   line-height: 34px;
   font-weight: normal;
-  padding: 10px 24px;
+  padding: 8px 24px;
   border-radius: 2px;
   border: 0;
   cursor: pointer;
   @include transition(background-color 0.14s ease-in-out);
+  @include transition(border-color 0.14s ease-in-out);
 
   &:hover, &:focus {
     color: $white;
@@ -81,6 +82,24 @@ and it will create a button dependant on those variables.
   &:hover,
   &:focus {
     background-color: lighten($purple, 4%);
+  }
+
+  &:active {
+  background-color: darken($purple, 5%);
+  } 
+
+}
+
+.secondary {
+  @extend %btn;
+  background-color: $background;
+  border: 1px solid $light-purple;
+  color: $purple;
+
+  &:hover,
+  &:focus {
+    border-color: $purple;
+    color: $purple;
   }
 
   &:active {

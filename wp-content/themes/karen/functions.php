@@ -247,7 +247,30 @@ add_action('wp_enqueue_scripts ', 'bones_fonts');
 // Remove caption from image upload
 add_filter( 'disable_captions', create_function('$a', 'return true;') );
 
-
+// Options
+if( function_exists('acf_add_options_page') ) {
+  
+  acf_add_options_page(array(
+    'page_title'  => 'Theme General Settings',
+    'menu_title'  => 'Theme Settings',
+    'menu_slug'   => 'theme-general-settings',
+    'capability'  => 'edit_posts',
+    'redirect'    => false
+  ));
+  
+  acf_add_options_sub_page(array(
+    'page_title'  => 'Theme Header Settings',
+    'menu_title'  => 'Header',
+    'parent_slug' => 'theme-general-settings',
+  ));
+  
+  acf_add_options_sub_page(array(
+    'page_title'  => 'Theme Footer Settings',
+    'menu_title'  => 'Footer',
+    'parent_slug' => 'theme-general-settings',
+  ));
+  
+}
 
 
 
@@ -361,7 +384,7 @@ function woocommerce_show_product_images() {
   $alt = $image['alt'];
 
   // thumbnail
-  $size = 'large';
+  $size = 'medium';
   $thumb = $image['sizes'][ $size ];
   
   if( !empty($image) ):
@@ -397,13 +420,6 @@ function custom_pre_get_posts_query( $q ) {
 
 // Display # products per page
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 20 );
-
-// Masonry
-add_action( 'wp_enqueue_scripts', 'slug_masonry' );
-function slug_masonry( ) {
-	wp_enqueue_script( 'masonry' );
-	wp_enqueue_script( 'masonry-init', get_template_directory_uri().'/js/masonry-min.js', array( 'masonry' ), null, true );
-}
 
 // Custom single product pages for demos, workshops, paintings
 function my_custom_product_template($template, $slug, $name) {
@@ -537,23 +553,22 @@ function custom_override_default_address_fields( $address_fields ) {
      return $address_fields;
 }
 
-
 /*--------------------
 ADMIN CHANGES
 --------------------*/
-
 
 // Stock management default
 add_action('save_post', 'myWoo_savePost', 10, 2);
 
 function myWoo_savePost($postID, $post) {
-    if (isset($post->post_type) && $post->post_type == 'product')  {
+    if (isset($post->post_type) && $post->post_type == ('product'))  {
 
-        update_post_meta($post->ID, '_manage_stock', 'yes');
+        // update_post_meta($post->ID, '_manage_stock', 'yes');
 
         update_post_meta($post->ID, '_stock', '1');
     }
 }
+
 
 // Sold individually
 function default_no_quantities( $individually, $product ){
