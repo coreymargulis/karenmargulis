@@ -100,7 +100,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<item>
 		<?php if( !empty($image) ): ?>
 
-     	<content:encoded><![CDATA[<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />]]></content:encoded>
+     	<media:content><![CDATA[<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />]]></media:content>
 
   		<?php endif; ?>
 
