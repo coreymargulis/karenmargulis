@@ -287,13 +287,24 @@ function custom_field_excerpt() {
   return apply_filters('the_excerpt', $text);
 }
 
-// Add id to excerpt
-add_filter( "the_excerpt", "add_class_to_excerpt" );
-function add_class_to_excerpt( $excerpt ) {
-    return str_replace('<p', '<p id="intro"', $excerpt);
+
+
+// Custom RSS feed
+
+add_action( 'after_setup_theme', 'my_rss_template' );
+/**
+ * Register custom RSS template.
+ */
+function my_rss_template() {
+  add_feed( 'karen', 'my_custom_rss_render' );
 }
 
-
+/**
+ * Custom RSS template callback.
+ */
+function my_custom_rss_render() {
+  get_template_part( 'feed', 'karen' );
+}
 
 
 /********************** WOOCOMMERCE *********************/
