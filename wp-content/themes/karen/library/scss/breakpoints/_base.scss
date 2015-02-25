@@ -361,409 +361,438 @@ POSTS & CONTENT STYLES
 
 #content {
 	margin-top: 4em;
+
+	p {
+		margin: 0 0 1em;
+	}
 }
 
-	.hentry {
-		/*border-radius: 3px;
-		margin-bottom: 1.15em;*/
+.hentry {
+	/*border-radius: 3px;
+	margin-bottom: 1.15em;*/
 
-		header {
-			/*border-bottom: 1px solid $light-gray;*/
-			padding: 0 1.15em;
-		}
-
-		footer {
-			/*padding: 1.5em;
-			border-top: 1px solid $light-gray;*/
-
-			p {
-				margin: 0;
-			}
-		}
-
-	} /* end .hentry */
-
-	.single-title,
-	.page-title,
-	.entry-title {
-		margin: 0;
-		margin-bottom: 0.75em;
+	header {
+		/*border-bottom: 1px solid $light-gray;*/
+		padding: 0 1.15em;
 	}
 
-	.single-title {}
-
-	.page-title {}
-
-	.entry-title {}
-
-	.archive-title {}
-
-	/* want to style individual post classes? Booya! */
-	.post-id {}         /* post by id (i.e. post-3) */
-	.post {}            /* general post style */
-	.page {}            /* general article on a page style */
-	.attachment {}      /* general style on an attatchment */
-	.sticky {}          /* sticky post style */
-	.hentry {}          /* hentry class */
-	.category-slug {}   /* style by category (i.e. category-videos) */
-	.tag-slug {}        /* style by tag (i.e. tag-news) */
-
-	/* post meta */
-	.byline {
-		color: $gray-text;
-		font-family: $sans-serif;
-		font-size: 12px;
-		margin: 0;
-
-		time {}
-
-		.category {
-			margin-left: 8px;
-		}
-	}
-
-	/* entry content */
-	.entry-content {
-		padding: 0em 1.15em;
+	footer {
+		/*padding: 1.5em;
+		border-top: 1px solid $light-gray;*/
 
 		p {
-			margin: 0 0 1em;
+			margin: 0;
 		}
-
-
-		ul, ol, table, dl {}
-
-		ul, ol {
-
-			li {}
-
-		}
-
-		ul {
-
-			li {}
-
-		}
-
-		ol {
-
-			li {}
-
-		}
-
-		table {
-			width: 100%;
-			/*border: 1px solid $gray;*/
-			margin-bottom: 1.5em;
-
-			caption {
-				margin: 0 0 7px;
-				font-size: 0.75em;
-				color: $light-gray;
-				text-transform: uppercase;
-				letter-spacing: 1px;
-			}
-		}
-
-		tr {
-			border-bottom: 1px solid $light-gray;
-			&:first-child {
-				td {
-					padding-top: 0 !important;
-				}
-			}
-
-			&:nth-child(even) {
-				/*background-color: $background-shade;*/
-			}
-		}
-
-		td {
-			/*padding: 7px;*/
-			/*border-right: 1px solid $gray;*/
-			vertical-align: top;
-			padding-top: 2em;
-
-			&:last-child {
-				border-right: 0;
-			}
-
-
-		}
-
-		th {
-			background-color: $light-gray;
-			/*border-bottom: 1px solid $gray;
-			border-right: 1px solid $gray;*/
-
-			&:last-child {
-				border-right: 0;
-			}
-		}
-
-		blockquote {
-			margin: 0 0 1.5em 0.75em;
-			padding: 0 0 0 0.75em;
-			border-left: 3px solid $purple;
-			color: lighten($gray, 30%);
-
-			&:before {}
-
-		}
-
-		dl {}
-
-		dt {}
-
-		dd {
-			margin-left: 0;
-			font-size: 0.9em;
-			color: #787878;
-			margin-bottom: 1.5em;
-		}
-
-		img {
-			margin: 0 0 1.5em 0;
-			max-width: 100%;
-			height: auto;
-		}
-
-		/*
-		image alignment on a screen this size may be
-		a bit difficult. It's set to start aligning
-		and floating images at the next breakpoint,
-		but it's up to you. Feel free to change it up.
-		*/
-		.alignleft, img.alignleft {}
-		.alignright, img.alignright {}
-		.aligncenter, img.aligncenter {}
-
-		.size-auto,
-		.size-full,
-		.size-large,
-		.size-medium,
-		.size-thumbnail {
-			max-width: 100%;
-			height: auto;
-		}
-
-		pre {
-			background: $black;
-			color: $light-gray;
-			font-size: 0.9em;
-			padding: 1.5em;
-			margin: 0 0 1.5em;
-			border-radius: 3px;
-		}
-
-	} /* end .entry-content */
-
-	.wp-caption {
-		max-width: 100%;
-		background: #eee;
-		padding: 5px;
-
-		/* images inside wp-caption */
-		img {
-			max-width: 100%;
-			margin-bottom: 0;
-			width: 100%;
-		}
-
-		p.wp-caption-text {
-			font-size: 0.85em;
-			margin: 4px 0 7px;
-			text-align: center;
-		}
-
-	} /* end .wp-caption */
-
-	/* image gallery styles */
-	.gallery {
-
-		dl {
-
-			a {}
-
-			img {}
-
-		}
-
-		dt {}
-
-		dd {}
-
-	} /* end .gallery */
-
-	/* gallery caption styles */
-	.gallery-caption {}
-
-	.size-full {}
-	.size-large {}
-	.size-medium {}
-	.size-thumbnail {}
-	
-
-/*--------------------- added by me */
-	
-	
-	/*list*/
-	
-
-
-	/*home*/
-	#featured-image-home-container {
-		height: 500px;
 	}
-	
-	#featured-image-home {
-		position: relative;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: 50% 50%;
-		overflow: hidden;
+
+} /* end .hentry */
+
+.single-title,
+.page-title,
+.entry-title {
+	margin: 0;
+	margin-bottom: 0.75em;
+}
+
+.single-title {}
+
+.page-title {}
+
+.entry-title {}
+
+.archive-title {}
+
+/* want to style individual post classes? Booya! */
+.post-id {}         /* post by id (i.e. post-3) */
+.post {}            /* general post style */
+.page {}            /* general article on a page style */
+.attachment {}      /* general style on an attatchment */
+.sticky {}          /* sticky post style */
+.hentry {}          /* hentry class */
+.category-slug {}   /* style by category (i.e. category-videos) */
+.tag-slug {}        /* style by tag (i.e. tag-news) */
+
+/* post meta */
+.byline {
+	color: $gray-text;
+	font-family: $sans-serif;
+	font-size: 12px;
+	margin: 0;
+
+	time {}
+
+	.category {
+		margin-left: 8px;
+	}
+}
+
+/* entry content */
+.entry-content {
+	padding: 0em 1.15em;
+
+	p {
+		margin: 0 0 1em;
+	}
+
+	h1 {
+		a {
+			color: $text-color;
+			&:hover, &:focus {
+		      	color: lighten($text-color, 9%);
+		    }
+		}
+	}
+
+	ul, ol, table, dl {}
+
+	ul, ol {
+
+		li {}
+
+	}
+
+	ul {
+
+		li {}
+
+	}
+
+	ol {
+
+		li {}
+
+	}
+
+	table {
 		width: 100%;
-		height: 100%;
+		/*border: 1px solid $gray;*/
+		margin-bottom: 1.5em;
+
+		caption {
+			margin: 0 0 7px;
+			font-size: 0.75em;
+			color: $light-gray;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
 	}
 
-	/*single post*/
-	.featured-image-wrap {
+	tr {
+		border-bottom: 1px solid $light-gray;
+		&:first-child {
+			td {
+				padding-top: 0 !important;
+			}
+		}
+
+		&:nth-child(even) {
+			/*background-color: $background-shade;*/
+		}
+	}
+
+	td {
+		/*padding: 7px;*/
+		/*border-right: 1px solid $gray;*/
+		vertical-align: top;
+		padding-top: 2em;
+
+		&:last-child {
+			border-right: 0;
+		}
+
+
+	}
+
+	th {
+		background-color: $light-gray;
+		/*border-bottom: 1px solid $gray;
+		border-right: 1px solid $gray;*/
+
+		&:last-child {
+			border-right: 0;
+		}
+	}
+
+	blockquote {
+		margin: 0 0 1.5em 0.75em;
+		padding: 0 0 0 0.75em;
+		border-left: 3px solid $purple;
+		color: lighten($gray, 30%);
+
+		&:before {}
+
+	}
+
+	dl {}
+
+	dt {}
+
+	dd {
+		margin-left: 0;
+		font-size: 0.9em;
+		color: #787878;
+		margin-bottom: 1.5em;
+	}
+
+	img {
+		margin: 0 0 1.5em 0;
+		max-width: 100%;
+		height: auto;
+	}
+
+	/*
+	image alignment on a screen this size may be
+	a bit difficult. It's set to start aligning
+	and floating images at the next breakpoint,
+	but it's up to you. Feel free to change it up.
+	*/
+	.alignleft, img.alignleft {}
+	.alignright, img.alignright {}
+	.aligncenter, img.aligncenter {}
+
+	.size-auto,
+	.size-full,
+	.size-large,
+	.size-medium,
+	.size-thumbnail {
+		max-width: 100%;
+		height: auto;
+	}
+
+	pre {
+		background: $black;
+		color: $light-gray;
+		font-size: 0.9em;
+		padding: 1.5em;
+		margin: 0 0 1.5em;
+		border-radius: 3px;
+	}
+
+} /* end .entry-content */
+
+.wp-caption {
+	max-width: 100%;
+	background: #eee;
+	padding: 5px;
+
+	/* images inside wp-caption */
+	img {
+		max-width: 100%;
+		margin-bottom: 0;
+		width: 100%;
+	}
+
+	p.wp-caption-text {
+		font-size: 0.85em;
+		margin: 4px 0 7px;
 		text-align: center;
 	}
-	
-	.featured-image {
-		position: relative;
-		display: inline-block;
-		
-		margin-bottom: 1em;
-		
-			img {
-				width: auto;
-				height: auto;
-				max-width: 100%;
-				max-height: 660px;
-				vertical-align: top;	
-			}
+
+} /* end .wp-caption */
+
+/* image gallery styles */
+.gallery {
+
+	dl {
+
+		a {}
+
+		img {}
+
 	}
+
+	dt {}
+
+	dd {}
+
+} /* end .gallery */
+
+/* gallery caption styles */
+.gallery-caption {}
+
+.size-full {}
+.size-large {}
+.size-medium {}
+.size-thumbnail {}
+
+
+/*--------------------- added by me */
+
+
+/*list*/
+
+
+
+/*home*/
+#featured-image-home-container {
+	height: 500px;
+}
+
+#featured-image-home {
+	position: relative;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+/*single post*/
+.featured-image-wrap {
+	text-align: center;
+}
+
+.featured-image {
+	position: relative;
+	display: inline-block;
 	
-	.featured-image-caption {
-		background: rgba(0,0,0,0.5);
-		color: #fff;
-		display: block;
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		
-		padding: 10px 12px;
-		font-family: "scalasansregular";
-		font-size: 12px;
-		z-index: 300;
-		text-align: right;
-		max-width: 80%;
-		
-			a {
-				color: #fff;
-				&:hover,
-				&:focus{
-					color: darken($white, 20%);	
-				}
-			}
-			.price {
-				border: 1px solid;
-				border-radius: 2px;
-				padding: 5px;
-				margin-left: 5px;
-				color: #fff;
-				//border-color: rgba(255,255,255,0.8);
-				
-					&:hover,
-					&:focus {
-						color: darken($purple, 4%);
-						
-					}
-				
-			}
-	}
+	margin-bottom: 1em;
 	
-	.image-caption {
-		color: lighten($gray, 30%);
-		font-family: "scalasansregular";
-		font-size: .545em;
-		text-align: left;
-		margin-top: 5px;
-		//top: -20px;
-		//max-width: 80%;
-	}
-	
-	.post-image {
-		width: 80%;
-		margin-bottom: 60px;
-		padding-top: 30px;
-	}
-	
-	.demo {
-	
-		//width: 100%;
-		
-		hr {
-			padding: 25px 0;
-			margin: 0px;
-			border: none;
+		img {
+			width: auto;
+			height: auto;
+			max-width: 100%;
+			max-height: 660px;
+			vertical-align: top;	
 		}
-		
-		.demo-image {
-			float: left;
-			margin-right: 0px;
+}
+
+.featured-image-caption {
+	background: rgba(0,0,0,0.5);
+	color: #fff;
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	
+	padding: 10px 12px;
+	font-family: "scalasansregular";
+	font-size: 12px;
+	z-index: 300;
+	text-align: right;
+	max-width: 80%;
+	
+		a {
+			color: #fff;
+			&:hover,
+			&:focus{
+				color: darken($white, 20%);	
+			}
+		}
+		.price {
+			border: 1px solid;
+			border-radius: 2px;
+			padding: 5px;
+			margin-left: 5px;
+			color: #fff;
+			//border-color: rgba(255,255,255,0.8);
 			
-			img {
-				max-width: 300px;
-			}
+				&:hover,
+				&:focus {
+					color: darken($purple, 4%);
+					
+				}
+			
 		}
-		
-		.demo-text {
-			float: left;
-			//margin-left: 10px;
-			font-size: .7em;
-			max-width: 380px;
-			padding-left: 25px;
-		}
-	}
-	
-	.spacer {
-		margin-top:70px;
-		margin-bottom:60px;				
-	}
+}
+
+.image-caption {
+	color: lighten($gray, 30%);
+	font-family: "scalasansregular";
+	font-size: .545em;
+	text-align: left;
+	margin-top: 5px;
+	//top: -20px;
+	//max-width: 80%;
+}
+
+.post-image {
+	width: 80%;
+	margin-bottom: 60px;
+	padding-top: 30px;
+}
+
+.demo {
+
+	//width: 100%;
 	
 	hr {
-		clear: both;
-		display: block;
-		border: 0;
-		height: 0;			
-		border-top: 1px solid rgba(0,0,0,0.05);
-		border-bottom: 1px solid rgba(255,255,255,0.01);
-		
+		padding: 25px 0;
+		margin: 0px;
+		border: none;
 	}
+	
+	.demo-image {
+		float: left;
+		margin-right: 0px;
+		
+		img {
+			max-width: 300px;
+		}
+	}
+	
+	.demo-text {
+		float: left;
+		//margin-left: 10px;
+		font-size: .7em;
+		max-width: 380px;
+		padding-left: 25px;
+	}
+}
+
+.spacer {
+	margin-top:70px;
+	margin-bottom:60px;				
+}
+
+hr {
+	clear: both;
+	display: block;
+	border: 0;
+	height: 0;			
+	border-top: 1px solid rgba(0,0,0,0.05);
+	border-bottom: 1px solid rgba(255,255,255,0.01);
+	
+}
 
 /* related posts */
 
 #read-next {
 	background-color: darken($background-shade, 3%);
 	padding: 1.15em;
+	h2 {
+		a {color: $text-color;}
+	}
 }
 
 #related-posts {
 	background-color: $background-shade;
 	padding: 1.15em;
+}
 
-	a {
-		h2 {color: $text-color;}
-	}
+#related-post {
+	margin-bottom: 3em;
 
 	h2 {
 		margin-top: 0;
-		margin-bottom: 1em;
+		margin-bottom: .1em;
+
+		a {color: $text-color;}
 	}
 
+	#excerpt-more {
+		font-size: 16px;
+	}
+
+	#intro {
+		font-size: 16px;
+		margin: 0;
+	}
+
+	.byline {
+		margin-bottom: 0.125em;
+	}
 }
 
 .related-post-image {
@@ -1165,7 +1194,10 @@ FOOTER STYLES
 	} /* end .footer-links */
 
 
-	.copyright {}
+	.copyright {
+		font-size: 14px;
+		font-family: $sans-serif;
+	}
 
 /*********************
 WOOCOMMERCE

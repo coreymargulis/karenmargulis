@@ -459,6 +459,61 @@ Here's a great tutorial on how to
 use color variables properly:
 http://sachagreif.com/sass-color-variables/
 */
+/*********************
+FULL WIDTH BACKGROUNDS
+*********************/
+.full {
+  /*position: relative;*/ }
+  .full:after {
+    left: 100%; }
+  .full:before {
+    right: 100%; }
+
+.full:before, .full:after {
+  content: "";
+  position: absolute;
+  background-color: #f1f2f3;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
+.darker:before {
+  content: "";
+  position: absolute;
+  background-color: #e9eaec;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
+.darker:after {
+  content: "";
+  position: absolute;
+  background-color: #e9eaec;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
+.white:before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
+.white:after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
 /******************************************************************
 Site Name:
 Author:
@@ -1544,6 +1599,8 @@ POSTS & CONTENT STYLES
 *********************/
 #content {
   margin-top: 4em; }
+  #content p {
+    margin: 0 0 1em; }
 
 .hentry {
   /*border-radius: 3px;
@@ -1593,6 +1650,10 @@ POSTS & CONTENT STYLES
   */ }
   .entry-content p {
     margin: 0 0 1em; }
+  .entry-content h1 a {
+    color: #484848; }
+    .entry-content h1 a:hover, .entry-content h1 a:focus {
+      color: #5f5f5f; }
   .entry-content table {
     width: 100%;
     /*border: 1px solid $gray;*/
@@ -1769,15 +1830,27 @@ hr {
 #read-next {
   background-color: #e9eaec;
   padding: 1.15em; }
+  #read-next h2 a {
+    color: #484848; }
 
 #related-posts {
   background-color: #f1f2f3;
   padding: 1.15em; }
-  #related-posts a h2 {
-    color: #484848; }
-  #related-posts h2 {
+
+#related-post {
+  margin-bottom: 3em; }
+  #related-post h2 {
     margin-top: 0;
-    margin-bottom: 1em; }
+    margin-bottom: .1em; }
+    #related-post h2 a {
+      color: #484848; }
+  #related-post #excerpt-more {
+    font-size: 16px; }
+  #related-post #intro {
+    font-size: 16px;
+    margin: 0; }
+  #related-post .byline {
+    margin-bottom: 0.125em; }
 
 .related-post-image img {
   width: 100%; }
@@ -1996,6 +2069,10 @@ override these styles for the desktop
 view.
 */
 /* end .footer-links */
+.copyright {
+  font-size: 14px;
+  font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
 /*********************
 WOOCOMMERCE
 *********************/

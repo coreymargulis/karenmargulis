@@ -209,6 +209,9 @@ body#tinymce.wp-editor {
   use color variables properly:
   http://sachagreif.com/sass-color-variables/
   */
+  /*********************
+  FULL WIDTH BACKGROUNDS
+  *********************/
   /******************************************************************
   Site Name:
   Author:
@@ -555,6 +558,52 @@ body#tinymce.wp-editor {
   body#tinymce.wp-editor span.amp {
     font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
     font-style: italic; }
+  body#tinymce.wp-editor .full {
+    /*position: relative;*/ }
+    body#tinymce.wp-editor .full:after {
+      left: 100%; }
+    body#tinymce.wp-editor .full:before {
+      right: 100%; }
+  body#tinymce.wp-editor .full:before, body#tinymce.wp-editor .full:after {
+    content: "";
+    position: absolute;
+    background-color: #f1f2f3;
+    top: 0;
+    bottom: 0;
+    width: 9999px;
+    display: block; }
+  body#tinymce.wp-editor .darker:before {
+    content: "";
+    position: absolute;
+    background-color: #e9eaec;
+    top: 0;
+    bottom: 0;
+    width: 9999px;
+    display: block; }
+  body#tinymce.wp-editor .darker:after {
+    content: "";
+    position: absolute;
+    background-color: #e9eaec;
+    top: 0;
+    bottom: 0;
+    width: 9999px;
+    display: block; }
+  body#tinymce.wp-editor .white:before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    bottom: 0;
+    width: 9999px;
+    display: block; }
+  body#tinymce.wp-editor .white:after {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    bottom: 0;
+    width: 9999px;
+    display: block; }
 @font-face {
   body#tinymce.wp-editor {
     font-family: 'scalabold';

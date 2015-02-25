@@ -272,6 +272,27 @@ if( function_exists('acf_add_options_page') ) {
   
 }
 
+// Custom Excerpt function for Advanced Custom Fields
+function custom_field_excerpt() {
+  global $post;
+  $text = get_field('introduction'); 
+  if ( '' != $text ) {
+    $text = strip_shortcodes( $text );
+    $text = apply_filters('the_content', $text);
+    $text = str_replace(']]>;', ']]&gt;', $text);
+    $excerpt_length = 40;
+    // $excerpt_more = apply_filters('excerpt_more', ' ' . '[...]');
+    $text = wp_trim_words( $text, $excerpt_length );
+  }
+  return apply_filters('the_excerpt', $text);
+}
+
+// Add id to excerpt
+add_filter( "the_excerpt", "add_class_to_excerpt" );
+function add_class_to_excerpt( $excerpt ) {
+    return str_replace('<p', '<p id="intro"', $excerpt);
+}
+
 
 
 

@@ -10,44 +10,44 @@
 
 					<article id="post-<?php the_ID(); ?> list" <?php post_class( 'cf' ); ?> role="article">
 
-							<section class="featured-image-wrap">
-									
-								<?php
-
-									$post_object = get_field('featured_painting');
-
-									if( $post_object ): 
-									 
-										// override $post
-										$post = $post_object;
-										setup_postdata( $post ); 
-									 
-								?>
-
-							    <div class="featured-image">
-
-							    	<!-- <a href="<?php the_permalink(); ?>"> -->
-							    		<?php 
-								    		$image = get_field('painting');
-
-												if( !empty($image) ): ?>
-
-												<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-
-								    	<?php endif; ?>
-							    	<!-- </a> -->
-							    	
-							    	<div class="featured-image-caption">
-										<?php the_title(); ?>, <?php the_field('width'); ?> x <?php the_field('height'); ?> <a class="price" href="<?php the_permalink(); ?>">$<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?></a>
-							    	</div>
-
-							    </div>
-							    
-							    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+						<section class="featured-image-wrap">
 								
-								<?php endif; ?>
-												
-							</section>
+							<?php
+
+								$post_object = get_field('featured_painting');
+
+								if( $post_object ): 
+								 
+									// override $post
+									$post = $post_object;
+									setup_postdata( $post ); 
+								 
+							?>
+
+						    <div class="featured-image">
+
+						    	<!-- <a href="<?php the_permalink(); ?>"> -->
+						    		<?php 
+							    		$image = get_field('painting');
+
+											if( !empty($image) ): ?>
+
+											<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+
+							    	<?php endif; ?>
+						    	<!-- </a> -->
+						    	
+						    	<div class="featured-image-caption">
+									<?php the_title(); ?>, <?php the_field('width'); ?> x <?php the_field('height'); ?> <a class="price" href="<?php the_permalink(); ?>">$<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?></a>
+						    	</div>
+
+						    </div>
+						    
+						    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+							
+							<?php endif; ?>
+											
+						</section>
 
 						<section class="entry-content cf">
 

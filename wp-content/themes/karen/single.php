@@ -77,7 +77,7 @@
 			
 			                </article> <?php // end article ?>
 
-			                <section id="read-next" class="full-width-bkgd">
+			                <article id="read-next">
 
 			                	<div id="next-post">
 
@@ -86,7 +86,7 @@
 				                	<?php
 										$prev_post = get_previous_post();
 										if (!empty( $prev_post )): ?>
-										  <a href="<?php echo get_permalink( $prev_post->ID ); ?>"><h2><?php echo $prev_post->post_title; ?></h2></a>
+										  <h2><a href="<?php echo get_permalink( $prev_post->ID ); ?>"><?php echo $prev_post->post_title; ?></a></h2>
 									<?php endif; ?>
 
 								</div>
@@ -95,74 +95,56 @@
 			                		<h4>Previous Post</h4>
 			                	</div> -->
 
-			                </section>
+			                </article>				
 
-			                <section id="related-posts" class="full-width-bkgd">
+						<?php endwhile; ?>
 
-			                	<h4>Related Posts</h4>
 
-				                <?php
-									$args = array(
-										'numberposts' => 3,
-										'orderby' => 'rand',
-										'category__in' => wp_get_post_categories($post->ID),
-										'post_status' => 'publish'
-									);
-									$postslist = get_posts( $args );
-									foreach ( $postslist as $post ) : setup_postdata( $post ); ?> 		
+						<article id="related-posts" class="full">
 
-									<div>
-										
-											
-									<?php
-	
-										$post_object = get_field('featured_painting');
-	
-										if( $post_object ): 
-										 
-											// override $post
-											$post = $post_object;
-											setup_postdata( $post ); 
-										 
-									?>
-	
-								    <div class="related-post-image">
+			                <?php
+								$related_args = array(
+									'numberposts' => 3,
+									'orderby' => 'rand',
+									'category__in' => wp_get_post_categories($post->ID),
+									'post_status' => 'publish',
+									'post__not_in' => array($post->ID)
+								);
+								$related = new WP_Query( $related_args );
 
-								    	<a href="<?php the_permalink(); ?>">
-								    		<?php 
-									    		$image = get_field('painting');
+								if( $related->have_posts() ) :
+							?>	
 
-													if( !empty($image) ): ?>
+							<h4>Related Posts</h4>
 
-													<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-									    	<?php endif; ?>
-									    </a>
+								<?php while( $related->have_posts() ): $related->the_post(); ?> 
 
-								    </div>
-								    
-								    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-									
-									<?php endif; ?>
-														
+								<?php //image goes here ?>
 
+									<section id="related-post">
+						    
 										<p class="byline vcard">
 						                    <?php printf( __( '<time class="updated" datetime="%1$s" pubdate>%2$s</time>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
 						                	<?php printf( '<span class="category">' . __('', 'bonestheme' ) . '%1$s</span>' , get_the_category_list(', ') ); ?>
 						                </p>
 										
-										<a href="<?php echo get_permalink( $post->ID ); ?>"><h2><?php the_title(); ?></h2></a>   
-									</div>
+										<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>											
+										<?php echo custom_field_excerpt(); ?>
+ 										<a href="<?php the_permalink() ?>" id="excerpt-more">Continue Reading</a>
 
-								<?php
-									endforeach; 
-									wp_reset_postdata();
-								?>
-
-							</section>
-
-						<?php endwhile; ?>
+									</section>
 
 
+								</section> 
+
+							<?php endwhile; ?>
+
+						</article>  
+
+						<?php
+							endif;
+							wp_reset_postdata();
+						?>
 
 						<?php else : ?>
 
@@ -181,8 +163,6 @@
 						<?php endif; ?>
 
 					</div>
-
-					<!-- <?php get_sidebar(); ?> -->
 
 				</div>
 
