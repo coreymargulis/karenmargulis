@@ -138,7 +138,6 @@ echo '<?xml version="1.0" encoding="' . get_option( 'blog_charset' ) . '"?' . '>
 	while( have_posts()) : the_post();
 	?>
 	<item>
-		TESTING!!
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
 		<comments><?php comments_link_feed(); ?></comments>
@@ -155,7 +154,7 @@ echo '<?xml version="1.0" encoding="' . get_option( 'blog_charset' ) . '"?' . '>
 	<?php if ( strlen( $content ) > 0 ) : ?>
 		<content:encoded><![CDATA[<?php echo $content; ?>]]></content:encoded>
 	<?php else : ?>
-		<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
+		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
 	<?php endif; ?>
 <?php endif; ?>
 		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
