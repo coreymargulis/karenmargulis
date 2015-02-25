@@ -100,7 +100,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<item>
 		<?php if( !empty($image) ): ?>
 
-     	<media:content src="' . $thumb . '" alt="' . $alt . '" />
+     	<media:content src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
 
   		<?php endif; ?>
 
@@ -119,6 +119,8 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<?php $content = get_the_content_feed('rss2'); ?>
 	<?php if ( strlen( $content ) > 0 ) : ?>
 		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
+	<?php else ?>
+	<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
 	<?php endif; ?>
 <?php endif; ?>
 		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
