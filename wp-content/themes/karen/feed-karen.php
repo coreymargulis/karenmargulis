@@ -4,79 +4,28 @@
  * 
  * Place this file in your theme's directory.
  *
- * @package sometheme
- * @subpackage theme
+ * @package karen
+ * @subpackage karen
  */
 
 
-// /**
-//  * Get related posts.
-//  */
-// function my_rss_related() {
 
-// 	global $post;
 
-// 	// Setup post data
-// 	$pid     = $post->ID;
-// 	$tags    = wp_get_post_tags( $pid );
-// 	$tag_ids = array();
+header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
+$more = 1;
 
-// 	// Loop through post tags
-// 	foreach ( $tags as $individual_tag ) {
-// 		$tag_ids[] = $individual_tag->term_id;
-// 	}
-
-// 	// Execute WP_Query
-// 	$related_by_tag = new WP_Query( array(
-// 		'tag__in'          => $tag_ids,
-// 		'post__not_in'     => array( $pid ),
-// 		'posts_per_page'   => 3,
-// 	) );
-
-// 	// Loop through posts and build HTML
-// 	if ( $related_by_tag->have_posts() ) :
-
-// 		echo 'Related:<br />';
-
-// 			while ( $related_by_tag->have_posts() ) : $related_by_tag->the_post();
-// 				echo '<a href="' . get_permalink() . '">' . get_the_title() . '</a><br />';
-// 			endwhile;
-
-// 		else :
-// 			echo '';
-// 	endif;
-
-// 	wp_reset_postdata();
-// }
-
+echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 
 /**
- * Feed defaults.
+ * Fires between the xml and rss tags in a feed.
+ *
+ * @since 4.0.0
+ *
+ * @param string $context Type of feed. Possible values include 'rss2', 'rss2-comments',
+ *                        'rdf', 'atom', and 'atom-comments'.
  */
-header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_option( 'blog_charset' ), true );
-$frequency  = 1;        // Default '1'. The frequency of RSS updates within the update period.
-$duration   = 'hourly'; // Default 'hourly'. Accepts 'hourly', 'daily', 'weekly', 'monthly', 'yearly'.
-$postlink   = '<br /><a href="' . get_permalink() . '">See the rest of the story at mysite.com</a><br /><br />';
-// $postimages = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'large' );
-
-// // Check for images
-// if ( $postimages ) {
-
-// 	// Get featured image
-// 	$postimage = $postimages[0];
-
-// } else {
-
-// 	// Fallback to a default
-// 	$postimage = get_stylesheet_directory_uri() . '/images/default.jpg';
-// }
-
-
-/**
- * Start RSS feed.
- */
-echo '<?xml version="1.0" encoding="' . get_option( 'blog_charset' ) . '"?' . '>'; ?>
- 
+do_action( 'rss_tag_pre', 'rss2' );
+?>
 <rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
@@ -154,7 +103,7 @@ echo '<?xml version="1.0" encoding="' . get_option( 'blog_charset' ) . '"?' . '>
 	<?php if ( strlen( $content ) > 0 ) : ?>
 		<content:encoded><![CDATA[<?php echo $content; ?>]]></content:encoded>
 	<?php else : ?>
-		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
+		<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
 	<?php endif; ?>
 <?php endif; ?>
 		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
