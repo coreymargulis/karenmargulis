@@ -14,6 +14,18 @@
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
+// Check for images
+if ( $postimages ) {
+
+	// Get featured image
+	$postimage = $postimages[0];
+
+} else {
+
+	// Fallback to a default
+	$postimage = get_stylesheet_directory_uri() . '/library/images/nothumb.gif';
+}
+
 echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 
 /**
@@ -87,6 +99,10 @@ do_action( 'rss_tag_pre', 'rss2' );
 	while( have_posts()) : the_post();
 	?>
 	<item>
+		<image>
+			<url><?php echo esc_url( $postimage ); ?>"/></url>
+		</image>
+
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
 		<comments><?php comments_link_feed(); ?></comments>
@@ -101,8 +117,6 @@ do_action( 'rss_tag_pre', 'rss2' );
 		<description><![CDATA[<?php the_excerpt_rss(); ?>]]></description>
 	<?php $content = get_the_content_feed('rss2'); ?>
 	<?php if ( strlen( $content ) > 0 ) : ?>
-		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
-	<?php else : ?>
 		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
 	<?php endif; ?>
 <?php endif; ?>
