@@ -14,6 +14,24 @@
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
+$post_object = get_field('featured_painting');
+	
+if( $post_object ): 
+ 
+	// override $post
+	$post = $post_object;
+	setup_postdata( $post );
+
+$image = get_field('painting');
+  
+  $url = $image['url'];
+  $alt = $image['alt'];
+
+  // thumbnail
+  $size = 'medium';
+  $thumb = $image['sizes'][ $size ];
+  
+  
 
 echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 
@@ -88,7 +106,13 @@ do_action( 'rss_tag_pre', 'rss2' );
 	while( have_posts()) : the_post();
 	?>
 	<item>
+		<?php if( !empty($image) ): ?>
 
+     	<media:content url="<?php echo $image['url']; ?>" medium="image">
+
+  		<?php endif; ?>
+  		<?php wp_reset_postdata(); ?>
+  		<?php endif; ?>
 
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
