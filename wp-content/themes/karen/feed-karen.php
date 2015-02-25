@@ -101,9 +101,9 @@ do_action( 'rss_tag_pre', 'rss2' );
 		<description><![CDATA[<?php the_excerpt_rss(); ?>]]></description>
 	<?php $content = get_the_content_feed('rss2'); ?>
 	<?php if ( strlen( $content ) > 0 ) : ?>
-		<content:encoded><![CDATA[<?php echo $content; ?>]]></content:encoded>
+		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
 	<?php else : ?>
-		<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
+		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
 	<?php endif; ?>
 <?php endif; ?>
 		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
