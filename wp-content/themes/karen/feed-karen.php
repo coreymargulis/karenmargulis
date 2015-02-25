@@ -14,17 +14,16 @@
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
-// Check for images
-if ( $postimages ) {
+$image = get_field('painting');
+  
+  $url = $image['url'];
+  $alt = $image['alt'];
 
-	// Get featured image
-	$postimage = $postimages[0];
-
-} else {
-
-	// Fallback to a default
-	$postimage = get_stylesheet_directory_uri() . '/library/images/nothumb.gif';
-}
+  // thumbnail
+  $size = 'medium';
+  $thumb = $image['sizes'][ $size ];
+  
+  
 
 echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 
@@ -99,9 +98,11 @@ do_action( 'rss_tag_pre', 'rss2' );
 	while( have_posts()) : the_post();
 	?>
 	<item>
-		<image>
-			<url><?php echo esc_url( $postimage ); ?>"/></url>
-		</image>
+		<?php if( !empty($image) ): ?>
+
+     	<media:content src="' . $thumb . '" alt="' . $alt . '" />
+
+  		<?php endif; ?>
 
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
