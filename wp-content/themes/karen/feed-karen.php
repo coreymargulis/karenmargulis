@@ -14,6 +14,14 @@
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
+$post_object = get_field('featured_painting');
+	
+if( $post_object ): 
+ 
+	// override $post
+	$post = $post_object;
+	setup_postdata( $post );
+
 $image = get_field('painting');
   
   $url = $image['url'];
@@ -98,7 +106,12 @@ do_action( 'rss_tag_pre', 'rss2' );
 	while( have_posts()) : the_post();
 	?>
 	<item>
+		<?php if( !empty($image) ): ?>
 
+     	<media:content><![CDATA[<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />]]></media:content>
+
+  		<?php endif; ?>
+  		<?php endif; ?>
 
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
