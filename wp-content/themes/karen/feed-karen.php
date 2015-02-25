@@ -98,11 +98,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 	while( have_posts()) : the_post();
 	?>
 	<item>
-		<?php if( !empty($image) ): ?>
 
-     	<media:content><![CDATA[<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />]]></media:content>
-
-  		<?php endif; ?>
 
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
@@ -116,8 +112,12 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<?php $content = get_the_content_feed('rss2'); ?>
 	<?php if ( strlen( $content ) > 0 ) : ?>
 		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
+		     	<media:content><![CDATA[<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />]]></media:content>
+
 	<?php else : ?>
 		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
+		     	<media:content><![CDATA[<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />]]></media:content>
+
 	<?php endif; ?>
 		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
 		<slash:comments><?php echo get_comments_number(); ?></slash:comments>
