@@ -93,15 +93,28 @@ img.acf-fw {
   text-align: center;
 }
 /* loading */
-.acf-loading {
+.acf-loading,
+.acf-spinner {
   display: inline-block;
   height: 20px;
   width: 20px;
   vertical-align: text-top;
   background: transparent url(../images/spinner.gif) no-repeat 50% 50%;
 }
-.acf-loading + .acf-button {
+.acf-loading + .acf-button,
+.acf-spinner + .acf-button {
   margin-left: 3px;
+}
+/* spinner */
+.acf-spinner {
+  display: none;
+}
+.acf-spinner.is-active {
+  display: inline-block;
+}
+/* WP < 4.2 */
+.spinner.is-active {
+  display: inline-block;
 }
 /* required */
 .acf-required {
@@ -159,15 +172,52 @@ img.acf-fw {
   z-index: 9999;
   font-size: 12px;
 }
+.acf-tooltip.top {
+  margin-top: -8px;
+}
+.acf-tooltip.right {
+  margin-right: -8px;
+}
+.acf-tooltip.bottom {
+  margin-bottom: -8px;
+}
+.acf-tooltip.left {
+  margin-left: -8px;
+}
 .acf-tooltip:before {
   border: solid;
-  border-color: #2F353E transparent;
-  border-width: 6px 6px 0 6px;
-  bottom: 0px;
-  margin: 0 0 -6px -6px;
+  border-color: transparent;
+  border-width: 6px;
   content: "";
-  left: 50%;
   position: absolute;
+}
+.acf-tooltip.top:before {
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-top-color: #2F353E;
+  border-bottom-width: 0;
+}
+.acf-tooltip.right:before {
+  top: 50%;
+  margin-top: -6px;
+  right: 100%;
+  border-right-color: #2F353E;
+  border-left-width: 0;
+}
+.acf-tooltip.bottom:before {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-bottom-color: #2F353E;
+  border-top-width: 0;
+}
+.acf-tooltip.left:before {
+  top: 50%;
+  margin-top: -6px;
+  left: 100%;
+  border-left-color: #2F353E;
+  border-right-width: 0;
 }
 /*---------------------------------------------------------------------------------------------
 *
@@ -492,13 +542,24 @@ img.acf-fw {
   min-height: 0px;
 }
 .acf-error-message p {
-  font-size: 12px !important;
-  line-height: 14px;
+  font-size: 13px !important;
+  line-height: 1;
   margin: 10px 0 !important;
   padding: 0;
   text-shadow: none;
   color: #fff;
   text-shadow: 0 1px 0 #DD4232;
+}
+.acf-error-message .acf-icon.dark {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background-color: #dd4232;
+  transition: none;
+  box-shadow: none;
+}
+.acf-error-message .acf-icon.dark:hover {
+  background-color: #F1F1F1;
 }
 /*--------------------------------------------------------------------------------------------
 *
@@ -606,8 +667,8 @@ img.acf-fw {
 }
 /* blue */
 .acf-button.blue {
-  background-color: #2EA2CC;
-  border-color: #0074A2;
+  background-color: #00a0d2;
+  border-color: #0073aa;
 }
 .acf-button.blue:hover {
   background-color: #298CBA;
@@ -661,10 +722,11 @@ img.acf-fw {
 .acf-postbox {
   position: relative;
 }
-.acf-postbox > .inside,
 .acf-fields {
   margin: 0 !important;
+  /* override WP style - do not delete - you have tried this before */
   padding: 0 !important;
+  /* override WP style - do not delete - you have tried this before */
   position: relative;
 }
 .acf-fields > .acf-field {
@@ -674,6 +736,10 @@ img.acf-fw {
 }
 .acf-fields > .acf-field:first-child {
   border-top-width: 0;
+}
+/* position high */
+#acf_after_title-sortables .acf-postbox {
+  margin: 20px 0 0;
 }
 /* seamless */
 .acf-postbox.seamless {
@@ -686,9 +752,12 @@ img.acf-fw {
   display: none;
 }
 .acf-postbox.seamless > .acf-fields > .acf-field {
-  margin: 0;
-  padding: 15px 0;
-  border: 0 none !important;
+  padding: 0;
+  margin: 20px 0 0;
+  border: 0 none;
+}
+.acf-postbox.seamless > .acf-fields > .acf-field:first-child {
+  margin-top: 0;
 }
 .acf-postbox.seamless > .acf-fields > .acf-table,
 .acf-postbox.seamless > .acf-fields > .acf-table > tbody > tr > td {
@@ -718,6 +787,10 @@ img.acf-fw {
 }
 .acf-postbox .hndle .acf-hndle-cog:hover {
   color: #777777;
+}
+.acf-replace-with-fields {
+  padding: 15px;
+  text-align: center;
 }
 /*---------------------------------------------------------------------------------------------
 *
@@ -939,27 +1012,6 @@ img.acf-fw {
 }
 /*--------------------------------------------------------------------------------------------
 *
-*	User
-*
-*--------------------------------------------------------------------------------------------*/
-.form-table .acf-label {
-  padding: 10px;
-  width: 200px;
-}
-.form-table th.acf-th {
-  width: auto;
-}
-/*--------------------------------------------------------------------------------------------
-*
-*	Comment
-*
-*--------------------------------------------------------------------------------------------*/
-.editcomment td:first-child {
-  white-space: nowrap;
-  width: 131px;
-}
-/*--------------------------------------------------------------------------------------------
-*
 *	Settings
 *
 *--------------------------------------------------------------------------------------------*/
@@ -1053,6 +1105,20 @@ img.acf-fw {
   top: 50%;
   left: 50%;
   margin: -10px 0 0 -10px;
+}
+/* submit p */
+.acf-submit {
+  margin-bottom: 0;
+}
+.acf-submit span {
+  float: right;
+  color: #999;
+}
+.acf-submit .acf-loading {
+  display: none;
+}
+.acf-submit .acf-button {
+  margin-right: 5px;
 }
 /*--------------------------------------------------------------------------------------------
 *
@@ -1175,7 +1241,8 @@ html[dir="rtl"] .acf-input-table > tbody > tr > td.order + td {
     background-image: url(../images/sprite@2x.png);
     background-size: 500px 500px;
   }
-  .acf-loading {
+  .acf-loading,
+  .acf-spinner {
     background-image: url(../images/spinner@2x.gif);
     background-size: 20px 20px;
   }

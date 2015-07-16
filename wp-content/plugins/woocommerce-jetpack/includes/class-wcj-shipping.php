@@ -153,10 +153,10 @@ class WCJ_Shipping {
             
             array(
                 'title'    => __( 'Shipping', 'woocommerce-jetpack' ),
-                'desc'     => __( 'Enable the Shipping feature', 'woocommerce-jetpack' ),
-                'desc_tip' => __( 'Hide shipping when free is available.', 'woocommerce-jetpack' ),
+                'desc'     => '<strong>' . __( 'Enable Module', 'woocommerce-jetpack' ) . '</strong>',
+                'desc_tip' => __( 'Hide WooCommerce shipping when free is available.', 'woocommerce-jetpack' ),
                 'id'       => 'wcj_shipping_enabled',
-                'default'  => 'yes',
+                'default'  => 'no',
                 'type'     => 'checkbox',
             ),
         

@@ -238,7 +238,8 @@ class WC_Admin_Duplicate_Product {
 	 */
 	private function duplicate_post_meta( $id, $new_id ) {
 		global $wpdb;
-		$post_meta_infos = $wpdb->get_results( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$id" );
+
+		$post_meta_infos = $wpdb->get_results( $wpdb->prepare( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=%d AND meta_key NOT IN ( 'total_sales' );", absint( $id ) ) );
 
 		if ( count( $post_meta_infos ) != 0 ) {
 
@@ -246,12 +247,10 @@ class WC_Admin_Duplicate_Product {
 			$sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
 
 			foreach ( $post_meta_infos as $meta_info ) {
-				$meta_key = $meta_info->meta_key;
-				$meta_value = addslashes( $meta_info->meta_value );
-				$sql_query_sel[]= "SELECT $new_id, '$meta_key', '$meta_value'";
+				$sql_query_sel[]= $wpdb->prepare( "SELECT %d, %s, %s", $new_id, $meta_info->meta_key, $meta_info->meta_value );
 			}
 
-			$sql_query.= implode(" UNION ALL ", $sql_query_sel);
+			$sql_query.= implode( " UNION ALL ", $sql_query_sel );
 			$wpdb->query($sql_query);
 		}
 	}

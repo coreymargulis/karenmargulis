@@ -260,9 +260,9 @@ class WCJ_Bulk_Price_Converter {
             array(
                 'title'    => __( 'Bulk Price Converter', 'woocommerce-jetpack' ),
                  'desc'     => '<strong>' . __( 'Enable Module', 'woocommerce-jetpack' ) . '</strong>',
-                'desc_tip' => __( 'Multiply all products prices by set value.', 'woocommerce-jetpack' ),
+                'desc_tip' => __( 'Multiply all WooCommerce products prices by set value.', 'woocommerce-jetpack' ),
                 'id'       => 'wcj_bulk_price_converter_enabled',
-                'default'  => 'yes',
+                'default'  => 'no',
                 'type'     => 'checkbox',
             ),
         

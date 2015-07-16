@@ -3,8 +3,8 @@ Contributors: algoritmika
 Donate link: http://algoritmika.com/donate/
 Tags: woocommerce,woocommerce jetpack,custom price labels,call for price,currency symbol,remove sorting,remove old product slugs,add to cart text,order number,sequential order numbering,email pdf invoice,pdf invoice,pdf invoices,already in cart,empty cart,redirect to checkout,minimum order amount,customize checkout fields,checkout fields,email,customize product tabs,product tabs,related products number,empty cart,redirect add to cart,redirect to checkout,product already in cart,custom payment gateway,payment gateway icon,auto-complete all orders,custom order statuses,custom order status,remove text from price,custom css,hide categories count,hide subcategories count,hide category count,hide subcategory count,display total sales,custom product tabs,remove product tab,payment gateway fee,
 Requires at least: 3.8
-Tested up to: 4.1
-Stable tag: 2.1.1
+Tested up to: 4.2
+Stable tag: 2.2.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,31 +15,65 @@ Supercharge your WordPress WooCommerce site with these awesome powerful features
 WooCommerce Jetpack is a WordPress plugin that supercharges your site with awesome powerful features. Features are absolutely required for anyone using excellent WordPress WooCommerce platform.
 
 = Features =
-* Custom Price Labels - Create any custom price label for any product.
-* Call for Price - Create any custom price label, like *Call for price*, for all products with empty price.
-* Currencies - Add all world currencies, change currency symbol.
-* PDF Invoicing and Packing Slips - Add PDF invoices for store owners and for customers. Automatically email PDF invoices to customers (and limit attaching invoice to selected payment gateways only).
-  Module includes proforma invoices, proforma slips, with separate numbering for each document type.
-  Extended templates (and shortcodes), styling, page, header and footer, filename, emailing etc. customization options.
-* Orders - Sequential order numbering, custom order number prefix, date prefix, suffix and number width. Set minimum order amount.
-* More Sorting Options - Add more sorting options or remove sorting at all (including WooCommerce default).
-* Payment Gateways - Change icons (images) for all default (COD - Cash on Delivery, Cheque, BACS, Mijireh Checkout, PayPal) WooCommerce payment gateways.
-  Add payment gateways fees to any default WooCommerce gateway.
-  Add and customize up to 10 additional custom off-line payment gateways.
-* Checkout - Customize checkout fields: disable/enable fields, set required, change labels and/or placeholders.
-* Shipping - Hide shipping when free is available.
-* Emails - Add another email recipient(s) to all WooCommerce emails.
-* Product Listings - Change display options for shop and category pages: show/hide categories count, exclude categories, show/hide empty categories.
-* Product Info - Add more info to product on category or single pages. Change related products number, select to relate by tag and/or by category.
-* Product Tabs - Add custom product tabs - globally, per category or per product. Customize or completely remove WooCommerce default product tabs.
-* Cart - Add "Empty Cart" button to cart page, automatically add product to cart on visit.
-* Add to Cart - Change text for add to cart buttons for each product type, on per category or per product basis. Display "Product already in cart" instead of "Add to cart" button. Redirect add to cart button to any url (e.g. checkout page).
-* Old Slugs - Remove old product slugs.
-* Bulk Price Converter tool.
-* Prices and Currencies by Country - Change product’s price and currency by customer’s country - globally or per product. Customer’s country is detected automatically by IP. Automatic currency exchange rates updates.
-* Bulk SKUs generator tool.
-* Different Currency for External Products.
-* Another custom CSS tool, if you need one.
+
+**Prices & Currencies**
+
+* *Bulk Price Converter* - Multiply all WooCommerce products prices by set value.
+* *Currencies* - Add all world currencies to your WooCommerce store; change currency symbol.
+* *Currency for External Products* - Set different currency for external WooCommerce products.
+* *Prices and Currencies by Country* - Change WooCommerce product price and currency automatically by customer's country.
+* *Wholesale Price* - Set WooCommerce wholesale pricing depending on product quantity in cart (buy more pay less).
+
+**Price & Button Labels**
+
+* *Add to Cart Labels* - Change text for Add to Cart button by WooCommerce product type, by product category or for individual products.
+* *Call for Price* - Create any custom price label for all WooCommerce products with empty price.
+* *Custom Price Labels* - Create any custom price label for any WooCommerce product.
+* *More Button Labels* - Set WooCommerce "Place order" button label.
+
+**Products**
+
+* *Product Add to Cart* - Set any local url to redirect to on WooCommerce Add to Cart. Automatically add to cart on product visit.
+* *Product Cost Price* - Save WooCommerce product purchase costs data for admin reports.
+* *Product Images* - Customize WooCommerce products images, thumbnails and sale flashes.
+* *Product Info* - Add additional info to WooCommerce category and single product pages.
+* *Product Input Fields* - WooCommerce product input fields.
+* *Product Listings* - Change WooCommerce display options for shop and category pages: show/hide categories count, exclude categories, show/hide empty categories.
+* *Product Tabs* - Add custom product tabs - globally or per product. Customize or completely remove WooCommerce default product tabs.
+* *Related Products* - Change displayed WooCommerce related products number, columns, order, relate by tag and/or category, or hide related products completely.
+* *SKU* - Generate WooCommerce SKUs automatically.
+* *Sorting* - Add more WooCommerce sorting options or remove all sorting including default.
+
+**Cart & Checkout**
+
+* *Cart* - Add custom info to WooCommerce cart page. Add empty cart button.
+* *Checkout Core Fields* - Customize WooCommerce core checkout fields. Disable/enable fields, set required, change labels and/or placeholders.
+* *Checkout Custom Fields* - Add custom fields to WooCommerce checkout page.
+* *Checkout Custom Info* - Add custom info to WooCommerce checkout page.
+* *Mini Cart* - Customize WooCommerce mini cart widget.
+* *Payment Gateways* - Add custom payment gateway, change icons (images) for all default WooCommerce payment gateways.
+
+**Shipping & Orders**
+
+* *Address Formats* - Set address format in WooCommerce orders on per country basis. Force base country display.
+* *Order Custom Statuses* - Custom statuses for WooCommerce orders.
+* *Order Numbers* - WooCommerce sequential order numbering, custom order number prefix, suffix and number width.
+* *Orders* - Minimum WooCommerce order amount; orders auto-complete.
+* *Shipping* - Hide WooCommerce shipping when free is available.
+* *Shipping Calculator* - Customize WooCommerce shipping calculator on cart page.
+
+**PDF Invoicing & Packing Slips**
+
+* *PDF Invoicing* - WooCommerce Invoices, Proforma Invoices, Credit Notes and Packing Slips.
+
+**Emails & Misc.**
+
+* *Admin Tools* - Debug and log tools for WooCommerce Jetpack.
+* *Emails* - Add another email recipient(s) to all WooCommerce emails.
+* *General* - Separate custom CSS for front and back end.
+* *Old Slugs* - Remove old WooCommerce products slugs.
+* *Reports* - WooCommerce stock, sales, customers etc. reports.
+* *WPML* - Basic WPML support for WooCommerce Jetpack.
 
 = Feedback =
 * We are open to your suggestions and feedback - thank you for using or trying out one of our plugins!
@@ -70,9 +104,105 @@ To unlock all WooCommerce Jetpack features, please install additional <a href="h
 
 == Changelog ==
 
+= 2.2.1 - 04/07/2015 =
+* Dev - Shortcodes - `location`, `site_visibility`, `wpml_language` attributes added to all shortcodes.
+* Dev - PRICES & CURRENCIES - Price by Country - "by user selection" option added. `[wcj_country_select_drop_down_list]` shortcode added.
+* Fix - PRICES & CURRENCIES - Wholesale Price - decimal point in discount percent, fixed.
+* Dev - PRODUCTS - Related Products - Separate option for hiding the related products added.
+* Dev - CART & CHECKOUT - Empty Cart Button - "Confirmation by pop up box" option added.
+* Dev - CART & CHECKOUT - Empty Cart Button - Initial module release.
+* Dev - CART & CHECKOUT - Cart - Code refactoring.
+* Dev - PDF Invoicing - Invoice report tool added.
+* Dev - PDF Invoicing - PDF invoices Header and Footer font set as "general font" set in "Styling" section.
+* Dev - PDF Invoicing - Renumerate Invoices Tool - `date_query` added (fix for "memory exhausted" message, on large number of total shop orders).
+* Fix - EMAILS & MISC. - WPML - `wcj_wpml_translate` added to General Shortcodes list.
+* Dev - EMAILS & MISC. - General - "Enable shortcodes in WordPress text widgets" option added.
+* Dev - EMAILS & MISC. - General - Code refactoring.
+
+= 2.2.0 - 13/06/2015 =
+* Dev - readme.txt features description updated.
+* Dev - All modules set to "off" on initial install.
+* Dev - Admin options reset option added. Only by arg.
+* Dev - Readme generator `woojetpack_readme`.
+* Dev - `WCJ_Module` class added. Type `submodule` added.
+* Dev - `WCJ_Product` class added (started).
+* Dev - Tweak: `custom_number` settings field added as `woocommerce_admin_field_custom_number` action in `WC_Settings_Jetpack` class.
+* Fix - SSL fix, https://wordpress.org/support/topic/woojetpack-loads-insecure-resources-on-ssl-sites.
+* Dev - General Shortcodes - `[wcj_cart_items_total_weight]`.
+* Dev - Products Shortcodes - `[wcj_product_excerpt]`, `[wcj_product_tags]`.
+* Dev - Products Shortcodes - `[wcj_product_custom_field]` - feature requested by: https://wordpress.org/support/topic/custom-product-info-how-to-achieve.
+* Dev - Products Shortcodes - Discount Info: `[wcj_product_you_save]`, `[wcj_product_you_save_percent]`.
+* Fix - Orders Shortcodes - `wcj_order_get_cart_discount_tax()` in `[wcj_order_total_discount]` shortcode.
+* Dev - Orders Shortcodes - `[wcj_order_subtotal_plus_shipping]`.
+* Dev - Orders Shortcodes - Fields: `[wcj_order_customer_note]`, `[wcj_order_checkout_field]`, `[wcj_order_billing_phone]`.
+* Dev - Orders Shortcodes - Fees: `[wcj_order_total_fees]`, `[wcj_order_fee]`, `[wcj_order_fees_html]`.
+* Dev - DASHBOARD - Tweak: *Active Modules* section added.
+* Dev - DASHBOARD - Tweak: *Modules by Category* section added.
+* Dev - DASHBOARD - Tweak: Categories menu modified (merged categories).
+* Fix - PRICES & CURRENCIES - Price by Country - `woocommerce_loaded` hook changed to `init` in `WCJ_Price_by_Country_Core`.
+* Dev - PRICES & CURRENCIES - Price by Country - Exchange Rates: "Grab" button tweak.
+* Dev - PRICES & CURRENCIES - Price by Country - Now shipping cost also calsulated by country (`change_shipping_price_by_country` function added). Suggested by Fabian.
+* Dev - PRICES & CURRENCIES - Price by Country - Reporting: currency `merge` option added; and currency symbol fixed.
+* Dev - PRICES & CURRENCIES - Wholesale Price (buy more pay less) - Initial module release. `[wcj_product_wholesale_price_table]` shortcode added to "Products Shortcodes".
+* Dev - PRICE & BUTTON LABELS - Add to Cart Labels - Add to Cart module code refactoring: per category, per product and per product type merged to single module.
+* Dev - PRICE & BUTTON LABELS - Add to Cart Labels - Add to cart per category tweak - comma separated list to multiselect.
+* Dev - PRICE & BUTTON LABELS - Custom Price Labels - `do_shortcode` added on price output.
+* Dev - PRICE & BUTTON LABELS - More Button Labels - Initial module release. Functionality moved from **Checkout** module.
+* Dev - PRODUCTS - Product Add to Cart - Initial module release (all functionality moved from "Add to Cart" module).
+* Dev - PRODUCTS - Product Images - Initial module release. Options to hide image and thumbnails; options to customize the sale flash added.
+* Dev - PRODUCTS - Product Cost Price - Initial module release. Purchase price added to "Stock Reports". `[wcj_product_purchase_price]` shortcode added to "Products Shortcodes".
+* Dev - PRODUCTS - Product Input Fields - Making "nicer name" for input fields in admin order view.
+* Dev - PRODUCTS - Product Input Fields - `number`, `textarea` and `checkbox` field types added.
+* Dev - CART & CHECKOUT - Checkout Custom Fields - *Field by product category* option added.
+* Dev - CART & CHECKOUT - Checkout Custom Fields - added to order details.
+* Dev - CART & CHECKOUT - Checkout Core Fields - Checkout module code refactoring and name changed to Checkout Core Fields module.
+* Dev - CART & CHECKOUT - Cart - Custom Cart Info feature added.
+* Dev - CART & CHECKOUT - Checkout Custom Info - Initial module release.
+* Dev - CART & CHECKOUT - Mini Cart - Initial module release.
+* Fix - CART & CHECKOUT - Payment Gateways - Option for rounding the fee before adding to cart added (in `gateways_fees` function).
+* Fix - CART & CHECKOUT - Payment Gateways - Fees tax bug fixed (in `add_fee` function).
+* Fix - CART & CHECKOUT - Payment Gateways - Custom Payment Gateway - Instructions were emailed *only* if status `on-hold`, fixed (now `default_order_status`).
+* Dev - CART & CHECKOUT - Payment Gateways - Payment Gateways per Category - Initial release.
+* Dev - SHIPPING & ORDERS - Address Formats - New module added. Address format can be set for each country. "Force Base Country Display" option added.
+* Fix - SHIPPING & ORDERS - Order Custom Statuses - Custom statuses in reports fixed.
+* Dev - SHIPPING & ORDERS - Order Custom Statuses - Initial module release (functionality moved "Orders" module).
+* Fix - SHIPPING & ORDERS - Order Numbers - Prefix default set to empty and unlocked. This prevents from creating double `#` in order numbers.
+* Dev - SHIPPING & ORDERS - Orders - Code refactoring.
+* Dev - SHIPPING & ORDERS - Orders - Country column option added to WooCommerce orders list.
+* Dev - PDF Invoicing - `sanitize_file_name()` added in `WCJ_Invoice::get_file_name()`.
+* Dev - PDF Invoicing - `force_balance_tags()` added in `WCJ_PDF_Invoice::get_pdf()`.
+* Dev - PDF Invoicing - Footer - Customization options added. Code changes also include adding `WCJ_TCPDF` class and defining `K_PATH_IMAGES` in `tcpdf_config.php`.
+* Fix - PDF Invoicing - Emails - Tweak: "New order" label fixed.
+* Dev - PDF Invoicing - **Credit Note** document type added.
+* Dev - PDF Invoicing - Datepicker script moved from Invoices Renumerate tool to global `woocommerce-jetpack.php`.
+* Fix - PDF Invoicing - Enable "Save as" bug fixed.
+* Dev - PDF Invoicing - Option for `item_variation` column added to `[wcj_order_items_table]` shortcode. Suggested by Brad.
+* Dev - PDF Invoicing - Shop manager (not only admin) now is also allowed to see the invoices (`is_shop_manager` function). Also added to PDF Invoices (V1).
+* Dev - PDF Invoicing - Extra check on `fopen`. Also added to PDF Invoices (V1).
+* Dev - EMAILS & MISC. - PDF Invoices (V1) moved to "EMAILS & MISC." submenu and marked as "depreciated".
+* Dev - EMAILS & MISC. - PDF Invoices (V1) - `get_item_total` replaced with `get_item_subtotal`.
+* Dev - EMAILS & MISC. - Reports - Customers by Country - Total spent by country added.
+* Dev - EMAILS & MISC. - WPML - New module added. Support for some options added to wpml-config.xml file.
+* Dev - EMAILS & MISC. - WPML - `[wcj_wpml]` (and `[wcj_wpml_translate]`) shortcode added to "General Shortcodes" for translating any other text.
+
+= 2.1.3 - 24/02/2015 =
+* Dev/Fix - Empty cart - new position hook added and div style field unlocked.
+* Dev - Price by Country - Using `internal_wc` only.
+* Dev - Orders Shortcodes - `after_discount` attribute added to `[wcj_order_subtotal]` shortcode (also `[wcj_order_subtotal_after_discount]` shortcode).
+* Dev - Products Shortcodes - Shortcodes added: `[wcj_product_sku]`, `[wcj_product_title]`, `[wcj_product_weight]`.
+* Fix - PDF Invoicing - Bug causing `font_family` and `font_size` settings wrongly taken from PDF Invoices V1 instead of V2, fixed.
+* Fix - Custom Order Statuses - Bug in reports, fixed.
+
+= 2.1.2 - 22/02/2015 =
+* Fix - PDF Invoicing - `on_create` bug fixed. This caused creating all document on new order only.
+* Dev - PDF Invoicing - Page format (paper size) option added to *Page Settings* submodule.
+* Dev - Products Shortcodes - Attribute `hide_currency` added to Products Shortcodes (`[wcj_product_price]`).
+* Dev - Products Shortcodes - `[wcj_product_price]` - variable product handling (as price range), added.
+* Dev - Custom Checkout Fields - *label* and *placeholder* can now contain HTML tags (text changed to textarea in settings).
+
 = 2.1.1 - 18/02/2015 =
-* Orders Shortcodes - Shortcodes compatibility with PDF Invoices v1 module.
-* Orders Shortcodes - Added `hide_if_zero` checking for `_order_item_total_` shortcodes.
+* Fix - Orders Shortcodes - Shortcodes compatibility with PDF Invoices V1 module.
+* Dev - Orders Shortcodes - Added `hide_if_zero` checking for `_order_item_total_` shortcodes.
 
 = 2.1.0 - 17/02/2015 =
 * Dev - **PDF Invoicing and Packing Slips** - Module added.
@@ -185,8 +315,8 @@ To unlock all WooCommerce Jetpack features, please install additional <a href="h
 * Dev - CHECKOUT - **Payment Gateways** - Payment fees - Maximum and/or minimum cart amount for adding fee option, added.
 * Dev - CHECKOUT - **Payment Gateways** - Option to set *default order status* for custom gateway, added.
 * Dev - ORDERS - **Custom Statuses** - *Default Order Status* option added. Idea by Patryk.
-* Dev - ORDERS - **Bulk Price Changer** - Custom order number date suffix. Idea by Patryk.
-* Dev - ORDERS - **Bulk Price Changer** - Option to *enabled/disable sequential order numbers*, added. This will let use only *custom order number width, prefixes and suffixes*.
+* Dev - ORDERS - **Order Numbers** - Custom order number date suffix. Idea by Patryk.
+* Dev - ORDERS - **Order Numbers** - Option to *enabled/disable sequential order numbers*, added. This will let use only *custom order number width, prefixes and suffixes*.
 * Dev - **PDF Invoices** - Shortcodes.
 * Dev - **PDF Invoices** - Custom billing and shipping checkout fields are now added to PDF. This covers the request to add shipping phone to PDF by Dennys.
 * Dev - PRICE LABELS - **Custom Price Labels** - *Global* price labels between regular and sale. Suggested by Roman.
@@ -196,7 +326,7 @@ To unlock all WooCommerce Jetpack features, please install additional <a href="h
 * i18n - `FR_fr` French translation updated. Translated by Jean-Marc.
 * i18n - POT file updated.
 * Tweak - PRICE LABELS - **Custom Price Labels** - Hide custom price labels if the Dashboard or the administration panel is displayed. Suggested by Jean-Marc.
-* Tweak - ORDERS - **Bulk Price Changer** - Moved to separate module.
+* Tweak - ORDERS - **Order Numbers** - Moved to separate module.
 * Tweak - CART - **Add to Cart** - "Only *local* URLs are accepted" info updated in *Add to cart redirect*.
 
 = 1.9.1 - 13/11/2014 =
@@ -214,7 +344,7 @@ To unlock all WooCommerce Jetpack features, please install additional <a href="h
 * Feature Upgraded - **Sorting** - Sorting products by stock quantity, added. Idea by Fred.
 * Feature Upgraded - **PDF Invoices** - Emailing PDF as attachment for selected payment methods only option added. Idea by Jen.
 * Feature Upgraded - **PDF Invoices** - Option to add shipping address to the invoice, added. Idea by Justine.
-* Feature Upgraded - **Orders** - Bulk Price Changer - Custom order number suffix added. Idea by Patryk.
+* Feature Upgraded - **Orders** - Order Numbers - Custom order number suffix added. Idea by Patryk.
 * Feature Upgraded - **Add to Cart** - Changing *add to cart* button text for products with zero and/or empty price (suggested by Patryk) option added.
   Products with *zero price* are covered for archive (category) and single views.
   Products with *empty price* only for archives (single view does not contain add to cart button at all, so nothing to cover).
@@ -427,7 +557,7 @@ To unlock all WooCommerce Jetpack features, please install additional <a href="h
 * Feature - PDF Invoices - PDF invoices for store owners and for customers.
 
 = 1.0.5 - 18/06/2014 =
-* Feature - Bulk Price Changer - Sequential order numbering, custom order number prefix and number width.
+* Feature - Order Numbers - Sequential order numbering, custom order number prefix and number width.
 
 = 1.0.4 - 15/06/2014 =
 * Fix - Add to cart text - on archives now calling the right function.

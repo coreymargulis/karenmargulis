@@ -262,6 +262,7 @@ class WC_Tax {
 	private static function get_matched_tax_rates( $country, $state, $postcode, $city, $tax_class, $valid_postcodes ) {
 		global $wpdb;
 
+		$valid_postcodes = array_map( 'esc_sql', $valid_postcodes );
 		$found_rates = $wpdb->get_results(
 			$wpdb->prepare( "
 				SELECT tax_rates.*
@@ -792,6 +793,8 @@ class WC_Tax {
 	 */
 	private static function _update_tax_rate_locations( $tax_rate_id, $values, $type ) {
 		global $wpdb;
+
+		$tax_rate_id = absint( $tax_rate_id );
 
 		$wpdb->query(
 			$wpdb->prepare( "

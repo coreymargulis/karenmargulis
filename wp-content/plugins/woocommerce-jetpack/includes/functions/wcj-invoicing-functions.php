@@ -28,6 +28,14 @@ if ( ! function_exists( 'wcj_get_invoice_types' ) ) {
 				'defaults'  => array( 'init' => 'disabled', ),				
 				'icon'  => '\e019',
 			),
+			
+			array(
+				'id'    => 'credit_note',
+				'title' => __( 'Credit Note', 'woocommerce-jetpack' ),
+				'desc'  => __( 'Credit Notes', 'woocommerce-jetpack' ),
+				'defaults'  => array( 'init' => 'disabled', ),				
+				'icon'  => '\e019',
+			),
 		);
 		return $invoice_types;
 	}

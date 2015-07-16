@@ -119,15 +119,20 @@ class acf_input {
 			'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
 			'ajax'			=> $args['ajax'],
 			'validation'	=> $args['validation'],
-			'wp_version'	=> $wp_version,
+			'wp_version'	=> $wp_version
 		);
 		
 		
 		// l10n
 		$l10n = apply_filters( 'acf/input/admin_l10n', array(
-			'unload'			=> __('The changes you made will be lost if you navigate away from this page','acf'),
-			'expand_details' 	=> __('Expand Details','acf'),
-			'collapse_details' 	=> __('Collapse Details','acf'),
+			'unload'				=> __('The changes you made will be lost if you navigate away from this page','acf'),
+			'expand_details' 		=> __('Expand Details','acf'),
+			'collapse_details' 		=> __('Collapse Details','acf'),
+			'validation_successful'	=> __('Validation successful', 'acf'),
+			'validation_failed'		=> __('Validation failed', 'acf'),
+			'validation_failed_1'	=> __('1 field requires attention', 'acf'),
+			'validation_failed_2'	=> __('%d fields require attention', 'acf')
+
 		));
 		
 		
@@ -139,6 +144,8 @@ if( typeof acf !== 'undefined' ) {
 	acf.o = <?php echo json_encode($o); ?>;
 	acf.l10n = <?php echo json_encode($l10n); ?>;
 	<?php do_action('acf/input/admin_footer_js'); ?>
+	
+	acf.do_action('prepare');
 	
 }
 /* ]]> */
@@ -163,44 +170,36 @@ if( typeof acf !== 'undefined' ) {
 	
 	function ajax_validate_save_post() {
 		
-		// validate
+		// bail early if _acfnonce is missing
 		if( !isset($_POST['_acfnonce']) ) {
 			
-			// ignore validation, this form $_POST was not correctly configured
-			die();
+			wp_send_json_error();
 			
 		}
+		
+		
+		// vars
+		$json = array(
+			'valid'		=> 1,
+			'errors'	=> 0
+		);
 		
 		
 		// success
 		if( acf_validate_save_post() ) {
 			
-			$json = array(
-				'result'	=> 1,
-				'message'	=> __('Validation successful', 'acf'),
-				'errors'	=> 0
-			);
-			
-			die( json_encode($json) );
+			wp_send_json_success($json);
 			
 		}
 		
 		
-		// fail
-		$json = array(
-			'result'	=> 0,
-			'message'	=> __('Validation failed', 'acf'),
-			'errors'	=> acf_get_validation_errors()
-		);
-
-		
-		// update message
-		$i = count( $json['errors'] );
-		$json['message'] .= '. ' . sprintf( _n( '1 required field below is empty', '%s required fields below are empty', $i, 'acf' ), $i );
+		// update vars
+		$json['valid'] = 0;
+		$json['errors'] = acf_get_validation_errors();
 		
 		
 		// return
-		die( json_encode($json) );
+		wp_send_json_success($json);
 		
 	}
 	
@@ -335,7 +334,7 @@ function acf_enqueue_uploader() {
 	
 	
 	// bail early if acf has already loaded
-	if( acf_get_setting('enqueue_uploader', false) ) {
+	if( acf_get_setting('enqueue_uploader') ) {
 	
 		return;
 		
@@ -397,7 +396,6 @@ function acf_form_data( $args = array() ) {
 	if( $args['ajax'] ) {
 		
 		add_action('admin_footer', 'acf_enqueue_uploader', 1);
-		//acf_enqueue_uploader();
 		
 	}
 	

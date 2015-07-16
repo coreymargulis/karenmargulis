@@ -21,7 +21,7 @@ class WCJ_Product_Listings {
      */
     public function __construct() {
         // Main hooks
-		if ( 'yes' === get_option( 'wcj_product_listings_enabled' ) ) {		
+		if ( 'yes' === get_option( 'wcj_product_listings_enabled' ) ) {
 			// Exclude and Hide Empty
 			add_filter( 'woocommerce_product_subcategories_args', 		array( $this, 'filter_subcategories' ), 100 );
 			add_filter( 'woocommerce_product_subcategories_hide_empty', array( $this, 'filter_subcategories_show_empty' ), 100 );
@@ -30,7 +30,7 @@ class WCJ_Product_Listings {
 				add_filter( 'woocommerce_subcategory_count_html', array( $this, 'remove_subcategory_count' ), 100 );
 			// Settings to "WooCommerce > Settings > Products > Product Listings"
 			add_filter( 'woocommerce_product_settings', array( $this, 'add_fields_to_woocommerce_settings' ), 100 );
-		}		
+		}
         // Settings hooks
         add_filter( 'wcj_settings_sections', array( $this, 'settings_section' ) );
         add_filter( 'wcj_settings_product_listings', array( $this, 'get_settings' ), 100 );
@@ -57,10 +57,10 @@ class WCJ_Product_Listings {
 
             array(
                 'title'    => __( 'Product Listings', 'woocommerce-jetpack' ),
-                'desc'     => __( 'Enable the Product Listings feature', 'woocommerce-jetpack' ),
-                'desc_tip' => __( 'Change display options for shop and category pages: show/hide categories count, exclude categories, show/hide empty categories.', 'woocommerce-jetpack' ),
+                'desc'     => '<strong>' . __( 'Enable Module', 'woocommerce-jetpack' ) . '</strong>',
+                'desc_tip' => __( 'Change WooCommerce display options for shop and category pages: show/hide categories count, exclude categories, show/hide empty categories.', 'woocommerce-jetpack' ),
                 'id'       => 'wcj_product_listings_enabled',
-                'default'  => 'yes',
+                'default'  => 'no',
                 'type'     => 'checkbox',
             ),
 
@@ -92,14 +92,14 @@ class WCJ_Product_Listings {
                 'default'  => 'yes',
                 'type'     => 'checkbox',
             ),
-			
+
 			array(
 					'title'    => __( 'Show Products', 'woocommerce-jetpack' ),
 					'desc'     => __( 'Show products if no categories are displayed on shop page', 'woocommerce-jetpack' ),
 					'id'       => 'wcj_product_listings_show_products_if_no_cats_on_shop',
 					'default'  => 'yes',
 					'type'     => 'checkbox',
-			),			
+			),
 
 			array( 'type'  => 'sectionend', 'id' => 'wcj_product_listings_shop_page_options' ),
 
@@ -112,7 +112,7 @@ class WCJ_Product_Listings {
                 'default'  => 'no',
                 'type'     => 'checkbox',
 				'custom_attributes'	=> apply_filters( 'get_wc_jetpack_plus_message', '', 'disabled' ),
-				'desc_tip'	=> apply_filters( 'get_wc_jetpack_plus_message', '', 'desc' ),				
+				'desc_tip'	=> apply_filters( 'get_wc_jetpack_plus_message', '', 'desc' ),
             ),
 
             array(
@@ -131,7 +131,7 @@ class WCJ_Product_Listings {
                 'default'  => 'yes',
                 'type'     => 'checkbox',
             ),
-			
+
 			array(
 					'title'    => __( 'Show Products', 'woocommerce-jetpack' ),
 					'desc'     => __( 'Show products if no categories are displayed on category page', 'woocommerce-jetpack' ),
@@ -153,7 +153,7 @@ class WCJ_Product_Listings {
         $sections['product_listings'] = __( 'Product Listings', 'woocommerce-jetpack' );
         return $sections;
     }
-	
+
     /**
      * add_fields_to_woocommerce_settings.
      */
@@ -191,7 +191,7 @@ class WCJ_Product_Listings {
 					'default'  => 'yes',
 					'type'     => 'checkbox',
 				);
-				
+
 				$updated_settings[] = array(
 					'title'     => __( 'WooJetpack: Show Products', 'woocommerce-jetpack' ),
 					'desc'     => __( 'Show products if no categories are displayed on shop page', 'woocommerce-jetpack' ),
@@ -210,7 +210,7 @@ class WCJ_Product_Listings {
 					'default'  => 'no',
 					'type'     => 'checkbox',
 					'custom_attributes'	=> apply_filters( 'get_wc_jetpack_plus_message', '', 'disabled' ),
-					'desc_tip'	=> apply_filters( 'get_wc_jetpack_plus_message', '', 'desc' ),						
+					'desc_tip'	=> apply_filters( 'get_wc_jetpack_plus_message', '', 'desc' ),
 				);
 
 				$updated_settings[] = array(
@@ -229,19 +229,19 @@ class WCJ_Product_Listings {
 					'default'  => 'yes',
 					'type'     => 'checkbox',
 				);
-				
+
 				$updated_settings[] = array(
 					'title'     => __( 'WooJetpack: Show Products', 'woocommerce-jetpack' ),
 					'desc'     => __( 'Show products if no categories are displayed on category page', 'woocommerce-jetpack' ),
 					'id'       => 'wcj_product_listings_show_products_if_no_cats_on_archives',
 					'default'  => 'yes',
 					'type'     => 'checkbox',
-				);				
+				);
 			}
 		}
 
 		return $updated_settings;
-	}	
+	}
 
     /**
      * remove_subcategory_count.
@@ -267,43 +267,43 @@ class WCJ_Product_Listings {
 		}
 		return $args;
     }
-	
+
     /**
      * hide_products_by_disabling_loop.
      */
-    public function hide_products_by_disabling_loop() {			
+    public function hide_products_by_disabling_loop() {
 		// If we are hiding products disable the loop and pagination
 		global $wp_query;
-		if ( is_product_category() && 
+		if ( is_product_category() &&
 			 get_option( 'woocommerce_category_archive_display' ) == 'subcategories' &&
 			 'no' === get_option( 'wcj_product_listings_show_products_if_no_cats_on_archives' ) ) {
 				$wp_query->post_count    = 0;
 				$wp_query->max_num_pages = 0;
 		}
-		if ( is_shop() && 
+		if ( is_shop() &&
 			 get_option( 'woocommerce_shop_page_display' ) == 'subcategories' &&
 			 'no' === get_option( 'wcj_product_listings_show_products_if_no_cats_on_shop' ) ) {
 				$wp_query->post_count    = 0;
 				$wp_query->max_num_pages = 0;
-			}		
+			}
 	}
-	
+
     /**
      * filter_subcategories_show_empty.
      */
-    public function filter_subcategories_show_empty() {		
-	
+    public function filter_subcategories_show_empty() {
+
 		// Not the best solution, but it's the only place I found to put it...
 		$this->hide_products_by_disabling_loop();
-				
+
 		$show_empty = false;
 		if ( is_shop() )
 			$show_empty = ( 'yes' === get_option( 'wcj_product_listings_hide_empty_cats_on_shop' ) ) ? false : true;
 		else
 			$show_empty = ( 'yes' === get_option( 'wcj_product_listings_hide_empty_cats_on_archives' ) ) ? false : true;
-		
+
 		return $show_empty;
-    }	
+    }
 }
 
 endif;

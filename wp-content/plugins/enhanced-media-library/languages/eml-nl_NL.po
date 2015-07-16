@@ -1,0 +1,859 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Enhanced Media Library v1.0.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/enhanced-media-library\n"
+"POT-Creation-Date: 2015-03-04 00:13+0200\n"
+"PO-Revision-Date: 2015-03-05 04:58+0200\n"
+"Last-Translator: WordPress UX Solutions <wordpressuxsolutions@gmail.com>\n"
+"Language-Team: De B.A.A.T. <de_baat@de-baat.nl>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: core/class-eml-media-list-table.php:39
+#, php-format
+msgctxt "uploaded files"
+msgid "All (%s)"
+msgid_plural "All (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/class-eml-media-list-table.php:50
+#, php-format
+msgctxt "detached files"
+msgid "Unattached (%s)"
+msgid_plural "Unattached (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/class-eml-media-list-table.php:52 enhanced-media-library.php:377
+msgid "All Uncategorized"
+msgstr ""
+
+#: core/class-eml-media-list-table.php:55
+#, php-format
+msgctxt "uploaded files"
+msgid "Trash (%s)"
+msgid_plural "Trash (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/class-eml-media-list-table.php:75
+msgid "Filter"
+msgstr ""
+
+#: core/class-eml-media-list-table.php:77 enhanced-media-library.php:381
+msgid "Reset All Filters"
+msgstr ""
+
+#: core/class-eml-media-list-table.php:81
+msgid "Empty Trash"
+msgstr ""
+
+#: core/eml-upload.php:19
+msgid "You do not have permission to upload files."
+msgstr ""
+
+#: core/eml-upload.php:39 core/eml-upload.php:212
+msgid "Overview"
+msgstr ""
+
+#: core/eml-upload.php:41
+msgid ""
+"All the files you&#8217;ve uploaded are listed in the Media Library, with "
+"the most recent uploads listed first."
+msgstr ""
+
+#: core/eml-upload.php:42 core/eml-upload.php:216
+msgid ""
+"You can view your media in a simple visual grid or a list with columns. "
+"Switch between these views using the icons to the left above the media."
+msgstr ""
+
+#: core/eml-upload.php:43
+msgid ""
+"To delete media items, click the Bulk Select button at the top of the "
+"screen. Select any items you wish to delete, then click the Delete Selected "
+"button. Clicking the Cancel Selection button takes you back to viewing your "
+"media."
+msgstr ""
+
+#: core/eml-upload.php:48
+msgid "Attachment Details"
+msgstr ""
+
+#: core/eml-upload.php:50
+msgid ""
+"Clicking an item will display an Attachment Details dialog, which allows you "
+"to preview media and make quick edits. Any changes you make to the "
+"attachment details will be automatically saved."
+msgstr ""
+
+#: core/eml-upload.php:51
+msgid ""
+"Use the arrow buttons at the top of the dialog, or the left and right arrow "
+"keys on your keyboard, to navigate between media items quickly."
+msgstr ""
+
+#: core/eml-upload.php:52
+msgid ""
+"You can also delete individual items and access the extended edit screen "
+"from the details dialog."
+msgstr ""
+
+#: core/eml-upload.php:56 core/eml-upload.php:232
+msgid "For more information:"
+msgstr ""
+
+#: core/eml-upload.php:57 core/eml-upload.php:233
+msgid ""
+"<a href=\"http://codex.wordpress.org/Media_Library_Screen\" target=\"_blank"
+"\">Documentation on Media Library</a>"
+msgstr ""
+
+#: core/eml-upload.php:58 core/eml-upload.php:234
+msgid ""
+"<a href=\"https://wordpress.org/support/\" target=\"_blank\">Support Forums</"
+"a>"
+msgstr ""
+
+#: core/eml-upload.php:61 core/eml-upload.php:203
+msgid "Media Library"
+msgstr ""
+
+#: core/eml-upload.php:71 core/eml-upload.php:245
+msgctxt "file"
+msgid "Add New"
+msgstr ""
+
+#: core/eml-upload.php:76
+msgid ""
+"The grid view for the Media Library requires JavaScript. <a href=\"upload."
+"php?mode=list\">Switch to the list view</a>."
+msgstr ""
+
+#: core/eml-upload.php:124
+msgid "You are not allowed to edit this post."
+msgstr ""
+
+#: core/eml-upload.php:161
+msgid "You are not allowed to move this post to the trash."
+msgstr ""
+
+#: core/eml-upload.php:164
+msgid "Error in moving to trash."
+msgstr ""
+
+#: core/eml-upload.php:173
+msgid "You are not allowed to move this post out of the trash."
+msgstr ""
+
+#: core/eml-upload.php:176
+msgid "Error in restoring from trash."
+msgstr ""
+
+#: core/eml-upload.php:185
+msgid "You are not allowed to delete this post."
+msgstr ""
+
+#: core/eml-upload.php:188
+msgid "Error in deleting."
+msgstr ""
+
+#: core/eml-upload.php:208
+msgctxt "items per page (screen options)"
+msgid "Media items"
+msgstr ""
+
+#: core/eml-upload.php:214
+msgid ""
+"All the files you&#8217;ve uploaded are listed in the Media Library, with "
+"the most recent uploads listed first. You can use the Screen Options tab to "
+"customize the display of this screen."
+msgstr ""
+
+#: core/eml-upload.php:215
+msgid ""
+"You can narrow the list by file type/status using the text link filters at "
+"the top of the screen. You also can refine the list by date using the "
+"dropdown menu above the media table."
+msgstr ""
+
+#: core/eml-upload.php:220
+msgid "Available Actions"
+msgstr ""
+
+#: core/eml-upload.php:222
+msgid ""
+"Hovering over a row reveals action links: Edit, Delete Permanently, and "
+"View. Clicking Edit or on the media file&#8217;s name displays a simple "
+"screen to edit that individual file&#8217;s metadata. Clicking Delete "
+"Permanently will delete the file from the media library (as well as from any "
+"posts to which it is currently attached). View will take you to the display "
+"page for that file."
+msgstr ""
+
+#: core/eml-upload.php:226
+msgid "Attaching Files"
+msgstr ""
+
+#: core/eml-upload.php:228
+msgid ""
+"If a media file has not been attached to any post, you will see that in the "
+"Attached To column, and can click on Attach File to launch a small popup "
+"that will allow you to search for a post and attach the file."
+msgstr ""
+
+#: core/eml-upload.php:248
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#: core/eml-upload.php:254 core/eml-upload.php:279
+msgid "Media attachment updated."
+msgstr ""
+
+#: core/eml-upload.php:259
+#, php-format
+msgid "Reattached %d attachment."
+msgid_plural "Reattached %d attachments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/eml-upload.php:264
+#, php-format
+msgid "Media attachment permanently deleted."
+msgid_plural "%d media attachments permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/eml-upload.php:269
+#, php-format
+msgid "Media attachment moved to the trash."
+msgid_plural "%d media attachments moved to the trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/eml-upload.php:270 core/eml-upload.php:282
+msgid "Undo"
+msgstr ""
+
+#: core/eml-upload.php:275
+#, php-format
+msgid "Media attachment restored from the trash."
+msgid_plural "%d media attachments restored from the trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/eml-upload.php:280
+msgid "Media permanently deleted."
+msgstr ""
+
+#: core/eml-upload.php:281
+msgid "Error saving media attachment."
+msgstr ""
+
+#: core/eml-upload.php:282
+msgid "Media moved to the trash."
+msgstr ""
+
+#: core/eml-upload.php:283
+msgid "Media restored from the trash."
+msgstr ""
+
+#: core/mime-types.php:107
+#, php-format
+msgid " <span class=\"count\">(%s)</span>"
+msgid_plural " <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+# @ eml
+#: core/options-pages.php:67 core/options-pages.php:68
+#: core/options-pages.php:77
+msgid "Media Settings"
+msgstr "Media Instellingen"
+
+# @ eml
+#: core/options-pages.php:78 core/options-pages.php:254
+#: core/options-pages.php:276 core/options-pages.php:322
+#: core/options-pages.php:386
+msgid "Settings"
+msgstr "Instellingen"
+
+# @ eml
+#: core/options-pages.php:85 core/options-pages.php:86
+#: core/options-pages.php:188
+msgid "Taxonomies"
+msgstr "Taxonomies"
+
+# @ eml
+#: core/options-pages.php:94 core/options-pages.php:95
+#: core/options-pages.php:510
+msgid "MIME Types"
+msgstr "MIME Types"
+
+# @ eml
+#: core/options-pages.php:132 core/options-pages.php:229
+#: core/options-pages.php:243 core/options-pages.php:311
+#: core/options-pages.php:383
+msgid "Edit"
+msgstr "Bewerk"
+
+# @ eml
+#: core/options-pages.php:133 pro/enhanced-media-library-pro.php:166
+msgid "Close"
+msgstr "Sluit"
+
+# @ eml
+#: core/options-pages.php:134 core/options-pages.php:244
+#: core/options-pages.php:312
+msgid "View"
+msgstr "Bekijk"
+
+# @ eml
+#: core/options-pages.php:135 core/options-pages.php:245
+#: core/options-pages.php:313
+msgid "Update"
+msgstr "Werk bij"
+
+# @ eml
+#: core/options-pages.php:136 core/options-pages.php:246
+#: core/options-pages.php:314
+msgid "Add New"
+msgstr "Voeg Nieuw Toe"
+
+# @ eml
+#: core/options-pages.php:137 core/options-pages.php:247
+#: core/options-pages.php:315
+msgid "New"
+msgstr "Nieuw"
+
+# @ eml
+#: core/options-pages.php:138
+msgid "Name"
+msgstr "Naam"
+
+# @ eml
+#: core/options-pages.php:139 core/options-pages.php:248
+#: core/options-pages.php:316
+msgid "Parent"
+msgstr "Parent"
+
+# @ eml
+#: core/options-pages.php:140 core/options-pages.php:242
+#: core/options-pages.php:310
+msgid "All"
+msgstr "Allemaal"
+
+# @ eml
+#: core/options-pages.php:141 core/options-pages.php:249
+#: core/options-pages.php:317
+msgid "Search"
+msgstr "Zoek"
+
+# @ eml
+#: core/options-pages.php:143
+msgid ""
+"Taxonomy will be deleted permanently! Your media files will remain intacted, "
+"but all the connections with this taxonomy and its terms will be lost."
+msgstr ""
+"Taxonomy wordt voorgoed verwijderd! Je media bestanden blijven bestaan, maar "
+"alle connecties met deze taxonomy en de termen zullen verdwenen zijn."
+
+# @ eml
+#: core/options-pages.php:144
+msgid "There is already a taxonomy with the same name. Please chose other one."
+msgstr "Er is al een taxonomy met deze naam. Kies aub een andere."
+
+# @ eml
+#: core/options-pages.php:145 core/options-pages.php:298
+msgid "New Taxonomy"
+msgstr "Nieuwe Taxonomy"
+
+# @ eml
+#: core/options-pages.php:146
+msgid "Please choose Singular and Plural names for all your new taxomonies."
+msgstr ""
+"Kies aub Enkelvoudige en Meervoudige namen voor al je nieuwe taxonomies."
+
+# @ eml
+#: core/options-pages.php:147
+msgid "Please choose Singilar name for all your new taxomonies."
+msgstr "Kies aub Enkelvoudige naam voor al je nieuwe taxonomies."
+
+# @ eml
+#: core/options-pages.php:148
+msgid "Please choose Plural Name for all your new taxomonies."
+msgstr "Kies aub Meervoudige naam voor al je nieuwe taxonomies."
+
+# @ eml
+#: core/options-pages.php:150
+msgid "Warning! All your custom MIME Types will be deleted by this operation."
+msgstr ""
+"Waarschuwing! Al je persoonlijke MIME Types zullen door deze operatie "
+"verwijderd worden."
+
+# @ eml
+#: core/options-pages.php:151
+msgid "Please fill into all fields."
+msgstr "Vul aub alle velden in."
+
+# @ eml
+#: core/options-pages.php:152
+msgid "Duplicate extensions or MIME types. Please chose other one."
+msgstr "Dubbele extensies of MIME types. Kies aub een andere."
+
+# @ eml
+#: core/options-pages.php:180 core/options-pages.php:501
+#: pro/core/options-pages.php:170
+msgid "You do not have sufficient permissions to access this page."
+msgstr "U hebt onvoldoende toegangsrechten voor deze pagina."
+
+# @ eml
+#: core/options-pages.php:204
+msgid "Media Taxonomies"
+msgstr "Media Taxonomies"
+
+# @ eml
+#: core/options-pages.php:208 core/options-pages.php:360
+msgid "Assign following taxonomies to Media Library:"
+msgstr "Ken de volgende taxonomies toe aan de Media Library:"
+
+# @ eml
+#: core/options-pages.php:226 core/options-pages.php:296
+#: core/options-pages.php:376
+msgid "Assign Taxonomy"
+msgstr "Toekennen Taxonomie"
+
+# @ eml
+#: core/options-pages.php:229 core/options-pages.php:383
+msgid "Edit Taxonomy"
+msgstr "Bewerk Taxonomie"
+
+# @ eml
+#: core/options-pages.php:232 core/options-pages.php:300
+msgid "Delete Taxonomy"
+msgstr "Verwijder Taxonomie"
+
+# @ eml
+#: core/options-pages.php:237 core/options-pages.php:305
+msgid "Labels"
+msgstr "Labels"
+
+# @ eml
+#: core/options-pages.php:239 core/options-pages.php:307
+msgid "Singular"
+msgstr "Enkelvoud"
+
+# @ eml
+#: core/options-pages.php:240 core/options-pages.php:308
+msgid "Plural"
+msgstr "Meervoud"
+
+# @ eml
+#: core/options-pages.php:241 core/options-pages.php:309
+msgid "Menu Name"
+msgstr "Menu Naam"
+
+#: core/options-pages.php:256 core/options-pages.php:324
+msgid "Taxonomy Name"
+msgstr ""
+
+# @ eml
+#: core/options-pages.php:257 core/options-pages.php:325
+msgid "Hierarchical"
+msgstr "Hiërarchisch"
+
+#: core/options-pages.php:258 core/options-pages.php:326
+msgid "Column in List View"
+msgstr ""
+
+#: core/options-pages.php:259 core/options-pages.php:278
+#: core/options-pages.php:327 core/options-pages.php:388
+msgid "Filter in List View"
+msgstr ""
+
+#: core/options-pages.php:260 core/options-pages.php:279
+#: core/options-pages.php:328 core/options-pages.php:389
+msgid "Filter in Grid View / Media Popup"
+msgstr ""
+
+#: core/options-pages.php:261 core/options-pages.php:280
+#: core/options-pages.php:329 core/options-pages.php:390
+msgid "Edit in Media Popup"
+msgstr ""
+
+# @ eml
+#: core/options-pages.php:262 core/options-pages.php:330
+msgid "Show in Nav Menu"
+msgstr "Toon in Nav Menu"
+
+# @ eml
+#: core/options-pages.php:263 core/options-pages.php:331
+msgid "Remember terms order (sort)"
+msgstr "Onthoudt termen volgorde (sorteer)"
+
+#: core/options-pages.php:264 core/options-pages.php:332
+msgid "Rewrite Slug"
+msgstr ""
+
+#: core/options-pages.php:265 core/options-pages.php:333
+msgid "Slug with Front"
+msgstr ""
+
+# @ eml
+#: core/options-pages.php:345
+msgid "Add New Taxonomy"
+msgstr "Voeg Nieuwe Taxonomie Toe"
+
+# @ eml
+#: core/options-pages.php:356
+msgid "Non-Media Taxonomies"
+msgstr "Niet-Media Taxonomies"
+
+#: core/options-pages.php:415
+msgid "Options"
+msgstr ""
+
+#: core/options-pages.php:425 core/options-pages.php:428
+msgid "Taxonomy archive pages"
+msgstr ""
+
+#: core/options-pages.php:429
+msgid "Turn on media taxonomy archive pages on the front-end"
+msgstr ""
+
+#: core/options-pages.php:430
+msgid ""
+"Re-save your permalink settings after this option change to make it work."
+msgstr ""
+
+#: core/options-pages.php:436
+msgid "Assign all like hierarchical"
+msgstr ""
+
+#: core/options-pages.php:439 core/options-pages.php:440
+msgid ""
+"Show non-hierarchical taxonomies like hierarchical in Grid View / Media Popup"
+msgstr ""
+
+#: core/options-pages.php:446 core/options-pages.php:449
+msgid "Force filters"
+msgstr ""
+
+#: core/options-pages.php:450
+msgid "Show media filters for ANY Media Popup."
+msgstr ""
+
+#: core/options-pages.php:451
+msgid ""
+"May be useful for those who need forcing filters for third-party plugins or "
+"themes."
+msgstr ""
+
+# @ eml
+#: core/options-pages.php:511
+msgid "Add New MIME Type"
+msgstr "Voeg Nieuw MIME Type Toe"
+
+# @ eml
+#: core/options-pages.php:529 core/options-pages.php:582
+msgid "Extension"
+msgstr "Extensie"
+
+# @ eml
+#: core/options-pages.php:530 core/options-pages.php:583
+msgid "MIME Type"
+msgstr "MIME Type"
+
+# @ eml
+#: core/options-pages.php:531 core/options-pages.php:584
+msgid "Singular Label"
+msgstr "Enkelvoud Label"
+
+# @ eml
+#: core/options-pages.php:532 core/options-pages.php:585
+msgid "Plural Label"
+msgstr "Meervoud Label"
+
+# @ eml
+#: core/options-pages.php:533 core/options-pages.php:561
+#: core/options-pages.php:574 core/options-pages.php:586
+msgid "Add Filter"
+msgstr "Voeg Filter Toe"
+
+# @ eml
+#: core/options-pages.php:534 core/options-pages.php:562
+#: core/options-pages.php:575 core/options-pages.php:587
+msgid "Allow Upload"
+msgstr "Sta Upload Toe"
+
+# @ eml
+#: core/options-pages.php:576
+msgid "Delete MIME Type"
+msgstr "Verwijder MIME Type"
+
+# @ eml
+#: core/options-pages.php:593
+msgid "Restore default MIME Types"
+msgstr "Herstel default MIME Types"
+
+#: core/taxonomies.php:321 core/taxonomies.php:327
+#: enhanced-media-library.php:378
+msgid "Filter by "
+msgstr ""
+
+#: core/taxonomies.php:328 enhanced-media-library.php:379
+msgid "All "
+msgstr ""
+
+#: core/taxonomies.php:329 enhanced-media-library.php:380
+msgid "Not in "
+msgstr ""
+
+#: enhanced-media-library.php:47
+msgid ""
+"Please deactivate and <strong>remove</strong> the old version prior to the "
+"<strong>Enhanced Media Library PRO</strong> activation. All your data will "
+"remain intact."
+msgstr ""
+
+#: enhanced-media-library.php:47
+msgid "Return to Plugins"
+msgstr ""
+
+#: pro/core/bulk-edit.php:75
+msgid "Remove"
+msgstr ""
+
+#: pro/core/bulk-edit.php:79
+msgid "Deselect"
+msgstr ""
+
+#: pro/core/bulk-edit.php:86
+msgid "Caption this image&hellip;"
+msgstr ""
+
+#: pro/core/bulk-edit.php:90
+msgid "Describe this video&hellip;"
+msgstr ""
+
+#: pro/core/bulk-edit.php:92
+msgid "Describe this audio file&hellip;"
+msgstr ""
+
+#: pro/core/bulk-edit.php:94
+msgid "Describe this media file&hellip;"
+msgstr ""
+
+#: pro/core/bulk-edit.php:103
+msgid "Attachments Details"
+msgstr ""
+
+#: pro/core/bulk-edit.php:157
+msgid "Select All"
+msgstr ""
+
+#: pro/core/bulk-edit.php:159
+msgid "Edit Selection"
+msgstr ""
+
+#: pro/core/bulk-edit.php:162
+msgid "Deselect All"
+msgstr ""
+
+#: pro/core/bulk-edit.php:166
+msgid "Delete Selected"
+msgstr ""
+
+#: pro/core/options-pages.php:100 pro/core/options-pages.php:101
+msgid "EML PRO Updates"
+msgstr ""
+
+#: pro/core/options-pages.php:126 pro/enhanced-media-library-pro.php:168
+msgid "Bulk Edit"
+msgstr ""
+
+#: pro/core/options-pages.php:134 pro/core/options-pages.php:137
+msgid "Turn off 'Save Changes' button"
+msgstr ""
+
+#: pro/core/options-pages.php:138
+msgid "Save changes on the fly"
+msgstr ""
+
+#: pro/core/options-pages.php:139
+msgid ""
+"Any click on a taxonomy checkbox during media files bulk edition will lead "
+"to an <strong style=\"color:red\">immediate saving</strong> of the data. "
+"Please, be careful! You have much greater chance to <strong style=\"color:red"
+"\">accidentally perform wrong re-assigning</strong> of a lot of your media "
+"files / taxonomies with this option turned on."
+msgstr ""
+
+#: pro/core/options-pages.php:140
+msgid ""
+"Strongly NOT recommended option if you work with more than hundred of files "
+"at a time."
+msgstr ""
+
+#: pro/core/options-pages.php:175
+msgid "Updates"
+msgstr ""
+
+#: pro/core/options-pages.php:190
+msgid "Enhanced Media Library PRO License"
+msgstr ""
+
+#: pro/core/options-pages.php:215
+msgid ""
+"To unlock updates, please enter your license key below. You can see your "
+"license key in <a href=\"http://www.wpuxsolutions.com/account/\">Your "
+"Account</a>. If you don&#8217;t have a licence key, you are welcome to <a "
+"href=\"http://www.wpuxsolutions.com/pricing/\">purchase it</a>."
+msgstr ""
+
+#: pro/core/options-pages.php:219
+msgid "License Key"
+msgstr ""
+
+#: pro/core/options-pages.php:226
+msgid "Activate License"
+msgstr ""
+
+#: pro/core/options-pages.php:243
+msgid "Your license is active!"
+msgstr ""
+
+#: pro/core/update.php:109 pro/core/update.php:114 pro/core/update.php:118
+msgid ""
+"An unexpected error occurred. Something may be wrong with WordPress.org or "
+"this server&#8217;s configuration. If you continue to have problems, please "
+"try the <a href=\"https://wordpress.org/support/\">support forums</a>."
+msgstr ""
+
+#: pro/core/update.php:109
+msgid ""
+"(WordPress could not establish a secure connection to WordPress.org. Please "
+"contact your server administrator.)"
+msgstr ""
+
+#: pro/core/update.php:184
+#, php-format
+msgid ""
+"To unlock updates, please enter your license key on the <a href=\"%s"
+"\">Updates</a> page. You can see your license key in <a href=\"%s\">Your "
+"Account</a>. If you don&#8217;t have a licence key, you are welcome to <a "
+"href=\"%s\">purchase it</a>."
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:89
+#: pro/enhanced-media-library-pro.php:100
+msgid "Expand Details"
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:90
+#: pro/enhanced-media-library-pro.php:101
+msgid "Collapse Details"
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:93
+msgid "Validation Failed. One or more fields below are required."
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:99
+msgid "The changes you made will be lost if you navigate away from this page"
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:160
+msgid "ALL files belong to this item"
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:161
+msgid "SOME files belong to this item"
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:162
+msgid "NO files belong to this item"
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:163
+msgid "Changes saved."
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:164
+msgid "Something went wrong."
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:165
+msgid "Save Changes"
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:167
+msgid "Edit Media Files"
+msgstr ""
+
+#: pro/enhanced-media-library-pro.php:260
+msgid ""
+"<strong>Enhanced Media Library PRO</strong> does not require free version to "
+"be active. Please deactivate and remove the free version of the plugin."
+msgstr ""
+
+# @ eml
+#. Plugin Name of the plugin/theme
+msgid "Enhanced Media Library"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Enhanced Media Library PRO"
+msgstr ""
+
+# @ eml
+#. Description of the plugin/theme
+msgid ""
+"This plugin will be handy for those who need to manage a lot of media files."
+msgstr ""
+"Deze plug-in is handig voor iedereen die veel media bestanden moet beheren."
+
+# @ eml
+#~ msgid "Enhanced Media Library Options"
+#~ msgstr "Enhanced Media Library Opties"
+
+# @ eml
+#~ msgid "Column in Media Library"
+#~ msgstr "Kolom in Media Library"
+
+# @ eml
+#~ msgid "Filter in Media Library"
+#~ msgstr "Filter in Media Library"
+
+# @ eml
+#, fuzzy
+#~ msgid "Filter in Media Popup / Grid View"
+#~ msgstr "Filter in Media Uploader"
+
+# @ eml
+#~ msgid "Slug"
+#~ msgstr "Slug"
+
+# @ eml
+#~ msgid "http://wordpressuxsolutions.com"
+#~ msgstr "http://wordpressuxsolutions.com"
+
+# @ eml
+#~ msgid "WordPress UX Solutions"
+#~ msgstr "WordPress UX Solutions"
+
+# @ eml
+#~ msgid "1.0.4"
+#~ msgstr "1.0.4"

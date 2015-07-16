@@ -5,8 +5,7 @@
  * The WooCommerce Jetpack Invoices Shortcodes class.
  *
  * @class    WCJ_PDF_Invoices_Shortcodes
- * @version  1.0.0
- * @category Class
+ * @version  2.2.0
  * @author   Algoritmika Ltd.
  */
 
@@ -26,10 +25,12 @@ class WCJ_Invoices_Shortcodes extends WCJ_Shortcodes {
 			'wcj_invoice_number',
 			'wcj_proforma_invoice_number',
 			'wcj_packing_slip_number',
+			'wcj_credit_note_number',
 
 			'wcj_invoice_date',
 			'wcj_proforma_invoice_date',
 			'wcj_packing_slip_date',
+			'wcj_credit_note_date',
 
 		);
 
@@ -54,15 +55,15 @@ class WCJ_Invoices_Shortcodes extends WCJ_Shortcodes {
 			if ( 0 == $atts['order_id'] ) return false;
 		}
 		if ( 'shop_order' !== get_post_type( $atts['order_id'] ) ) return false;
-				
+
 		// Class properties
 		/*if ( ! in_array( $atts['invoice_type'], wcj_enabled_invoice_types_ids() ) ) return false;
-		$this->the_invoice = wc_get_invoice( $atts['order_id'], $atts['invoice_type'] );		
-		if ( ! $this->the_invoice ) return false;*/	
+		$this->the_invoice = wc_get_invoice( $atts['order_id'], $atts['invoice_type'] );
+		if ( ! $this->the_invoice ) return false;*/
 
 		return $atts;
 	}
-		
+
     /**
      * wcj_invoice_date.
      */
@@ -74,6 +75,9 @@ class WCJ_Invoices_Shortcodes extends WCJ_Shortcodes {
 	}
 	function wcj_packing_slip_date( $atts ) {
 		return wcj_get_invoice_date( $atts['order_id'], 'packing_slip', $atts['days'], $atts['date_format'] );
+	}
+	function wcj_credit_note_date( $atts ) {
+		return wcj_get_invoice_date( $atts['order_id'], 'credit_note', $atts['days'], $atts['date_format'] );
 	}
 
     /**
@@ -87,6 +91,9 @@ class WCJ_Invoices_Shortcodes extends WCJ_Shortcodes {
 	}
 	function wcj_packing_slip_number( $atts ) {
 		return wcj_get_invoice_number( $atts['order_id'], 'packing_slip' );
+	}
+	function wcj_credit_note_number( $atts ) {
+		return wcj_get_invoice_number( $atts['order_id'], 'credit_note' );
 	}
 }
 

@@ -9,13 +9,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Provides a PayPal Standard Payment Gateway.
  *
- * @class 		WC_Paypal
- * @extends		WC_Gateway_Paypal
+ * @class 		WC_Gateway_Paypal
+ * @extends		WC_Payment_Gateway
  * @version		2.3.0
  * @package		WooCommerce/Classes/Payment
  * @author 		WooThemes
  */
 class WC_Gateway_Paypal extends WC_Payment_Gateway {
+
+	/** @var boolean Whether or not logging is enabled */
+	public static $log_enabled = false;
+
+	/** @var WC_Logger Logger instance */
+	public static $log = false;
 
 	/**
 	 * Constructor for the gateway.
@@ -36,12 +42,15 @@ class WC_Gateway_Paypal extends WC_Payment_Gateway {
 		$this->init_settings();
 
 		// Define user set variables
-		$this->title                        = $this->get_option( 'title' );
-		$this->description                  = $this->get_option( 'description' );
-		$this->testmode                     = 'yes' === $this->get_option( 'testmode', 'no' );
-		$this->email                        = $this->get_option( 'email' );
-		$this->receiver_email               = $this->get_option( 'receiver_email', $this->email );
-		$this->identity_token               = $this->get_option( 'identity_token' );
+		$this->title          = $this->get_option( 'title' );
+		$this->description    = $this->get_option( 'description' );
+		$this->testmode       = 'yes' === $this->get_option( 'testmode', 'no' );
+		$this->debug          = 'yes' === $this->get_option( 'debug', 'no' );
+		$this->email          = $this->get_option( 'email' );
+		$this->receiver_email = $this->get_option( 'receiver_email', $this->email );
+		$this->identity_token = $this->get_option( 'identity_token' );
+
+		self::$log_enabled    = $this->debug;
 
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 
@@ -62,12 +71,12 @@ class WC_Gateway_Paypal extends WC_Payment_Gateway {
 	 * Logging method
 	 * @param  string $message
 	 */
-	public function log( $message ) {
-		if ( $this->testmode ) {
-			if ( empty( $this->log ) ) {
-				$this->log = new WC_Logger();
+	public static function log( $message ) {
+		if ( self::$log_enabled ) {
+			if ( empty( self::$log ) ) {
+				self::$log = new WC_Logger();
 			}
-			$this->log->add( 'paypal', $message );
+			self::$log->add( 'paypal', $message );
 		}
 	}
 
@@ -94,18 +103,14 @@ class WC_Gateway_Paypal extends WC_Payment_Gateway {
 	 * @param  string $country
 	 * @return string
 	 */
-	private function get_icon_url( $country ) {
-		switch ( $country ) {
-			case 'MX' :
-			case 'ZA' :
-				$link = 'https://www.paypal.com/' . strtolower( $country ) . '/cgi-bin/webscr?cmd=xpt/Marketing/general/WIPaypal-outside';
-			break;
-			default :
-				$link = 'https://www.paypal.com/' . strtolower( $country ) . '/webapps/mpp/paypal-popup';
-			break;
+	protected function get_icon_url( $country ) {
+		$countries = array( 'DZ', 'AU', 'BH', 'BE', 'BQ', 'BW', 'CA', 'CN', 'CW', 'CZ', 'DK', 'FI', 'FR', 'DE', 'GR', 'HK', 'HU', 'IN', 'ID', 'IT', 'JO', 'KE', 'KW', 'LU', 'MY', 'MA', 'NL', 'NO', 'OM', 'PH', 'PL', 'PT', 'QA', 'IE', 'RU', 'BL', 'SX', 'MF', 'SA', 'SG', 'SK', 'KR', 'SS', 'ES', 'SE', 'TW', 'TH', 'TR', 'AE', 'GB', 'US', 'VN' );
+
+		if ( in_array( $country, $countries ) ) {
+			return 'https://www.paypal.com/' . strtolower( $country ) . '/webapps/mpp/paypal-popup';
 		}
 
-		return $link;
+		return 'https://www.paypal.com/' . strtolower( $country ) . '/cgi-bin/webscr?cmd=xpt/Marketing/general/WIPaypal-outside';
 	}
 
 	/**
@@ -238,7 +243,7 @@ class WC_Gateway_Paypal extends WC_Payment_Gateway {
 	}
 
 	/**
-	 * Can the order be refunded via paypal?
+	 * Can the order be refunded via PayPal?
 	 * @param  WC_Order $order
 	 * @return bool
 	 */

@@ -118,7 +118,7 @@ class WCJ_Shipping_Calculator {
             array(
                 'title'    => __( 'Shipping Calculator', 'woocommerce-jetpack' ),
                 'desc'     => '<strong>' . __( 'Enable Module', 'woocommerce-jetpack' ) . '</strong>',
-                'desc_tip' => __( 'Customize shipping calculator on cart page.', 'woocommerce-jetpack' ),
+                'desc_tip' => __( 'Customize WooCommerce shipping calculator on cart page.', 'woocommerce-jetpack' ),
                 'id'       => 'wcj_shipping_calculator_enabled',
                 'default'  => 'no',
                 'type'     => 'checkbox',

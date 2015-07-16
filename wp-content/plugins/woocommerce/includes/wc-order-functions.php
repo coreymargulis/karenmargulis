@@ -499,8 +499,9 @@ function wc_cancel_unpaid_orders() {
 		foreach ( $unpaid_orders as $unpaid_order ) {
 			$order = wc_get_order( $unpaid_order );
 
-			if ( apply_filters( 'woocommerce_cancel_unpaid_order', true, $order ) )
+			if ( apply_filters( 'woocommerce_cancel_unpaid_order', 'checkout' === get_post_meta( $unpaid_order, '_created_via', true ), $order ) ) {
 				$order->update_status( 'cancelled', __( 'Unpaid order cancelled - time limit reached.', 'woocommerce' ) );
+			}
 		}
 	}
 
@@ -509,7 +510,6 @@ function wc_cancel_unpaid_orders() {
 }
 add_action( 'woocommerce_cancel_unpaid_orders', 'wc_cancel_unpaid_orders' );
 
-
 /**
  * Return the count of processing orders.
  *
@@ -517,11 +517,27 @@ add_action( 'woocommerce_cancel_unpaid_orders', 'wc_cancel_unpaid_orders' );
  * @return int
  */
 function wc_processing_order_count() {
+	return wc_orders_count( 'processing' );
+}
+
+/**
+ * Return the orders count of a specific order status.
+ *
+ * @access public
+ * @return int
+ */
+function wc_orders_count( $status ) {
 	$count = 0;
 
+	$order_statuses = array_keys( wc_get_order_statuses() );
+
+	if ( ! in_array( 'wc-' . $status, $order_statuses ) ) {
+		return 0;
+	}
+
 	foreach ( wc_get_order_types( 'order-count' ) as $type ) {
-		$this_count = wp_count_posts( $type, 'readable' );
-		$count      += isset( $this_count->{'wc-processing'} ) ? $this_count->{'wc-processing'} : 0;
+		$this_count  = wp_count_posts( $type, 'readable' );
+		$count      += isset( $this_count->{'wc-' . $status} ) ? $this_count->{'wc-' . $status} : 0;
 	}
 
 	return $count;

@@ -4,10 +4,8 @@
  *
  * The WooCommerce Jetpack PDF Invoicing Display class.
  *
- * @class    WCJ_PDF_Invoicing_Display
- * @version  1.0.0
- * @category Class
- * @author   Algoritmika Ltd.
+ * @version 2.2.0
+ * @author  Algoritmika Ltd.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -63,12 +61,12 @@ class WCJ_PDF_Invoicing_Display {
 		if ( ! in_array( $column, $invoice_types_ids ) ) {
 			return;
 		}
-		
+
 		$order_id = get_the_ID();
-		$invoice_type_id = $column;		
-		
+		$invoice_type_id = $column;
+
 		if ( ! wcj_is_invoice_created( $order_id, $invoice_type_id ) )
-			return;	
+			return;
 
 		$the_invoice = wcj_get_invoice( $order_id, $invoice_type_id );
 		//$the_number = $the_invoice->get_invoice_full_number();
@@ -76,6 +74,9 @@ class WCJ_PDF_Invoicing_Display {
 		//$the_url = $the_invoice->get_invoice_url();
 		//$the_link = $the_invoice->get_invoice_link();
 		$query_args = array( 'order_id' => $order_id, 'invoice_type_id' => $invoice_type_id, 'get_invoice' => '1', );
+		if ( 'yes' === get_option( 'wcj_invoicing_' . $invoice_type_id . '_save_as_enabled', 'no' ) ) {
+			$query_args['save_pdf_invoice'] = '1';
+		}
 		$the_link = '<a href="' . add_query_arg( $query_args ) . '">' . $the_number . '</a>';
 
 		echo $the_link;
@@ -95,36 +96,39 @@ class WCJ_PDF_Invoicing_Display {
      * add_pdf_invoices_action_links.
      */
     function add_pdf_invoices_action_links( $actions, $the_order ) {
-	
+
 
 
 		$invoice_types = wcj_get_enabled_invoice_types();
 		foreach ( $invoice_types as $invoice_type ) {
-		
+
 			if ( ! wcj_is_invoice_created( $the_order->id, $invoice_type['id'] ) )
-				continue;		
+				continue;
 
 			//$admin_option_name = 'wcj_invoicing_' . $invoice_type['id'] . '_admin_orders_page';
 			$my_account_option_name = 'wcj_invoicing_' . $invoice_type['id'] . '_enabled_for_customers';
 
 			/*if ( ( 'woocommerce_admin_order_actions'          === current_filter() && 'add_action_link' === get_option( $admin_option_name, 'add_column' ) ) ||
 			     ( 'woocommerce_my_account_my_orders_actions' === current_filter() && 'yes' === apply_filters( 'wcj_get_option_filter', 'no', get_option( $my_account_option_name, 'no' ) ) ) ) {*/
-				 
+
 			//if ( 'woocommerce_my_account_my_orders_actions' === current_filter() && 'yes' === apply_filters( 'wcj_get_option_filter', 'no', get_option( $my_account_option_name, 'no' ) ) ) {
 			if ( 'yes' === get_option( $my_account_option_name, 'no' ) ) {
 
 				$the_action_id = $invoice_type['id'];
-				
-				//$the_url = basename( $_SERVER['REQUEST_URI'] ) . '&order_id=' . $the_order->id . '&invoice_type_id=' . $invoice_type['id'] . '&get_invoice=1';				
+
+				//$the_url = basename( $_SERVER['REQUEST_URI'] ) . '&order_id=' . $the_order->id . '&invoice_type_id=' . $invoice_type['id'] . '&get_invoice=1';
 				$query_args = array( 'order_id' => $the_order->id, 'invoice_type_id' => $invoice_type['id'], 'get_invoice' => '1', );
+				if ( 'yes' === get_option( 'wcj_invoicing_' . $invoice_type['id'] . '_save_as_enabled', 'no' ) ) {
+					$query_args['save_pdf_invoice'] = '1';
+				}
 				$the_url = add_query_arg( $query_args );
-				
+
 				$the_name = $invoice_type['desc'];
 				$the_action = 'view ' . $invoice_type['id'];
 
-				if ( 'yes' === get_option( 'wcj_invoicing_' . $invoice_type['id'] . '_save_as_enabled', 'no' ) ) {
+				/* if ( 'yes' === get_option( 'wcj_invoicing_' . $invoice_type['id'] . '_save_as_enabled', 'no' ) ) {
 					$the_url .= '&save_pdf_invoice=1';
-				}
+				} */
 
 				$actions[ $the_action_id ] = array(	'url' => $the_url, 'name' => $the_name, 'action' => $the_action, );
 			}
@@ -179,7 +183,7 @@ class WCJ_PDF_Invoicing_Display {
 					'type'     => 'checkbox',
 					//'custom_attributes'	=> apply_filters( 'get_wc_jetpack_plus_message', '', 'disabled' ),
 				),
-				
+
 				array(
 					'title'    => __( 'PDF File Name', 'woocommerce-jetpack' ),
 					'desc'     => __( 'Enter file name for PDF documents. You can use shortcodes here, e.g. [wcj_' . $invoice_type['id'] . '_number]', 'woocommerce-jetpack' ),

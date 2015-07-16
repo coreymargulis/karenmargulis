@@ -26,6 +26,7 @@ function wc_get_screen_ids() {
 		$wc_screen_id . '_page_wc-settings',
 		$wc_screen_id . '_page_wc-status',
 		$wc_screen_id . '_page_wc-addons',
+		'toplevel_page_wc-reports',
 		'product_page_product_attributes',
 		'edit-product',
 		'product',
@@ -210,8 +211,8 @@ function wc_save_order_items( $order_id, $items ) {
 			$taxes['items'][] = $line_taxes;
 
 			// Total up
-			$subtotal     += wc_format_decimal( $line_subtotal[ $item_id ] ) + array_sum( $line_subtotal_taxes );
-			$total        += wc_format_decimal( $line_total[ $item_id ] ) + array_sum( $line_taxes );
+			$subtotal     += wc_format_decimal( $line_subtotal[ $item_id ] );
+			$total        += wc_format_decimal( $line_total[ $item_id ] );
 			$subtotal_tax += array_sum( $line_subtotal_taxes );
 			$total_tax    += array_sum( $line_taxes );
 
@@ -339,6 +340,9 @@ function wc_save_order_items( $order_id, $items ) {
 
 	// Set the currency
 	add_post_meta( $order_id, '_order_currency', get_woocommerce_currency(), true );
+
+	// Update version after saving
+	update_post_meta( $order_id, '_order_version', WC_VERSION );
 
 	// inform other plugins that the items have been saved
 	do_action( 'woocommerce_saved_order_items', $order_id, $items );

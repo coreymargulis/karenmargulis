@@ -1,19 +1,28 @@
 <?php
 /**
+ * WooCommerce Jetpack Country Functions
+ *
+ * The WooCommerce Country Jetpack Functions.
+ *
+ * @version  2.2.0
+ * @author   Algoritmika Ltd.
+ */
+
+/**
  * wcj_get_customer_country.
  *
  * @return string
  */
 if ( ! function_exists( 'wcj_get_customer_country' ) ) {
 	function wcj_get_customer_country( $user_id ) {
-	
+
 		$user_meta = get_user_meta( $user_id );
-		
+
 		$billing_country  = isset( $user_meta['billing_country'][0] )  ? $user_meta['billing_country'][0]  : '';
 		$shipping_country = isset( $user_meta['shipping_country'][0] ) ? $user_meta['shipping_country'][0] : '';
-		
-		$customer_country = ( '' == $billing_country ) ? $shipping_country : $billing_country;		
-		
+
+		$customer_country = ( '' == $billing_country ) ? $shipping_country : $billing_country;
+
 		return $customer_country;
 	}
 }
@@ -25,39 +34,39 @@ if ( ! function_exists( 'wcj_get_customer_country' ) ) {
  */
 if ( ! function_exists( 'wcj_get_european_union_countries_with_vat' ) ) {
 	function wcj_get_european_union_countries_with_vat() {
-		return array( 
-			'AT' => 20, 
-			'BE' => 21, 
-			'BG' => 20, 
-			'CY' => 19, 
-			'CZ' => 21, 
-			'DE' => 19, 
-			'DK' => 25, 
-			'EE' => 20, 
+		return array(
+			'AT' => 20,
+			'BE' => 21,
+			'BG' => 20,
+			'CY' => 19,
+			'CZ' => 21,
+			'DE' => 19,
+			'DK' => 25,
+			'EE' => 20,
 			'ES' => 21,
 			'FI' => 24,
 			'FR' => 20,
-			'GB' => 20, 
-			'GR' => 23, 
-			'HU' => 27, 
-			'HR' => 25, 
-			'IE' => 23, 
-			'IT' => 22, 
+			'GB' => 20,
+			'GR' => 23,
+			'HU' => 27,
+			'HR' => 25,
+			'IE' => 23,
+			'IT' => 22,
 			'LT' => 21,
 			'LU' => 17,
 			'LV' => 21,
-			'MT' => 18, 
-			'NL' => 21, 
-			'PL' => 23, 
-			'PT' => 23, 
-			'RO' => 24, 
-			'SE' => 25, 
-			'SI' => 22, 
+			'MT' => 18,
+			'NL' => 21,
+			'PL' => 23,
+			'PT' => 23,
+			'RO' => 24,
+			'SE' => 25,
+			'SI' => 22,
 			'SK' => 20,
-			
-			//'MC' => , 
+
+			//'MC' => ,
 			//'IM' => ,
-		);		
+		);
 	}
 }
 
@@ -68,9 +77,25 @@ if ( ! function_exists( 'wcj_get_european_union_countries_with_vat' ) ) {
  */
 if ( ! function_exists( 'wcj_get_country_name_by_code' ) ) {
 	function wcj_get_country_name_by_code( $country_code ) {
-		$countries = array(
-			'AX' => __( 'Åland Islands', 'woocommerce' ),
+
+		$countries = wcj_get_countries();
+
+		if ( isset( $countries[ $country_code ] ) ) return $countries[ $country_code ];
+
+		return false;
+	}
+}
+
+/**
+ * Get all countries array.
+ *
+ * @return array
+ */
+if ( ! function_exists( 'wcj_get_countries' ) ) {
+	function wcj_get_countries() {
+		return array(
 			'AF' => __( 'Afghanistan', 'woocommerce' ),
+			'AX' => __( '&#197;land Islands', 'woocommerce' ),
 			'AL' => __( 'Albania', 'woocommerce' ),
 			'DZ' => __( 'Algeria', 'woocommerce' ),
 			'AD' => __( 'Andorra', 'woocommerce' ),
@@ -89,8 +114,8 @@ if ( ! function_exists( 'wcj_get_country_name_by_code' ) ) {
 			'BD' => __( 'Bangladesh', 'woocommerce' ),
 			'BB' => __( 'Barbados', 'woocommerce' ),
 			'BY' => __( 'Belarus', 'woocommerce' ),
-			'PW' => __( 'Belau', 'woocommerce' ),
 			'BE' => __( 'Belgium', 'woocommerce' ),
+			'PW' => __( 'Belau', 'woocommerce' ),
 			'BZ' => __( 'Belize', 'woocommerce' ),
 			'BJ' => __( 'Benin', 'woocommerce' ),
 			'BM' => __( 'Bermuda', 'woocommerce' ),
@@ -126,7 +151,7 @@ if ( ! function_exists( 'wcj_get_country_name_by_code' ) ) {
 			'CR' => __( 'Costa Rica', 'woocommerce' ),
 			'HR' => __( 'Croatia', 'woocommerce' ),
 			'CU' => __( 'Cuba', 'woocommerce' ),
-			'CW' => __( 'Cura?ao', 'woocommerce' ),
+			'CW' => __( 'Cura&Ccedil;ao', 'woocommerce' ),
 			'CY' => __( 'Cyprus', 'woocommerce' ),
 			'CZ' => __( 'Czech Republic', 'woocommerce' ),
 			'DK' => __( 'Denmark', 'woocommerce' ),
@@ -173,6 +198,7 @@ if ( ! function_exists( 'wcj_get_country_name_by_code' ) ) {
 			'ID' => __( 'Indonesia', 'woocommerce' ),
 			'IR' => __( 'Iran', 'woocommerce' ),
 			'IQ' => __( 'Iraq', 'woocommerce' ),
+			'IE' => __( 'Republic of Ireland', 'woocommerce' ),
 			'IM' => __( 'Isle of Man', 'woocommerce' ),
 			'IL' => __( 'Israel', 'woocommerce' ),
 			'IT' => __( 'Italy', 'woocommerce' ),
@@ -244,21 +270,20 @@ if ( ! function_exists( 'wcj_get_country_name_by_code' ) ) {
 			'PL' => __( 'Poland', 'woocommerce' ),
 			'PT' => __( 'Portugal', 'woocommerce' ),
 			'QA' => __( 'Qatar', 'woocommerce' ),
-			'IE' => __( 'Republic of Ireland', 'woocommerce' ),
 			'RE' => __( 'Reunion', 'woocommerce' ),
 			'RO' => __( 'Romania', 'woocommerce' ),
 			'RU' => __( 'Russia', 'woocommerce' ),
 			'RW' => __( 'Rwanda', 'woocommerce' ),
-			'ST' => __( 'S?o Tomé and Pr?ncipe', 'woocommerce' ),
-			'BL' => __( 'Saint Barthélemy', 'woocommerce' ),
+			'BL' => __( 'Saint Barth&eacute;lemy', 'woocommerce' ),
 			'SH' => __( 'Saint Helena', 'woocommerce' ),
 			'KN' => __( 'Saint Kitts and Nevis', 'woocommerce' ),
 			'LC' => __( 'Saint Lucia', 'woocommerce' ),
-			'SX' => __( 'Saint Martin (Dutch part)', 'woocommerce' ),
 			'MF' => __( 'Saint Martin (French part)', 'woocommerce' ),
+			'SX' => __( 'Saint Martin (Dutch part)', 'woocommerce' ),
 			'PM' => __( 'Saint Pierre and Miquelon', 'woocommerce' ),
 			'VC' => __( 'Saint Vincent and the Grenadines', 'woocommerce' ),
 			'SM' => __( 'San Marino', 'woocommerce' ),
+			'ST' => __( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe', 'woocommerce' ),
 			'SA' => __( 'Saudi Arabia', 'woocommerce' ),
 			'SN' => __( 'Senegal', 'woocommerce' ),
 			'RS' => __( 'Serbia', 'woocommerce' ),
@@ -312,11 +337,7 @@ if ( ! function_exists( 'wcj_get_country_name_by_code' ) ) {
 			'WS' => __( 'Western Samoa', 'woocommerce' ),
 			'YE' => __( 'Yemen', 'woocommerce' ),
 			'ZM' => __( 'Zambia', 'woocommerce' ),
-			'ZW' => __( 'Zimbabwe', 'woocommerce' ),
+			'ZW' => __( 'Zimbabwe', 'woocommerce' )	
 		);
-
-		if ( isset( $countries[ $country_code ] ) ) return $countries[ $country_code ];
-
-		return false;
 	}
 }
