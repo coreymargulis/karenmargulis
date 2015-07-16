@@ -136,11 +136,12 @@ function acf_get_field_groups( $args = false ) {
 	
 	// cache
 	$found = false;
-	$cache = wp_cache_get( 'field_groups', 'acf', false, $found );
+	$cache = wp_cache_get( 'get_field_groups', 'acf', false, $found );
 	
-	if( $found )
-	{
+	if( $found ) {
+		
 		return acf_filter_field_groups( $cache, $args );
+		
 	}
 	
 	
@@ -157,13 +158,15 @@ function acf_get_field_groups( $args = false ) {
 	
 	
 	// loop through and load field groups
-	if( $posts )
-	{
-		foreach( $posts as $post )
-		{
+	if( $posts ) {
+		
+		foreach( $posts as $post ) {
+			
 			// add to return array
 			$field_groups[] = acf_get_field_group( $post );
+			
 		}
+		
 	}
 	
 	
@@ -172,7 +175,7 @@ function acf_get_field_groups( $args = false ) {
 	
 	
 	// set cache
-	wp_cache_set( 'field_groups', $field_groups, 'acf' );
+	wp_cache_set( 'get_field_groups', $field_groups, 'acf' );
 			
 	
 	// return		
@@ -542,7 +545,9 @@ function acf_update_field_group( $field_group = array() ) {
 	
 	
 	// clear cache
-	wp_cache_delete('field_groups', 'acf');
+	wp_cache_delete("get_field_group/ID={$field_group['ID']}", 'acf');
+	wp_cache_delete("get_field_group/key={$field_group['key']}", 'acf');
+	wp_cache_delete("get_field_groups", 'acf');
 	
 	
     // return
@@ -988,6 +993,11 @@ function acf_import_field_group( $field_group ) {
 	// remove old fields
 	if( $field_group['ID'] ) {
 		
+		// disable local - important as to avoid 'acf_get_fields_by_id' returning fields with ID = 0
+		acf_disable_local();
+	
+		
+		// load fields
 		$db_fields = acf_get_fields_by_id( $field_group['ID'] );
 		$db_fields = acf_prepare_fields_for_import( $db_fields );
 		
@@ -1016,9 +1026,13 @@ function acf_import_field_group( $field_group ) {
 			
 		}
 		
-	}
 		
+		// enable local - important as to allow local to find new fields and save json file
+		acf_enable_local();
+		
+	}
 	
+			
 	// save field group
 	$field_group = acf_update_field_group( $field_group );
 	

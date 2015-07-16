@@ -4,10 +4,8 @@
  *
  * The WooCommerce Jetpack PDF Invoices Renumerate Tool class.
  *
- * @class    WCJ_PDF_Invoicing_Renumerate_Tool
- * @version  1.0.0
- * @category Class
- * @author   Algoritmika Ltd.
+ * @version 2.2.1
+ * @author  Algoritmika Ltd.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -16,36 +14,13 @@ if ( ! class_exists( 'WCJ_PDF_Invoicing_Renumerate_Tool' ) ) :
 
 class WCJ_PDF_Invoicing_Renumerate_Tool {
 
-    /**
-     * Constructor.
-     */
-    public function __construct() {
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
 		add_filter( 'wcj_tools_tabs', 				 array( $this, 'add_renumerate_invoices_tool_tab' ), 						100 );
 		add_action( 'wcj_tools_renumerate_invoices', array( $this, 'create_renumerate_invoices_tool' ), 						100 );
 		add_action( 'wcj_tools_dashboard', 			 array( $this, 'add_renumerate_invoices_tool_info_to_tools_dashboard' ), 	100 );
-
-		add_action( 'admin_enqueue_scripts',         array( $this, 'enqueue_scripts' ) );
-		add_action( 'admin_head',				     array( $this, 'add_datepicker_script' ) );
-    }
-
-	/**
-	 * enqueue_scripts.
-	 */
-	public function enqueue_scripts() {
-		wp_enqueue_script('jquery-ui-datepicker');
-		wp_enqueue_style( 'jquery-ui-css', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
-	}
-
-	public function add_datepicker_script() {
-		?>
-		<script>
-		jQuery(document).ready(function() {
-		 jQuery("input[display='date']").datepicker({
-		 dateFormat : '<?php echo wcj_date_format_php_to_js( get_option( 'date_format' ) ); ?>'
-		 });
-		});
-		</script>
-		<?php
 	}
 
 	/**
@@ -59,7 +34,7 @@ class WCJ_PDF_Invoicing_Renumerate_Tool {
 			$is_enabled = '<span style="color:gray;font-style:italic;">' . __( 'disabled', 'woocommerce-jetpack' ) . '</span>';
 		echo '<td>' . __( 'Invoices Renumerate', 'woocommerce-jetpack' ) . '</td>';
 		echo '<td>' . $is_enabled . '</td>';
-		echo '<td>' . __( 'Tool renumerates all invoices, proforma invoices and packing slips.', 'woocommerce-jetpack' ) . '</td>';
+		echo '<td>' . __( 'Tool renumerates all invoices, proforma invoices, credit notes and packing slips.', 'woocommerce-jetpack' ) . '</td>';
 		echo '</tr>';
 	}
 
@@ -73,7 +48,7 @@ class WCJ_PDF_Invoicing_Renumerate_Tool {
 		);
 		return $tabs;
 	}
-	
+
 	function wcj_multi_selected( $selected, $current_multi ) {
 		if ( ! is_array( $current_multi ) ) return selected( $selected, $current_multi, false );
 		foreach( $current_multi as $current ) {
@@ -83,25 +58,25 @@ class WCJ_PDF_Invoicing_Renumerate_Tool {
 		return '';
 	}
 
-    /**
-     * Add Renumerate Invoices tool to WooCommerce menu (the content).
-     */
+	/**
+	 * Add Renumerate Invoices tool to WooCommerce menu (the content).
+	 */
 	public function create_renumerate_invoices_tool() {
 		$result_message = '';
 		$renumerate_result = '';
-		
+
 		$the_invoice_type   = ( ! empty( $_POST['invoice_type'] ) )   ? $_POST['invoice_type']   : 'invoice';
 		$the_start_number   = ( ! empty( $_POST['start_number'] ) )   ? $_POST['start_number']   : 0;
 		$the_start_date     = ( ! empty( $_POST['start_date'] ) )     ? $_POST['start_date']     : '';
 		$the_order_statuses = ( ! empty( $_POST['order_statuses'] ) ) ? $_POST['order_statuses'] : array();
-		$the_delete_all     = ( isset( $_POST['delete_all'] ) )       ? true : false;		
-		
+		$the_delete_all     = ( isset( $_POST['delete_all'] ) )       ? true : false;
+
 		if ( isset( $_POST['renumerate_invoices'] ) ) {
 			if ( ! empty( $the_order_statuses ) ) {
 				$renumerate_result = $this->renumerate_invoices( $the_invoice_type, $the_start_number, $the_start_date, $the_order_statuses, $the_delete_all );
 				$result_message = '<div class="updated"><p><strong>' . __( 'Invoices successfully renumerated!', 'woocommerce-jetpack' ) . '</strong></p></div>';
 			} else {
-				$result_message = '<div class="error"><p><strong>' . __( 'Please select at leat one order status.', 'woocommerce-jetpack' ) . '</strong></p></div>';
+				$result_message = '<div class="error"><p><strong>' . __( 'Please select at least one order status.', 'woocommerce-jetpack' ) . '</strong></p></div>';
 			}
 			//$result_message .= '<p>' . $renumerate_result . '</p>';
 		}
@@ -111,28 +86,28 @@ class WCJ_PDF_Invoicing_Renumerate_Tool {
 			<?php echo $result_message; ?>
 			<p><form method="post" action="">
 				<?php
-				
+
 				// Date
-				$data[] = array( 
-					__( 'Start Date', 'woocommerce-jetpack' ), 
-					'<input class="input-text" display="date" type="text" name="start_date" value="' . $the_start_date . '">', 
-					'<em>' . __( 'Date to start renumerating. Leave blank to renumerate all invoices.', 'woocommerce-jetpack' ) . '</em>', 
+				$data[] = array(
+					__( 'Start Date', 'woocommerce-jetpack' ),
+					'<input class="input-text" display="date" type="text" name="start_date" value="' . $the_start_date . '">',
+					'<em>' . __( 'Date to start renumerating. Leave blank to renumerate all invoices.', 'woocommerce-jetpack' ) . '</em>',
 				);
-				
+
 				// Number
-				$data[] = array( 
-					__( 'Start Number', 'woocommerce-jetpack' ), 
-					'<input class="input-text" type="text" name="start_number" value="' . $the_start_number . '">', 
-					'<em>' . __( 'Counter to start renumerating. Leave 0 to continue from current counter.', 'woocommerce-jetpack' ) . '</em>', 
+				$data[] = array(
+					__( 'Start Number', 'woocommerce-jetpack' ),
+					'<input class="input-text" type="text" name="start_number" value="' . $the_start_number . '">',
+					'<em>' . __( 'Counter to start renumerating. Leave 0 to continue from current counter.', 'woocommerce-jetpack' ) . '</em>',
 				);
-								
-				// Delete All				
-				$data[] = array( 
-					__( 'Delete All', 'woocommerce-jetpack' ), 
-					'<input type="checkbox" name="delete_all" value="" ' . checked( $the_delete_all, true, false ) . '>', 
-					'<em>' . __( 'Clear all invoices before renumerating.', 'woocommerce-jetpack' ) . '</em>', 
+
+				// Delete All
+				$data[] = array(
+					__( 'Delete All', 'woocommerce-jetpack' ),
+					'<input type="checkbox" name="delete_all" value="" ' . checked( $the_delete_all, true, false ) . '>',
+					'<em>' . __( 'Clear all invoices before renumerating.', 'woocommerce-jetpack' ) . '</em>',
 				);
-				
+
 				// Type
 				$invoice_type_select_html = '<select name="invoice_type">';
 				//$invoice_types = wcj_get_invoice_types();
@@ -142,7 +117,7 @@ class WCJ_PDF_Invoicing_Renumerate_Tool {
 				}
 				$invoice_type_select_html .= '</select>';
 				$data[] = array( __( 'Document Type', 'woocommerce-jetpack' ), $invoice_type_select_html, '', );
-				
+
 				// Statuses
 				$order_statuses_select_html = '<select id="order_statuses" name="order_statuses[]" multiple size="5">';
 				$order_statuses = wcj_get_order_statuses( false );
@@ -152,25 +127,25 @@ class WCJ_PDF_Invoicing_Renumerate_Tool {
 				}
 				$order_statuses_select_html .= '</select>';
 				$data[] = array( __( 'Order Statuses', 'woocommerce-jetpack' ), $order_statuses_select_html, '', );
-				
+
 				// Print all
 				echo wcj_get_table_html( $data, array( 'table_heading_type' => 'vertical', ) );
-				
+
 				?>
 				<input type="submit" name="renumerate_invoices" value="Renumerate invoices">
 			</form></p>
-			<?php 
+			<?php
 			if ( '' != $renumerate_result ) {
-				echo '<h3>' . __( 'Results', 'woocommerce-jetpack' ) . '</h3>'; 
-				echo '<p>' . $renumerate_result . '</p>'; 
+				echo '<h3>' . __( 'Results', 'woocommerce-jetpack' ) . '</h3>';
+				echo '<p>' . $renumerate_result . '</p>';
 			}
 			?>
 		</div><?php
 	}
 
-    /**
-     * Renumerate invoices function.
-     */
+	/**
+	 * Renumerate invoices function.
+	 */
 	public function renumerate_invoices( $invoice_type, $start_number, $start_date, $order_statuses, $the_delete_all ) {
 
 		$output = '';
@@ -180,11 +155,17 @@ class WCJ_PDF_Invoicing_Renumerate_Tool {
 		}
 
 		$args = array(
-			'post_type'			=> 'shop_order',
-			'post_status' 		=> 'any',
-			'posts_per_page' 	=> -1,
-			'orderby'			=> 'date',
-			'order'				=> 'ASC',
+			'post_type'      => 'shop_order',
+			'post_status'    => 'any',
+			'posts_per_page' => -1,
+			'orderby'        => 'date',
+			'order'          => 'ASC',
+			'date_query'     => array(
+				array(
+					'after'     => $start_date,
+					'inclusive' => true,
+				),
+			),
 		);
 
 		$loop = new WP_Query( $args );
@@ -195,22 +176,22 @@ class WCJ_PDF_Invoicing_Renumerate_Tool {
 
 			$order_id = $loop->post->ID;
 			if ( in_array( $loop->post->post_status, $order_statuses ) && strtotime( $loop->post->post_date ) >= strtotime( $start_date ) ) {
-			
+
 				$the_order = wc_get_order( $order_id );
 				if ( 0 != $the_order->get_total() ) {
-			
+
 					wcj_create_invoice( $order_id, $invoice_type, strtotime( $loop->post->post_date ) );
 					$created_invoices_counter++;
 				}
 			} else {
 				if ( $the_delete_all && wcj_is_invoice_created( $order_id, $invoice_type ) ) {
 					wcj_delete_invoice( $order_id, $invoice_type );
-					$deleted_invoices_counter++;					
+					$deleted_invoices_counter++;
 				}
 			}
 
 		endwhile;
-		
+
 		$output .= '<p>' . sprintf( __( 'Total documents created: %d', 'woocommerce-jetpack' ), $created_invoices_counter ) . '</p>';
 		$output .= '<p>' . sprintf( __( 'Total documents deleted: %d', 'woocommerce-jetpack' ), $deleted_invoices_counter ) . '</p>';
 

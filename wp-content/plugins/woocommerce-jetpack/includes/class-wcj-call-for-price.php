@@ -81,10 +81,10 @@ class WCJ_Call_For_Price {
 			
 			array(
 				'title' 	=> __( 'Call for Price', 'woocommerce-jetpack' ),
-				'desc' 		=> __( 'Enable the Call for Price feature', 'woocommerce-jetpack' ),
-				'desc_tip'	=> __( 'Create any custom price label for all products with empty price.', 'woocommerce-jetpack' ),
+				'desc' 		=> '<strong>' . __( 'Enable Module', 'woocommerce-jetpack' ) . '</strong>',
+				'desc_tip'	=> __( 'Create any custom price label for all WooCommerce products with empty price.', 'woocommerce-jetpack' ),
 				'id' 		=> 'wcj_call_for_price_enabled',
-				'default'	=> 'yes',
+				'default'	=> 'no',
 				'type' 		=> 'checkbox',
 			),
 		

@@ -275,7 +275,7 @@ if ( ! function_exists( 'is_filtered' ) ) {
 	function is_filtered() {
 		global $_chosen_attributes;
 
-		return apply_filters( 'woocommerce_is_filtered', ( sizeof( $_chosen_attributes ) > 0 || ( isset( $_GET['max_price'] ) && isset( $_GET['min_price'] ) ) ) );
+		return apply_filters( 'woocommerce_is_filtered', ( sizeof( $_chosen_attributes ) > 0 || isset( $_GET['max_price'] ) || isset( $_GET['min_price'] ) ) );
 	}
 }
 
@@ -308,13 +308,14 @@ if ( ! function_exists( 'meta_is_product_attribute' ) ) {
 	function meta_is_product_attribute( $name, $value, $product_id ) {
 		$product    = wc_get_product( $product_id );
 
-		if ( $product->product_type != 'variation' ) {
+		if ( $product->product_type != 'variable' ) {
 			return false;
 		}
 
-		$attributes = $product->get_variation_attributes();
+		$variation_attributes = $product->get_variation_attributes();
+		$attributes           = $product->get_attributes();
 
-		return ( in_array( $name, array_keys( $attributes ) ) && in_array( $value, $attributes[ $name ] ) );
+		return ( in_array( $name, array_keys( $attributes ) ) && in_array( $value, $variation_attributes[ $attributes[ $name ]['name'] ] ) );
 	}
 }
 

@@ -4,10 +4,8 @@
  *
  * The WooCommerce Jetpack Order Items Shortcodes class.
  *
- * @class    WCJ_Order_Items_Shortcodes
- * @version  1.0.0
- * @category Class
- * @author   Algoritmika Ltd.
+ * @version 2.2.0
+ * @author  Algoritmika Ltd.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -44,6 +42,7 @@ class WCJ_Order_Items_Shortcodes extends WCJ_Shortcodes {
 			'tax_percent_format' => '%.2f %%',
 			'item_image_width'   => 0,
 			'item_image_height'  => 0,
+			'price_prefix'       => '',
 		), $atts );
 		return $modified_atts;
 	}
@@ -56,13 +55,13 @@ class WCJ_Order_Items_Shortcodes extends WCJ_Shortcodes {
 		if ( ! $this->the_order ) return false;
 		return $atts;
 	}
-	
+
     /**
      * wcj_price_shortcode.
      */
 	private function wcj_price_shortcode( $raw_price, $atts ) {
-		return wcj_price( $raw_price, $this->the_order->get_order_currency(), $atts['hide_currency'] );
-	}	
+		return wcj_price( $atts['price_prefix'] . $raw_price, $this->the_order->get_order_currency(), $atts['hide_currency'] );
+	}
 
     /**
      * add_item.
@@ -92,6 +91,55 @@ class WCJ_Order_Items_Shortcodes extends WCJ_Shortcodes {
 	}
 
     /**
+     * wcj_order_get_cart_discount_tax.
+     */
+	function wcj_order_get_cart_discount_tax() {
+
+		$the_cart_discount = $this->the_order->get_cart_discount();
+		$is_discount_taxable = ( $the_cart_discount > 0 ) ? true : false;
+
+		if ( $is_discount_taxable ) {
+
+			/* $order_total_incl_tax = $this->the_order->get_total();
+			$order_total_tax      = $this->the_order->get_total_tax(); */
+
+
+
+			$order_total_incl_tax = 0;
+			$order_total_tax = 0;
+			$items = $this->the_order->get_items();
+			foreach ( $items as $item ) {
+				$order_total_incl_tax += $item['line_total'] + $item['line_tax'];
+				$order_total_tax += $item['line_tax'];
+			}
+
+
+
+
+
+			if ( 0 != $order_total_incl_tax ) {
+
+//				$order_tax_rate = $order_total_tax / ( $order_total_incl_tax - $order_total_tax );
+				$order_tax_rate = $order_total_tax / $order_total_incl_tax;
+				//$order_tax_rate = round( $order_tax_rate, 4 );
+
+				$the_tax = $the_cart_discount * $order_tax_rate;//$the_cart_discount * $order_tax_rate;
+
+				/* wcj_log( $order_total_incl_tax );
+				wcj_log( $order_total_tax );
+				wcj_log( $order_tax_rate );
+				wcj_log( $the_tax );
+				wcj_log( $the_tax / ( $the_cart_discount - $the_tax) );
+				wcj_log( $order_total_tax / ( $order_total_incl_tax - $order_total_tax ) ); */
+
+				return $the_tax;
+			}
+		}
+
+		return false;
+	}
+
+    /**
      * wcj_order_items_table.
      */
     function wcj_order_items_table( $atts, $content = '' ) {
@@ -107,26 +155,34 @@ class WCJ_Order_Items_Shortcodes extends WCJ_Shortcodes {
 		$columns_titles = ( '' == $atts['columns_titles'] ) ? array() : explode( '|', $atts['columns_titles'] );
 		$columns_styles = ( '' == $atts['columns_styles'] ) ? array() : explode( '|', $atts['columns_styles'] );
 		//if ( ! ( $columns_total_number === count( $columns_titles ) === count( $columns_styles ) ) ) return '';
-		
+
 		// The Items
 		$the_items = $the_order->get_items();
 
 		// Shipping as item
 		if ( '' != $atts['shipping_as_item'] && $the_order->get_total_shipping() > 0 ) {
-			$name           = str_replace( '%shipping_method_name%', $the_order->get_shipping_method(), $atts['shipping_as_item'] );
-			$total_tax_excl = $the_order->get_total_shipping();
-			$tax            = $the_order->get_shipping_tax();
-			
-			$the_items = $this->add_item( $the_items, array( 'name' => $name, 'qty' => 1, 'line_subtotal' => $total_tax_excl, 'line_total' => $total_tax_excl, 'line_tax' => $tax, 'line_subtotal_tax' => $tax, ) );
+			$name                    = str_replace( '%shipping_method_name%', $the_order->get_shipping_method(), $atts['shipping_as_item'] );
+			$total_shipping_tax_excl = $the_order->get_total_shipping();
+			$shipping_tax            = $the_order->get_shipping_tax();
+
+			$the_items = $this->add_item( $the_items, array( 'name' => $name, 'qty' => 1, 'line_subtotal' => $total_shipping_tax_excl, 'line_total' => $total_shipping_tax_excl, 'line_tax' => $shipping_tax, 'line_subtotal_tax' => $shipping_tax, ) );
 		}
 
 		// Discount as item
 		if ( '' != $atts['discount_as_item'] && $the_order->get_total_discount( true ) > 0 ) {
-			$name           = $atts['discount_as_item'];
-			$total_tax_excl = $the_order->get_total_discount( true );
-			$tax            = $the_order->get_total_discount( false ) - $total_tax_excl;
-			
-			$the_items = $this->add_item( $the_items, array( 'name' => $name, 'qty' => 1, 'line_subtotal' => $total_tax_excl, 'line_total' => $total_tax_excl, 'line_tax' => $tax, 'line_subtotal_tax' => $tax, ) );
+			$name                    = $atts['discount_as_item'];
+			$total_discount_tax_excl = $the_order->get_total_discount( true );
+			$discount_tax            = $the_order->get_total_discount( false ) - $total_discount_tax_excl;
+
+			if ( false != ( $the_tax = $this->wcj_order_get_cart_discount_tax() ) ) {
+				$total_discount_tax_excl -= $the_tax;
+				$discount_tax += $the_tax;
+			}
+
+			$total_discount_tax_excl *= -1;
+			$discount_tax *= -1;
+
+			$the_items = $this->add_item( $the_items, array( 'name' => $name, 'qty' => 1, 'line_subtotal' => $total_discount_tax_excl, 'line_total' => $total_discount_tax_excl, 'line_tax' => $discount_tax, 'line_subtotal_tax' => $discount_tax, ) );
 		}
 
 		// Starting data[] by adding columns titles
@@ -139,24 +195,28 @@ class WCJ_Order_Items_Shortcodes extends WCJ_Shortcodes {
 		foreach ( $the_items as $item ) {
 			$item['is_custom'] = ( isset( $item['is_custom'] ) ) ? true : false;
 			$the_product = ( true === $item['is_custom'] ) ? null : $the_order->get_product_from_item( $item );
-			$item_counter++;			
+			$item_counter++;
 			// Columns
-			foreach( $columns as $column ) {				
+			foreach( $columns as $column ) {
 				switch ( $column ) {
 					case 'item_number':
 						$data[ $item_counter ][] = $item_counter;
 						break;
-					case 'item_name':						
+					case 'item_name':
 						//$data[ $item_counter ][] = ( true === $item['is_custom'] ) ? $item['name'] : $the_product->get_title();
 						if ( true === $item['is_custom'] ) {
 							$data[ $item_counter ][] = $item['name'];
 						} else {
 							$the_item_title = $the_product->get_title();
 							// Variation (if needed)
-							if ( $the_product->is_type( 'variation' ) )
+							if ( $the_product->is_type( 'variation' ) && ! in_array( 'item_variation', $columns ) ) {
 								$the_item_title .= '<div style="font-size:smaller;">' . wc_get_formatted_variation( $the_product->variation_data, true ) . '</div>';
+							}
 							$data[ $item_counter ][] = $the_item_title;
 						}
+						break;
+					case 'item_variation':
+						$data[ $item_counter ][] = ( $the_product->is_type( 'variation' ) ) ? wc_get_formatted_variation( $the_product->variation_data, true ) : '';
 						break;
 					case 'item_thumbnail':
 						//$data[ $item_counter ][] = $the_product->get_image();
@@ -205,19 +265,30 @@ class WCJ_Order_Items_Shortcodes extends WCJ_Shortcodes {
 					case 'line_tax':
 						$line_tax = $the_order->get_line_tax( $item );
 						$line_tax = apply_filters( 'wcj_line_tax', $line_tax, $the_order );
-						$data[ $item_counter ][] = $this->wcj_price_shortcode( $line_tax, $atts );					
+						$data[ $item_counter ][] = $this->wcj_price_shortcode( $line_tax, $atts );
+						break;
+					case 'line_subtax':
+						$line_subtax = $the_order->get_line_subtotal( $item, true, false ) - $the_order->get_line_subtotal( $item, false, false );
+						$data[ $item_counter ][] = $this->wcj_price_shortcode( $line_subtax, $atts );
 						break;
 					case 'item_tax_percent':
-						$item_total = $the_order->get_item_total( $item, false, true );
-						$item_tax_percent = ( 0 != $item_total ) ? $the_order->get_item_tax( $item, false ) / $item_total * 100 : 0;
-						$data[ $item_counter ][] = sprintf( $atts['tax_percent_format'], $item_tax_percent );
-						break;
 					case 'line_tax_percent':
+						$item_total = $the_order->get_item_total( $item, false, /* true */ false );
+						$item_tax_percent = ( 0 != $item_total ) ? $the_order->get_item_tax( $item, false ) / $item_total * 100 : 0;
+						$item_tax_percent = apply_filters( 'wcj_line_tax_percent', $item_tax_percent, $the_order );
+						$data[ $item_counter ][] = sprintf( $atts['tax_percent_format'], $item_tax_percent );
+						/* $tax_labels = array();
+						foreach ( $the_order->get_taxes() as $the_tax ) {
+							$tax_labels[] = $the_tax['label'];
+						}
+						$data[ $item_counter ][] = implode( ', ', $tax_labels ); */
+						break;
+					/* case 'line_tax_percent':
 						$line_total = $the_order->get_line_total( $item, false, true );
 						$line_tax_percent = ( 0 != $line_total ) ? $the_order->get_line_tax( $item ) / $line_total * 100 : 0;
 						$line_tax_percent = apply_filters( 'wcj_line_tax_percent', $line_tax_percent, $the_order );
 						$data[ $item_counter ][] = sprintf( $atts['tax_percent_format'], $line_tax_percent );
-						break;
+						break; */
 					default:
 						$data[ $item_counter ][] = '';
 				}

@@ -5,7 +5,7 @@
  * The WooCommerce Jetpack Stock Reports class.
  *
  * @class 		WCJ_Reports_Stock
- * @version		1.0.0
+ * @version		2.2.0
  * @category	Class
  * @author 		Algoritmika Ltd.
  */
@@ -77,7 +77,7 @@ class WCJ_Reports_Stock {
 			$html .= '<li>';
 			$html .= ( $the_period == $this->range_days ) ? '<strong>' : '';
 			$html .= '<a href="' . get_admin_url() . 'admin.php?page=wc-reports&tab=stock&report=' . $this->report_id . '&period=' . $the_period . '" class="">' . $the_period . ' days</a>';
-			$html .= ( $the_period == $this->range_days ) ? '</strong>' : '';			
+			$html .= ( $the_period == $this->range_days ) ? '</strong>' : '';
 			$html .= ' | ';
 			$html .= '</li>';
 		}
@@ -90,7 +90,7 @@ class WCJ_Reports_Stock {
 	 * gather_products_data.
 	 */
 	public function gather_products_data( &$products_info ) {
-	
+
 		//return array();
 
 		$args = array(
@@ -115,9 +115,11 @@ class WCJ_Reports_Stock {
 				$the_permalink = get_the_permalink();
 
 				$post_custom = get_post_custom( $the_ID );
-				$total_sales = $post_custom['total_sales'][0];
+				$total_sales = isset( $post_custom['total_sales'][0] ) ? $post_custom['total_sales'][0] : 0;
 
 				//$available_variations = $the_product->get_available_variations();
+
+				$purchase_price = wc_get_product_purchase_price( $the_ID );
 
 				$sales_in_day_range = array();
 				foreach( $this->ranges_in_days as $the_range )
@@ -132,7 +134,9 @@ class WCJ_Reports_Stock {
 					'stock_price'		=> $the_price * $the_stock,
 					'total_sales'		=> $total_sales,
 					'date_added'		=> $the_date,
-					
+
+					'purchase_price'	=> $purchase_price,
+
 					'last_sale'			=> 0,
 					'sales_in_period'	=> $sales_in_day_range,
 				);
@@ -157,12 +161,12 @@ class WCJ_Reports_Stock {
 					'column' => 'post_date_gmt',
 					'after'  => $this->range_days . ' days ago',
 				),
-			),			
+			),
 		);
-		
+
 		//$one_day_seconds = ( 24 * 60 * 60 );
 		//$now_time = time();
-		
+
 		$the_period = $this->range_days;
 
 		$loop_orders = new WP_Query( $args_orders );
@@ -171,11 +175,11 @@ class WCJ_Reports_Stock {
 			$order_id = $loop_orders->post->ID;
 			$order = new WC_Order( $order_id );
 			$items = $order->get_items();
-			
-			//$the_timestamp =  get_the_time( 'U' );				
-			//$order_age = ( $now_time - $the_timestamp );				
-				
-				
+
+			//$the_timestamp =  get_the_time( 'U' );
+			//$order_age = ( $now_time - $the_timestamp );
+
+
 			foreach ( $items as $item ) {
 
 				//$products_info_sales_in_period = $products_info[$item['product_id']]['sales_in_period'];
@@ -211,7 +215,7 @@ class WCJ_Reports_Stock {
 		$info['total_stock_price'] = 0;
 		$info['stock_price_average'] = 0;
 		$info['stock_average'] = 0;
-		$info['sales_in_period_average'][$this->period] = 0;
+		$info['sales_in_period_average'][ $this->range_days ] = 0;
 		$stock_non_zero_number = 0;
 
 		foreach ( $products_info as $product_info ) {
@@ -222,9 +226,9 @@ class WCJ_Reports_Stock {
 				$products_info[ $product_info['ID'] ]['stock_to_sales'] = 0;/**/
 
 			if ( $product_info['stock_price'] > 0 ) {
-				$info['stock_price_average'] += $product_info['stock_price'];
-				$info['stock_average'] = $product_info['stock'];
-				$info['sales_in_period_average'][$this->period] += $product_info['sales_in_period'][$this->period];
+				$info['stock_price_average']                          += $product_info['stock_price'];
+				$info['stock_average']                                += $product_info['stock'];
+				$info['sales_in_period_average'][ $this->range_days ] += $product_info['sales_in_period'][ $this->range_days ];
 				$stock_non_zero_number++;
 			}
 
@@ -234,7 +238,7 @@ class WCJ_Reports_Stock {
 		if ( 0 != $stock_non_zero_number ) {
 			$info['stock_price_average'] /= $stock_non_zero_number;
 			$info['stock_average'] /= $stock_non_zero_number;
-			$info['sales_in_period_average'][$this->period] /= $stock_non_zero_number;
+			$info['sales_in_period_average'][ $this->range_days ] /= $stock_non_zero_number;
 		}
 
 		return $info;
@@ -251,8 +255,6 @@ class WCJ_Reports_Stock {
 		}
 		array_multisort( $field_name_array, $order_of_sorting, $products_info );
 	}
-
-
 
 	/*
 	 * get_report_html.
@@ -287,7 +289,6 @@ class WCJ_Reports_Stock {
 		if ( 'understocked' === $this->report_id )
 			$html .= '<th>' . __( 'Stock to minimum', 'woocommerce-jetpack' ) . '</th>';
 
-
 		$html .= '</tr>';
 
 		// Products table - info loop
@@ -295,34 +296,39 @@ class WCJ_Reports_Stock {
 		$product_counter = 0;
 		foreach ( $products_info as $product_info ) {
 
-			if (
-				(
-				 ( 'on_stock' === $report_info['id'] ) &&
-				 ( $product_info['stock'] > 0 )
-			    ) ||
-				(
-				 ( 'understocked' === $report_info['id'] ) &&				
-				 ( '' !== $product_info['stock'] ) &&
-				 ( $product_info['sales_in_period'][ $this->range_days ] > 1 ) &&
-				 ( $product_info['stock'] < ( $product_info['sales_in_period'][ $this->range_days ] / 2 ) )
-			    )
-			)
-			{
+			if ( ( ( 'on_stock' === $report_info['id'] ) &&
+				   ( $product_info['stock'] > 0 ) ) ||
+
+				 ( ( 'understocked' === $report_info['id'] ) &&
+				   ( '' !== $product_info['stock'] ) &&
+				   ( $product_info['sales_in_period'][ $this->range_days ] > 1 ) &&
+				   ( $product_info['stock'] < ( $product_info['sales_in_period'][ $this->range_days ] / 2 ) ) ) ) {
+
 				$total_current_stock_price += $product_info['stock_price'];
 				$product_counter++;
 				$html .= '<tr>';
 				$html .= '<td>' . $product_counter . '</td>';
 				$html .= '<th>' . '<a href='. $product_info['permalink'] . '>' . $product_info['title'] . '</a>' . '</th>';
-				$html .= '<td>' . wc_price( $product_info['price'] ) . '</td>';
+				$purchase_price_html = ( $product_info['purchase_price'] > 0 ) ?
+					'<br><em>' . __( 'purchase price:', 'woocommerce-jetpack' ) . '</em>' . ' ' . wc_price( $product_info['purchase_price'] ) :
+					'';
+				$html .= '<td>' . wc_price( $product_info['price'] ) . $purchase_price_html . '</td>';
 				$html .= '<td>' . $product_info['stock'] . '</td>';
-				$html .= '<td>' . wc_price( $product_info['stock_price'] ) . '</td>';
+				$purchase_stock_price_html = ( $product_info['purchase_price'] > 0 ) ?
+					'<br><em>' . __( 'stock purchase price:', 'woocommerce-jetpack' ) . '</em>' . ' ' . wc_price( $product_info['purchase_price'] * $product_info['stock'] ) :
+					'';
+				$html .= '<td>' . wc_price( $product_info['stock_price'] ) . $purchase_stock_price_html . '</td>';
 
 				$html .= '<td class="wcj_report_table_sales_columns">';
 				if ( 0 == $product_info['last_sale'] ) $html .= __( 'No sales yet', 'woocommerce-jetpack' );
 				else $html .= date_i18n( get_option( 'date_format' ), $product_info['last_sale'] );
 				$html .= '</td>';
-				
-				$html .= '<td class="wcj_report_table_sales_columns">' . $product_info['sales_in_period'][ $this->range_days ] . '</td>';
+
+				$profit_html = ( $product_info['purchase_price'] > 0 && $product_info['sales_in_period'][ $this->range_days ] > 0 ) ?
+					'<br><em>' . __( 'profit:', 'woocommerce-jetpack' ) . '</em>' . ' '
+						. wc_price( ( $product_info['price'] - $product_info['purchase_price'] ) * $product_info['sales_in_period'][ $this->range_days ] ) :
+					'';				
+				$html .= '<td class="wcj_report_table_sales_columns">' . $product_info['sales_in_period'][ $this->range_days ] . $profit_html . '</td>';
 				$html .= '<td class="wcj_report_table_sales_columns">' . $product_info['total_sales'] . '</td>';
 
 

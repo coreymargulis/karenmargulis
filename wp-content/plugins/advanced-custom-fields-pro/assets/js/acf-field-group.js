@@ -50,6 +50,10 @@
 			this.$options.addClass('acf-postbox');
 		
 			
+			// disable validation
+			acf.validation.active = 0;
+			
+			
 			// sortable
 			this.sort_fields( $('.acf-field-list:first') );
 			
@@ -161,7 +165,6 @@
 			// modules
 			this.conditions.init();
 			this.locations.init();
-			this.options.init();
 			
 			
 			// render
@@ -1010,7 +1013,7 @@
 			acf.open_popup({
 				title	: acf._e('move_field'),
 				loading	: true,
-				height	: 220
+				height	: 145
 			});
 			
 			
@@ -1475,39 +1478,20 @@
 				type = $el.attr('data-type');
 				
 			
+			// render name
 			if( $name.val() == '' ) {
 				
-				// thanks to https://gist.github.com/richardsweeney/5317392 for this code!
-				var val = $label.val(),
-					replace = {
-						'ä': 'a',
-						'æ': 'a',
-						'å': 'a',
-						'ö': 'o',
-						'ø': 'o',
-						'é': 'e',
-						'ë': 'e',
-						'ü': 'u',
-						'ó': 'o',
-						'ő': 'o',
-						'ú': 'u',
-						'é': 'e',
-						'á': 'a',
-						'ű': 'u',
-						'í': 'i',
-						' ' : '_',
-						'\'' : '',
-						'\\?' : ''
-					};
-				
-				$.each( replace, function(k, v){
-					var regex = new RegExp( k, 'g' );
-					val = val.replace( regex, v );
-				});
+				// vars
+				var s = $label.val();
 				
 				
-				val = val.toLowerCase();
-				$name.val( val ).trigger('change');
+				// sanitize
+				s = acf.str_sanitize(s);
+				
+				
+				// update name
+				$name.val( s ).trigger('change');
+				
 			}
 			
 			
@@ -2180,6 +2164,10 @@
 			$tr2.attr( 'data-id', new_id );
 			
 			
+			// clear selected
+			$tr2.find('option[selected]').removeAttr('selected');
+			
+			
 			// add tr
 			$tr.after( $tr2 );
 					
@@ -2338,60 +2326,6 @@
 			});
 			
 		}
-	};
-	
-	
-	acf.field_group.options = {
-		
-		$el : null,
-		
-		
-		/*
-		*  init
-		*
-		*  This function will run on document ready and initialize the module
-		*
-		*  @type	function
-		*  @date	8/04/2014
-		*  @since	5.0.0
-		*
-		*  @param	n/a
-		*  @return	n/a
-		*/
-		
-		init : function(){
-			
-			// vars
-			this.$el = acf.field_group.$options;
-			
-			
-			// hide on screen toggle
-			var $ul = this.$el.find('tr[data-name="hide_on_screen"] ul'),
-				$li = $('<li><label><input type="checkbox" value="" name="" >' + acf._e('hide_show_all') + '</label></li>');
-			
-			
-			// start checked?
-			if( $ul.find('input:not(:checked)').length == 0 )
-			{
-				$li.find('input').attr('checked', 'checked');
-			}
-			
-			
-			// event
-			$li.on('change', 'input', function(){
-				
-				var checked = $(this).is(':checked');
-				
-				$ul.find('input').attr('checked', checked);
-				
-			});
-			
-			
-			// add to ul
-			$ul.prepend( $li );
-			
-		}
-		
 	};
 	
 	
@@ -2563,7 +2497,7 @@
 		} else {
 			
 			$el.find('.acf-field[data-name="save_other_choice"]').hide();
-			$el.find('.acf-field[data-name="save_other_choice"] input').removeAttr('checked');
+			$el.find('.acf-field[data-name="save_other_choice"] input').prop('checked', false);
 			
 		}
 			
@@ -2593,111 +2527,7 @@
 		acf_render_radio_field( acf.field_group.focus( $(this) ) );
 		
 	});
-	
-	
-	/*
-	*  Google Map
-	*
-	*  This field type requires some extra logic for its settings
-	*
-	*  @type	function
-	*  @date	24/10/13
-	*  @since	5.0.0
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-	
-	acf.add_action('open_field change_field_type', function( $el ){
 		
-		// bail early if not google_map
-		if( $el.attr('data-type') != 'google_map' ) {
-		
-			return;
-			
-		}
-		
-		
-		// vars
-		$lat = $el.find('tr[data-name="center_lat"]');
-		$lng = $el.find('tr[data-name="center_lng"]');
-		tmpl = '<ul class="acf-hl"><li style="width:48%;">$lat</li><li style="width:48%; margin-left:4%;">$lng</li></ul>';
-		
-		
-		// validate
-		if( !$lng.exists() ) {
-		
-			return;
-			
-		}
-		
-		
-		// update tmpl
-		tmpl = tmpl.replace( '$lat', $lat.find('.acf-input').html() );
-		tmpl = tmpl.replace( '$lng', $lng.find('.acf-input').html() );
-		
-		
-		// update $lat
-		$lat.find('.acf-input').html( tmpl );
-		
-		
-		// remove $lng
-		$lng.remove();
-		
-	});
-	
-	
-	/*
-	*  oEmbed
-	*
-	*  This field type requires some extra logic for its settings
-	*
-	*  @type	function
-	*  @date	24/10/13
-	*  @since	5.0.0
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-	
-	acf.add_action('open_field change_field_type', function( $el ){
-		
-		// bail early if not oembed
-		if( $el.attr('data-type') != 'oembed' ) {
-		
-			return;
-			
-		}
-		
-		
-		// vars
-		$width = $el.find('tr[data-name="width"]');
-		$height = $el.find('tr[data-name="height"]');
-		tmpl = '<ul class="acf-hl"><li style="width:48%;">$width</li><li style="width:48%; margin-left:4%;">$height</li></ul>';
-		
-		
-		// validate
-		if( !$width.exists() ) {
-		
-			return;
-			
-		}
-		
-		
-		// update tmpl
-		tmpl = tmpl.replace( '$width', $width.find('.acf-input').html() );
-		tmpl = tmpl.replace( '$height', $height.find('.acf-input').html() );
-		
-		
-		// update $lat
-		$width.find('.acf-input').html( tmpl );
-		
-		
-		// remove $lng
-		$height.remove();
-		
-	});
-	
 	
 	/*
 	*  Date Picker

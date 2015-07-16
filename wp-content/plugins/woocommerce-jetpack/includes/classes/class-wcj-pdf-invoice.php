@@ -4,34 +4,88 @@
  *
  * The WooCommerce Jetpack PDF Invoice class.
  *
- * @class    WCJ_PDF_Invoice
- * @version  1.0.0
- * @category Class
- * @author   Algoritmika Ltd.
+ * @version 2.2.1
+ * @author  Algoritmika Ltd.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+if ( ! class_exists( 'WCJ_TCPDF' ) ) :
+
+// Include the main TCPDF library
+require_once( wcj_plugin_path() . '/includes/lib/tcpdf_min/tcpdf.php' );
+
+class WCJ_TCPDF extends TCPDF {
+
+	public function set_invoice_type( $invoice_type ) {
+		 $this->invoice_type = $invoice_type;
+	}
+
+	/* //Page header
+	public function Header() {
+		// Logo
+		$image_file = K_PATH_IMAGES.'logo_example.jpg';
+		$this->Image($image_file, 10, 10, 15, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		// Set font
+		$this->SetFont('helvetica', 'B', 20);
+		// Title
+		$this->Cell(0, 15, '<< TCPDF Example 003 >>', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+	} */
+
+	/**/ // Page footer
+	public function Footer() {
+		// Position at 15 mm from bottom
+		//$this->SetY(-15);
+		// Set font
+		//$this->SetFont('helvetica', 'I', 8);
+
+		$invoice_type = $this->invoice_type;
+		$footer_text = apply_filters( 'wcj_get_option_filter', 'Page %page_number% / %total_pages%', get_option( 'wcj_invoicing_' . $invoice_type . '_footer_text' ) );
+		//$this->Cell( 0, 0, do_shortcode( $footer_text ), 0, false, 'L', 0, '', 0, false, 'T', 'M' );
+		$footer_text = str_replace( '%page_number%', $this->getAliasNumPage(), $footer_text );
+		$footer_text = str_replace( '%total_pages%', $this->getAliasNbPages(), $footer_text );
+		$border_desc = array(
+			'T' => array(
+				'color' => wcj_hex2rgb( get_option( 'wcj_invoicing_' . $invoice_type . '_footer_line_color' ) ),
+				'width' => 0,
+			),
+		);
+		$footer_text_color_rgb = wcj_hex2rgb( get_option( 'wcj_invoicing_' . $invoice_type . '_footer_text_color' ) );
+		$this->SetTextColor( $footer_text_color_rgb[0], $footer_text_color_rgb[1], $footer_text_color_rgb[2] );
+		$this->writeHTMLCell( 0, 0, '', '', do_shortcode( $footer_text ), $border_desc, 1, 0, true, '', true );
+	} /**/
+}
+
+endif;
 
 if ( ! class_exists( 'WCJ_PDF_Invoice' ) ) :
 
 class WCJ_PDF_Invoice extends WCJ_Invoice {
 
-    /**
-     * Constructor.
-     */
-    public function __construct( $order_id, $invoice_type ) {
+	/**
+	 * Constructor.
+	 */
+	public function __construct( $order_id, $invoice_type ) {
+
 		parent::__construct( $order_id, $invoice_type );
-    }
-	
+	}
+
 	function prepare_pdf() {
-	
+
 		$invoice_type = $this->invoice_type;
-	
-		// Include the main TCPDF library
-		require_once( WCJ()->plugin_path() . '/includes/lib/tcpdf_min/tcpdf.php' );
 
 		// Create new PDF document
-		$pdf = new TCPDF( get_option( 'wcj_invoicing_' . $invoice_type . '_page_orientation', 'P' ), PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false );
+		$pdf = new WCJ_TCPDF(
+			get_option( 'wcj_invoicing_' . $invoice_type . '_page_orientation', 'P' ),
+			PDF_UNIT,
+			//PDF_PAGE_FORMAT,
+			get_option( 'wcj_invoicing_' . $invoice_type . '_page_format', 'A4' ),
+			true,
+			'UTF-8',
+			false
+		);
+
+		$pdf->set_invoice_type( $invoice_type );
 
 		// Set document information
 		$pdf->SetCreator( PDF_CREATOR );
@@ -43,7 +97,7 @@ class WCJ_PDF_Invoice extends WCJ_Invoice {
 		// Header - set default header data
 		if ( 'yes' === get_option( 'wcj_invoicing_' . $invoice_type . '_header_enabled' ) ) {
 			$the_logo = '';
-			$the_logo_width_mm = 0;		
+			$the_logo_width_mm = 0;
 			if ( '' != get_option( 'wcj_invoicing_' . $invoice_type . '_header_image' ) ) {
 				$the_logo = parse_url( get_option( 'wcj_invoicing_' . $invoice_type . '_header_image' ) );
 				$the_logo = $the_logo['path'];
@@ -64,23 +118,25 @@ class WCJ_PDF_Invoice extends WCJ_Invoice {
 		if ( 'yes' === get_option( 'wcj_invoicing_' . $invoice_type . '_footer_enabled' ) ) {
 			$pdf->setFooterData(
 				wcj_hex2rgb( get_option( 'wcj_invoicing_' . $invoice_type . '_footer_text_color' ) ),
-				wcj_hex2rgb( get_option( 'wcj_invoicing_' . $invoice_type . '_footer_line_color' ) ) );
-		} else {	
+				wcj_hex2rgb( get_option( 'wcj_invoicing_' . $invoice_type . '_footer_line_color' ) )
+			);
+		} else {
 			$pdf->SetPrintFooter( false );
 		}
 
 		// Set Header and Footer fonts
-		$pdf->setHeaderFont( Array( PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN ) );
-		$pdf->setFooterFont( Array( PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA ) );
+		$pdf->setHeaderFont( Array( /* PDF_FONT_NAME_MAIN */get_option( 'wcj_invoicing_' . $invoice_type . '_general_font_family', 'dejavusans' ), '', PDF_FONT_SIZE_MAIN ) );
+		$pdf->setFooterFont( Array( /* PDF_FONT_NAME_DATA */get_option( 'wcj_invoicing_' . $invoice_type . '_general_font_family', 'dejavusans' ), '', PDF_FONT_SIZE_DATA ) );
 
 		// Set default monospaced font
-		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetDefaultMonospacedFont( PDF_FONT_MONOSPACED );
 
 		// Set margins
-		$pdf->SetMargins( 
-			get_option( 'wcj_invoicing_' . $invoice_type . '_margin_left' ), 
-			get_option( 'wcj_invoicing_' . $invoice_type . '_margin_top' ), 
-			get_option( 'wcj_invoicing_' . $invoice_type . '_margin_right' ) );
+		$pdf->SetMargins(
+			get_option( 'wcj_invoicing_' . $invoice_type . '_margin_left' ),
+			get_option( 'wcj_invoicing_' . $invoice_type . '_margin_top' ),
+			get_option( 'wcj_invoicing_' . $invoice_type . '_margin_right' )
+		);
 		$pdf->SetHeaderMargin( get_option( 'wcj_invoicing_' . $invoice_type . '_margin_header' ) );
 		$pdf->SetFooterMargin( get_option( 'wcj_invoicing_' . $invoice_type . '_margin_footer' ) );
 
@@ -102,9 +158,9 @@ class WCJ_PDF_Invoice extends WCJ_Invoice {
 		// Set font
 		// dejavusans is a UTF-8 Unicode font, if you only need to print standard ASCII chars, you can use core fonts like  helvetica or times to reduce file size.
 		$pdf->SetFont(
-			apply_filters( 'wcj_get_option_filter', 'dejavusans', get_option( 'wcj_pdf_invoices_general_font_family', 'dejavusans' ) ),
+			apply_filters( 'wcj_get_option_filter', 'dejavusans', get_option( 'wcj_invoicing_' . $invoice_type . '_general_font_family', 'dejavusans' ) ),
 			'',
-			apply_filters( 'wcj_get_option_filter', 8, get_option( 'wcj_pdf_invoices_general_font_size' ) ),
+			apply_filters( 'wcj_get_option_filter', 8, get_option( 'wcj_invoicing_' . $invoice_type . '_general_font_size', 8 ) ),
 			'',
 			true );
 
@@ -112,34 +168,32 @@ class WCJ_PDF_Invoice extends WCJ_Invoice {
 		$pdf->AddPage();
 
 		// Set text shadow effect
-		if ( 'yes' === get_option( 'wcj_invoicing_' . $invoice_type . '_general_font_shadowed', 'yes' ) ) {			
+		if ( 'yes' === get_option( 'wcj_invoicing_' . $invoice_type . '_general_font_shadowed', 'yes' ) ) {
 			$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
 		}
 
-		return $pdf;		
+		return $pdf;
 	}
 
-    /**
-     * get_pdf.
-     */
-    //function get_pdf( $get_by_order_id = 0 ) {
+	/**
+	 * get_pdf.
+	 */
+	//function get_pdf( $get_by_order_id = 0 ) {
 	//function get_pdf( $order_id, $invoice_type, $name, $dest ) {
 	function get_pdf( $dest ) {
 
-		$pdf = $this->prepare_pdf();
-		
 		// Get invoice content HTML
 		$_GET['order_id'] = $this->order_id;
 		$html = do_shortcode( get_option( 'wcj_invoicing_' . $this->invoice_type . '_template' ) );
+		$html = force_balance_tags( $html );
 		//$html = apply_filters( 'the_content', get_option( 'wcj_invoicing_' . $this->invoice_type . '_template' ) );
-		
 		$styling = '<style>' . get_option( 'wcj_invoicing_' . $this->invoice_type . '_css' ) . '</style>';
-		
+
+		$pdf = $this->prepare_pdf();
 		// Print text using writeHTMLCell()
-		$pdf->writeHTMLCell( 0, 0, '', '', $styling . $html, 0, 1, 0, true, '', true );		
-		
-				
-		/*		
+		$pdf->writeHTMLCell( 0, 0, '', '', $styling . $html, 0, 1, 0, true, '', true );
+
+		/*
 		// set style for barcode
 		$style = array(
 			'border' => true,
@@ -149,8 +203,8 @@ class WCJ_PDF_Invoice extends WCJ_Invoice {
 			'bgcolor' => false, //array(255,255,255)
 			'module_width' => 1, // width of a single module in points
 			'module_height' => 1 // height of a single module in points
-		);		
-				
+		);
+
 		// -------------------------------------------------------------------
 		// PDF417 (ISO/IEC 15438:2006)
 
@@ -187,23 +241,23 @@ class WCJ_PDF_Invoice extends WCJ_Invoice {
 		$pdf->write2DBarcode( 'www.woojetpack.com', 'PDF417', 0, 200, 0, 30, $style, 'T');
 		//$pdf->Text(80, 85, 'PDF417 (ISO/IEC 15438:2006)');
 
-		// -------------------------------------------------------------------		
+		// -------------------------------------------------------------------
 		/**
-		require_once( wcj_plugin_path() .'/includes/lib/tcpdf_min/tcpdf_barcodes_2d.php');		
+		require_once( wcj_plugin_path() .'/includes/lib/tcpdf_min/tcpdf_barcodes_2d.php');
 		$barcodeobj = new TCPDF2DBarcode('http://www.tcpdf.org', 'PDF417');
 		// output the barcode as PNG image
-		//$barcodeobj->getBarcodePNG(4, 4, array(0,0,0));		
+		//$barcodeobj->getBarcodePNG(4, 4, array(0,0,0));
 		$html = $barcodeobj->getBarcodeHTML(4, 4, 'black');
-		//$pdf->writeHTMLCell( 0, 0, '', '', $html, 0, 1, 0, true, '', true );		
+		//$pdf->writeHTMLCell( 0, 0, '', '', $html, 0, 1, 0, true, '', true );
 		/**/
 
-		// Close and output PDF document		
+		// Close and output PDF document
 		$result_pdf = $pdf->Output( '', 'S' );
 		$file_name = $this->get_file_name();
 		$file_path = sys_get_temp_dir() . '/' . $file_name;
 		if ( ! file_put_contents( $file_path, $result_pdf ) )
 			return null;
-		
+
 		if ( 'F' === $dest ) {
 			return $file_path;
 		}
@@ -218,17 +272,20 @@ class WCJ_PDF_Invoice extends WCJ_Invoice {
 			elseif ( 'I' === $dest ) {
 				header( "Content-type: application/pdf" );
 				header( "Content-Disposition: inline; filename=" . urlencode( $file_name ) );
-			}	
+			}
 			header( "Content-Length: " . filesize( $file_path ) );
 			flush(); // this doesn't really matter.
-		
-			$fp = fopen($file_path, "r");
-			while (!feof($fp))
-			{
-				echo fread($fp, 65536);
-				flush(); // this is essential for large downloads
+
+			if ( false !== ( $fp = fopen($file_path, "r") ) ) {
+				while (!feof($fp))
+				{
+					echo fread($fp, 65536);
+					flush(); // this is essential for large downloads
+				}
+				fclose($fp);
+			} else {
+				die( __( 'Unexpected error', 'woocommerce-jetpack' ) );
 			}
-			fclose($fp);			
 		}
 		return null;
 	}

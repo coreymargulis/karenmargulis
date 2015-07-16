@@ -9,13 +9,14 @@ class CPAC_Storage_Model_Media extends CPAC_Storage_Model {
 	 */
 	function __construct() {
 
-		$this->key 		 = 'wp-media';
-		$this->label 	 = __( 'Media Library' );
-		$this->type 	 = 'media';
-		$this->meta_type = 'post';
-		$this->page 	 = 'upload';
-		$this->post_type = 'attachment';
-		$this->menu_type = 'other';
+		$this->key 		 		= 'wp-media';
+		$this->label 	 		= __( 'Media Library' );
+		$this->singular_label 	= __( 'Media' );
+		$this->type 	 		= 'media';
+		$this->meta_type 		= 'post';
+		$this->page 	 		= 'upload';
+		$this->post_type 		= 'attachment';
+		$this->menu_type 		= 'other';
 
 		// headings
         // Increased the priority to overrule 3th party plugins such as Media Tags
@@ -48,10 +49,20 @@ class CPAC_Storage_Model_Media extends CPAC_Storage_Model {
 		$table   = _get_list_table ( 'WP_Media_List_Table', array( 'screen' => 'upload' ) );
         $columns = (array) $table->get_columns();
 
-		if ( $this->is_settings_page() )
+		if ( $this->is_settings_page() ) {
 			$columns = array_merge( get_column_headers( 'upload' ), $columns );
+		}
 
 		return $columns;
+	}
+
+	/**
+	 * Get original columns
+	 *
+	 * @since 2.4.4
+	 */
+	public function get_default_column_names() {
+		return array( 'cb', 'date', 'parent', 'icon', 'title', 'author', 'comments' );
 	}
 
 	/**
@@ -85,12 +96,11 @@ class CPAC_Storage_Model_Media extends CPAC_Storage_Model {
 	 */
 	public function manage_value( $column_name, $media_id ) {
 
-		$value = '';
-
-		// get column instance
-		if ( $column = $this->get_column_by_name( $column_name ) ) {
-			$value = $column->get_value( $media_id );
+		if ( ! ( $column = $this->get_column_by_name( $column_name ) ) ) {
+			return false;
 		}
+
+		$value = $column->get_value( $media_id );
 
 		// add hook
 		$value = apply_filters( "cac/column/value", $value, $media_id, $column, $this->key );

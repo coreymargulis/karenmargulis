@@ -4,30 +4,31 @@
  *
  * The WooCommerce Jetpack PDF Invoicing Emails class.
  *
- * @class    WCJ_PDF_Invoicing_Emails
- * @version  1.0.0
- * @category Class
- * @author   Algoritmika Ltd.
+ * @version 2.2.0
+ * @author  Algoritmika Ltd.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! class_exists( 'WCJ_PDF_Invoicing_Emails' ) ) :
 
-class WCJ_PDF_Invoicing_Emails {
+class WCJ_PDF_Invoicing_Emails extends WCJ_Module {
 
     /**
      * Constructor.
      */
     function __construct() {
 
-		if ( 'yes' === get_option( 'wcj_pdf_invoicing_enabled' ) ) {
+		$this->id         = 'pdf_invoicing_emails';
+		$this->parent_id  = 'pdf_invoicing';
+		$this->short_desc = __( 'Email Options', 'woocommerce-jetpack' );
+		$this->desc       = '';
+		parent::__construct( 'submodule' );
+
+		//if ( 'yes' === get_option( 'wcj_pdf_invoicing_enabled' ) ) {
+		if ( $this->is_enabled() ) {
 			add_filter( 'woocommerce_email_attachments', array( $this, 'add_pdf_invoice_email_attachment' ), PHP_INT_MAX, 3 );
 		}
-
-        // Settings hooks
-        add_filter( 'wcj_settings_sections',             array( $this, 'settings_section' ) );
-        add_filter( 'wcj_settings_pdf_invoicing_emails', array( $this, 'get_settings' ),                     100 );
     }
 
 	/**
@@ -47,8 +48,7 @@ class WCJ_PDF_Invoicing_Emails {
 				//if ( isset( $status ) && 'customer_completed_order' === $status && isset( $order ) && true === $this->do_attach_for_payment_method( $order->payment_method ) ) {
 				//if ( 'customer_completed_order' === $status ) {
 				$send_on_statuses = get_option( 'wcj_invoicing_' . $invoice_type_id . '_attach_to_emails', array() );
-				if ( '' == $send_on_statuses )
-					$send_on_statuses = array();
+				if ( '' == $send_on_statuses ) $send_on_statuses = array();
 				if ( in_array( $status, $send_on_statuses ) ) {
 					$the_invoice = wcj_get_pdf_invoice( $order->id, $invoice_type_id );
 					$file_name = $the_invoice->get_pdf( 'F' );
@@ -73,10 +73,10 @@ class WCJ_PDF_Invoicing_Emails {
 
 			//$available_emails = apply_filters( 'woocommerce_resend_order_emails_available', array( 'new_order', 'customer_processing_order', 'customer_completed_order', 'customer_invoice' ) );
 			$available_emails = array(
-				'new_order'                 => __( 'New Order (Admin and Customer)', 'woocommerce' ),
-				'customer_processing_order' => __( 'Customer Processing Order', 'woocommerce' ),
-				'customer_completed_order'  => __( 'Customer Completed Order', 'woocommerce' ),
-				'customer_invoice'          => __( 'Customer Invoice', 'woocommerce' ),
+				'new_order'                 => __( 'Admin - New Order', 'woocommerce' ),
+				'customer_processing_order' => __( 'Customer - Processing Order', 'woocommerce' ),
+				'customer_completed_order'  => __( 'Customer - Completed Order', 'woocommerce' ),
+				'customer_invoice'          => __( 'Customer - Invoice', 'woocommerce' ),
 			);
 
 			$settings[] = array(
@@ -97,14 +97,6 @@ class WCJ_PDF_Invoicing_Emails {
 		}
 
         return $settings;
-    }
-
-    /**
-     * settings_section.
-     */
-    function settings_section( $sections ) {
-        $sections['pdf_invoicing_emails'] = __( 'Email Options', 'woocommerce-jetpack' );
-        return $sections;
     }
 }
 

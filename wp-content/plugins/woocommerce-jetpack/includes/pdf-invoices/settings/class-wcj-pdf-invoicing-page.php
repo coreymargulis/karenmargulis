@@ -5,7 +5,7 @@
  * The WooCommerce Jetpack PDF Invoicing Page class.
  *
  * @class    WCJ_PDF_Invoicing_Page
- * @version  1.0.0
+ * @version  2.1.2
  * @category Class
  * @author   Algoritmika Ltd.
  */
@@ -48,6 +48,16 @@ class WCJ_PDF_Invoicing_Page {
 					'P' => __( 'Portrait', 'woocommerce-jetpack' ),
 					'L' => __( 'Landscape', 'woocommerce-jetpack' ),
 				),
+			);				
+					
+			$page_formats = array();
+			for ( $i = 1; $i < 8; $i++ ) $page_formats[ 'A' . $i ] = 'A' . $i;
+			$settings[] = array(
+				'title'    => __( 'Page Format', 'woocommerce-jetpack' ),
+				'id'       => 'wcj_invoicing_' . $invoice_type['id'] . '_page_format',
+				'default'  => 'A4',
+				'type'     => 'select',
+				'options'  => $page_formats,
 			);				
 		
 			$settings[] = array(

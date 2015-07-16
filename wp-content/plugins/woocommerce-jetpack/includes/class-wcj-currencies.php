@@ -111,9 +111,9 @@ class WCJ_Currencies {
 			array(
 				'title' 	=> __( 'Currencies', 'woocommerce-jetpack' ),
 				'desc' 		=> '<strong>' . __( 'Enable Module', 'woocommerce-jetpack' ) . '</strong>',
-				'desc_tip'	=> __( 'Add all world currencies, change currency symbol.', 'woocommerce-jetpack' ),
+				'desc_tip'	=> __( 'Add all world currencies to your WooCommerce store; change currency symbol.', 'woocommerce-jetpack' ),
 				'id' 		=> 'wcj_currency_enabled',
-				'default'	=> 'yes',
+				'default'	=> 'no',
 				'type' 		=> 'checkbox'
 			),
 

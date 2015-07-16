@@ -1,4 +1,89 @@
 <?php
+/**
+ * WooCommerce Jetpack Functions
+ *
+ * The WooCommerce Jetpack Functions.
+ *
+ * @version  2.2.0
+ * @author   Algoritmika Ltd.
+ */
+
+/**
+ * wcj_is_product_wholesale_enabled.
+ */
+if ( ! function_exists( 'wcj_is_product_wholesale_enabled' ) ) {
+	function wcj_is_product_wholesale_enabled( $product_id ) {
+		$products_to_include = get_option( 'wcj_wholesale_price_products_to_include', array() );
+		if ( empty ( $products_to_include ) ) return true;
+		foreach ( $products_to_include as $id ) {
+			if ( $product_id == $id ) return true;
+		}
+		return false;
+	}
+ }
+
+/**
+ * wcj_get_products.
+ */
+add_action( 'init', 'add_wcj_get_products_filter' );
+if ( ! function_exists( 'add_wcj_get_products_filter' ) ) {
+	function add_wcj_get_products_filter() {
+		add_filter( 'wcj_get_products_filter', 'wcj_get_products' );
+	}
+}
+if ( ! function_exists( 'wcj_get_products' ) ) {
+	function wcj_get_products( $products ) {
+		//if (is_admin()) require_once(ABSPATH . 'wp-includes/pluggable.php');
+		//$products = array();
+		$args = array(
+			'post_type'			=> 'product',
+			'post_status' 		=> 'any',
+			'posts_per_page' 	=> -1,
+		);
+		$loop = new WP_Query( $args );
+		while ( $loop->have_posts() ) : $loop->the_post();
+			$products[ strval( $loop->post->ID ) ] = get_the_title( $loop->post->ID );
+		endwhile;
+		//TODO:
+		// reset_postdata? reset_query?
+		//print_r( $products );
+		return $products;
+	}
+}
+
+/*
+ * wcj_get_product.
+ */
+if ( ! function_exists( 'wcj_get_product' ) ) {
+	function wcj_get_product( $product_id = 0 ) {
+		if ( 0 == $product_id ) $product_id = get_the_ID();
+		$the_product = new WCJ_Product( $product_id );
+		return $the_product;
+	}
+}
+
+/**
+ * wc_get_product_purchase_price.
+ */
+if ( ! function_exists( 'wc_get_product_purchase_price' ) ) {
+	function wc_get_product_purchase_price( $product_id = 0 ) {
+		$the_product = wcj_get_product( $product_id );
+		return $the_product->get_purchase_price();
+	}
+}
+
+/**
+ * is_shop_manager.
+ *
+ * @return bool
+ */
+if ( ! function_exists( 'is_shop_manager' ) ) {
+	function is_shop_manager( $user_id = 0 ) {
+		$the_user = ( 0 == $user_id ) ? wp_get_current_user() : get_user_by( 'id', $user_id );
+		//if ( isset( $the_user['roles'][0] ) && 'shop_manager' === $the_user['roles'][0] ) {
+		return ( isset( $the_user->roles[0] ) && 'shop_manager' === $the_user->roles[0] ) ? true : false;
+	}
+}
 
 /**
  * validate_VAT.
@@ -7,20 +92,32 @@
  */
 if ( ! function_exists( 'validate_VAT' ) ) {
 	function validate_VAT( $country_code, $vat_number ) {
-		$client = new SoapClient( 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl' );
-		$result = $client->checkVat( array(
-			'countryCode' => $country_code,
-			'vatNumber'   => $vat_number,
-		) );
-		return ( isset( $result->valid ) ) ? $result->valid : null;
+		try {
+			$client = new SoapClient(
+				'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl',
+				array( 'exceptions' => true )
+			);
+
+			$result = $client->checkVat( array(
+				'countryCode' => $country_code,
+				'vatNumber'   => $vat_number,
+			) );
+
+			return ( isset( $result->valid ) ) ? $result->valid : null;
+
+		} catch( Exception $exception ) {
+			return null;
+		}
 	}
 }
+
 
 /**
  * convert_number_to_words.
  *
  * @return string
  */
+
 if ( ! function_exists( 'convert_number_to_words' ) ) {
 	function convert_number_to_words( $number ) {
 		$hyphen      = '-';
@@ -220,8 +317,7 @@ if ( ! function_exists( 'wcj_get_shortcodes_atts_list' ) ) {
 if ( ! function_exists( 'wcj_get_shortcodes_list' ) ) {
 	function wcj_get_shortcodes_list() {
 		$the_array = apply_filters( 'wcj_shortcodes_list', array() );
-		return implode( ', ', $the_array );
-		//return implode( PHP_EOL, $the_array );
+		return implode( ', ', $the_array )/*  . ' (' . count( $the_array ) . ')' */;
 	}
 }
 

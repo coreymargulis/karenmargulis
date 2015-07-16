@@ -4,9 +4,7 @@
  *
  * The WooCommerce Jetpack Exchange Rates class.
  *
- * @class    WCJ_Exchange_Rates
- * @version  1.0.0
- * @category Class
+ * @version  2.2.0
  * @author   Algoritmika Ltd.
  */
 
@@ -24,7 +22,7 @@ class WCJ_Exchange_Rates {
 		add_action( 'admin_enqueue_scripts' ,         array( $this, 'enqueue_exchange_rates_script' ) );
 		add_action( 'admin_init',                     array( $this, 'register_script' ) );
 
-		add_action( 'woocommerce_admin_field_button', array( $this, 'output_settings_button' ) );
+		add_action( 'woocommerce_admin_field_exchange_rate', array( $this, 'output_settings_button' ) );
     }
 
 	/**
@@ -39,7 +37,7 @@ class WCJ_Exchange_Rates {
     /**
      * enqueue_exchange_rates_script.
      */
-    public function enqueue_exchange_rates_script() {	
+    public function enqueue_exchange_rates_script() {
         if( isset( $_GET['section'] ) && 'price_by_country' === $_GET['section'] ) {
 			wp_enqueue_script( 'wcj-exchange-rates' );
 		}
@@ -49,7 +47,11 @@ class WCJ_Exchange_Rates {
      * output_settings_button.
      */
     function output_settings_button( $value ) {
-	
+
+		$value['type'] = 'number';
+
+		$option_value = get_option( $value['id'], $value['default'] );
+
 		// Custom attribute handling
 		$custom_attributes = array();
 		if ( ! empty( $value['custom_attributes'] ) && is_array( $value['custom_attributes'] ) ) {
@@ -57,7 +59,14 @@ class WCJ_Exchange_Rates {
 				$custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
 			}
 		}
+		$custom_attributes_button = array();
+		if ( ! empty( $value['custom_attributes_button'] ) && is_array( $value['custom_attributes_button'] ) ) {
+			foreach ( $value['custom_attributes_button'] as $attribute => $attribute_value ) {
+				$custom_attributes_button[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';
+			}
+		}
 		$tip = '';
+		$description = '';
 		?>
 		<tr valign="top">
 			<th scope="row" class="titledesc">
@@ -70,9 +79,18 @@ class WCJ_Exchange_Rates {
 					id="<?php echo esc_attr( $value['id'] ); ?>"
 					type="<?php echo esc_attr( $value['type'] ); ?>"
 					style="<?php echo esc_attr( $value['css'] ); ?>"
-					value="<?php echo esc_attr( $value['value'] ); ?>"
+					value="<?php echo esc_attr( $option_value ); ?>"
 					class="<?php echo esc_attr( $value['class'] ); ?>"
 					<?php echo implode( ' ', $custom_attributes ); ?>
+					/>
+				<input
+					name="<?php echo esc_attr( $value['id'] . '_button' ); ?>"
+					id="<?php echo esc_attr( $value['id'] . '_button' ); ?>"
+					type="button"
+					value="<?php echo esc_attr( $value['value'] ); ?>"
+					title="<?php echo esc_attr( $value['value_title'] ); ?>"
+					class="exchage_rate_button"
+					<?php echo implode( ' ', $custom_attributes_button ); ?>
 					/>
 			</td>
 		</tr>

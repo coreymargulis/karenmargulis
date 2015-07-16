@@ -1,4 +1,3 @@
-// Let jsHint know about the globals that it should stop pestering me about
 /* global Stripe, s4wc_info, woocommerce_params */
 
 // Set API key
@@ -93,6 +92,10 @@ jQuery( function ( $ ) {
         } else {
             // insert the token into the form so it gets submitted to the server
             $form.append( '<input type="hidden" class="stripe_token" name="stripe_token" value="' + response.id + '"/>' );
+
+            // tell the server if we want to save the card
+            var $ccSave = $( '#s4wc-cc-form #s4wc-save-card' ).prop('checked');
+            $form.append( '<input type="hidden" class="save_card" name="save_card" value="' + $ccSave + '"/>' );
             $form.submit();
         }
     }

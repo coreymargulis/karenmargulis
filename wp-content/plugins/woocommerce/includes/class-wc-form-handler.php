@@ -344,7 +344,7 @@ class WC_Form_Handler {
 			$available_gateways[ $payment_method ]->validate_fields();
 
 			// Process
-			if ( wc_error_count() == 0 ) {
+			if ( wc_notice_count( 'wc_errors' ) == 0 ) {
 				$result = $available_gateways[ $payment_method ]->add_payment_method();
 
 				// Redirect to success/confirmation/payment page
@@ -385,7 +385,7 @@ class WC_Form_Handler {
 				$product = wc_get_product( $cart_item['product_id'] );
 				$undo    = WC()->cart->get_undo_url( $cart_item_key );
 
-				wc_add_notice( sprintf( __( '%s removed. %sUndo?%s', 'woocommerce' ), $product ? $product->get_title() : __( 'Item', 'woocommerce' ), '<a href="' . esc_url( $undo ) . '">', '</a>' ) );
+				wc_add_notice( sprintf( __( '%s removed. %sUndo?%s', 'woocommerce' ), apply_filters( 'woocommerce_cart_item_removed_title', $product ? $product->get_title() : __( 'Item', 'woocommerce' ), $cart_item ), '<a href="' . esc_url( $undo ) . '">', '</a>' ) );
 			}
 
 			$referer  = wp_get_referer() ? remove_query_arg( array( 'remove_item', 'add-to-cart', 'added-to-cart' ), add_query_arg( 'removed_item', '1', wp_get_referer() ) ) : WC()->cart->get_cart_url();
@@ -505,7 +505,7 @@ class WC_Form_Handler {
 			foreach ( $item['item_meta'] as $meta_name => $meta_value ) {
 				if ( taxonomy_is_product_attribute( $meta_name ) ) {
 					$variations[ $meta_name ] = $meta_value[0];
-				} elseif ( meta_is_product_attribute( $meta_name, $meta_value, $product_id ) ) {
+				} elseif ( meta_is_product_attribute( $meta_name, $meta_value[0], $product_id ) ) {
 					$variations[ $meta_name ] = $meta_value[0];
 				}
 			}
@@ -593,17 +593,10 @@ class WC_Form_Handler {
 
 			$variation_id       = empty( $_REQUEST['variation_id'] ) ? '' : absint( $_REQUEST['variation_id'] );
 			$quantity           = empty( $_REQUEST['quantity'] ) ? 1 : wc_stock_amount( $_REQUEST['quantity'] );
-			$all_variations_set = true;
+			$missing_attributes = array();
 			$variations         = array();
-
-			// Only allow integer variation ID - if its not set, redirect to the product page
-			if ( empty( $variation_id ) ) {
-				wc_add_notice( __( 'Please choose product options&hellip;', 'woocommerce' ), 'error' );
-				return;
-			}
-
-			$attributes = $adding_to_cart->get_attributes();
-			$variation  = wc_get_product( $variation_id );
+			$attributes         = $adding_to_cart->get_attributes();
+			$variation          = wc_get_product( $variation_id );
 
 			// Verify all attributes
 			foreach ( $attributes as $attribute ) {
@@ -641,12 +634,18 @@ class WC_Form_Handler {
 						continue;
 					}
 
+				} else {
+					$missing_attributes[] = wc_attribute_label( $attribute['name'] );
 				}
-
-				$all_variations_set = false;
 			}
 
-			if ( $all_variations_set ) {
+			if ( $missing_attributes ) {
+				wc_add_notice( sprintf( _n( '%s is a required field', '%s are required fields', sizeof( $missing_attributes ), 'woocommerce' ), wc_format_list_of_items( $missing_attributes ) ), 'error' );
+				return;
+			} elseif ( empty( $variation_id ) ) {
+				wc_add_notice( __( 'Please choose product options&hellip;', 'woocommerce' ), 'error' );
+				return;
+			} else {
 				// Add to cart validation
 				$passed_validation 	= apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity, $variation_id, $variations );
 
@@ -657,9 +656,6 @@ class WC_Form_Handler {
 						$added_to_cart[] = $product_id;
 					}
 				}
-			} else {
-				wc_add_notice( __( 'Please choose product options&hellip;', 'woocommerce' ), 'error' );
-				return;
 			}
 
 		// Grouped Products
@@ -793,7 +789,9 @@ class WC_Form_Handler {
 				$user                   = wp_signon( apply_filters( 'woocommerce_login_credentials', $creds ), $secure_cookie );
 
 				if ( is_wp_error( $user ) ) {
-					throw new Exception( $user->get_error_message() );
+					$message = $user->get_error_message();
+					$message = str_replace( '<strong>' . esc_html( $creds['user_login'] ) . '</strong>', '<strong>' . esc_html( $_POST['username'] ) . '</strong>', $message );
+					throw new Exception( $message );
 				} else {
 
 					if ( ! empty( $_POST['redirect'] ) ) {

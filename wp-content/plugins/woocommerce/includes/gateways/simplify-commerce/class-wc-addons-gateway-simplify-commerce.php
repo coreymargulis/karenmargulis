@@ -62,7 +62,7 @@ class WC_Addons_Gateway_Simplify_Commerce extends WC_Gateway_Simplify_Commerce {
 	 * @return bool
 	 */
 	protected function order_contains_subscription( $order_id ) {
-		return class_exists( 'WC_Subscriptions_Order' ) && WC_Subscriptions_Order::order_contains_subscription( $order_id );
+		return class_exists( 'WC_Subscriptions_Order' ) && ( WC_Subscriptions_Order::order_contains_subscription( $order_id ) || WC_Subscriptions_Renewal_Order::is_renewal( $order_id ) );
 	}
 
 	/**
@@ -115,16 +115,11 @@ class WC_Addons_Gateway_Simplify_Commerce extends WC_Gateway_Simplify_Commerce {
 				throw new Simplify_ApiException( $error_msg );
 			}
 
-			$initial_payment = WC_Subscriptions_Order::get_total_initial_payment( $order );
+			$initial_payment  = WC_Subscriptions_Order::get_total_initial_payment( $order );
+			$payment_response = $this->process_subscription_payment( $order, $initial_payment );
 
-			if ( $initial_payment > 0 ) {
-				$payment_response = $this->process_subscription_payment( $order, $initial_payment );
-			}
-
-			if ( isset( $payment_response ) && is_wp_error( $payment_response ) ) {
-
+			if ( is_wp_error( $payment_response ) ) {
 				throw new Exception( $payment_response->get_error_message() );
-
 			} else {
 				// Remove cart
 				WC()->cart->empty_cart();
@@ -265,14 +260,21 @@ class WC_Addons_Gateway_Simplify_Commerce extends WC_Gateway_Simplify_Commerce {
 	 * @param integer $amount (default: 0)
 	 * @return bool|WP_Error
 	 */
-	public function process_subscription_payment( $order = '', $amount = 0 ) {
-		$order_items       = $order->get_items();
-		$order_item        = array_shift( $order_items );
-		$subscription_name = sprintf( __( '%s - Subscription for "%s"', 'woocommerce' ), esc_html( get_bloginfo( 'name', 'display' ) ), $order_item['name'] ) . ' ' . sprintf( __( '(Order #%s)', 'woocommerce' ), $order->get_order_number() );
+	public function process_subscription_payment( $order, $amount = 0 ) {
+		if ( 0 == $amount ) {
+			// Payment complete
+			$order->payment_complete();
+
+			return true;
+		}
 
 		if ( $amount * 100 < 50 ) {
 			return new WP_Error( 'simplify_error', __( 'Sorry, the minimum allowed order total is 0.50 to use this payment method.', 'woocommerce' ) );
 		}
+
+		$order_items       = $order->get_items();
+		$order_item        = array_shift( $order_items );
+		$subscription_name = sprintf( __( '%s - Subscription for "%s"', 'woocommerce' ), esc_html( get_bloginfo( 'name', 'display' ) ), $order_item['name'] ) . ' ' . sprintf( __( '(Order #%s)', 'woocommerce' ), $order->get_order_number() );
 
 		$customer_id = get_post_meta( $order->id, '_simplify_customer_id', true );
 
@@ -280,20 +282,37 @@ class WC_Addons_Gateway_Simplify_Commerce extends WC_Gateway_Simplify_Commerce {
 			return new WP_Error( 'simplify_error', __( 'Customer not found', 'woocommerce' ) );
 		}
 
-		// Charge the customer
-		$payment = Simplify_Payment::createPayment( array(
-			'amount'              => $amount * 100, // In cents
-			'customer'            => $customer_id,
-			'description'         => trim( substr( $subscription_name, 0, 1024 ) ),
-			'currency'            => strtoupper( get_woocommerce_currency() ),
-			'reference'           => $order->id,
-			'card.addressCity'    => $order->billing_city,
-			'card.addressCountry' => $order->billing_country,
-			'card.addressLine1'   => $order->billing_address_1,
-			'card.addressLine2'   => $order->billing_address_2,
-			'card.addressState'   => $order->billing_state,
-			'card.addressZip'     => $order->billing_postcode
-		) );
+		try {
+			// Charge the customer
+			$payment = Simplify_Payment::createPayment( array(
+				'amount'              => $amount * 100, // In cents
+				'customer'            => $customer_id,
+				'description'         => trim( substr( $subscription_name, 0, 1024 ) ),
+				'currency'            => strtoupper( get_woocommerce_currency() ),
+				'reference'           => $order->id,
+				'card.addressCity'    => $order->billing_city,
+				'card.addressCountry' => $order->billing_country,
+				'card.addressLine1'   => $order->billing_address_1,
+				'card.addressLine2'   => $order->billing_address_2,
+				'card.addressState'   => $order->billing_state,
+				'card.addressZip'     => $order->billing_postcode
+			) );
+
+		} catch ( Exception $e ) {
+
+			$error_message = $e->getMessage();
+
+			if ( $e instanceof Simplify_BadRequestException && $e->hasFieldErrors() && $e->getFieldErrors() ) {
+				$error_message = '';
+				foreach ( $e->getFieldErrors() as $error ) {
+					$error_message .= ' ' . $error->getFieldName() . ': "' . $error->getMessage() . '" (' . $error->getErrorCode() . ')';
+				}
+			}
+
+			$order->add_order_note( sprintf( __( 'Simplify payment error: %s', 'woocommerce' ), $error_message ) );
+
+			return new WP_Error( 'simplify_payment_declined', $e->getMessage(), array( 'status' => $e->getCode() ) );
+		}
 
 		if ( 'APPROVED' == $payment->paymentStatus ) {
 			// Payment complete

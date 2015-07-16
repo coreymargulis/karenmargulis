@@ -34,6 +34,7 @@
   background: #F55E4F;
   color: #fff;
   margin: 0 0 10px;
+  display: inline-block;
 }
 .acf-field .acf-error-message:after {
   content: "";
@@ -83,11 +84,27 @@ td.acf-field[data-width] {
 }
 /* field width helpers */
 .acf-r0 {
-  border-top: none !important;
+  border-top-width: 0 !important;
 }
 .acf-c0 {
   clear: left !important;
-  border-left: none !important;
+  border-left-width: 0 !important;
+}
+/* rtl */
+html[dir="rtl"] .acf-field[data-width] {
+  float: right;
+}
+html[dir="rtl"] .acf-field[data-width] + .acf-field {
+  clear: right;
+}
+html[dir="rtl"] .acf-field[data-width] + .acf-field[data-width] {
+  clear: none;
+  border-right: 1px solid #eeeeee;
+}
+html[dir="rtl"] .acf-c0 {
+  clear: right !important;
+  border-left-width: 1px !important;
+  border-right-width: 0 !important;
 }
 /*---------------------------------------------------------------------------------------------
 *
@@ -220,6 +237,56 @@ html[dir="rtl"] input.acf-is-prepended.acf-is-appended {
 }
 /*---------------------------------------------------------------------------------------------
 *
+*  Select2
+*
+*---------------------------------------------------------------------------------------------*/
+.acf-select2-container .select2-choices {
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+  min-height: 31px;
+}
+.acf-select2-container .select2-choices .select2-search-choice {
+  margin: 5px 0 5px 5px;
+  padding: 3px 5px 3px 18px;
+  border-color: #bbb;
+  background: #f9f9f9;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+}
+.acf-select2-container .select2-choices .select2-search-choice-focus {
+  border-color: #999;
+}
+.acf-select2-container .select2-choices .select2-search-field input {
+  height: 31px;
+  line-height: 22px;
+  margin: 0;
+  padding: 5px 5px 5px 7px;
+}
+.acf-select2-container .select2-search-choice-close {
+  top: 3px;
+}
+/* open */
+.acf-select2-container.select2-container-active .select2-choices,
+.acf-select2-container.select2-dropdown-open .select2-choices {
+  border-color: #5B9DD9;
+  border-radius: 3px 3px 0 0;
+}
+/* single */
+.acf-select2-container .select2-choice {
+  border-color: #BBBBBB;
+}
+.acf-select2-container .select2-choice .select2-arrow {
+  background: transparent;
+  border-left-color: #DFDFDF;
+  padding-left: 1px;
+}
+/* single open */
+.acf-select2-container.select2-dropdown-open .select2-choice {
+  background: #fff;
+  border-color: #5B9DD9;
+}
+/*---------------------------------------------------------------------------------------------
+*
 *  Radio
 *
 *---------------------------------------------------------------------------------------------*/
@@ -246,13 +313,15 @@ ul.acf-hl.acf-checkbox-list li {
 ul.acf-radio-list li input,
 ul.acf-checkbox-list li input {
   margin: -1px 4px 0 0;
-  width: auto !important;
   vertical-align: middle;
 }
 ul.acf-radio-list li label,
 ul.acf-checkbox-list li label {
   display: inline;
   margin: 2px 0;
+}
+ul.acf-radio-list li input[type="text"] {
+  width: auto;
 }
 /* rtl */
 html[dir="rtl"] ul.acf-radio-list li input,
@@ -402,7 +471,8 @@ html[dir="rtl"] .pac-container .pac-item {
 .acf-relationship .list ul {
   padding-bottom: 5px;
 }
-.acf-relationship .list ul .acf-rel-item {
+.acf-relationship .list ul .acf-rel-item,
+.acf-relationship .list ul p {
   padding-left: 20px;
 }
 .acf-relationship .list .acf-rel-label {
@@ -499,7 +569,7 @@ html[dir="rtl"] .pac-container .pac-item {
   padding: 10px 2px 0 0;
 }
 .acf-tab-group li {
-  margin: 0 8px 0 0;
+  margin: 0 5px 0 0;
 }
 .acf-tab-group li a {
   padding: 6px 10px;
@@ -512,7 +582,8 @@ html[dir="rtl"] .pac-container .pac-item {
   border-bottom: 0 none;
   text-decoration: none;
   background: #E4E4E4;
-  border-radius: 1px 1px 0 0;
+  border-radius: 3px 3px 0 0;
+  transition: none;
 }
 .acf-tab-group li a:hover {
   background: #F1F1F1;
@@ -570,7 +641,7 @@ html[dir="rtl"] .pac-container .pac-item {
 }
 /* left aligned */
 .acf-fields.acf-tpl {
-  padding-left: 150px !important;
+  padding-left: 170px !important;
 }
 .acf-tpl > .acf-tab-wrap {
   position: absolute;
@@ -578,42 +649,79 @@ html[dir="rtl"] .pac-container .pac-item {
   left: 0;
   width: 149px;
   height: 100%;
-  background: #F9F9F9;
-  border-right: #DFDFDF solid 1px;
+  border-right: #CCCCCC solid 1px;
 }
 .acf-tpl > .acf-tab-wrap .acf-tab-group {
-  padding: 0 !important;
-  margin: 0 !important;
-  border: 0 none !important;
+  padding: 1px 0 0;
+  border-bottom: 0 none;
 }
 .acf-tpl > .acf-tab-wrap .acf-tab-group li {
   float: none;
-  padding: 0;
-  margin: 0;
+  margin: -1px 0 0;
 }
 .acf-tpl > .acf-tab-wrap .acf-tab-group li a {
-  border-width: 1px 0;
-  border-color: #EAEAEA transparent transparent;
-  border-style: solid;
-  background: transparent !important;
+  border: 1px solid #CCCCCC;
   font-size: 13px;
   line-height: 18px;
   color: #0074a2;
   padding: 10px;
   font-weight: normal;
+  margin-right: -1px;
 }
 .acf-tpl > .acf-tab-wrap .acf-tab-group li:first-child a {
-  border-top-width: 0px;
+  border-radius: 3px 0 0 0;
+}
+.acf-tpl > .acf-tab-wrap .acf-tab-group li:last-child a {
+  border-radius: 0 0 0 3px;
 }
 .acf-tpl > .acf-tab-wrap .acf-tab-group li.active a {
-  margin: 0 -1px 0 0;
+  color: #000;
+  border-right-color: transparent;
+  margin-right: -2px;
+  /* makes border join neet and tidy */
+}
+/* left aligned - default */
+.acf-postbox.default .acf-fields.acf-tpl {
+  padding-left: 150px !important;
+}
+.acf-postbox.default .acf-tpl > .acf-tab-wrap {
+  border-right: #DFDFDF solid 1px;
+  background: #F9F9F9;
+}
+.acf-postbox.default .acf-tpl > .acf-tab-wrap .acf-tab-group {
+  padding-top: 0;
+}
+.acf-postbox.default .acf-tpl > .acf-tab-wrap .acf-tab-group li a {
+  border-left-width: 0;
   border-color: #DFDFDF;
-  color: #555;
-  background: #fff !important;
+  border-radius: 0 !important;
+  background: transparent;
 }
-.acf-tpl > .acf-tab-wrap .acf-tab-group li a:hover,
-.acf-tpl > .acf-tab-wrap .acf-tab-group li.active a {
-  background: #fff !important;
+.acf-postbox.default .acf-tpl > .acf-tab-wrap .acf-tab-group li a:hover {
+  background: #fff;
+}
+.acf-postbox.default .acf-tpl > .acf-tab-wrap .acf-tab-group li.active a {
+  border-right-color: #fff;
+  background: #fff;
+}
+.acf-postbox.default .acf-tpl > .acf-tab-wrap .acf-tab-group li:first-child a {
+  border-top-color: #EEEEEE;
+}
+/* rtl */
+html[dir="rtl"] .acf-fields.acf-tpl {
+  padding-right: 150px !important;
+  padding-left: 0 !important;
+}
+html[dir="rtl"] .acf-tpl > .acf-tab-wrap {
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: 0;
+  border-right-width: 0;
+  border-left: #DFDFDF solid 1px;
+}
+html[dir="rtl"] .acf-tpl > .acf-tab-wrap .acf-tab-group li.active a {
+  margin: 0 0 0 -1px;
 }
 /*--------------------------------------------------------------------------------------------
 *
@@ -767,11 +875,10 @@ html[dir="rtl"] .pac-container .pac-item {
 .acf-image-uploader input.button {
   width: auto;
 }
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  .acf-image-uploader img {
-    width: auto;
-    max-width: 100%;
-  }
+/* svg */
+.acf-image-uploader img[src$=".svg"] {
+  min-height: 100px;
+  min-width: 100px;
 }
 /* rtl */
 html[dir="rtl"] .acf-image-uploader .view {
@@ -853,6 +960,9 @@ html[dir="rtl"] .acf-image-uploader .view {
 *	Taxonomy
 *
 *---------------------------------------------------------------------------------------------*/
+.acf-taxonomy-field {
+  position: relative;
+}
 .acf-taxonomy-field .categorychecklist-holder {
   border: #DFDFDF solid 1px;
   border-radius: 3px;
@@ -865,6 +975,16 @@ html[dir="rtl"] .acf-image-uploader .view {
 }
 .acf-taxonomy-field ul.children {
   padding-left: 18px;
+}
+.acf-taxonomy-field .acf-icon {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  z-index: 1;
+}
+.acf-taxonomy-field[data-type="select"] .acf-icon {
+  top: -9px;
+  right: -9px;
 }
 /*---------------------------------------------------------------------------------------------
 *
@@ -1016,7 +1136,8 @@ html[dir="rtl"] .acf-image-uploader .view {
 }
 /* fix % margin which causes .acf-uploadedTo to drop down below select */
 .media-frame select.attachment-filters {
-  margin-right: 6px;
+  margin-right: 6px !important;
+  vertical-align: middle;
 }
 .media-modal .acf-uploadedTo {
   line-height: 28px;
@@ -1029,6 +1150,13 @@ html[dir="rtl"] .acf-image-uploader .view {
 /* allow line breaks in upload error */
 .media-modal .upload-error-message {
   white-space: pre-wrap;
+}
+/* fix required span */
+.media-modal .acf-required {
+  padding: 0 !important;
+  margin: 0 !important;
+  float: none !important;
+  color: #f00 !important;
 }
 /*---------------------------------------------------------------------------------------------
 *
@@ -1141,13 +1269,69 @@ body.acf-wp-4 .media-modal.acf-media-modal .media-frame-content {
 .media-modal.acf-media-modal .media-frame-content {
   left: 0;
 }
-/*--------------------------------------------------------------------------
+/*--------------------------------------------------------------------------------------------
 *
-*	Profile page
-*	
-*-------------------------------------------------------------------------*/
-#profile-page .acf-field textarea {
-  width: 100%;
+*	User
+*
+*--------------------------------------------------------------------------------------------*/
+.form-table > tbody > .acf-field > .acf-label {
+  padding: 20px 10px 20px 0;
+  width: 200px;
+}
+.form-table > tbody > .acf-field > .acf-label label {
+  font-size: 14px;
+}
+.form-table > tbody > .acf-field > .acf-input {
+  padding: 15px 5% 15px 10px;
+}
+.form-table th.acf-th {
+  width: auto;
+}
+/*
+.form-table .acf-error-message {
+	display: inline-block;
+}
+*/
+/*--------------------------------------------------------------------------------------------
+*
+*	Term
+*
+*--------------------------------------------------------------------------------------------*/
+#addtag .acf-field {
+  padding-right: 5%;
+}
+#addtag .acf-field .acf-label {
+  margin: 0;
+}
+#addtag .acf-field .acf-label label {
+  font-size: 12px;
+  font-weight: normal;
+}
+p.submit .spinner,
+p.submit .acf-spinner {
+  vertical-align: top;
+  float: none;
+  margin: 4px 4px 0;
+}
+/*--------------------------------------------------------------------------------------------
+*
+*	Comment
+*
+*--------------------------------------------------------------------------------------------*/
+.editcomment td:first-child {
+  white-space: nowrap;
+  width: 131px;
+}
+/*--------------------------------------------------------------------------------------------
+*
+*	Widget
+*
+*--------------------------------------------------------------------------------------------*/
+.widget .acf-field .acf-label {
+  margin: 0;
+}
+.widget .acf-field .acf-label label {
+  font-weight: normal;
 }
 /*--------------------------------------------------------------------------
 *
