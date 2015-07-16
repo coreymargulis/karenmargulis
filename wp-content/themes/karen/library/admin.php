@@ -144,4 +144,23 @@ function bones_custom_admin_footer() {
 // adding it to the admin area
 add_filter( 'admin_footer_text', 'bones_custom_admin_footer' );
 
+
+//------------------------------------------------------------//
+
+
+//Custom Admin Menu
+
+// Move Pages above Media
+function wptutsplus_change_menu_order( $menu_order ) {
+    return array(
+        'index.php',
+        'edit.php',
+        'edit.php?post_type=page',
+        'upload.php',
+        'edit-comments.php',
+    );
+}
+add_filter( 'custom_menu_order', '__return_true' );
+add_filter( 'menu_order', 'wptutsplus_change_menu_order' );
+
 ?>

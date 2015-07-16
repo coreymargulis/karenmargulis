@@ -12,7 +12,7 @@ sidebars, comments, ect.
 require_once( 'library/bones.php' );
 
 // CUSTOMIZE THE WORDPRESS ADMIN (off by default)
-// require_once( 'library/admin.php' );
+require_once( 'library/admin.php' );
 
 /*********************
 LAUNCH BONES
@@ -244,33 +244,39 @@ function bones_fonts() {
 
 add_action('wp_enqueue_scripts ', 'bones_fonts');
 
+function my_add_scripts() {
+wp_enqueue_script('classie', get_stylesheet_directory_uri().'/library/js/libs/classie.js', array('jquery'));
+}
+
+add_action('wp_enqueue_scripts', 'my_add_scripts');
+
 // Remove caption from image upload
 add_filter( 'disable_captions', create_function('$a', 'return true;') );
 
 // Options
-if( function_exists('acf_add_options_page') ) {
+// if( function_exists('acf_add_options_page') ) {
   
-  acf_add_options_page(array(
-    'page_title'  => 'Theme General Settings',
-    'menu_title'  => 'Theme Settings',
-    'menu_slug'   => 'theme-general-settings',
-    'capability'  => 'edit_posts',
-    'redirect'    => false
-  ));
+//   acf_add_options_page(array(
+//     'page_title'  => 'Theme General Settings',
+//     'menu_title'  => 'Theme Settings',
+//     'menu_slug'   => 'theme-general-settings',
+//     'capability'  => 'edit_posts',
+//     'redirect'    => false
+//   ));
   
-  acf_add_options_sub_page(array(
-    'page_title'  => 'Theme Header Settings',
-    'menu_title'  => 'Header',
-    'parent_slug' => 'theme-general-settings',
-  ));
+//   acf_add_options_sub_page(array(
+//     'page_title'  => 'Theme Header Settings',
+//     'menu_title'  => 'Header',
+//     'parent_slug' => 'theme-general-settings',
+//   ));
   
-  acf_add_options_sub_page(array(
-    'page_title'  => 'Theme Footer Settings',
-    'menu_title'  => 'Footer',
-    'parent_slug' => 'theme-general-settings',
-  ));
+//   acf_add_options_sub_page(array(
+//     'page_title'  => 'Theme Footer Settings',
+//     'menu_title'  => 'Footer',
+//     'parent_slug' => 'theme-general-settings',
+//   ));
   
-}
+// }
 
 // Custom Excerpt function for Advanced Custom Fields
 function custom_field_excerpt() {
