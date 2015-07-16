@@ -1,48 +1,27 @@
 <?php
 /**
- * Customs RSS template with related posts.
- *
- * Place this file in your theme's directory.
- *
- * @package karen
- * @subpackage karen
+ * Custom WordImpress RSS2 Feed
+ * Integrates Featured Image as "Enclosure"
+ * See http://www.rssboard.org/rss-2-0-1#ltenclosuregtSubelementOfLtitemgt
+ * for RSS 2.0 specs
+ * @package WordPress
  */
-
-
-
 
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
-$post_object = get_field('featured_painting');
-
-if( $post_object ):
-
-	// override $post
-	$post = $post_object;
-	setup_postdata( $post );
-
-$image = get_field('painting');
-
-  $url = $image['url'];
-  $alt = $image['alt'];
-
-  // thumbnail
-  $size = 'medium';
-  $thumb = $image['sizes'][ $size ];
 
 
 
 echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 
 /**
- * Fires between the xml and rss tags in a feed.
- *
+ * Fires between the <xml> and <rss> tags in a feed.
  * @since 4.0.0
- *
- * @param string $context Type of feed. Possible values include 'rss2', 'rss2-comments',
- *                        'rdf', 'atom', and 'atom-comments'.
+ * @param string $context Type of feed. Possible values include
+ * 'rss2', 'rss2-comments', 'rdf', 'atom', and 'atom-comments'.
  */
+
 do_action( 'rss_tag_pre', 'rss2' );
 ?>
 <rss version="2.0"
@@ -55,7 +34,6 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<?php
 	/**
 	 * Fires at the end of the RSS root to add namespaces.
-	 *
 	 * @since 2.0.0
 	 */
 	do_action( 'rss2_ns' );
@@ -69,36 +47,31 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<description><?php bloginfo_rss("description") ?></description>
 	<lastBuildDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
 	<language><?php bloginfo_rss( 'language' ); ?></language>
-	<sy:updatePeriod><?php
-		$duration = 'hourly';
-
-		/**
-		 * Filter how often to update the RSS feed.
-		 *
-		 * @since 2.1.0
-		 *
-		 * @param string $duration The update period. Accepts 'hourly', 'daily', 'weekly', 'monthly',
-		 *                         'yearly'. Default 'hourly'.
-		 */
-		echo apply_filters( 'rss_update_period', $duration );
-	?></sy:updatePeriod>
-	<sy:updateFrequency><?php
-		$frequency = '1';
-
-		/**
-		 * Filter the RSS update frequency.
-		 *
-		 * @since 2.1.0
-		 *
-		 * @param string $frequency An integer passed as a string representing the frequency
-		 *                          of RSS updates within the update period. Default '1'.
-		 */
-		echo apply_filters( 'rss_update_frequency', $frequency );
-	?></sy:updateFrequency>
+	<?php
+	$duration = 'hourly';
+	/**
+	 * Filter how often to update the RSS feed.
+	 * @since 2.1.0
+	 * @param string $duration The update period.
+	 * Default 'hourly'.
+	 * Accepts 'hourly', 'daily', 'weekly', 'monthly', 'yearly'.
+	 */
+	?>
+	<sy:updatePeriod><?php echo apply_filters( 'rss_update_period', $duration ); ?></sy:updatePeriod>
+	<?php
+	$frequency = '1';
+	/**
+	 * Filter the RSS update frequency.
+	 * @since 2.1.0
+	 * @param string $frequency An integer passed as a string
+	 * representing the frequency of RSS updates within the update period.
+	 * Default '1'.
+	 */
+	?>
+	<sy:updateFrequency><?php echo apply_filters( 'rss_update_frequency', $frequency ); ?></sy:updateFrequency>
 	<?php
 	/**
 	 * Fires at the end of the RSS2 Feed Header.
-	 *
 	 * @since 2.0.0
 	 */
 	do_action( 'rss2_head');
@@ -106,32 +79,46 @@ do_action( 'rss_tag_pre', 'rss2' );
 	while( have_posts()) : the_post();
 	?>
 	<item>
-		<?php if( !empty($image) ): ?>
-
-     	<media:content url="<?php echo $image['url']; ?>" medium="image">
-
-  		<?php endif; ?>
-  		<?php wp_reset_postdata(); ?>
-  		<!-- <?php endif; ?> -->
-
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
-		<comments><?php comments_link_feed(); ?></comments>
+
+		<?php
+
+		$post_object = get_field('featured_painting');
+
+		if( $post_object ):
+
+			// override $post
+			$post = $post_object;
+			setup_postdata( $post );
+
+			?>
+
+		    	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+		    	<span>Post Object Custom Field: <?php the_field('height'); ?></span>
+
+
+
+
+<enclosure url="<?php the_permalink(); ?>" type="image/jpeg" length="0" />
+
+	<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+<?php endif; ?>
+
 		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
 		<dc:creator><![CDATA[<?php the_author() ?>]]></dc:creator>
 		<?php the_category_rss('rss2') ?>
 
 		<guid isPermaLink="false"><?php the_guid(); ?></guid>
 
-	<?php $content = get_the_content_feed('rss2'); ?>
-	<?php if ( strlen( $content ) > 0 ) : ?>
-		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
-	<?php else : ?>
-		<content:encoded><![CDATA[<?php the_field('introduction'); ?>]]></content:encoded>
-	<?php endif; ?>
-		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
-		<slash:comments><?php echo get_comments_number(); ?></slash:comments>
-<?php rss_enclosure(); ?>
+		<?php $content = get_the_content_feed('rss2'); ?>
+		<?php if ( strlen( $content ) > 0 ) : ?>
+			<description><![CDATA[<?php the_field('introduction'); ?>]]></description>
+		<?php else : ?>
+			<description><![CDATA[<?php the_field('introduction'); ?>]]></description>
+		<?php endif; ?>
+
+		<?php rss_enclosure(); ?>
 	<?php
 	/**
 	 * Fires at the end of each RSS2 feed item.
