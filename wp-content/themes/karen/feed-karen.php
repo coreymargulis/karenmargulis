@@ -1,7 +1,7 @@
 <?php
 /**
  * Customs RSS template with related posts.
- * 
+ *
  * Place this file in your theme's directory.
  *
  * @package karen
@@ -15,23 +15,23 @@ header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_opt
 $more = 1;
 
 $post_object = get_field('featured_painting');
-	
-if( $post_object ): 
- 
+
+if( $post_object ):
+
 	// override $post
 	$post = $post_object;
 	setup_postdata( $post );
 
 $image = get_field('painting');
-  
+
   $url = $image['url'];
   $alt = $image['alt'];
 
   // thumbnail
   $size = 'medium';
   $thumb = $image['sizes'][ $size ];
-  
-  
+
+
 
 echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 
@@ -112,7 +112,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 
   		<?php endif; ?>
   		<?php wp_reset_postdata(); ?>
-  		<?php endif; ?>
+  		<!-- <?php endif; ?> -->
 
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
