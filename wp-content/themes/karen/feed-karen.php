@@ -41,10 +41,10 @@ do_action( 'rss_tag_pre', 'rss2' );
 >
 
 <channel>
-	<title><?php bloginfo_rss('name'); wp_title_rss(); ?></title>
+	<title><?php bloginfo_rss('Karen Margulis'); wp_title_rss(); ?></title>
 	<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
 	<link><?php bloginfo_rss('url') ?></link>
-	<description><?php bloginfo_rss("description") ?></description>
+	<description><?php bloginfo_rss("Daily Painter and Pastel Teacher") ?></description>
 	<lastBuildDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
 	<language><?php bloginfo_rss( 'language' ); ?></language>
 	<?php
@@ -93,20 +93,25 @@ do_action( 'rss_tag_pre', 'rss2' );
 			setup_postdata( $post );
 
 			?>
+			<?php
+				$image = get_field('painting');
 
-		    	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-		    	<span>Post Object Custom Field: <?php the_field('height'); ?></span>
+				if( !empty($image) ): ?>
 
 
+					<enclosure url="<?php echo $image['url']; ?>" type="image/jpeg" length="0" />
+					<content:encoded><![CDATA[<i><?php the_title(); ?></i>, <?php the_field('width'); ?> x <?php the_field('height'); ?>", $<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?> <a class="price" href="<?php the_permalink(); ?>" style="text-decoration:underline;">Buy</a>]]></content:encoded>
 
+			<?php endif; ?>
 
-<enclosure url="<?php the_permalink(); ?>" type="image/jpeg" length="0" />
+		    	<!-- <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+		    	<span>Post Object Custom Field: <?php the_field('height'); ?></span> -->
 
-	<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-<?php endif; ?>
+		    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+		<?php endif; ?>
 
 		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
-		<dc:creator><![CDATA[<?php the_author() ?>]]></dc:creator>
+
 		<?php the_category_rss('rss2') ?>
 
 		<guid isPermaLink="false"><?php the_guid(); ?></guid>
@@ -128,6 +133,6 @@ do_action( 'rss_tag_pre', 'rss2' );
 	do_action( 'rss2_item' );
 	?>
 	</item>
-	<?php endwhile; ?>
+<?php endwhile; ?>
 </channel>
 </rss>
