@@ -17,30 +17,30 @@
 
 			<div id="content">
 				<div id="featured-image-home-container">
-				<?php 
-					$args = array(  
-				    'post_type' => 'product',  
-				    'meta_key' => '_featured',  
-				    'meta_value' => 'yes',  
-				    'posts_per_page' => 1,  
+				<?php
+					$args = array(
+				    'post_type' => 'product',
+				    'meta_key' => '_featured',
+				    'meta_value' => 'yes',
+				    'posts_per_page' => 1,
 				    'orderby' => 'rand'
-				);  
-  
-				$featured_query = new WP_Query( $args );  
-				      
-				if ($featured_query->have_posts()) :   
-				  
-				    while ($featured_query->have_posts()) :   
-				      
-				        $featured_query->the_post();  
-				          
-				        $product = get_product( $featured_query->post->ID );  
-				          
-				        // Output product information here  
-				        
+				);
+
+				$featured_query = new WP_Query( $args );
+
+				if ($featured_query->have_posts()) :
+
+				    while ($featured_query->have_posts()) :
+
+				        $featured_query->the_post();
+
+				        $product = get_product( $featured_query->post->ID );
+
+				        // Output product information here
+
 							// do_action( 'woocommerce_before_single_product_summary' );
 			        		$image = get_field('painting');
-  
+
 							$url = $image['url'];
 							$alt = $image['alt'];
 							$caption = $image['caption'];
@@ -48,7 +48,7 @@
 							// thumbnail
 							$size = 'large';
 							$thumb = $image['sizes'][ $size ];
-							  
+
 							if( !empty($image) ):
 							echo '<div id="featured-image-home" style="background-image: url(' . $thumb . ')">';
 								//echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
@@ -61,13 +61,13 @@
 									<?php the_title(); ?>, <?php the_field('width'); ?> x <?php the_field('height'); ?> <a class="price" href="<?php the_permalink(); ?>">$<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?></a>
 						    	</div>
 						    </div>
-	
-				          
-				    <?php endwhile;  
-				      
-				endif;  
-				  
-				wp_reset_query(); // Remember to reset 
+
+
+				    <?php endwhile;
+
+				endif;
+
+				wp_reset_query(); // Remember to reset
 				?>
 				</div>
 
@@ -81,7 +81,7 @@
 						</section>
 
 					</div>
-						
+
 				</div>
 
 			</div>

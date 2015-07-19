@@ -34,7 +34,19 @@ style a page via class
 ********************/
 
 .rtl {}                           /* for sites that are read right to left (i.e. hebrew) */
-.home {}                          /* home page */
+.home {
+	#container {
+		.header {
+		position: fixed;
+		z-index: 9999;
+		margin: 0 auto;
+		width: 100%;
+		}
+	}
+	#content {
+		margin:0;
+	}
+}                          /* home page */
 .blog {}                          /* blog template page */
 .archive {}                       /* archive page */
 .date {}                          /* date archive page */
@@ -116,7 +128,7 @@ H1, H2, H3, H4, H5 STYLES
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 	text-rendering: optimizelegibility;
 	font-weight: 500;
-	
+
 	a {
 		text-decoration: none;
 	}
@@ -171,7 +183,7 @@ HEADER STYLES
 
 nav[role=navigation] {
 	//clear: both;
-	-webkit-transition: all 0.3s ease-out;  
+	-webkit-transition: all 0.3s ease-out;
 	-moz-transition: all 0.3s ease-out;
 	-ms-transition: all 0.3s ease-out;
 	-o-transition: all 0.3s ease-out;
@@ -230,7 +242,7 @@ nav[role=navigation] li a {
 	padding-left: .8em;
 
 	display: inline-block;
-	
+
 	.psa {
 		visibility: hidden;
 	}
@@ -250,24 +262,24 @@ a.menu-link {
 NAVIGATION STYLES
 *********************/
 
-		
+
 .top-nav {
 	float: left;
 	font-size: 20px;
 	clear: both;
 	transition: all 0.3s ease-out;
-	
+
 	ul {
 		padding: 0px;
 		margin: 0px;
 		list-style: none;
 		position: relative;
 		display: inline-table;
-		
+
 		li {
 			padding: 0;
 			display: inline-block;
-			
+
 			a {
 				display: block;
 				height: 60px;
@@ -625,7 +637,7 @@ POSTS & CONTENT STYLES
 
 /*home*/
 #featured-image-home-container {
-	height: 500px;
+	height: 700px;
 }
 
 #featured-image-home {
@@ -646,15 +658,15 @@ POSTS & CONTENT STYLES
 .featured-image {
 	position: relative;
 	display: inline-block;
-	
+
 	margin-bottom: 1em;
-	
+
 		img {
 			width: auto;
 			height: auto;
 			max-width: 100%;
 			max-height: 660px;
-			vertical-align: top;	
+			vertical-align: top;
 		}
 }
 
@@ -665,19 +677,19 @@ POSTS & CONTENT STYLES
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	
+
 	padding: 10px 12px;
 	font-family: "scalasansregular";
 	font-size: 12px;
 	z-index: 300;
 	text-align: right;
 	max-width: 80%;
-	
+
 		a {
 			color: #fff;
 			&:hover,
 			&:focus{
-				color: darken($white, 20%);	
+				color: darken($white, 20%);
 			}
 		}
 		.price {
@@ -687,13 +699,13 @@ POSTS & CONTENT STYLES
 			margin-left: 5px;
 			color: #fff;
 			//border-color: rgba(255,255,255,0.8);
-			
+
 				&:hover,
 				&:focus {
 					color: darken($purple, 4%);
-					
+
 				}
-			
+
 		}
 }
 
@@ -716,22 +728,22 @@ POSTS & CONTENT STYLES
 .demo {
 
 	//width: 100%;
-	
+
 	hr {
 		padding: 25px 0;
 		margin: 0px;
 		border: none;
 	}
-	
+
 	.demo-image {
 		float: left;
 		margin-right: 0px;
-		
+
 		img {
 			max-width: 300px;
 		}
 	}
-	
+
 	.demo-text {
 		float: left;
 		//margin-left: 10px;
@@ -743,17 +755,17 @@ POSTS & CONTENT STYLES
 
 .spacer {
 	margin-top:70px;
-	margin-bottom:60px;				
+	margin-bottom:60px;
 }
 
 hr {
 	clear: both;
 	display: block;
 	border: 0;
-	height: 0;			
+	height: 0;
 	border-top: 1px solid rgba(0,0,0,0.05);
 	border-bottom: 1px solid rgba(255,255,255,0.01);
-	
+
 }
 
 /* related posts */
@@ -863,7 +875,7 @@ PAGE NAVI STYLES
 
   } /* end .bones_page_navi */
 
-	
+
 
 /******************************************************************
 COMMENT STYLES
@@ -1213,7 +1225,7 @@ ul.products {
 	padding: 0;
 	text-align: center;
 	list-style-type: none;
-	
+
 		li.product {
 			float:left;
 			padding: 0 3%;
@@ -1221,22 +1233,22 @@ ul.products {
 			margin-bottom: 1.25em;
 			position: relative;
 			transition: all .3s ease-in-out;
-			
+
 			.text-content{
 				//background: rgba(0,0,0,0.5);
 				//position: relative;
 
 				text-align: left;
 				margin-bottom: 2em;
-				
-									  
+
+
 			  	&:hover, &:focus {
 				}
-				
+
 				span {
 				}
 			}
-			
+
 			img {
 				width: 100%;
 				height: auto;
@@ -1254,13 +1266,13 @@ ul.products {
 			h3 {
 				margin-bottom: 0;
 				text-align: left;
-			
+
 			}
 			a {
 				text-decoration:none;
 				display: block;
 				color: $gray;
-				
+
 				&:hover, &:focus {
 					color: lighten($gray, 10%);
 				}
@@ -1294,7 +1306,7 @@ ul.products {
 			}
 
 		}
-		
+
 		li.first {
 			clear:both;
 			//padding-left:0;
@@ -1319,7 +1331,7 @@ ul.products {
 #related-products-container {
 	background-color: $purple;
 }
-	
+
 
 
 
