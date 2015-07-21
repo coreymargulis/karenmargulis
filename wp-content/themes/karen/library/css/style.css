@@ -1449,12 +1449,13 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 
 h1, .h1 {
   font-size: 36px;
-  line-height: 1.333em; }
+  line-height: 1.333em;
+  margin-bottom: .25em; }
 
 h2, .h2 {
   font-size: 28px;
   line-height: 1.4em;
-  margin-bottom: 0.375em; }
+  margin: 0 0 0.375em 0; }
 
 h3, .h3 {
   font-size: 20px;

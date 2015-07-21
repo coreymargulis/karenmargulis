@@ -28,7 +28,7 @@ function bones_ahoy() {
   load_theme_textdomain( 'bonestheme', get_template_directory() . '/library/translation' );
 
   // USE THIS TEMPLATE TO CREATE CUSTOM POST TYPES EASILY
-  //require_once( 'library/custom-post-type.php' );
+  require_once( 'library/custom-post-type.php' );
 
   // launching operation cleanup
   add_action( 'init', 'bones_head_cleanup' );
@@ -115,14 +115,14 @@ new image size.
 
 /************* THEME CUSTOMIZE *********************/
 
-/* 
+/*
   A good tutorial for creating your own Sections, Controls and Settings:
   http://code.tutsplus.com/series/a-guide-to-the-wordpress-theme-customizer--wp-33722
-  
+
   Good articles on modifying the default options:
   http://natko.com/changing-default-wordpress-theme-customization-api-sections/
   http://code.tutsplus.com/tutorials/digging-into-the-theme-customizer-components--wp-27162
-  
+
   To do:
   - Create a js for the postmessage transport method
   - Create some sanitize functions to sanitize inputs
@@ -132,7 +132,7 @@ new image size.
 function bones_theme_customizer($wp_customize) {
   // $wp_customize calls go here.
   //
-  // Uncomment the below lines to remove the default customize sections 
+  // Uncomment the below lines to remove the default customize sections
 
   // $wp_customize->remove_section('title_tagline');
   // $wp_customize->remove_section('colors');
@@ -142,7 +142,7 @@ function bones_theme_customizer($wp_customize) {
 
   // Uncomment the below lines to remove the default controls
   // $wp_customize->remove_control('blogdescription');
-  
+
   // Uncomment the following to change the default section titles
   // $wp_customize->get_section('colors')->title = __( 'Theme Colors' );
   // $wp_customize->get_section('background_image')->title = __( 'Images' );
@@ -255,7 +255,7 @@ add_filter( 'disable_captions', create_function('$a', 'return true;') );
 
 // Options
 // if( function_exists('acf_add_options_page') ) {
-  
+
 //   acf_add_options_page(array(
 //     'page_title'  => 'Theme General Settings',
 //     'menu_title'  => 'Theme Settings',
@@ -263,25 +263,60 @@ add_filter( 'disable_captions', create_function('$a', 'return true;') );
 //     'capability'  => 'edit_posts',
 //     'redirect'    => false
 //   ));
-  
+
 //   acf_add_options_sub_page(array(
 //     'page_title'  => 'Theme Header Settings',
 //     'menu_title'  => 'Header',
 //     'parent_slug' => 'theme-general-settings',
 //   ));
-  
+
 //   acf_add_options_sub_page(array(
 //     'page_title'  => 'Theme Footer Settings',
 //     'menu_title'  => 'Footer',
 //     'parent_slug' => 'theme-general-settings',
 //   ));
-  
+
 // }
+
+add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+function my_toolbars( $toolbars )
+{
+	// Uncomment to view format of $toolbars
+	/*
+	echo '< pre >';
+		print_r($toolbars);
+	echo '< /pre >';
+	die;
+	*/
+
+	// Add a new toolbar called "Very Simple"
+	// - this toolbar has only 1 row of buttons
+	$toolbars['Simple' ] = array();
+	$toolbars['Simple' ][1] = array('bold' , 'italic' , 'underline', 'strikethrough', 'blockquote', 'bullist', 'numlist','link','unlink' );
+	// return $toolbars - IMPORTANT!
+	return $toolbars;
+}
+
+// Change title entry text
+function change_default_title( $title ){
+     $screen = get_current_screen();
+
+     if  ( 'class' == $screen->post_type ) {
+          $title = 'Enter Workshop or Class Name';
+     }
+
+     else {}
+
+     return $title;
+}
+
+add_filter( 'enter_title_here', 'change_default_title' );
+
 
 // Custom Excerpt function for Advanced Custom Fields
 function custom_field_excerpt() {
   global $post;
-  $text = get_field('introduction'); 
+  $text = get_field('introduction');
   if ( '' != $text ) {
     $text = strip_shortcodes( $text );
     $text = apply_filters('the_content', $text);
@@ -293,6 +328,9 @@ function custom_field_excerpt() {
   return apply_filters('the_excerpt', $text);
 }
 
+
+//Remove extra <p> tags from text content
+remove_filter ('introduction', 'wpautop');
 
 
 // Custom RSS feed
@@ -337,7 +375,7 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
 /*--------------------
-HIDE THINGS 
+HIDE THINGS
 --------------------*/
 
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
@@ -348,15 +386,15 @@ add_filter( 'wc_product_weight_enabled', '__return_false' );
 add_filter( 'wc_product_dimensions_enabled', '__return_false' );
 add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
 
-// Remove tabs 
+// Remove tabs
 function woo_remove_product_tabs( $tabs ) {
- 
+
     unset( $tabs['description'] );      	// Remove the description tab
     unset( $tabs['reviews'] ); 			// Remove the reviews tab
     unset( $tabs['additional_information'] );  	// Remove the additional information tab
- 
+
     return $tabs;
- 
+
 }
 // Remove "buy" button from product list page
 add_action( 'woocommerce_after_shop_loop_item', 'remove_add_to_cart_buttons', 1 );
@@ -399,14 +437,14 @@ VISUAL/LAYOUT CHANGES
 // Thumbnails
 function woocommerce_template_loop_product_thumbnail() {
   $image = get_field('painting');
-  
+
   $url = $image['url'];
   $alt = $image['alt'];
 
   // thumbnail
   $size = 'medium';
   $thumb = $image['sizes'][ $size ];
-  
+
   if( !empty($image) ):
 
     echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
@@ -417,14 +455,14 @@ function woocommerce_template_loop_product_thumbnail() {
 // Single Product Image
 function woocommerce_show_product_images() {
   $image = get_field('painting');
-  
+
   $url = $image['url'];
   $alt = $image['alt'];
 
   // thumbnail
   $size = 'medium';
   $thumb = $image['sizes'][ $size ];
-  
+
   if( !empty($image) ):
 
     echo '<img id="painting" src="' . $thumb . '" alt="' . $alt . '" />';
@@ -435,25 +473,25 @@ function woocommerce_show_product_images() {
 
 // Exclude demos from gallery page
 add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
- 
+
 function custom_pre_get_posts_query( $q ) {
- 
+
 	if ( ! $q->is_main_query() ) return;
 	if ( ! $q->is_post_type_archive() ) return;
-	
+
 	if ( ! is_admin() && is_shop() ) {
- 
+
 		$q->set( 'tax_query', array(array(
 			'taxonomy' => 'product_cat',
 			'field' => 'slug',
 			'terms' => array( 'demo' ), // Don't display demos on the gallery page
 			'operator' => 'NOT IN'
 		)));
-	
+
 	}
- 
+
 	remove_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
- 
+
 }
 
 // Display # products per page
@@ -474,60 +512,60 @@ function my_custom_product_template($template, $slug, $name) {
 add_filter('wc_get_template_part', 'my_custom_product_template', 10, 3);
 
 function isa_woocommerce_all_pa(){
- 
+
     global $product;
     $attributes = $product->get_attributes();
- 
+
     if ( ! $attributes ) {
         return;
     }
- 
+
     $out = '<ul class="custom-attributes">';
- 
+
     foreach ( $attributes as $attribute ) {
- 
- 
+
+
         // skip variations
         if ( $attribute['is_variation'] ) {
         continue;
         }
- 
- 
+
+
         if ( $attribute['is_taxonomy'] ) {
- 
+
             $terms = wp_get_post_terms( $product->id, $attribute['name'], 'all' );
- 
+
             // get the taxonomy
             $tax = $terms[0]->taxonomy;
- 
+
             // get the tax object
             $tax_object = get_taxonomy($tax);
- 
+
             // get tax label
             if ( isset ($tax_object->labels->name) ) {
                 $tax_label = $tax_object->labels->name;
             } elseif ( isset( $tax_object->label ) ) {
                 $tax_label = $tax_object->label;
             }
- 
+
             foreach ( $terms as $term ) {
- 
+
                 $out .= '<li class="' . esc_attr( $attribute['name'] ) . ' ' . esc_attr( $term->slug ) . '">';
                 $out .= '<span class="attribute-label">' . $tax_label . ': </span> ';
                 $out .= '<span class="attribute-value">' . $term->name . '</span></li>';
- 
+
             }
- 
+
         } else {
- 
+
             $out .= '<li class="' . sanitize_title($attribute['name']) . ' ' . sanitize_title($attribute['value']) . '">';
             $out .= '<span class="attribute-label">' . $attribute['name'] . ': </span> ';
             $out .= '<span class="attribute-value">' . $attribute['value'] . '</span></li>';
         }
     }
- 
+
     $out .= '</ul>';
- 
+
     echo $out;
 }
 add_action('woocommerce_single_product_summary', 'isa_woocommerce_all_pa', 25);

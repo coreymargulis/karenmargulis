@@ -11,23 +11,23 @@
 					<article id="post-<?php the_ID(); ?> list" <?php post_class( 'cf' ); ?> role="article">
 
 						<section class="featured-image-wrap">
-								
+
 							<?php
 
 								$post_object = get_field('featured_painting');
 
-								if( $post_object ): 
-								 
+								if( $post_object ):
+
 									// override $post
 									$post = $post_object;
-									setup_postdata( $post ); 
-								 
+									setup_postdata( $post );
+
 							?>
 
 						    <div class="featured-image">
 
 						    	<!-- <a href="<?php the_permalink(); ?>"> -->
-						    		<?php 
+						    		<?php
 							    		$image = get_field('painting');
 
 											if( !empty($image) ): ?>
@@ -36,17 +36,17 @@
 
 							    	<?php endif; ?>
 						    	<!-- </a> -->
-						    	
+
 						    	<div class="featured-image-caption">
 									<?php the_title(); ?>, <?php the_field('width'); ?> x <?php the_field('height'); ?> <a class="price" href="<?php the_permalink(); ?>">$<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?></a>
 						    	</div>
 
 						    </div>
-						    
+
 						    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-							
+
 							<?php endif; ?>
-											
+
 						</section>
 
 						<section class="entry-content cf">
@@ -56,8 +56,8 @@
 								<?php printf( '<span class="category">' . __('', 'bonestheme' ) . '%1$s</span>' , get_the_category_list(', ') ); ?>
 							</p>
 							<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
-							
-							<p><?php the_field('introduction') ?></p>
+
+							<p><?php the_field('introduction', false, false) ?></p>
 
 						</section>
 
@@ -67,7 +67,7 @@
 							</p> -->
 
 
-         	
+
 
           <?php the_tags( '<p class="footer-tags tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
 
