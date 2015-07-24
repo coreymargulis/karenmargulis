@@ -244,14 +244,17 @@ function bones_fonts() {
 
 add_action('wp_enqueue_scripts ', 'bones_fonts');
 
+
 function my_add_scripts() {
-wp_enqueue_script('classie', get_stylesheet_directory_uri().'/library/js/libs/classie.js', array('jquery'));
+wp_enqueue_script('breakpoint', get_stylesheet_directory_uri().'/library/js/libs/classie.js', array('jquery'));
 }
 
 add_action('wp_enqueue_scripts', 'my_add_scripts');
 
+
 // Remove caption from image upload
 add_filter( 'disable_captions', create_function('$a', 'return true;') );
+
 
 // Options
 // if( function_exists('acf_add_options_page') ) {

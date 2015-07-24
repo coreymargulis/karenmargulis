@@ -2,9 +2,9 @@
 
 			<div id="content">
 
-				<div id="inner-content" class="wrap cf">
+				<div id="inner-content" class="wrap">
 
-					<div id="main" class="m-all t-all d-all cf" role="main">
+					<div id="main" role="main">
 
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -13,23 +13,23 @@
 			                <header class="article-header">
 
 								<section class="featured-image-wrap">
-											
+
 									<?php
-	
+
 										$post_object = get_field('featured_painting');
-	
-										if( $post_object ): 
-										 
+
+										if( $post_object ):
+
 											// override $post
 											$post = $post_object;
-											setup_postdata( $post ); 
-										 
+											setup_postdata( $post );
+
 									?>
-	
+
 								    <div class="featured-image">
 
 								    	<!-- <a href="<?php the_permalink(); ?>"> -->
-								    		<?php 
+								    		<?php
 									    		$image = get_field('painting');
 
 													if( !empty($image) ): ?>
@@ -37,44 +37,44 @@
 													<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
 									    	<?php endif; ?>
 								    	<!-- </a> -->
-								    	
+
 								    	<div class="featured-image-caption">
 											<?php the_title(); ?>, <?php the_field('width'); ?> x <?php the_field('height'); ?> <a class="price" href="<?php the_permalink(); ?>">$<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?></a>
 								    	</div>
 
 								    </div>
-								    
+
 								    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-									
+
 									<?php endif; ?>
-														
-								</section>	
+
+								</section>
 
 								<p class="byline vcard">
 				                    <?php printf( __( '<time class="updated" datetime="%1$s" pubdate>%2$s</time>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
 				                	<?php printf( '<span class="category">' . __('', 'bonestheme' ) . '%1$s</span>' , get_the_category_list(', ') ); ?>
-				                </p>	
-				                	
+				                </p>
+
 				                <h1 class="entry-title single-title" itemprop="headline"><?php the_title(); ?></h1>
-			
+
 			                </header> <?php // end article header ?>
-			
+
 			                <section class="entry-content cf" itemprop="articleBody">
 
 			                	<p><?php the_field('introduction'); ?></p>
-			                
+
 			                </section> <?php // end article section ?>
-			
+
 			                <footer class="article-footer">
-			
+
 			                	<?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
 								<button type="submit" class="secondary">Comments</button>
 								<button type="submit" class="secondary">Share</button>
 
 			                </footer> <?php // end article footer ?>
-			
+
 							<?php // comments go here eventually ?>
-			
+
 			                </article> <?php // end article ?>
 
 			                <article id="read-next">
@@ -95,12 +95,12 @@
 			                		<h4>Previous Post</h4>
 			                	</div> -->
 
-			                </article>				
+			                </article>
 
 						<?php endwhile; ?>
 
 
-						<article id="related-posts" class="full">
+						<article class="related-posts">
 
 			                <?php
 								$related_args = array(
@@ -113,33 +113,33 @@
 								$related = new WP_Query( $related_args );
 
 								if( $related->have_posts() ) :
-							?>	
+							?>
 
 							<h4>Related Posts</h4>
 
-								<?php while( $related->have_posts() ): $related->the_post(); ?> 
+								<?php while( $related->have_posts() ): $related->the_post(); ?>
 
 								<?php //image goes here ?>
 
 									<section id="related-post">
-						    
+
 										<p class="byline vcard">
 						                    <?php printf( __( '<time class="updated" datetime="%1$s" pubdate>%2$s</time>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
 						                	<?php printf( '<span class="category">' . __('', 'bonestheme' ) . '%1$s</span>' , get_the_category_list(', ') ); ?>
 						                </p>
-										
-										<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>											
+
+										<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 										<?php echo custom_field_excerpt(); ?>
  										<a href="<?php the_permalink() ?>" id="excerpt-more">Continue Reading</a>
 
 									</section>
 
 
-								</section> 
+								</section>
 
 							<?php endwhile; ?>
 
-						</article>  
+						</article>
 
 						<?php
 							endif;

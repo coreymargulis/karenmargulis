@@ -1,0 +1,14 @@
+.home {
+	#container {
+		.header {
+		position: fixed;
+		z-index: 9999;
+		margin: 0 auto;
+		width: 100%;
+		}
+
+    #content {
+      margin:0;
+    }
+	}
+}

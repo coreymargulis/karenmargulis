@@ -39,103 +39,11 @@ Here's a great tutorial on how to
 use color variables properly:
 http://sachagreif.com/sass-color-variables/
 */
-/*********************
-FULL WIDTH BACKGROUNDS
-*********************/
-.full {
-  /*position: relative;*/ }
-  .full:after {
-    left: 100%; }
-  .full:before {
-    right: 100%; }
-
-.full:before, .full:after {
-  content: "";
-  position: absolute;
-  background-color: #f1f2f3;
-  top: 0;
-  bottom: 0;
-  width: 9999px;
-  display: block; }
-
-.darker:before {
-  content: "";
-  position: absolute;
-  background-color: #e9eaec;
-  top: 0;
-  bottom: 0;
-  width: 9999px;
-  display: block; }
-
-.darker:after {
-  content: "";
-  position: absolute;
-  background-color: #e9eaec;
-  top: 0;
-  bottom: 0;
-  width: 9999px;
-  display: block; }
-
-.white:before {
-  content: "";
-  position: absolute;
-  background-color: #fff;
-  top: 0;
-  bottom: 0;
-  width: 9999px;
-  display: block; }
-
-.white:after {
-  content: "";
-  position: absolute;
-  background-color: #fff;
-  top: 0;
-  bottom: 0;
-  width: 9999px;
-  display: block; }
-
 /******************************************************************
-Site Name:
-Author:
 
 Stylesheet: Typography
 
-Need to import a font or set of icons for your site? Drop them in
-here or just use this to establish your typographical grid. Or not.
-Do whatever you want to...GOSH!
-
-Helpful Articles:
-http://trentwalton.com/2012/06/19/fluid-type/
-http://ia.net/blog/responsive-typography-the-basics/
-http://alistapart.com/column/responsive-typography-is-a-physical-discipline
-
 ******************************************************************/
-/*********************
-FONT FACE (IN YOUR FACE)
-*********************/
-/*  To embed your own fonts, use this syntax
-  and place your fonts inside the
-  library/fonts folder. For more information
-  on embedding fonts, go to:
-  http://www.fontsquirrel.com/
-  Be sure to remove the comment brackets.
-*/
-/*  @font-face {
-      font-family: 'Font Name';
-      src: url('library/fonts/font-name.eot');
-      src: url('library/fonts/font-name.eot?#iefix') format('embedded-opentype'),
-             url('library/fonts/font-name.woff') format('woff'),
-             url('library/fonts/font-name.ttf') format('truetype'),
-             url('library/fonts/font-name.svg#font-name') format('svg');
-      font-weight: normal;
-      font-style: normal;
-  }
-*/
-/*
-The following is based of Typebase:
-https://github.com/devinhunt/typebase.css
-I've edited it a bit, but it's a nice starting point.
-*/
 @font-face {
   font-family: 'scalabold';
   src: url("../fonts/scala-bold-webfont.eot");
@@ -229,6 +137,57 @@ BOX SIZING
 /* @include box-sizing(border-box); */
 /* NOTE: value of "padding-box" is only supported in Gecko. So
 probably best not to use it. I mean, were you going to anyway? */
+/***
+BORDER RADIUS
+***/
+/*********************
+FULL WIDTH BACKGROUNDS
+*********************/
+.full:before, .full:after {
+  content: "";
+  position: absolute;
+  background-color: #f1f2f3;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
+.darker:before {
+  content: "";
+  position: absolute;
+  background-color: #e9eaec;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
+.darker:after {
+  content: "";
+  position: absolute;
+  background-color: #e9eaec;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
+.white:before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
+.white:after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  top: 0;
+  bottom: 0;
+  width: 9999px;
+  display: block; }
+
 /******************************************************************
 Site Name:
 Author:

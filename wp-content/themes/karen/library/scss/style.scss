@@ -17,6 +17,13 @@ http://thesassway.com/advanced/modular-css-naming-conventions
 ******************************************************************/
 
 /*********************
+IMPORTING PAGES
+*********************/
+// layout/header
+@import "pages/_home";
+
+
+/*********************
 IMPORTING PARTIALS
 These files are needed at the beginning so that we establish all
 our mixins, functions, and variables that we'll be using across
@@ -41,6 +48,17 @@ the whole project.
 // the grid
 @import "partials/grid";
 
+
+/*********************
+IMPORTING LAYOUT
+*********************/
+// layout/header
+@import "layout/_header";
+
+// footer
+@import "layout/_footer";
+
+
 /*********************
 IMPORTING MODULES
 Modules are reusable blocks or elements we use throughout the project.
@@ -57,6 +75,13 @@ you hate oysters, then the world is your peanut butter & jelly sandwich.
 
 // forms (inputs & labels)
 @import "modules/forms";
+
+// breakpoint
+@import "vendors/_breakpoint";
+@import "partials/_breakpoints";
+
+
+
 
 /*********************
 BASE (MOBILE) SIZE

@@ -34,19 +34,9 @@ style a page via class
 ********************/
 
 .rtl {}                           /* for sites that are read right to left (i.e. hebrew) */
-.home {
-	#container {
-		.header {
-		position: fixed;
-		z-index: 9999;
-		margin: 0 auto;
-		width: 100%;
-		}
-	}
-	#content {
-		margin:0;
-	}
-}                          /* home page */
+
+
+                          /* home page */
 .blog {}                          /* blog template page */
 .archive {}                       /* archive page */
 .date {}                          /* date archive page */
@@ -205,9 +195,7 @@ nav[role=navigation] li a {
 	display: block;
 	padding: 0 1em;
 }
-.header {
-	//background-color: $black;
-}
+
 #inner-header {
 	border-bottom: 1px solid $purple;
 
@@ -768,53 +756,6 @@ hr {
 	border-bottom: 1px solid rgba(255,255,255,0.01);
 
 }
-
-/* related posts */
-
-#read-next {
-	background-color: darken($background-shade, 3%);
-	padding: 1.15em;
-	h2 {
-		a {color: $text-color;}
-	}
-}
-
-#related-posts {
-	background-color: $background-shade;
-	padding: 1.15em;
-}
-
-#related-post {
-	margin-bottom: 3em;
-
-	h2 {
-		margin-top: 0;
-		margin-bottom: .1em;
-
-		a {color: $text-color;}
-	}
-
-	#excerpt-more {
-		font-size: 16px;
-	}
-
-	#intro {
-		font-size: 16px;
-		margin: 0;
-	}
-
-	.byline {
-		margin-bottom: 0.125em;
-	}
-}
-
-.related-post-image {
-	img {width: 100%;}
-}
-
-
-
-
 
 
 /******************************************************************

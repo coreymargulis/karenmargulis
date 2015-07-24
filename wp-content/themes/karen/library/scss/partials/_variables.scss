@@ -27,7 +27,7 @@ $white:             #fff;
 
 $gray:              #484848;
 $text-color:        $gray;
-$gray-text:			lighten($gray, 40%);
+$gray-text:					lighten($gray, 40%);
 
 $background:        #F8F9FA;
 $background-shade:	#f1f2f3;
@@ -52,68 +52,3 @@ Here's a great tutorial on how to
 use color variables properly:
 http://sachagreif.com/sass-color-variables/
 */
-
-/*********************
-FULL WIDTH BACKGROUNDS
-*********************/
-
-.full {
-	/*position: relative;*/
-
-	&:after {
-		left: 100%;
-	}
-		&:before {
-		right: 100%;
-	}
-}
-
-.full:before, .full:after {
-	content: "";
-	position: absolute;
-	background-color: $background-shade;
-	top: 0;
-	bottom: 0;
-	width: 9999px;
-	display: block;
-}
-
-.darker:before {
-	content: "";
-	position: absolute;
-	background-color: $darker;
-	top: 0;
-	bottom: 0;
-	width: 9999px;
-	display: block;
-}
-
-.darker:after {
-	content: "";
-	position: absolute;
-	background-color: $darker;
-	top: 0;
-	bottom: 0;
-	width: 9999px;
-	display: block;
-}
-
-.white:before {
-	content: "";
-	position: absolute;
-	background-color: $white;
-	top: 0;
-	bottom: 0;
-	width: 9999px;
-	display: block;
-}
-
-.white:after {
-	content: "";
-	position: absolute;
-	background-color: $white;
-	top: 0;
-	bottom: 0;
-	width: 9999px;
-	display: block;
-}
