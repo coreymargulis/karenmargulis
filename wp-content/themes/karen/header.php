@@ -52,7 +52,7 @@
 					<a id="nav-cart" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your Cart' ); ?>">
 
 						<span class="nav-cart-total"><?php echo WC()->cart->get_cart_total(); ?></span>
-						<span class="nav-cart-icon-full">Cart</span>
+						<span class="nav-cart-icon-full"><i class="ion-ios-cart-outline"></i></span>
 
 					</a>
 
@@ -60,7 +60,7 @@
 
 				<div id="inner-header" class="wrap cf">
 
-					<div id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?> <span class="psa">PSA</span></a></div>
+					<div id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?> <span class="psa">IAPS-MC PSA</span></a></div>
 
 					<a href="#menu"class="menu-link">Menu</a>
 					<nav id="menu" role="navigation">
@@ -86,11 +86,11 @@
 								</label>
 									<input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ) ?>" /> -->
 							<!-- </form>
-						</div> -->
+						</div>
 
 					</nav>
 
-					<!-- <a href="#menu" class="menu-link">Menu</a>
+					<a href="#menu" class="menu-link">Menu</a>
 					<nav id="menu" role="navigation">
 						<ul>
 							<li><a href="#">Blog</a></li>
