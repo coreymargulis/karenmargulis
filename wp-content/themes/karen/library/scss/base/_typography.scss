@@ -1,0 +1,96 @@
+body {
+  font-family: $serif;
+	font-size: 20px;
+	line-height: 1.5;
+	color: $text-color;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/*********************
+LINK STYLES
+*********************/
+
+a, a:visited {
+	color: $link-color;
+	text-decoration: none;
+	transition: all .3s ease-in-out;
+
+
+	/* on hover */
+	&:hover, &:focus {
+		color: $link-hover;
+	}
+
+	/* on click */
+	&:active {
+
+	}
+
+	/* mobile tap color */
+	&:link {
+		/*
+		this highlights links on iPhones/iPads.
+		so it basically works like the :hover selector
+		for mobile devices.
+		*/
+		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
+	}
+}
+
+/******************************************************************
+H1, H2, H3, H4, H5 STYLES
+******************************************************************/
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+	text-rendering: optimizelegibility;
+	font-weight: 500;
+
+	a {
+		text-decoration: none;
+	}
+}
+
+h1, .h1 {
+	font-size: 36px;
+	line-height: 1.333em;
+	margin-bottom: .25em;
+}
+
+h2, .h2 {
+	font-size: 28px;
+	line-height: 1.4em;
+	margin: 0 0 0.375em 0;
+}
+
+h3, .h3 {
+	font-size: 20px;
+	line-height: 1.25em;
+	margin-bottom: .375em;
+	margin-top: 0;
+}
+
+h4, .h4 {
+	font-size: 14px;
+	font-family: $caps;
+	text-transform: lowercase;
+	border-bottom: 1px solid $gray-text;
+
+	/*display: inline-block;
+	position: relative;*/
+
+	&:before {
+		/*position: absolute;
+		height: 1px;
+		width: 120%;
+		bottom: 0;*/
+
+	}
+}
+
+h5, .h5 {
+	font-size: 0.846em;
+	line-height: 2.09em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}

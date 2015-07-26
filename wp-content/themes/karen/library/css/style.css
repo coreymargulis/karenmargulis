@@ -14,36 +14,6 @@ Helpful articles on Sass file organization:
 http://thesassway.com/advanced/modular-css-naming-conventions
 
 ******************************************************************/
-/*********************
-IMPORTING PAGES
-*********************/
-.home #container .header {
-  position: fixed;
-  z-index: 9999;
-  margin: 0 auto;
-  width: 100%; }
-.home #container #content {
-  margin: 0; }
-
-/*home*/
-#featured-image-home-container {
-  height: 700px; }
-
-#featured-image-home {
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  overflow: hidden;
-  width: 100%;
-  height: 100%; }
-
-/*********************
-IMPORTING PARTIALS
-These files are needed at the beginning so that we establish all
-our mixins, functions, and variables that we'll be using across
-the whole project.
-*********************/
 /* normalize.css 2012-07-07T09:50 UTC - http://github.com/necolas/normalize.css */
 /* ==========================================================================
    HTML5 display definitions
@@ -461,33 +431,6 @@ span.amp {
   font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
   font-style: italic; }
 
-/******************************************************************
-Site Name:
-Author:
-
-Stylesheet: Variables
-
-Here is where we declare all our variables like colors, fonts,
-base values, and defaults. We want to make sure this file ONLY
-contains variables that way our files don't get all messy.
-No one likes a mess.
-
-******************************************************************/
-/*********************
-COLORS
-Need help w/ choosing your colors? Try this site out:
-http://0to255.com/
-*********************/
-/*
-Here's a great tutorial on how to
-use color variables properly:
-http://sachagreif.com/sass-color-variables/
-*/
-/******************************************************************
-
-Stylesheet: Typography
-
-******************************************************************/
 @font-face {
   font-family: 'scalabold';
   src: url("../fonts/scala-bold-webfont.eot");
@@ -677,292 +620,101 @@ FULL WIDTH BACKGROUNDS
   width: 9999px;
   display: block; }
 
+.clearfix {
+  clear: both; }
+
+body {
+  background-color: #F8F9FA; }
+
+.wrap {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px; }
+  @media (min-width: 768px) {
+    .wrap {
+      max-width: 768px;
+      padding: 0 79px; } }
+  @media (min-width: 1030px) {
+    .wrap {
+      max-width: 1030px;
+      padding: 0 200px; } }
+  @media (min-width: 1400px) {
+    .wrap {
+      max-width: 1400px;
+      padding: 0 385px; } }
+
+body {
+  font-family: "scalaregular", "Georgia", Cambria, Times New Roman, Times, serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #484848;
+  -webkit-font-smoothing: antialiased; }
+
+/*********************
+LINK STYLES
+*********************/
+a, a:visited {
+  color: #8D74C5;
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+  /* on hover */
+  /* on click */
+  /* mobile tap color */ }
+  a:hover, a:focus, a:visited:hover, a:visited:focus {
+    color: #a894d3; }
+  a:link, a:visited:link {
+    /*
+    this highlights links on iPhones/iPads.
+    so it basically works like the :hover selector
+    for mobile devices.
+    */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3); }
+
 /******************************************************************
-Site Name:
-Author:
-
-Stylesheet: Grid Stylesheet
-
-I've seperated the grid so you can swap it out easily. It's
-called at the top the style.scss stylesheet.
-
-There are a ton of grid solutions out there. You should definitely
-experiment with your own. Here are some recommendations:
-
-http://gridsetapp.com - Love this site. Responsive Grids made easy.
-http://susy.oddbird.net/ - Grids using Compass. Very elegant.
-http://gridpak.com/ - Create your own responsive grid.
-https://github.com/dope/lemonade - Neat lightweight grid.
-
-
-The grid below is a custom built thingy I modeled a bit after
-Gridset. It's VERY basic and probably shouldn't be used on
-your client projects. The idea is you learn how to roll your
-own grids. It's better in the long run and allows you full control
-over your project's layout.
-
+H1, H2, H3, H4, H5 STYLES
 ******************************************************************/
-.last-col {
-  float: right;
-  padding-right: 0 !important; }
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+  text-rendering: optimizelegibility;
+  font-weight: 500; }
+  h1 a, .h1 a, h2 a, .h2 a, h3 a, .h3 a, h4 a, .h4 a, h5 a, .h5 a {
+    text-decoration: none; }
 
-/*
-Mobile Grid Styles
-These are the widths for the mobile grid.
-There are four types, but you can add or customize
-them however you see fit.
-*/
-@media (max-width: 767px) {
-  .m-all {
-    float: left;
-    padding-right: 0.75em;
-    width: 100%;
-    padding-right: 0; }
+h1, .h1 {
+  font-size: 36px;
+  line-height: 1.333em;
+  margin-bottom: .25em; }
 
-  .m-1of2 {
-    float: left;
-    padding-right: 0.75em;
-    width: 50%; }
+h2, .h2 {
+  font-size: 28px;
+  line-height: 1.4em;
+  margin: 0 0 0.375em 0; }
 
-  .m-1of3 {
-    float: left;
-    padding-right: 0.75em;
-    width: 33.33%; }
+h3, .h3 {
+  font-size: 20px;
+  line-height: 1.25em;
+  margin-bottom: .375em;
+  margin-top: 0; }
 
-  .m-2of3 {
-    float: left;
-    padding-right: 0.75em;
-    width: 66.66%; }
+h4, .h4 {
+  font-size: 14px;
+  font-family: "scala_capsregular";
+  text-transform: lowercase;
+  border-bottom: 1px solid #aeaeae;
+  /*display: inline-block;
+  position: relative;*/ }
+  h4:before, .h4:before {
+    /*position: absolute;
+    height: 1px;
+    width: 120%;
+    bottom: 0;*/ }
 
-  .m-1of4 {
-    float: left;
-    padding-right: 0.75em;
-    width: 25%; }
+h5, .h5 {
+  font-size: 0.846em;
+  line-height: 2.09em;
+  text-transform: uppercase;
+  letter-spacing: 2px; }
 
-  .m-3of4 {
-    float: left;
-    padding-right: 0.75em;
-    width: 75%; } }
-/* Portrait tablet to landscape */
-@media (min-width: 768px) and (max-width: 1029px) {
-  .t-all {
-    float: left;
-    padding-right: 0.75em;
-    width: 100%;
-    padding-right: 0; }
-
-  .t-1of2 {
-    float: left;
-    padding-right: 0.75em;
-    width: 50%; }
-
-  .t-1of3 {
-    float: left;
-    padding-right: 0.75em;
-    width: 33.33%; }
-
-  .t-2of3 {
-    float: left;
-    padding-right: 0.75em;
-    width: 66.66%; }
-
-  .t-1of4 {
-    float: left;
-    padding-right: 0.75em;
-    width: 25%; }
-
-  .t-3of4 {
-    float: left;
-    padding-right: 0.75em;
-    width: 75%; }
-
-  .t-1of5 {
-    float: left;
-    padding-right: 0.75em;
-    width: 20%; }
-
-  .t-2of5 {
-    float: left;
-    padding-right: 0.75em;
-    width: 40%; }
-
-  .t-3of5 {
-    float: left;
-    padding-right: 0.75em;
-    width: 60%; }
-
-  .t-4of5 {
-    float: left;
-    padding-right: 0.75em;
-    width: 80%; } }
-/* Landscape to small desktop */
-@media (min-width: 1030px) {
-  .d-all {
-    float: left;
-    padding-right: 0.75em;
-    width: 100%;
-    padding-right: 0; }
-
-  .d-1of2 {
-    float: left;
-    padding-right: 0.75em;
-    width: 50%; }
-
-  .d-1of3 {
-    float: left;
-    padding-right: 0.75em;
-    width: 33.33%; }
-
-  .d-2of3 {
-    float: left;
-    padding-right: 0.75em;
-    width: 66.66%; }
-
-  .d-1of4 {
-    float: left;
-    padding-right: 0.75em;
-    width: 25%; }
-
-  .d-3of4 {
-    float: left;
-    padding-right: 0.75em;
-    width: 75%; }
-
-  .d-1of5 {
-    float: left;
-    padding-right: 0.75em;
-    width: 20%; }
-
-  .d-2of5 {
-    float: left;
-    padding-right: 0.75em;
-    width: 40%; }
-
-  .d-3of5 {
-    float: left;
-    padding-right: 0.75em;
-    width: 60%; }
-
-  .d-4of5 {
-    float: left;
-    padding-right: 0.75em;
-    width: 80%; }
-
-  .d-1of6 {
-    float: left;
-    padding-right: 0.75em;
-    width: 16.6666666667%; }
-
-  .d-1of7 {
-    float: left;
-    padding-right: 0.75em;
-    width: 14.2857142857%; }
-
-  .d-2of7 {
-    float: left;
-    padding-right: 0.75em;
-    width: 28.5714286%; }
-
-  .d-3of7 {
-    float: left;
-    padding-right: 0.75em;
-    width: 42.8571429%; }
-
-  .d-4of7 {
-    float: left;
-    padding-right: 0.75em;
-    width: 57.1428572%; }
-
-  .d-5of7 {
-    float: left;
-    padding-right: 0.75em;
-    width: 71.4285715%; }
-
-  .d-6of7 {
-    float: left;
-    padding-right: 0.75em;
-    width: 85.7142857%; }
-
-  .d-1of8 {
-    float: left;
-    padding-right: 0.75em;
-    width: 12.5%; }
-
-  .d-1of9 {
-    float: left;
-    padding-right: 0.75em;
-    width: 11.1111111111%; }
-
-  .d-1of10 {
-    float: left;
-    padding-right: 0.75em;
-    width: 10%; }
-
-  .d-1of11 {
-    float: left;
-    padding-right: 0.75em;
-    width: 9.09090909091%; }
-
-  .d-1of12 {
-    float: left;
-    padding-right: 0.75em;
-    width: 8.33%; } }
-/*********************
-IMPORTING LAYOUT
-*********************/
-.related-posts {
-  background-color: #f1f2f3;
-  padding: 1.15em; }
-  .related-posts:after {
-    left: 100%;
-    content: "";
-    position: absolute;
-    background-color: #333;
-    top: 0;
-    bottom: 0;
-    width: 9999px;
-    display: block; }
-  .related-posts:before {
-    right: 100%;
-    content: "";
-    position: absolute;
-    background-color: #333;
-    top: 0;
-    bottom: 0;
-    width: 9999px;
-    display: block; }
-
-.related-post {
-  margin-bottom: 3em; }
-  .related-post h2 {
-    margin-top: 0;
-    margin-bottom: .1em; }
-    .related-post h2 a {
-      color: #484848; }
-  .related-post #excerpt-more {
-    font-size: 16px; }
-  .related-post #intro {
-    font-size: 16px;
-    margin: 0; }
-  .related-post .byline {
-    margin-bottom: 0.125em; }
-
-#read-next {
-  background-color: #e9eaec;
-  padding: 1.15em; }
-  #read-next h2 a {
-    color: #484848; }
-
-.related-post-image img {
-  width: 100%; }
-
-/*********************
-IMPORTING MODULES
-Modules are reusable blocks or elements we use throughout the project.
-We can break them up as much as we want or just keep them all in one.
-I mean, you can do whatever you want. The world is your oyster. Unless
-you hate oysters, then the world is your peanut butter & jelly sandwich.
-*********************/
 /******************************************************************
 Site Name:
 Author:
@@ -993,6 +745,86 @@ you can just remove this stylesheet.
 .alert-success {
   border-color: #deeaae;
   background: #e6efc2; }
+
+/*single post*/
+.featured-image-wrap {
+  text-align: center; }
+
+.featured-image {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1em; }
+  .featured-image img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 660px;
+    vertical-align: top; }
+
+.featured-image-caption {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px 12px;
+  font-family: "scalasansregular";
+  font-size: 12px;
+  z-index: 300;
+  text-align: right;
+  max-width: 80%; }
+  .featured-image-caption a {
+    color: #fff; }
+    .featured-image-caption a:hover, .featured-image-caption a:focus {
+      color: #cccccc; }
+  .featured-image-caption .price {
+    border: 1px solid;
+    border-radius: 2px;
+    padding: 5px;
+    margin-left: 5px;
+    color: #fff; }
+    .featured-image-caption .price:hover, .featured-image-caption .price:focus {
+      color: #8166bf; }
+
+.image-caption {
+  color: #959595;
+  font-family: "scalasansregular";
+  font-size: .545em;
+  text-align: left;
+  margin-top: 5px; }
+
+.post-image {
+  width: 80%;
+  margin-bottom: 60px;
+  padding-top: 30px; }
+
+.demo hr {
+  padding: 25px 0;
+  margin: 0px;
+  border: none; }
+.demo .demo-image {
+  float: left;
+  margin-right: 0px; }
+  .demo .demo-image img {
+    max-width: 300px; }
+.demo .demo-text {
+  float: left;
+  font-size: .7em;
+  max-width: 380px;
+  padding-left: 25px; }
+
+.spacer {
+  margin-top: 70px;
+  margin-bottom: 60px; }
+
+hr {
+  clear: both;
+  display: block;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.01); }
 
 /******************************************************************
 Site Name:
@@ -1074,6 +906,101 @@ and it will create a button dependant on those variables.
     color: #8D74C5; }
   .secondary:active {
     background-color: #7e62bd; }
+
+.chunk_image_caption {
+  display: inline-block; }
+
+.chunk_image img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+  margin: 0 auto; }
+
+.chunk_image--center {
+  width: 100%; }
+
+.chunk_image--left {
+  width: 45%;
+  float: left;
+  margin: 0 1.5em 1.5em 0; }
+  .chunk_image--left .chunk_image_float {
+    float: none; }
+
+.chunk_image--right {
+  width: 45%;
+  float: right;
+  margin: 0 0 1.5em 1.5em; }
+  .chunk_image--right .chunk_image_float {
+    float: none; }
+
+.chunk_image--center-outset {
+  width: 100%; }
+  @media (min-width: 1030px) {
+    .chunk_image--center-outset {
+      width: 1030px;
+      max-width: 1030px;
+      float: left;
+      margin-left: -200px;
+      margin-bottom: 1.5em; } }
+  .chunk_image--center-outset .outset-center-float-con {
+    text-align: center; }
+  .chunk_image--center-outset .chunk_image_float {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: left; }
+
+.chunk_image--left-outset {
+  width: 100%; }
+  .chunk_image--left-outset img {
+    float: left; }
+  .chunk_image--left-outset .chunk_image_float {
+    float: none; }
+  @media (min-width: 768px) {
+    .chunk_image--left-outset {
+      max-width: 520px;
+      margin: 0 auto; }
+      .chunk_image--left-outset .chunk_image_float {
+        display: inline-block;
+        float: none;
+        max-width: 520px; } }
+  @media (min-width: 1030px) {
+    .chunk_image--left-outset {
+      max-width: 550px;
+      max-height: 666px;
+      float: left;
+      margin: 0 1.5em 1.5em -200px; }
+      .chunk_image--left-outset .chunk_image_float {
+        display: inline-block;
+        float: right;
+        max-width: 550px; }
+      .chunk_image--left-outset img {
+        float: right; } }
+
+.chunk_image--right-outset {
+  width: 100%; }
+  .chunk_image--right-outset .chunk_image_float {
+    float: none; }
+  .chunk_image--right-outset img {
+    float: left; }
+  @media (min-width: 768px) {
+    .chunk_image--right-outset {
+      max-width: 520px;
+      margin: 0 auto; }
+      .chunk_image--right-outset .chunk_image_float {
+        display: inline-block;
+        float: none;
+        max-width: 520px; } }
+  @media (min-width: 1030px) {
+    .chunk_image--right-outset {
+      max-width: 550px;
+      max-height: 666px;
+      float: right;
+      margin: 0 -200px 1.5em 1.5em; }
+      .chunk_image--right-outset .chunk_image_float {
+        display: inline-block;
+        float: left;
+        max-width: 550px; } }
 
 /******************************************************************
 Site Name:
@@ -1365,148 +1292,6 @@ select {
   background-position: 97.5% center; }
 
 /*********************
-BASE (MOBILE) SIZE
-This are the mobile styles. It's what people see on their phones. If
-you set a great foundation, you won't need to add too many styles in
-the other stylesheets. Remember, keep it light: Speed is Important.
-*********************/
-/******************************************************************
-Site Name:
-Author:
-
-Stylesheet: Base Mobile Stylesheet
-
-Be light and don't over style since everything here will be
-loaded by mobile devices. You want to keep it as minimal as
-possible. This is called at the top of the main stylsheet
-and will be used across all viewports.
-
-******************************************************************/
-/*********************
-GENERAL STYLES
-*********************/
-body {
-  font-family: "scalaregular", "Georgia", Cambria, Times New Roman, Times, serif;
-  font-size: 20px;
-  line-height: 1.5;
-  color: #484848;
-  background-color: #F8F9FA;
-  -webkit-font-smoothing: antialiased; }
-
-/*#painting {
-	width: 250px;
-}*/
-/********************
-WORDPRESS BODY CLASSES
-style a page via class
-********************/
-/* for sites that are read right to left (i.e. hebrew) */
-/* home page */
-/* blog template page */
-/* archive page */
-/* date archive page */
-/* replace the number to the corresponding page number */
-/* search page */
-/* search result page */
-/* no results search page */
-/* individual paged search (i.e. body.search-paged-3) */
-/* 404 page */
-/* single post page */
-/* individual post page by id (i.e. body.postid-73) */
-/* individual paged single (i.e. body.single-paged-3) */
-/* attatchment page */
-/* individual attatchment page (i.e. body.attachmentid-763) */
-/* style mime type pages */
-/* author page */
-/* user nicename (i.e. body.author-samueladams) */
-/* paged author archives (i.e. body.author-paged-4) for page 4 */
-/* category page */
-/* individual category page (i.e. body.category-6) */
-/* replace the number to the corresponding page number */
-/* tag page */
-/* individual tag page (i.e. body.tag-news) */
-/* replace the number to the corresponding page number */
-/* custom page template page */
-/* individual page template (i.e. body.page-template-contact-php */
-/* replace the number to the corresponding page number */
-/* parent page template */
-/* child page template */
-/* replace the number to the corresponding page number */
-/* if user is logged in */
-/* paged items like search results or archives */
-/* individual paged (i.e. body.paged-3) */
-/*********************
-LAYOUT & GRID STYLES
-*********************/
-.wrap {
-  width: 96%;
-  margin: 0 auto; }
-
-/*********************
-LINK STYLES
-*********************/
-a, a:visited {
-  color: #8D74C5;
-  text-decoration: none;
-  transition: all .3s ease-in-out;
-  /* on hover */
-  /* on click */
-  /* mobile tap color */ }
-  a:hover, a:focus, a:visited:hover, a:visited:focus {
-    color: #a894d3; }
-  a:link, a:visited:link {
-    /*
-    this highlights links on iPhones/iPads.
-    so it basically works like the :hover selector
-    for mobile devices.
-    */
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3); }
-
-/******************************************************************
-H1, H2, H3, H4, H5 STYLES
-******************************************************************/
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
-  text-rendering: optimizelegibility;
-  font-weight: 500; }
-  h1 a, .h1 a, h2 a, .h2 a, h3 a, .h3 a, h4 a, .h4 a, h5 a, .h5 a {
-    text-decoration: none; }
-
-h1, .h1 {
-  font-size: 36px;
-  line-height: 1.333em;
-  margin-bottom: .25em; }
-
-h2, .h2 {
-  font-size: 28px;
-  line-height: 1.4em;
-  margin: 0 0 0.375em 0; }
-
-h3, .h3 {
-  font-size: 20px;
-  line-height: 1.25em;
-  margin-bottom: .375em;
-  margin-top: 0; }
-
-h4, .h4 {
-  font-size: 14px;
-  font-family: "scala_capsregular";
-  text-transform: lowercase;
-  border-bottom: 1px solid #aeaeae;
-  /*display: inline-block;
-  position: relative;*/ }
-  h4:before, .h4:before {
-    /*position: absolute;
-    height: 1px;
-    width: 120%;
-    bottom: 0;*/ }
-
-h5, .h5 {
-  font-size: 0.846em;
-  line-height: 2.09em;
-  text-transform: uppercase;
-  letter-spacing: 2px; }
-
-/*********************
 HEADER STYLES
 *********************/
 nav[role=navigation] {
@@ -1627,6 +1412,85 @@ NAVIGATION STYLES
     color: #8D74C5; }
 
 /* end .nav */
+.home #container .header {
+  position: fixed;
+  z-index: 9999;
+  margin: 0 auto;
+  width: 100%; }
+.home #container #content {
+  margin: 0; }
+
+#featured-image-home-container {
+  height: 700px; }
+
+#featured-image-home {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  overflow: hidden;
+  width: 100%;
+  height: 100%; }
+
+/*********************
+BASE (MOBILE) SIZE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+******************************************************************/
+/********************
+WORDPRESS BODY CLASSES
+style a page via class
+********************/
+/* for sites that are read right to left (i.e. hebrew) */
+/* blog template page */
+/* archive page */
+/* date archive page */
+/* replace the number to the corresponding page number */
+/* search page */
+/* search result page */
+/* no results search page */
+/* individual paged search (i.e. body.search-paged-3) */
+/* 404 page */
+/* single post page */
+/* individual post page by id (i.e. body.postid-73) */
+/* individual paged single (i.e. body.single-paged-3) */
+/* attatchment page */
+/* individual attatchment page (i.e. body.attachmentid-763) */
+/* style mime type pages */
+/* author page */
+/* user nicename (i.e. body.author-samueladams) */
+/* paged author archives (i.e. body.author-paged-4) for page 4 */
+/* category page */
+/* individual category page (i.e. body.category-6) */
+/* replace the number to the corresponding page number */
+/* tag page */
+/* individual tag page (i.e. body.tag-news) */
+/* replace the number to the corresponding page number */
+/* custom page template page */
+/* individual page template (i.e. body.page-template-contact-php */
+/* replace the number to the corresponding page number */
+/* parent page template */
+/* child page template */
+/* replace the number to the corresponding page number */
+/* if user is logged in */
+/* paged items like search results or archives */
+/* individual paged (i.e. body.paged-3) */
+/*********************
+LAYOUT & GRID STYLES
+*********************/
 /*********************
 POSTS & CONTENT STYLES
 *********************/
@@ -1639,8 +1503,7 @@ POSTS & CONTENT STYLES
   /*border-radius: 3px;
   margin-bottom: 1.15em;*/ }
   .hentry header {
-    /*border-bottom: 1px solid $light-gray;*/
-    padding: 0 1.15em; }
+    /*border-bottom: 1px solid $light-gray;*/ }
   .hentry footer {
     /*padding: 1.5em;
     border-top: 1px solid $light-gray;*/ }
@@ -1674,7 +1537,6 @@ POSTS & CONTENT STYLES
 
 /* entry content */
 .entry-content {
-  padding: 0em 1.15em;
   /*
   image alignment on a screen this size may be
   a bit difficult. It's set to start aligning
@@ -1767,85 +1629,6 @@ POSTS & CONTENT STYLES
 /*--------------------- added by me */
 /*list*/
 /*single post*/
-.featured-image-wrap {
-  text-align: center; }
-
-.featured-image {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 1em; }
-  .featured-image img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 660px;
-    vertical-align: top; }
-
-.featured-image-caption {
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  display: block;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 10px 12px;
-  font-family: "scalasansregular";
-  font-size: 12px;
-  z-index: 300;
-  text-align: right;
-  max-width: 80%; }
-  .featured-image-caption a {
-    color: #fff; }
-    .featured-image-caption a:hover, .featured-image-caption a:focus {
-      color: #cccccc; }
-  .featured-image-caption .price {
-    border: 1px solid;
-    border-radius: 2px;
-    padding: 5px;
-    margin-left: 5px;
-    color: #fff; }
-    .featured-image-caption .price:hover, .featured-image-caption .price:focus {
-      color: #8166bf; }
-
-.image-caption {
-  color: #959595;
-  font-family: "scalasansregular";
-  font-size: .545em;
-  text-align: left;
-  margin-top: 5px; }
-
-.post-image {
-  width: 80%;
-  margin-bottom: 60px;
-  padding-top: 30px; }
-
-.demo hr {
-  padding: 25px 0;
-  margin: 0px;
-  border: none; }
-.demo .demo-image {
-  float: left;
-  margin-right: 0px; }
-  .demo .demo-image img {
-    max-width: 300px; }
-.demo .demo-text {
-  float: left;
-  font-size: .7em;
-  max-width: 380px;
-  padding-left: 25px; }
-
-.spacer {
-  margin-top: 70px;
-  margin-bottom: 60px; }
-
-hr {
-  clear: both;
-  display: block;
-  border: 0;
-  height: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.01); }
-
 /******************************************************************
 PAGE NAVI STYLES
 ******************************************************************/
@@ -2274,9 +2057,6 @@ you can add resource intensive styles.
   /*********************
   LAYOUT & GRID STYLES
   *********************/
-  .wrap {
-    width: 760px; }
-
   /*********************
   HEADER STYLES
   *********************/
@@ -2490,9 +2270,6 @@ you can add resource intensive styles.
   be seen on the Desktop.
   
   ******************************************************************/
-  .wrap {
-    width: 980px; }
-
   /*********************
   WOOCOMMERCE
   *********************/
@@ -2508,8 +2285,8 @@ This is for the larger monitors and possibly full screen viewers.
 *********************/
 @media only screen and (min-width: 1240px) {
   /******************************************************************
-  Site Name: 
-  Author: 
+  Site Name:
+  Author:
   
   Stylesheet: Super Large Monitor Stylesheet
   
@@ -2517,9 +2294,6 @@ This is for the larger monitors and possibly full screen viewers.
   on larger screens.
   
   ******************************************************************/
-  .wrap {
-    width: 1200px; }
-
   /*********************
   WOOCOMMERCE
   *********************/

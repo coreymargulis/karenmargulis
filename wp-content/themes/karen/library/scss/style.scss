@@ -17,72 +17,55 @@ http://thesassway.com/advanced/modular-css-naming-conventions
 ******************************************************************/
 
 @import "susy";
-
-/*********************
-IMPORTING PAGES
-*********************/
-
-// layout/header
-@import "pages/_home";
+@import "vendors/breakpoint";
 
 
-/*********************
-IMPORTING PARTIALS
-These files are needed at the beginning so that we establish all
-our mixins, functions, and variables that we'll be using across
-the whole project.
-*********************/
-
-// normalize: http://necolas.github.io/normalize.css/
-@import "partials/normalize";
-
-// Sass variables
-@import "partials/variables";
-
-// typography
-@import "partials/typography";
-
-// Sass functions
-@import "partials/functions";
-
-// import mixins
-@import "partials/mixins";
-
-// the grid
-@import "partials/grid";
+@import "variables/_breakpoints";
+@import "variables/_normalize";
+@import "variables/_colors";
+@import "variables/_typography";
+@import "variables/_functions";
+@import "variables/_mixins";
+@import "variables/_grid";
 
 
-/*********************
-IMPORTING LAYOUT
-*********************/
-// layout/header
-@import "layout/_header";
-
-// footer
-@import "layout/_footer";
+@import "base/**/*";
+@import "components/**/*";
+@import "pages/**/*";
 
 
-/*********************
-IMPORTING MODULES
-Modules are reusable blocks or elements we use throughout the project.
-We can break them up as much as we want or just keep them all in one.
-I mean, you can do whatever you want. The world is your oyster. Unless
-you hate oysters, then the world is your peanut butter & jelly sandwich.
-*********************/
-
-// alert boxes
-@import "modules/alerts";
-
-// buttons
-@import "modules/buttons";
-
-// forms (inputs & labels)
-@import "modules/forms";
-
-// breakpoint
-@import "vendors/_breakpoint";
-@import "partials/_breakpoints";
-
+// /*********************
+// IMPORTING BASE
+// *********************/
+//
+// @import "base/_body.scss";
+// @import "base/_layout.scss";
+// @import "base/_media.scss";
+// @import "base/_typography.scss";
+//
+//
+// /*********************
+// IMPORTING COMPONENTS
+// *********************/
+//
+// @import "components/alerts";
+// @import "components/buttons";
+// @import "components/forms";
+//
+//
+// /*********************
+// IMPORTING LAYOUT
+// *********************/
+//
+// @import "layout/_header";
+// @import "layout/_footer";
+//
+//
+// /*********************
+// IMPORTING PAGES
+// *********************/
+//
+// @import "pages/_home";
 
 
 
@@ -170,6 +153,6 @@ be set to display none.
 @media print {
 
 	// styles in print.scss
-	@import "partials/print";
+	@import "variables/print";
 
 }

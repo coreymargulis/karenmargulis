@@ -23,9 +23,9 @@ body {}
 LAYOUT & GRID STYLES
 *********************/
 
-.wrap {
-	width: 760px;
-}
+// .wrap {
+// 	width: 760px;
+// }
 
 /*********************
 HEADER STYLES
@@ -43,7 +43,7 @@ HEADER STYLES
 			visibility: visible;
 		}
 	}
-	
+
 /*********************
 NAVIGATION STYLES
 *********************/
@@ -54,7 +54,7 @@ NAVIGATION STYLES
 				margin: 0 0 0 -0.25em;
 				border: 0;
 			}
-			
+
 			nav[role=navigation]  li {
 				display: inline-block;
 				//margin: 0 0.25em;
@@ -65,12 +65,12 @@ NAVIGATION STYLES
 .top-nav {
 	float: right;
 }
-	
+
 /*********************
 WOOCOMMERCE
 *********************/
 ul.products {
-	
+
 		.grid-sizer {
 			width: 33%;
 		}
@@ -80,11 +80,11 @@ ul.products {
 			margin-bottom: 1.5em;
 			transition: all .3s ease-in-out;
 
-			
+
 			&:hover, &:focus {
 				opacity: .9;
 			}
-			
+
 			.text-content{
 				/*
 				background: rgba(0,0,0,0.5);
@@ -99,7 +99,7 @@ ul.products {
 				text-align: center;
 				visibility: hidden;
 				*/
-				  
+
 				span {
 					/*
 					display: table-cell;
@@ -141,7 +141,7 @@ ul.products {
 			}
 
 		}
-		
+
 		li.first {
 			clear:both;
 			//padding-left:0;
@@ -414,4 +414,3 @@ mobile. Make sure to double check these!
 		}
 	}
 } /* end .footer-links */
-

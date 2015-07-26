@@ -11,22 +11,6 @@ and will be used across all viewports.
 
 ******************************************************************/
 
-/*********************
-GENERAL STYLES
-*********************/
-
-body {
-	font-family: $serif;
-	font-size: 20px;
-	line-height: 1.5;
-	color: $text-color;
-	background-color: $background;
-  -webkit-font-smoothing: antialiased;
-}
-
-/*#painting {
-	width: 250px;
-}*/
 
 /********************
 WORDPRESS BODY CLASSES
@@ -34,9 +18,6 @@ style a page via class
 ********************/
 
 .rtl {}                           /* for sites that are read right to left (i.e. hebrew) */
-
-
-                          /* home page */
 .blog {}                          /* blog template page */
 .archive {}                       /* archive page */
 .date {}                          /* date archive page */
@@ -75,283 +56,10 @@ style a page via class
 LAYOUT & GRID STYLES
 *********************/
 
-.wrap {
-	width: 96%;
-	margin: 0 auto;
-}
-
-/*********************
-LINK STYLES
-*********************/
-
-a, a:visited {
-	color: $link-color;
-	text-decoration: none;
-	transition: all .3s ease-in-out;
 
 
-	/* on hover */
-	&:hover, &:focus {
-		color: $link-hover;
-	}
-
-	/* on click */
-	&:active {
-
-	}
-
-	/* mobile tap color */
-	&:link {
-		/*
-		this highlights links on iPhones/iPads.
-		so it basically works like the :hover selector
-		for mobile devices.
-		*/
-		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
-	}
-}
-
-/******************************************************************
-H1, H2, H3, H4, H5 STYLES
-******************************************************************/
-
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
-	text-rendering: optimizelegibility;
-	font-weight: 500;
-
-	a {
-		text-decoration: none;
-	}
-}
-
-h1, .h1 {
-	font-size: 36px;
-	line-height: 1.333em;
-	margin-bottom: .25em;
-}
-
-h2, .h2 {
-	font-size: 28px;
-	line-height: 1.4em;
-	margin: 0 0 0.375em 0;
-}
-
-h3, .h3 {
-	font-size: 20px;
-	line-height: 1.25em;
-	margin-bottom: .375em;
-	margin-top: 0;
-}
-
-h4, .h4 {
-	font-size: 14px;
-	font-family: $caps;
-	text-transform: lowercase;
-	border-bottom: 1px solid $gray-text;
-
-	/*display: inline-block;
-	position: relative;*/
-
-	&:before {
-		/*position: absolute;
-		height: 1px;
-		width: 120%;
-		bottom: 0;*/
-
-	}
-}
-
-h5, .h5 {
-	font-size: 0.846em;
-	line-height: 2.09em;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
-
-/*********************
-HEADER STYLES
-*********************/
-
-nav[role=navigation] {
-	//clear: both;
-	-webkit-transition: all 0.3s ease-out;
-	-moz-transition: all 0.3s ease-out;
-	-ms-transition: all 0.3s ease-out;
-	-o-transition: all 0.3s ease-out;
-	transition: all 0.3s ease-out;
-}
-.js nav[role=navigation] {
-	overflow: hidden;
-	max-height: 0;
-}
-nav[role=navigation].active {
-	max-height: 15em;
-}
-nav[role=navigation] ul {
-	margin: 0;
-	padding: 0;
-}
-nav[role=navigation] li a {
-	display: block;
-	padding: 0 1em;
-}
-
-#inner-header {
-	border-bottom: 1px solid $purple;
-
-	text-align: left;
-	margin: 75px auto 0;
-	padding: 0;
-	height: 55px;
-}
-
-#inner-header-top {
-	text-align: right;
-	margin-top: 4px;
-	padding-right: .9em;
-
-}
-
-#menu {
-	float: right;
-	margin: 0;
-	padding-top: 5px;
-
-	ul {
-		padding: 0;
-		margin: 0;
-	}
-}
-
-#logo {
-	margin-right: 20px;
-	float: left;
-	font-family: $caps;
-	font-size: 24px;
-	padding-left: .8em;
-
-	display: inline-block;
-
-	.psa {
-		visibility: hidden;
-	}
-
-	a {
-		 color: $text-color;
-	}
-}
-
-a.menu-link {
-	display: block;
-	float: right;
-	padding: 1em;
-}
-
-/*********************
-NAVIGATION STYLES
-*********************/
 
 
-.top-nav {
-	float: left;
-	font-size: 20px;
-	clear: both;
-	transition: all 0.3s ease-out;
-
-	ul {
-		padding: 0px;
-		margin: 0px;
-		list-style: none;
-		position: relative;
-		display: inline-table;
-
-		li {
-			padding: 0;
-			display: inline-block;
-
-			a {
-				display: block;
-				height: 60px;
-				padding: 20px 12px;
-			}
-		}
-	}
-
-}
-
-.nav {
-	border-bottom: 0;
-	margin: 0;
-
-	li {
-
-		a {
-			display: block;
-			color: $text-color;
-			text-decoration: none;
-			padding: 1em;
-
-			/*
-			remember this is for mobile ONLY, so there's no need
-			to even declare hover styles here, you can do it in
-			the style.scss file where it's relevant. We want to
-			keep this file as small as possible!
-			*/
-			&:hover, &:focus {}
-			&:active {
-				color: $purple;
-			}
-		}
-
-		&:first-child {}
-
-		&:last-child {}
-
-		/*
-		so you really have to rethink your dropdowns for mobile.
-		you don't want to have it expand too much because the
-		screen is so small. How you manage your menu should
-		depend on the project. Here's some great info on it:
-		http://www.alistapart.com/articles/organizing-mobile/
-		*/
-		ul.sub-menu,
-		ul.children {
-
-			li {
-
-				a {
-					padding-left: 30px;
-
-					&:hover,
-					&:focus {}
-
-					&:link {}
-
-				}
-
-				&:first-child {}
-
-				&:last-child {}
-
-			}
-
-		}
-
-	} /* end .menu li */
-
-	/* highlight current page */
-	li.current-menu-item,
-	li.current_page_item,
-	li.current_page_ancestor,
-	li.current_page_parent {
-
-		a {
-			color: $purple;
-		}
-
-	}  /* end current highlighters */
-
-} /* end .nav */
 
 
 
@@ -374,7 +82,7 @@ POSTS & CONTENT STYLES
 
 	header {
 		/*border-bottom: 1px solid $light-gray;*/
-		padding: 0 1.15em;
+		// padding: 0 1.15em;
 	}
 
 	footer {
@@ -429,7 +137,7 @@ POSTS & CONTENT STYLES
 
 /* entry content */
 .entry-content {
-	padding: 0em 1.15em;
+	// padding: 0em 1.15em;
 
 	p {
 		margin: 0 0 1em;
@@ -627,122 +335,122 @@ POSTS & CONTENT STYLES
 
 
 /*single post*/
-.featured-image-wrap {
-	text-align: center;
-}
-
-.featured-image {
-	position: relative;
-	display: inline-block;
-
-	margin-bottom: 1em;
-
-		img {
-			width: auto;
-			height: auto;
-			max-width: 100%;
-			max-height: 660px;
-			vertical-align: top;
-		}
-}
-
-.featured-image-caption {
-	background: rgba(0,0,0,0.5);
-	color: #fff;
-	display: block;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-
-	padding: 10px 12px;
-	font-family: "scalasansregular";
-	font-size: 12px;
-	z-index: 300;
-	text-align: right;
-	max-width: 80%;
-
-		a {
-			color: #fff;
-			&:hover,
-			&:focus{
-				color: darken($white, 20%);
-			}
-		}
-		.price {
-			border: 1px solid;
-			border-radius: 2px;
-			padding: 5px;
-			margin-left: 5px;
-			color: #fff;
-			//border-color: rgba(255,255,255,0.8);
-
-				&:hover,
-				&:focus {
-					color: darken($purple, 4%);
-
-				}
-
-		}
-}
-
-.image-caption {
-	color: lighten($gray, 30%);
-	font-family: "scalasansregular";
-	font-size: .545em;
-	text-align: left;
-	margin-top: 5px;
-	//top: -20px;
-	//max-width: 80%;
-}
-
-.post-image {
-	width: 80%;
-	margin-bottom: 60px;
-	padding-top: 30px;
-}
-
-.demo {
-
-	//width: 100%;
-
-	hr {
-		padding: 25px 0;
-		margin: 0px;
-		border: none;
-	}
-
-	.demo-image {
-		float: left;
-		margin-right: 0px;
-
-		img {
-			max-width: 300px;
-		}
-	}
-
-	.demo-text {
-		float: left;
-		//margin-left: 10px;
-		font-size: .7em;
-		max-width: 380px;
-		padding-left: 25px;
-	}
-}
-
-.spacer {
-	margin-top:70px;
-	margin-bottom:60px;
-}
-
-hr {
-	clear: both;
-	display: block;
-	border: 0;
-	height: 0;
-	border-top: 1px solid rgba(0,0,0,0.05);
-	border-bottom: 1px solid rgba(255,255,255,0.01);
-
-}
+// .featured-image-wrap {
+// 	text-align: center;
+// }
+//
+// .featured-image {
+// 	position: relative;
+// 	display: inline-block;
+//
+// 	margin-bottom: 1em;
+//
+// 		img {
+// 			width: auto;
+// 			height: auto;
+// 			max-width: 100%;
+// 			max-height: 660px;
+// 			vertical-align: top;
+// 		}
+// }
+//
+// .featured-image-caption {
+// 	background: rgba(0,0,0,0.5);
+// 	color: #fff;
+// 	display: block;
+// 	position: absolute;
+// 	bottom: 0;
+// 	right: 0;
+//
+// 	padding: 10px 12px;
+// 	font-family: "scalasansregular";
+// 	font-size: 12px;
+// 	z-index: 300;
+// 	text-align: right;
+// 	max-width: 80%;
+//
+// 		a {
+// 			color: #fff;
+// 			&:hover,
+// 			&:focus{
+// 				color: darken($white, 20%);
+// 			}
+// 		}
+// 		.price {
+// 			border: 1px solid;
+// 			border-radius: 2px;
+// 			padding: 5px;
+// 			margin-left: 5px;
+// 			color: #fff;
+// 			//border-color: rgba(255,255,255,0.8);
+//
+// 				&:hover,
+// 				&:focus {
+// 					color: darken($purple, 4%);
+//
+// 				}
+//
+// 		}
+// }
+//
+// .image-caption {
+// 	color: lighten($gray, 30%);
+// 	font-family: "scalasansregular";
+// 	font-size: .545em;
+// 	text-align: left;
+// 	margin-top: 5px;
+// 	//top: -20px;
+// 	//max-width: 80%;
+// }
+//
+// .post-image {
+// 	width: 80%;
+// 	margin-bottom: 60px;
+// 	padding-top: 30px;
+// }
+//
+// .demo {
+//
+// 	//width: 100%;
+//
+// 	hr {
+// 		padding: 25px 0;
+// 		margin: 0px;
+// 		border: none;
+// 	}
+//
+// 	.demo-image {
+// 		float: left;
+// 		margin-right: 0px;
+//
+// 		img {
+// 			max-width: 300px;
+// 		}
+// 	}
+//
+// 	.demo-text {
+// 		float: left;
+// 		//margin-left: 10px;
+// 		font-size: .7em;
+// 		max-width: 380px;
+// 		padding-left: 25px;
+// 	}
+// }
+//
+// .spacer {
+// 	margin-top:70px;
+// 	margin-bottom:60px;
+// }
+//
+// hr {
+// 	clear: both;
+// 	display: block;
+// 	border: 0;
+// 	height: 0;
+// 	border-top: 1px solid rgba(0,0,0,0.05);
+// 	border-bottom: 1px solid rgba(255,255,255,0.01);
+//
+// }
 
 
 /******************************************************************
