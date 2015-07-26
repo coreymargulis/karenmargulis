@@ -246,7 +246,7 @@ add_action('wp_enqueue_scripts ', 'bones_fonts');
 
 
 function my_add_scripts() {
-wp_enqueue_script('breakpoint', get_stylesheet_directory_uri().'/library/js/libs/classie.js', array('jquery'));
+wp_enqueue_script('classie', get_stylesheet_directory_uri().'/library/js/libs/classie.js', array('jquery'));
 }
 
 add_action('wp_enqueue_scripts', 'my_add_scripts');
@@ -333,7 +333,7 @@ function custom_field_excerpt() {
 
 
 //Remove extra <p> tags from text content
-remove_filter ('introduction', 'wpautop');
+// remove_filter ('introduction', 'wpautop');
 
 
 // Custom RSS feed
