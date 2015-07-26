@@ -25,6 +25,19 @@ IMPORTING PAGES
 .home #container #content {
   margin: 0; }
 
+/*home*/
+#featured-image-home-container {
+  height: 700px; }
+
+#featured-image-home {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  overflow: hidden;
+  width: 100%;
+  height: 100%; }
+
 /*********************
 IMPORTING PARTIALS
 These files are needed at the beginning so that we establish all
@@ -1753,19 +1766,6 @@ POSTS & CONTENT STYLES
 /* gallery caption styles */
 /*--------------------- added by me */
 /*list*/
-/*home*/
-#featured-image-home-container {
-  height: 700px; }
-
-#featured-image-home {
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  overflow: hidden;
-  width: 100%;
-  height: 100%; }
-
 /*single post*/
 .featured-image-wrap {
   text-align: center; }

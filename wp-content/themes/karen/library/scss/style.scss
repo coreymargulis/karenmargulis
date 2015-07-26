@@ -16,9 +16,12 @@ http://thesassway.com/advanced/modular-css-naming-conventions
 
 ******************************************************************/
 
+@import "susy";
+
 /*********************
 IMPORTING PAGES
 *********************/
+
 // layout/header
 @import "pages/_home";
 
