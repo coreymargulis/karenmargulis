@@ -1,0 +1,823 @@
+# Copyright (C) 2015 Enhanced Media Library PRO
+# This file is distributed under the same license as the Enhanced Media Library PRO package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Enhanced Media Library PRO\n"
+"POT-Creation-Date: 2015-07-18 01:52+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"PO-Revision-Date: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: he_IL\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: core/class-eml-media-list-table.php:39
+#, php-format
+msgctxt "uploaded files"
+msgid "All (%s)"
+msgid_plural "All (%s)"
+msgstr[0] "הכל (%s)"
+msgstr[1] "הכל (%s)"
+
+#: core/class-eml-media-list-table.php:50
+#, php-format
+msgctxt "detached files"
+msgid "Unattached (%s)"
+msgid_plural "Unattached (%s)"
+msgstr[0] "לא מקושר (%s)"
+msgstr[1] "לא מקושרים (%s)"
+
+#: core/class-eml-media-list-table.php:52 enhanced-media-library.php:377
+msgid "All Uncategorized"
+msgstr "הכל לא ממויין"
+
+#: core/class-eml-media-list-table.php:55
+#, php-format
+msgctxt "uploaded files"
+msgid "Trash (%s)"
+msgid_plural "Trash (%s)"
+msgstr[0] "פח (%s)"
+msgstr[1] "פח (%s)"
+
+#: core/class-eml-media-list-table.php:75
+msgid "Filter"
+msgstr "סנן"
+
+#: core/class-eml-media-list-table.php:77 enhanced-media-library.php:381
+msgid "Reset All Filters"
+msgstr "אפס את כל המסננים"
+
+#: core/class-eml-media-list-table.php:81
+msgid "Empty Trash"
+msgstr "רוקן פח"
+
+#: core/eml-upload.php:19
+msgid "You do not have permission to upload files."
+msgstr "אין לך הרשאות להעלאת קבצים"
+
+#: core/eml-upload.php:39 core/eml-upload.php:212
+msgid "Overview"
+msgstr "סקירה"
+
+#: core/eml-upload.php:41
+msgid ""
+"All the files you&#8217;ve uploaded are listed in the Media Library, with "
+"the most recent uploads listed first."
+msgstr ""
+"כל הקבצים שהעלאת רשומים בספרית המדיה, עם רשימת ההעלאות האחרונות תחילה. "
+
+#: core/eml-upload.php:42 core/eml-upload.php:216
+msgid ""
+"You can view your media in a simple visual grid or a list with columns. "
+"Switch between these views using the icons to the left above the media."
+msgstr ""
+"תוכל לצפות בקבצי המידה שלך בתצוגת פריסה או בתצוגת רשימה עם עמודות. החלף בין "
+"מצבי תצוגה אלו על-ידי שימוש בסמלים מעל ועל יד המדיה."
+
+#: core/eml-upload.php:43
+msgid ""
+"To delete media items, click the Bulk Select button at the top of the "
+"screen. Select any items you wish to delete, then click the Delete Selected "
+"button. Clicking the Cancel Selection button takes you back to viewing your "
+"media."
+msgstr ""
+"על מנת למחוק קבצי מדיה, לחץ על כפתור העריכה הקבוצתית בראש המסך. בחר אילו "
+"קבצים ברצונך למחוק, לאחר מכן לחץ על כפתור מחיקת הבחירה. לחץ בטל לביטול "
+"הבחירה וחזרה לצפיה במדיה."
+
+#: core/eml-upload.php:48
+msgid "Attachment Details"
+msgstr "פרטי הנספח"
+
+#: core/eml-upload.php:50
+msgid ""
+"Clicking an item will display an Attachment Details dialog, which allows you "
+"to preview media and make quick edits. Any changes you make to the "
+"attachment details will be automatically saved."
+msgstr ""
+"לחיצה על פריט תציג חלון פרטים אשר יאפשר לך תצוגה מקדימה למדיה ולבצע עריכות "
+"מהירות, כל שינוי שתבצע ישמר באופן אוטומטי."
+
+#: core/eml-upload.php:51
+msgid ""
+"Use the arrow buttons at the top of the dialog, or the left and right arrow "
+"keys on your keyboard, to navigate between media items quickly."
+msgstr ""
+"השתמש בכפתורים שלמעלה ובחצי הצדדים במקלדת על מנת לנווט בין פריטי המדיה "
+"במהירות."
+
+#: core/eml-upload.php:52
+msgid ""
+"You can also delete individual items and access the extended edit screen "
+"from the details dialog."
+msgstr ""
+"בנוסף אתה יכול למחוק פריטים אינדיווידואלים ולגשת לעמוד העריכה הנרחב ממסך "
+"חלון הפרטים."
+
+#: core/eml-upload.php:56 core/eml-upload.php:232
+msgid "For more information:"
+msgstr "למידע נוסף:"
+
+#: core/eml-upload.php:57 core/eml-upload.php:233
+msgid ""
+"<a href=\"http://codex.wordpress.org/Media_Library_Screen\" target=\"_blank"
+"\">Documentation on Media Library</a>"
+msgstr ""
+"<a href=\"http://codex.wordpress.org/Media_Library_Screen\" target=\"_blank"
+"\">תיעוד ספרית המדיה</a>"
+
+#: core/eml-upload.php:58 core/eml-upload.php:234
+msgid ""
+"<a href=\"https://wordpress.org/support/\" target=\"_blank\">Support Forums</"
+"a>"
+msgstr ""
+"<a href=\"https://wordpress.org/support/\" target=\"_blank\">פורמי תמיכה</a>"
+
+#: core/eml-upload.php:61 core/eml-upload.php:203
+msgid "Media Library"
+msgstr "ספריית מדיה"
+
+#: core/eml-upload.php:71 core/eml-upload.php:245
+msgctxt "file"
+msgid "Add New"
+msgstr "הוסף קובץ"
+
+#: core/eml-upload.php:76
+msgid ""
+"The grid view for the Media Library requires JavaScript. <a href=\"upload."
+"php?mode=list\">Switch to the list view</a>."
+msgstr ""
+"תצוגת הפריסה עבור ספריית המדיה זקוקה לג'אווה סקריפט על מנת לפעול כהלכה. <a "
+"href=\"upload.php?mode=list\">עבור למצב תצוגת רשימה</a>."
+
+#: core/eml-upload.php:124
+msgid "You are not allowed to edit this post."
+msgstr "אינך מורשה לערוך את הפוסט הנוכחי."
+
+#: core/eml-upload.php:161
+msgid "You are not allowed to move this post to the trash."
+msgstr "אינך מורשה להעביר פוסט זה לפח."
+
+#: core/eml-upload.php:164
+msgid "Error in moving to trash."
+msgstr "שגיאה בהעברה לפח."
+
+#: core/eml-upload.php:173
+msgid "You are not allowed to move this post out of the trash."
+msgstr "אינך מורשה להוציע את הפוסט מחוץ לפח."
+
+#: core/eml-upload.php:176
+msgid "Error in restoring from trash."
+msgstr "שגיאה בשחזור מהפח."
+
+#: core/eml-upload.php:185
+msgid "You are not allowed to delete this post."
+msgstr "אינך מורשה למחוק פוסט זה."
+
+#: core/eml-upload.php:188
+msgid "Error in deleting."
+msgstr "שגיאה במחיקה"
+
+#: core/eml-upload.php:208
+msgctxt "items per page (screen options)"
+msgid "Media items"
+msgstr "קבצי מדיה"
+
+#: core/eml-upload.php:214
+msgid ""
+"All the files you&#8217;ve uploaded are listed in the Media Library, with "
+"the most recent uploads listed first. You can use the Screen Options tab to "
+"customize the display of this screen."
+msgstr ""
+"כל הקבצים שהעלאת רשומים בספרית המדיה, עם רשימת ההעלאות האחרונות תחילה. תוכל "
+"להשתמש בלשונית אפשרויות התצוגה על מנת להתאים את התצוגה לצג."
+
+#: core/eml-upload.php:215
+msgid ""
+"You can narrow the list by file type/status using the text link filters at "
+"the top of the screen. You also can refine the list by date using the "
+"dropdown menu above the media table."
+msgstr ""
+"ניתן לצמצם את הרשימה באמצעות סוג/סטטוס על-ידי שימוש במסננים המופיעים למעלה. "
+"בנוסף ניתן להשתמש ברשימה הנגללת מעל טבלת המדיה."
+
+#: core/eml-upload.php:220
+msgid "Available Actions"
+msgstr "פעולות זמינות"
+
+#: core/eml-upload.php:222
+msgid ""
+"Hovering over a row reveals action links: Edit, Delete Permanently, and "
+"View. Clicking Edit or on the media file&#8217;s name displays a simple "
+"screen to edit that individual file&#8217;s metadata. Clicking Delete "
+"Permanently will delete the file from the media library (as well as from any "
+"posts to which it is currently attached). View will take you to the display "
+"page for that file."
+msgstr ""
+"מעבר על שורות מגלה קישורי פעולות: עריכה, מחיקה לצמיתות, וצפיה. לחיצה על "
+"עריכה או על קבצי מדיה תציג מסך פשוט המאפשר עריכה פרטנית של המאפיינים. לחיצה "
+"על מחיקה לצמיתות תגרום למחיקה מספרית המדיה (בנוסף מכל פוסט אליו התבצע קישור "
+"של המדיה). צפיה תאפשר לצפות בעמוד עבור אותו הקובץ מדיה."
+
+#: core/eml-upload.php:226
+msgid "Attaching Files"
+msgstr "צירוף קבצים"
+
+#: core/eml-upload.php:228
+msgid ""
+"If a media file has not been attached to any post, you will see that in the "
+"Attached To column, and can click on Attach File to launch a small popup "
+"that will allow you to search for a post and attach the file."
+msgstr ""
+"אם קובץ מדיה לא קושר לאף פוסט, תוכל לראות זאת בעמודת הפריטים שצורפו (קושרו) "
+"ותוכל ללחוץ על מנת לפתוח חלון חיפוש שיאפשר לך לחפש פוסט ולקשר אליו את הקובץ."
+
+#: core/eml-upload.php:248
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr "תוצאות חיפוש עבור &#8220;%s&#8221;"
+
+#: core/eml-upload.php:254 core/eml-upload.php:279
+msgid "Media attachment updated."
+msgstr "נספח מדיה עודכן."
+
+#: core/eml-upload.php:259
+#, php-format
+msgid "Reattached %d attachment."
+msgid_plural "Reattached %d attachments."
+msgstr[0] "קושר נספח %d"
+msgstr[1] "קושרו נספחים %d"
+
+#: core/eml-upload.php:264
+#, php-format
+msgid "Media attachment permanently deleted."
+msgid_plural "%d media attachments permanently deleted."
+msgstr[0] "נספח המדיה נמחק לצמיתות"
+msgstr[1] "%d נספחי מדיה נמחקו לצמיתות"
+
+#: core/eml-upload.php:269
+#, php-format
+msgid "Media attachment moved to the trash."
+msgid_plural "%d media attachments moved to the trash."
+msgstr[0] "נספח המדיה עבר לפח."
+msgstr[1] "%d נספחי המדיה עברו לפח."
+
+#: core/eml-upload.php:270 core/eml-upload.php:282
+msgid "Undo"
+msgstr "בטל"
+
+#: core/eml-upload.php:275
+#, php-format
+msgid "Media attachment restored from the trash."
+msgid_plural "%d media attachments restored from the trash."
+msgstr[0] "נספח המדיה שוחזר מהפח."
+msgstr[1] "%d נספחי מדיה שוחזרו מהפח."
+
+#: core/eml-upload.php:280
+msgid "Media permanently deleted."
+msgstr "המדיה נמחקה לצמיתות."
+
+#: core/eml-upload.php:281
+msgid "Error saving media attachment."
+msgstr "שגיאה בשמירת נספח המדיה."
+
+#: core/eml-upload.php:282
+msgid "Media moved to the trash."
+msgstr "המדיה הועברה לפח."
+
+#: core/eml-upload.php:283
+msgid "Media restored from the trash."
+msgstr "המדיה שוחזרה מהפח."
+
+#: core/mime-types.php:107
+#, php-format
+msgid " <span class=\"count\">(%s)</span>"
+msgid_plural " <span class=\"count\">(%s)</span>"
+msgstr[0] " <span class=\"count\">(%s)</span>"
+msgstr[1] " <span class=\"count\">(%s)</span>"
+
+#: core/options-pages.php:67 core/options-pages.php:68
+#: core/options-pages.php:77
+msgid "Media Settings"
+msgstr "הגדרות מדיה"
+
+#: core/options-pages.php:78 core/options-pages.php:254
+#: core/options-pages.php:276 core/options-pages.php:322
+#: core/options-pages.php:386
+msgid "Settings"
+msgstr "הגדרות"
+
+#: core/options-pages.php:85 core/options-pages.php:86
+#: core/options-pages.php:188
+msgid "Taxonomies"
+msgstr "תוית מיון"
+
+#: core/options-pages.php:94 core/options-pages.php:95
+#: core/options-pages.php:510
+msgid "MIME Types"
+msgstr "סוגי קבצים"
+
+#: core/options-pages.php:132 core/options-pages.php:229
+#: core/options-pages.php:243 core/options-pages.php:311
+#: core/options-pages.php:383
+msgid "Edit"
+msgstr "ערוך"
+
+#: core/options-pages.php:133 pro/enhanced-media-library-pro.php:166
+msgid "Close"
+msgstr "סגור"
+
+#: core/options-pages.php:134 core/options-pages.php:244
+#: core/options-pages.php:312
+msgid "View"
+msgstr "צפה"
+
+#: core/options-pages.php:135 core/options-pages.php:245
+#: core/options-pages.php:313
+msgid "Update"
+msgstr "עדכן"
+
+#: core/options-pages.php:136 core/options-pages.php:246
+#: core/options-pages.php:314
+msgid "Add New"
+msgstr "הוסף חדש"
+
+#: core/options-pages.php:137 core/options-pages.php:247
+#: core/options-pages.php:315
+msgid "New"
+msgstr "חדש"
+
+#: core/options-pages.php:138
+msgid "Name"
+msgstr "שם"
+
+#: core/options-pages.php:139 core/options-pages.php:248
+#: core/options-pages.php:316
+msgid "Parent"
+msgstr "הורה"
+
+#: core/options-pages.php:140 core/options-pages.php:242
+#: core/options-pages.php:310
+msgid "All"
+msgstr "הכל"
+
+#: core/options-pages.php:141 core/options-pages.php:249
+#: core/options-pages.php:317
+msgid "Search"
+msgstr "חיפוש"
+
+#: core/options-pages.php:143
+msgid ""
+"Taxonomy will be deleted permanently! Your media files will remain intacted, "
+"but all the connections with this taxonomy and its terms will be lost."
+msgstr ""
+"תוית המיון תמחק לצמיתות! קבצי המדיה ישארו כפי שהם, אך הקשרים התלויים בתוית "
+"המיון יאבדו."
+
+#: core/options-pages.php:144
+msgid "There is already a taxonomy with the same name. Please chose other one."
+msgstr "קיימת תוית מיון עם שם זהה. אנא בחר שם שונה."
+
+#: core/options-pages.php:145 core/options-pages.php:298
+msgid "New Taxonomy"
+msgstr "תוית מיון חדשה"
+
+#: core/options-pages.php:146
+msgid "Please choose Singular and Plural names for all your new taxomonies."
+msgstr "אנא בחר שמות לכל תויות המיון החדשות שלך עבור יחיד ורבים."
+
+#: core/options-pages.php:147
+msgid "Please choose Singilar name for all your new taxomonies."
+msgstr "אנא בחר שם ביחיד עבור כל תויות המיון החדשות שלך."
+
+#: core/options-pages.php:148
+msgid "Please choose Plural Name for all your new taxomonies."
+msgstr "אנא בחר שם ברבים עבור כל תויות המיון החדשות שלך."
+
+#: core/options-pages.php:150
+msgid "Warning! All your custom MIME Types will be deleted by this operation."
+msgstr "אזהרה! כל סוגי הקבצים המותאמים (MIME Types) ימחקו על-ידי פעולה זו"
+
+#: core/options-pages.php:151
+msgid "Please fill into all fields."
+msgstr "אנא הזן את כל השדות"
+
+#: core/options-pages.php:152
+msgid "Duplicate extensions or MIME types. Please chose other one."
+msgstr "כפילויות בהרחבות או סוגי קבצים. אנא בחר אחר."
+
+#: core/options-pages.php:180 core/options-pages.php:501
+#: pro/core/options-pages.php:170
+msgid "You do not have sufficient permissions to access this page."
+msgstr "אין לך הרשאות מתאימות על מנת לגשת לדף זה."
+
+#: core/options-pages.php:204
+msgid "Media Taxonomies"
+msgstr "תויות מיון למדיה"
+
+#: core/options-pages.php:208 core/options-pages.php:360
+msgid "Assign following taxonomies to Media Library:"
+msgstr "הקצאת תויות המיון הבאות לספרית המדיה:"
+
+#: core/options-pages.php:226 core/options-pages.php:296
+#: core/options-pages.php:376
+msgid "Assign Taxonomy"
+msgstr "הקצא תוית מיון"
+
+#: core/options-pages.php:229 core/options-pages.php:383
+msgid "Edit Taxonomy"
+msgstr "ערוך תוית מיון"
+
+#: core/options-pages.php:232 core/options-pages.php:300
+msgid "Delete Taxonomy"
+msgstr "מחק תוית מיון"
+
+#: core/options-pages.php:237 core/options-pages.php:305
+msgid "Labels"
+msgstr "תויות"
+
+#: core/options-pages.php:239 core/options-pages.php:307
+msgid "Singular"
+msgstr "יחיד"
+
+#: core/options-pages.php:240 core/options-pages.php:308
+msgid "Plural"
+msgstr "רבים"
+
+#: core/options-pages.php:241 core/options-pages.php:309
+msgid "Menu Name"
+msgstr "שם התפריט"
+
+#: core/options-pages.php:256 core/options-pages.php:324
+msgid "Taxonomy Name"
+msgstr "שם תוית המיון"
+
+#: core/options-pages.php:257 core/options-pages.php:325
+msgid "Hierarchical"
+msgstr "היררכי"
+
+#: core/options-pages.php:258 core/options-pages.php:326
+msgid "Column in List View"
+msgstr "עמודה בתצוגת רשימה"
+
+#: core/options-pages.php:259 core/options-pages.php:278
+#: core/options-pages.php:327 core/options-pages.php:388
+msgid "Filter in List View"
+msgstr "סנן בתצוגת רשימה"
+
+#: core/options-pages.php:260 core/options-pages.php:279
+#: core/options-pages.php:328 core/options-pages.php:389
+msgid "Filter in Grid View / Media Popup"
+msgstr "סנן בתצוגת פריסה / חלון מדיה"
+
+#: core/options-pages.php:261 core/options-pages.php:280
+#: core/options-pages.php:329 core/options-pages.php:390
+msgid "Edit in Media Popup"
+msgstr "עריכה בחלון מדיה"
+
+#: core/options-pages.php:262 core/options-pages.php:330
+msgid "Show in Nav Menu"
+msgstr "הצג בתפריט הניווט"
+
+#: core/options-pages.php:263 core/options-pages.php:331
+msgid "Remember terms order (sort)"
+msgstr "זכור תנאי מיון"
+
+#: core/options-pages.php:264 core/options-pages.php:332
+msgid "Rewrite Slug"
+msgstr "שכתב סלוגן"
+
+#: core/options-pages.php:265 core/options-pages.php:333
+msgid "Slug with Front"
+msgstr "סלוגן עם הקדמה"
+
+#: core/options-pages.php:345
+msgid "Add New Taxonomy"
+msgstr "הוסף תוית מיון חדשה"
+
+#: core/options-pages.php:356
+msgid "Non-Media Taxonomies"
+msgstr "תויות מיון ללא-מדיה"
+
+#: core/options-pages.php:415
+msgid "Options"
+msgstr "אפשרויות"
+
+#: core/options-pages.php:425 core/options-pages.php:428
+msgid "Taxonomy archive pages"
+msgstr "ארכיון עמודי תויות מיון"
+
+#: core/options-pages.php:429
+msgid "Turn on media taxonomy archive pages on the front-end"
+msgstr "הפעל את עמודי ארכיון תויות המיון בתצוגת המשתמש"
+
+#: core/options-pages.php:430
+msgid ""
+"Re-save your permalink settings after this option change to make it work."
+msgstr ""
+"שמור מחדש את הגדרות ה-permalink לאחר שאפשרות זאת משתנה על מנת לגרום לה לעבוד."
+
+#: core/options-pages.php:436
+msgid "Assign all like hierarchical"
+msgstr "הקצא הכל באופן היררכי"
+
+#: core/options-pages.php:439 core/options-pages.php:440
+msgid ""
+"Show non-hierarchical taxonomies like hierarchical in Grid View / Media Popup"
+msgstr "הצג תויות מיון לא-היררכיות כהיררכיות בתצוגת פריסה / חלון נפתח"
+
+#: core/options-pages.php:446 core/options-pages.php:449
+msgid "Force filters"
+msgstr "כפה מסננים"
+
+#: core/options-pages.php:450
+msgid "Show media filters for ANY Media Popup."
+msgstr "הצג מסנני מדיה עבור כל חלון מדיה שנפתח"
+
+#: core/options-pages.php:451
+msgid ""
+"May be useful for those who need forcing filters for third-party plugins or "
+"themes."
+msgstr ""
+"עשוי להיות שימושי עבור אלו הרוצים לכפות סינון עבור תוספי צד-שלישי או תבניות."
+
+#: core/options-pages.php:511
+msgid "Add New MIME Type"
+msgstr "הוסף סוג קובץ חדש"
+
+#: core/options-pages.php:529 core/options-pages.php:582
+msgid "Extension"
+msgstr "הרחבה"
+
+#: core/options-pages.php:530 core/options-pages.php:583
+msgid "MIME Type"
+msgstr "סוג קובץ (MIME Type)"
+
+#: core/options-pages.php:531 core/options-pages.php:584
+msgid "Singular Label"
+msgstr "תוית יחידה"
+
+#: core/options-pages.php:532 core/options-pages.php:585
+msgid "Plural Label"
+msgstr "תויות רבות"
+
+#: core/options-pages.php:533 core/options-pages.php:561
+#: core/options-pages.php:574 core/options-pages.php:586
+msgid "Add Filter"
+msgstr "הוסף מסנן"
+
+#: core/options-pages.php:534 core/options-pages.php:562
+#: core/options-pages.php:575 core/options-pages.php:587
+msgid "Allow Upload"
+msgstr "אפשר העלאה"
+
+#: core/options-pages.php:576
+msgid "Delete MIME Type"
+msgstr "מחק סוג קובץ"
+
+#: core/options-pages.php:593
+msgid "Restore default MIME Types"
+msgstr "שחזר ברירת מחדל עבור סוגי קבצים"
+
+#: core/taxonomies.php:321 core/taxonomies.php:327
+#: enhanced-media-library.php:378
+msgid "Filter by "
+msgstr "סנן על-פי "
+
+#: core/taxonomies.php:328 enhanced-media-library.php:379
+msgid "All "
+msgstr "הכל "
+
+#: core/taxonomies.php:329 enhanced-media-library.php:380
+msgid "Not in "
+msgstr "לא ב-"
+
+#: enhanced-media-library.php:47
+msgid ""
+"Please deactivate and <strong>remove</strong> the old version prior to the "
+"<strong>Enhanced Media Library PRO</strong> activation. All your data will "
+"remain intact."
+msgstr ""
+"אנא נטרל ו-<strong>הסר</strong> את הגרסה הישנה טרם הפעלת ורישוי "
+"<strong>Enhanced Media Library PRO</strong>. כל המידע ישמר."
+
+#: enhanced-media-library.php:47
+msgid "Return to Plugins"
+msgstr "חזור לתוספים"
+
+#: pro/core/bulk-edit.php:75
+msgid "Remove"
+msgstr "הסר"
+
+#: pro/core/bulk-edit.php:79
+msgid "Deselect"
+msgstr "בטל בחירה"
+
+#: pro/core/bulk-edit.php:86
+msgid "Caption this image&hellip;"
+msgstr "תאר תמונה זו&hellip;"
+
+#: pro/core/bulk-edit.php:90
+msgid "Describe this video&hellip;"
+msgstr "תאר וידיאו זה&hellip;"
+
+#: pro/core/bulk-edit.php:92
+msgid "Describe this audio file&hellip;"
+msgstr "תאר אודיו זה&hellip;"
+
+#: pro/core/bulk-edit.php:94
+msgid "Describe this media file&hellip;"
+msgstr "תאר מדיה זו&hellip;"
+
+#: pro/core/bulk-edit.php:103
+msgid "Attachments Details"
+msgstr "פרטי הנספח"
+
+#: pro/core/bulk-edit.php:157
+msgid "Select All"
+msgstr "בחר הכל"
+
+#: pro/core/bulk-edit.php:159
+msgid "Edit Selection"
+msgstr "ערוך בחירה"
+
+#: pro/core/bulk-edit.php:162
+msgid "Deselect All"
+msgstr "בטל בחירה מהכל"
+
+#: pro/core/bulk-edit.php:166
+msgid "Delete Selected"
+msgstr "מחק בחירה"
+
+#: pro/core/options-pages.php:100 pro/core/options-pages.php:101
+msgid "EML PRO Updates"
+msgstr "עדכוני EML PRO"
+
+#: pro/core/options-pages.php:126 pro/enhanced-media-library-pro.php:168
+msgid "Bulk Edit"
+msgstr "עריכה קבוצתית"
+
+#: pro/core/options-pages.php:134 pro/core/options-pages.php:137
+msgid "Turn off 'Save Changes' button"
+msgstr "כבה את כפתור \"שמור שינויים\""
+
+#: pro/core/options-pages.php:138
+msgid "Save changes on the fly"
+msgstr "שמור שינויים תוך כדי ביצועם"
+
+#: pro/core/options-pages.php:139
+msgid ""
+"Any click on a taxonomy checkbox during media files bulk edition will lead "
+"to an <strong style=\"color:red\">immediate saving</strong> of the data. "
+"Please, be careful! You have much greater chance to <strong style=\"color:red"
+"\">accidentally perform wrong re-assigning</strong> of a lot of your media "
+"files / taxonomies with this option turned on."
+msgstr ""
+"כל לחיצה על תיבת סימון עבור תוית מיון בעת עריכה קבוצתית של קבצי מדיה תגרום ל-"
+"<strong style=\"color:red\">שמירה מיידית</strong> של המידע. אנא הזהר! קיים "
+"סיכוי רב יותר לביצוע <strong style=\"color:red\">הקצאה מחדש שגויה בטעות</"
+"strong> של המון קבצי מדיה / תויות מיון כאשר אפשרות זאת מאופשרת."
+
+#: pro/core/options-pages.php:140
+msgid ""
+"Strongly NOT recommended option if you work with more than hundred of files "
+"at a time."
+msgstr "אפשרות לא מומלצת במידה והנך עובד עם למעלה ממאה קבצים בכל פעם."
+
+#: pro/core/options-pages.php:175
+msgid "Updates"
+msgstr "עדכונים"
+
+#: pro/core/options-pages.php:190
+msgid "Enhanced Media Library PRO License"
+msgstr "רישוי Enhanced Media Library PRO"
+
+#: pro/core/options-pages.php:215
+msgid ""
+"To unlock updates, please enter your license key below. You can see your "
+"license key in <a href=\"http://www.wpuxsolutions.com/account/\">Your "
+"Account</a>. If you don&#8217;t have a licence key, you are welcome to <a "
+"href=\"http://www.wpuxsolutions.com/pricing/\">purchase it</a>."
+msgstr ""
+"על מנת לפתוח את אפשרות העדכונים, אנא הזן את קוד הרישוי שלך בעמוד ה-<a href="
+"\"%s\">עדכונים</a>. תוכל לראות את קוד הרישוי ב-<a href=\"%s\">החשבון שלך</"
+"a>. אם אין ברשותך קוד רישוי, הינך מוזמן <a href=\"%s\">לרכוש אותו</a>."
+
+#: pro/core/options-pages.php:219
+msgid "License Key"
+msgstr "מספר רישיון"
+
+#: pro/core/options-pages.php:226
+msgid "Activate License"
+msgstr "הפעל רישיון"
+
+#: pro/core/options-pages.php:243
+msgid "Your license is active!"
+msgstr "הרישיון שלך פעיל!"
+
+#: pro/core/update.php:109 pro/core/update.php:114 pro/core/update.php:118
+msgid ""
+"An unexpected error occurred. Something may be wrong with WordPress.org or "
+"this server&#8217;s configuration. If you continue to have problems, please "
+"try the <a href=\"https://wordpress.org/support/\">support forums</a>."
+msgstr ""
+"שגיאה לא צפויה ארעה. משהו עשוי להיות לא כשורה עם WordPress.org או עם הגדרות "
+"השרת. אם הנך ממשיך לחוות בעיות אנא נסה למצוא פתרון ב-<a href=\"https://"
+"wordpress.org/support/\">פורומי התמיכה</a>."
+
+#: pro/core/update.php:109
+msgid ""
+"(WordPress could not establish a secure connection to WordPress.org. Please "
+"contact your server administrator.)"
+msgstr ""
+"(וורדפרס לא הצליחה ליצור חיבור מאובטח אל WordPress.org . אנא צור קשר עם מנהל "
+"השרת.)"
+
+#: pro/core/update.php:184
+#, php-format
+msgid ""
+"To unlock updates, please enter your license key on the <a href=\"%s"
+"\">Updates</a> page. You can see your license key in <a href=\"%s\">Your "
+"Account</a>. If you don&#8217;t have a licence key, you are welcome to <a "
+"href=\"%s\">purchase it</a>."
+msgstr ""
+"על מנת לפתוח את אפשרות העדכונים, אנא הזן את קוד הרישוי שלך בעמוד ה-<a href="
+"\"%s\">עדכונים</a>. תוכל לראות את קוד הרישוי ב-<a href=\"%s\">החשבון שלך</"
+"a>. אם אין ברשותך קוד רישוי, הינך מוזמן <a href=\"%s\">לרכוש אותו</a>."
+
+#: pro/enhanced-media-library-pro.php:89
+#: pro/enhanced-media-library-pro.php:100
+msgid "Expand Details"
+msgstr "הצג פרטים"
+
+#: pro/enhanced-media-library-pro.php:90
+#: pro/enhanced-media-library-pro.php:101
+msgid "Collapse Details"
+msgstr "פרטים והרחבה"
+
+#: pro/enhanced-media-library-pro.php:93
+msgid "Validation Failed. One or more fields below are required."
+msgstr "האימות נכשל. אחד או יותר מהשדות הנ\"ל נדרשים."
+
+#: pro/enhanced-media-library-pro.php:99
+msgid "The changes you made will be lost if you navigate away from this page"
+msgstr "השינויים שביצעת יאבדו אם תעבור מעמוד זה"
+
+#: pro/enhanced-media-library-pro.php:160
+msgid "ALL files belong to this item"
+msgstr "כל הקבצים שייכים לפריט זה"
+
+#: pro/enhanced-media-library-pro.php:161
+msgid "SOME files belong to this item"
+msgstr "מספר קבצים שייכים לפריט זה"
+
+#: pro/enhanced-media-library-pro.php:162
+msgid "NO files belong to this item"
+msgstr "אין קבצים השייכים לפריט זה"
+
+#: pro/enhanced-media-library-pro.php:163
+msgid "Changes saved."
+msgstr "השינויים נשמרו."
+
+#: pro/enhanced-media-library-pro.php:164
+msgid "Something went wrong."
+msgstr "משהו השתבש."
+
+#: pro/enhanced-media-library-pro.php:165
+msgid "Save Changes"
+msgstr "שמור שינויים"
+
+#: pro/enhanced-media-library-pro.php:167
+msgid "Edit Media Files"
+msgstr "ערוך קבצי מדיה"
+
+#: pro/enhanced-media-library-pro.php:260
+msgid ""
+"<strong>Enhanced Media Library PRO</strong> does not require free version to "
+"be active. Please deactivate and remove the free version of the plugin."
+msgstr ""
+"<strong>Enhanced Media Library PRO</strong> אינו זקוק לגרסה החינמית על מנת "
+"לפעול. אנא נטרל והסר את הגרסא החינמית של התוסף."
+
+#. Plugin Name of the plugin/theme
+msgid "Enhanced Media Library"
+msgstr "ספרית מדיה משופרת"
+
+#. Plugin Name of the plugin/theme
+msgid "Enhanced Media Library PRO"
+msgstr "Enhanced Media Library PRO"
+
+#. Description of the plugin/theme
+msgid ""
+"This plugin will be handy for those who need to manage a lot of media files."
+msgstr "תוסף זה יהיה שימושי עבור ספריות מדיה עם קבצים רבים."
