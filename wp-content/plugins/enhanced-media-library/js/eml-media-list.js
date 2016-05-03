@@ -4,8 +4,8 @@
 
 
 
-    $( document ).ready( function()
-    {
+    $( document ).ready( function() {
+        
         var $mainFilter = $('select[name="attachment-filter"]'),
             $dataFilter = $('select#filter-by-date'),
             $taxFilters = $('select.eml-taxonomy-filters'),

@@ -1,0 +1,41 @@
+.related-posts {
+    @include full-width(#333);
+    background-color: $background-shade;
+  	padding: 1.15em;
+}
+
+.related-post {
+	margin-bottom: 3em;
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: .1em;
+
+		a {color: $text-color;}
+	}
+
+	#excerpt-more {
+		font-size: 16px;
+	}
+
+	#intro {
+		font-size: 16px;
+		margin: 0;
+	}
+
+	.byline {
+		margin-bottom: 0.125em;
+	}
+}
+
+#read-next {
+	background-color: darken($background-shade, 3%);
+	padding: 1.15em;
+	h2 {
+		a {color: $text-color;}
+	}
+}
+
+.related-post-image {
+	img {width: 100%;}
+}

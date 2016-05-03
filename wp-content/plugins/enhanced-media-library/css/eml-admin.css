@@ -245,12 +245,18 @@ body.eml-media-css .media-modal.acf-expanded .attachments-browser .media-toolbar
     font-size: 14px;
     display: inline-block;
     margin-right: 100px;
+    margin-left: 0;
+}
+body.rtl .wpuxss-eml-settings-list > li > label {
+    margin-left: 100px;
+    margin-right: 0;
 }
 .wpuxss-eml-settings-list input {
     margin: 0;
 }
 .wpuxss-eml-settings-list > li .wpuxss-eml-button-edit {
     position: absolute;
+    left: auto;
     right: 40px;
     top: 7px;
     text-decoration: none;
@@ -260,16 +266,28 @@ body.eml-media-css .media-modal.acf-expanded .attachments-browser .media-toolbar
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     padding: 3px 10px;
 }
+body.rtl .wpuxss-eml-settings-list > li .wpuxss-eml-button-edit {
+    left: 40px;
+    right: auto;
+}
 .wpuxss-eml-settings-list.wpuxss-eml-non-media-taxonomy-list > li .wpuxss-eml-button-edit {
     right: 10px;
 }
 .wpuxss-eml-settings-list > li .wpuxss-eml-button-remove {
     position: absolute;
+    left: auto;
     right: 10px;
     top: 7px;
 }
+body.rtl .wpuxss-eml-settings-list > li .wpuxss-eml-button-remove {
+    left: 10px;
+    right: auto;
+}
 .wpuxss-eml-settings-list .wpuxss-eml-assigned {
-    margin-right:10px;
+    margin: 0 10px 0 0;
+}
+body.rtl .wpuxss-eml-settings-list .wpuxss-eml-assigned {
+    margin: 0 0 0 10px;
 }
 
 .wpuxss-eml-taxonomy-edit label {
@@ -279,6 +297,10 @@ body.eml-media-css .media-modal.acf-expanded .attachments-browser .media-toolbar
 .wpuxss-eml-non-media-taxonomy-list .wpuxss-eml-taxonomy-edit label {
     width: auto;
     margin-left: 10px;
+}
+body.rtl .wpuxss-eml-non-media-taxonomy-list .wpuxss-eml-taxonomy-edit label {
+    margin-right: 10px;
+    margin-left: 0;
 }
 .wpuxss-eml-taxonomy-edit .wpuxss-eml-labels-edit {
     float: left;
@@ -333,6 +355,9 @@ body.eml-media-css .media-modal.acf-expanded .attachments-browser .media-toolbar
 .wpuxss-eml-button-container-right {
     text-align: right;
     margin: 20px 0 0;
+}
+body.rtl .wpuxss-eml-button-container-right {
+    text-align: left;
 }
 
 #post-query-submit {

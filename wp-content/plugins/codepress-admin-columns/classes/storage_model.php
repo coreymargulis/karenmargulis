@@ -135,7 +135,8 @@ abstract class CPAC_Storage_Model {
 	 *
 	 * @since 2.5
 	 */
-	protected function get_default_column_widths() {}
+	protected function get_default_column_widths() {
+	}
 
 	/**
 	 * @since 2.5
@@ -511,17 +512,47 @@ abstract class CPAC_Storage_Model {
 		$this->flush_columns(); // forces $columns and $stored_columns to be repopulated
 	}
 
-	public function init_layout() {
-		if ( $this->get_layout() ) {
-			return;
-		}
+	public function init_settings_layout() {
 
-		// try user preference..
+		// try admin preference..
 		$layout_id = $this->get_user_layout_preference();
 
 		// ..when not found use the first one
-		if ( ! $this->layout_exists( $layout_id ) ) {
+		if ( false === $layout_id ) {
 			$layout_id = $this->get_single_layout_id();
+		}
+
+		$this->set_layout( $layout_id );
+	}
+
+	public function init_listings_layout() {
+		$layout_id = null;
+
+		// User layouts
+		if ( $layouts_current_user = $this->get_layouts_for_current_user() ) {
+			$layout_preference = $this->get_user_layout_preference();
+
+			$layout_found = false;
+
+			// try user preference..
+			foreach ( $layouts_current_user as $_layout ) {
+				if ( $_layout->id == $layout_preference ) {
+					$layout_id = $_layout->id;
+					$layout_found = true;
+					break;
+				}
+			}
+
+			// when no longer available use the first user layout
+			if ( ! $layout_found ) {
+				$_layouts_current_user = array_values( $layouts_current_user );
+				$layout_id = $_layouts_current_user[0]->id;
+			}
+		}
+
+		// User doesn't have eligible layouts.. but the current (null) layout does exists, then the WP default columns are loaded
+		else if ( $this->get_layout_by_id( $layout_id ) ) {
+			$layout_id = '_wp_default_'; // _wp_default_ does not exists therefor will load WP default
 		}
 
 		$this->set_layout( $layout_id );
@@ -623,6 +654,7 @@ abstract class CPAC_Storage_Model {
 			'roles' => '',
 			'users' => '',
 		);
+
 		return array_merge( $default, $args );
 	}
 
@@ -786,7 +818,7 @@ abstract class CPAC_Storage_Model {
 				}
 
 				// only allow php files, exclude .SVN .DS_STORE and such
-				if ( substr( $leaf->getFilename(), - 4 ) !== '.php' ) {
+				if ( substr( $leaf->getFilename(), -4 ) !== '.php' ) {
 					continue;
 				}
 

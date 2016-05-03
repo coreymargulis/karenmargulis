@@ -1,29 +1,32 @@
 ( function( $ ) {
 
-    var orderValue,
-        l10n = wpuxss_eml_taxonomies_options_l10n_data;
+    var l10n = wpuxss_eml_taxonomies_options_l10n_data;
 
 
 
     // remove taxonomy
     $( document ).on( 'click', 'li .wpuxss-eml-button-remove', function() {
 
-        target = $(this).parent();
+        var target = $(this).parent();
 
-        if ( target.hasClass( 'wpuxss-eml-clone-taxonomy' ) )
-        {
+        if ( target.hasClass( 'wpuxss-eml-clone-taxonomy' ) ) {
+
             target.hide( 300, function() {
                 $(this).remove();
             });
         }
-        else
-        {
-            if ( confirm( l10n.tax_deletion_confirm ) )
-            {
+        else {
+
+            emlConfirmDialog( l10n.tax_deletion_confirm_title, l10n.tax_deletion_confirm_text_p1+l10n.tax_deletion_confirm_text_p2+l10n.tax_deletion_confirm_text_p3+l10n.tax_deletion_confirm_text_p4, l10n.tax_deletion_yes, l10n.cancel, 'button button-primary eml-warning-button' )
+            .done( function() {
+
                 target.hide( 300, function() {
                     $(this).remove();
                 });
-            }
+            })
+            .fail(function() {
+                return false;
+            });
         }
 
         return false;
@@ -57,16 +60,22 @@
 
 
     // on change of a singular taxonomy name during creation
-    $(document).on( 'blur', '.wpuxss-eml-clone-taxonomy .wpuxss-eml-singular_name', function()
-    {
+    $(document).on( 'blur', '.wpuxss-eml-clone-taxonomy .wpuxss-eml-singular_name', function() {
+
         var dictionary,
-        taxonomy_name = $(this).val().toLowerCase(),
-        taxonomy_edit_box = $(this).parents('.wpuxss-eml-taxonomy-edit');
+            taxonomy_singular_name = $(this).val().replace(/(<([^>]+)>)/g,''),
+            taxonomy_name = taxonomy_singular_name.toLowerCase(),
+            taxonomy_edit_box = $(this).parents('.wpuxss-eml-taxonomy-edit'),
+            built_in = [ 'link_category', 'post_format' ];
 
-        taxonomy_name = taxonomy_name.replace(/(<([^>]+)>)/g,'');
 
-        if ( taxonomy_name != '' )
-        {
+        if ( 'year' == taxonomy_name ) {
+            taxonomy_name = 'media_year';
+        }
+
+
+        if ( '' !== taxonomy_name ) {
+
             // thanks to
             // https://github.com/borodean/jquery-translit
             // https://gist.github.com/richardsweeney/5317392
@@ -127,8 +136,8 @@
                 '&' : '_'
             };
 
-            $.each( dictionary, function(k, v)
-            {
+            $.each( dictionary, function(k, v) {
+
                 var regex = new RegExp( k, 'g' );
                 taxonomy_name = taxonomy_name.replace( regex, v );
             });
@@ -137,161 +146,158 @@
 
             $(this).closest('.wpuxss-eml-clone-taxonomy').attr('id',taxonomy_name);
 
-            if ( $('.wpuxss-eml-clone-taxonomy[id='+taxonomy_name+'], .wpuxss-eml-taxonomy[id='+taxonomy_name+'], .wpuxss-non-eml-taxonomy[id='+taxonomy_name+']').length > 1 )
-            {
-                alert(l10n.tax_error_duplicate);
+
+            if ( $('.wpuxss-eml-clone-taxonomy[id='+taxonomy_name+'], .wpuxss-eml-taxonomy[id='+taxonomy_name+'], .wpuxss-non-eml-taxonomy[id='+taxonomy_name+']').length > 1 || -1 !== $.inArray( taxonomy_name, built_in ) ) {
+                emlAlertDialog( l10n.tax_error_duplicate_title, l10n.tax_error_duplicate_text, l10n.okay, 'button button-primary' )
+                .done( function() {
+                    return false;
+                });
             }
 
             $(this).attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][singular_name]');
-            taxonomy_edit_box.find('.wpuxss-eml-name').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][name]');
-            taxonomy_edit_box.find('.wpuxss-eml-menu_name').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][menu_name]');
-            taxonomy_edit_box.find('.wpuxss-eml-all_items').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][all_items]');
-            taxonomy_edit_box.find('.wpuxss-eml-edit_item').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][edit_item]');
-            taxonomy_edit_box.find('.wpuxss-eml-view_item').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][view_item]');
-            taxonomy_edit_box.find('.wpuxss-eml-update_item').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][update_item]');
-            taxonomy_edit_box.find('.wpuxss-eml-add_new_item').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][add_new_item]');
-            taxonomy_edit_box.find('.wpuxss-eml-new_item_name').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][new_item_name]');
-            taxonomy_edit_box.find('.wpuxss-eml-parent_item').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][parent_item]');
-            taxonomy_edit_box.find('.wpuxss-eml-search_items').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][labels][search_items]');
-
-            if( taxonomy_edit_box.find('.wpuxss-eml-edit_item').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-edit_item').val(l10n.edit+' '+$(this).val());
-
-            if( taxonomy_edit_box.find('.wpuxss-eml-view_item').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-view_item').val(l10n.view+' '+$(this).val());
-
-            if( taxonomy_edit_box.find('.wpuxss-eml-update_item').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-update_item').val(l10n.update+' '+$(this).val());
-
-            if( taxonomy_edit_box.find('.wpuxss-eml-add_new_item').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-add_new_item').val(l10n.add_new+' '+$(this).val());
-
-            if( taxonomy_edit_box.find('.wpuxss-eml-new_item_name').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-new_item_name').val(l10n.new+' '+$(this).val()+' '+l10n.name);
-
-            if( taxonomy_edit_box.find('.wpuxss-eml-parent_item').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-parent_item').val(l10n.parent+' '+$(this).val());
-
-            taxonomy_edit_box.find('.wpuxss-eml-taxonomy-name').val(taxonomy_name);
-
-            taxonomy_edit_box.find('.wpuxss-eml-hierarchical').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][hierarchical]');
-            taxonomy_edit_box.find('.wpuxss-eml-public').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][public]');
-            taxonomy_edit_box.find('.wpuxss-eml-show_admin_column').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][show_admin_column]');
-            taxonomy_edit_box.find('.wpuxss-eml-show_in_nav_menus').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][show_in_nav_menus]');
-            taxonomy_edit_box.find('.wpuxss-eml-sort').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][sort]');
-            taxonomy_edit_box.find('.wpuxss-eml-slug').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][rewrite][slug]').val(taxonomy_name);
-
-            taxonomy_edit_box.find('.wpuxss-eml-admin_filter').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][admin_filter]');
-            taxonomy_edit_box.find('.wpuxss-eml-media_uploader_filter').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][media_uploader_filter]');
-            taxonomy_edit_box.find('.wpuxss-eml-media_popup_taxonomy_edit').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][media_popup_taxonomy_edit]');
 
             $(this).closest('.wpuxss-eml-clone-taxonomy').find('.wpuxss-eml-assigned').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][assigned]');
             $(this).closest('.wpuxss-eml-clone-taxonomy').find('.wpuxss-eml-eml_media').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][eml_media]');
+            $(this).closest('.wpuxss-eml-clone-taxonomy').find('.wpuxss-eml-create_taxonomy').attr('name','wpuxss_eml_taxonomies['+taxonomy_name+'][create_taxonomy]');
+
+            addTaxonomyName( taxonomy_edit_box, taxonomy_name );
+            taxonomy_edit_box.find('.wpuxss-eml-taxonomy-name').val( taxonomy_name );
         }
-        else
-        {
-            $(this).val('');
-            taxonomy_edit_box.find('.wpuxss-eml-edit_item').val('');
-            taxonomy_edit_box.find('.wpuxss-eml-view_item').val('');
-            taxonomy_edit_box.find('.wpuxss-eml-update_item').val('');
-            taxonomy_edit_box.find('.wpuxss-eml-add_new_item').val('');
-            taxonomy_edit_box.find('.wpuxss-eml-new_item_name').val('');
-            taxonomy_edit_box.find('.wpuxss-eml-parent_item').val('');
-            taxonomy_edit_box.find('.wpuxss-eml-slug').val('');
-        }
+
+        taxonomy_edit_box.find('.wpuxss-eml-slug').val(taxonomy_name);
+
+        changeSingularLabels( taxonomy_edit_box, taxonomy_singular_name );
     });
+
+    $(document).on( 'blur', '.wpuxss-eml-taxonomy .wpuxss-eml-singular_name', function() {
+
+        changeSingularLabels( $(this).parents('.wpuxss-eml-taxonomy-edit'), $(this).val() );
+    });
+
+    function addTaxonomyName( edit_box, taxonomy_name ) {
+
+        var fields = {
+                'labels' : [ 'name', 'menu_name', 'all_items', 'edit_item', 'view_item', 'update_item', 'add_new_item', 'new_item_name', 'parent_item', 'search_items' ],
+                'hierarchical' : 'hierarchical',
+                'show_admin_column' : 'show_admin_column',
+                'admin_filter' : 'admin_filter',
+                'media_uploader_filter' : 'media_uploader_filter',
+                'media_popup_taxonomy_edit' : 'media_popup_taxonomy_edit',
+                'show_in_nav_menus' : 'show_in_nav_menus',
+                'sort' : 'sort',
+                'show_in_rest' : 'show_in_rest',
+                'rewrite' : [ 'slug', 'with_front' ]
+            };
+
+        $.each( fields, function( index, field ) {
+
+            if ( index === field ) {
+                edit_box.find('.wpuxss-eml-'+field).attr('name','wpuxss_eml_taxonomies['+taxonomy_name+']['+field+']');
+            }
+            else {
+                $.each( field, function( i, field ) {
+                    edit_box.find('.wpuxss-eml-'+field).attr('name','wpuxss_eml_taxonomies['+taxonomy_name+']['+index+']['+field+']');
+                });
+            }
+        });
+    }
+
+    function changeSingularLabels( edit_box, singular_name ) {
+
+        if ( '' !== singular_name ) {
+
+            edit_box.find('.wpuxss-eml-edit_item').val( l10n.edit+' '+singular_name );
+            edit_box.find('.wpuxss-eml-view_item').val( l10n.view+' '+singular_name );
+            edit_box.find('.wpuxss-eml-update_item').val( l10n.update+' '+singular_name );
+            edit_box.find('.wpuxss-eml-add_new_item').val( l10n.add_new+' '+singular_name );
+            edit_box.find('.wpuxss-eml-new_item_name').val( l10n.new+' '+singular_name );
+            edit_box.find('.wpuxss-eml-parent_item').val( l10n.parent+' '+singular_name );
+        }
+        else {
+
+            edit_box.find('.wpuxss-eml-edit_item').val('');
+            edit_box.find('.wpuxss-eml-view_item').val('');
+            edit_box.find('.wpuxss-eml-update_item').val('');
+            edit_box.find('.wpuxss-eml-add_new_item').val('');
+            edit_box.find('.wpuxss-eml-new_item_name').val('');
+            edit_box.find('.wpuxss-eml-parent_item').val('');
+        }
+    }
 
 
 
     // on change of a plural taxonomy name during creation
-    $(document).on( 'blur', '.wpuxss-eml-clone-taxonomy .wpuxss-eml-name', function()
+    $(document).on( 'blur', '.wpuxss-eml-clone-taxonomy .wpuxss-eml-name, .wpuxss-eml-taxonomy .wpuxss-eml-name', function()
     {
-        var taxonomy_plural_name =  $(this).val();
-        taxonomy_edit_box = $(this).parents('.wpuxss-eml-taxonomy-edit');
+        var taxonomy_plural_name = $(this).val().replace(/(<([^>]+)>)/g,''),
+            taxonomy_edit_box = $(this).parents('.wpuxss-eml-taxonomy-edit'),
+            main_tax_label = $(this).closest('.wpuxss-eml-clone-taxonomy').find('.wpuxss-eml-taxonomy-label span');
 
-        taxonomy_plural_name = taxonomy_plural_name.replace(/(<([^>]+)>)/g,'');
 
-        if ( taxonomy_plural_name != '' )
-        {
-            if( taxonomy_edit_box.find('.wpuxss-eml-menu_name').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-menu_name').val($(this).val());
+        if ( '' !== taxonomy_plural_name ) {
 
-            if( taxonomy_edit_box.find('.wpuxss-eml-all_items').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-all_items').val(l10n.all+' '+$(this).val());
-
-            if( taxonomy_edit_box.find('.wpuxss-eml-search_items').val() == '' )
-                taxonomy_edit_box.find('.wpuxss-eml-search_items').val(l10n.search+' '+$(this).val());
-
-            $(this).closest('.wpuxss-eml-clone-taxonomy').find('.wpuxss-eml-taxonomy-label').text($(this).val());
+            taxonomy_edit_box.find('.wpuxss-eml-menu_name').val( taxonomy_plural_name );
+            taxonomy_edit_box.find('.wpuxss-eml-all_items').val( l10n.all+' '+taxonomy_plural_name );
+            taxonomy_edit_box.find('.wpuxss-eml-search_items').val( l10n.search+' '+taxonomy_plural_name );
+            main_tax_label.text( taxonomy_plural_name );
         }
-        else
-        {
-            $(this).val('');
+        else {
+
             taxonomy_edit_box.find('.wpuxss-eml-menu_name').val('');
             taxonomy_edit_box.find('.wpuxss-eml-all_items').val('');
             taxonomy_edit_box.find('.wpuxss-eml-search_items').val('');
-            $(this).closest('.wpuxss-eml-clone-taxonomy').find('.wpuxss-eml-taxonomy-label').text(l10n.tax_new);
+            main_tax_label.text( l10n.tax_new );
         }
     });
 
 
 
     // on taxonomy form submit
-    $('#wpuxss-eml-form-taxonomies').submit(function( event )
-    {
+    $('#wpuxss-eml-form-taxonomies').submit(function( event ) {
+
+        var built_in = [ 'link_category', 'post_format' ];
+
+
         submit_it = true;
+        alert_title = l10n.tax_error_empty_fileds_title;
         alert_text = '';
 
         $('.wpuxss-eml-clone-taxonomy, .wpuxss-eml-taxonomy').each(function( index )
         {
             current_taxonomy = $(this).attr('id');
 
-            if ( !$('.wpuxss-eml-singular_name',this).val() && !$('.wpuxss-eml-name',this).val() )
+            if ( ! $('.wpuxss-eml-singular_name',this).val() && ! $('.wpuxss-eml-name',this).val() )
             {
                 submit_it = false;
                 alert_text = l10n.tax_error_empty_both;
             }
-            else if ( !$('.wpuxss-eml-singular_name',this).val() )
+            else if ( ! $('.wpuxss-eml-singular_name',this).val() )
             {
                 submit_it = false;
                 alert_text = l10n.tax_error_empty_singular;
             }
-            else if ( !$('.wpuxss-eml-name',this).val() )
+            else if ( ! $('.wpuxss-eml-name',this).val() )
             {
                 submit_it = false;
                 alert_text = l10n.tax_error_empty_plural;
             }
-            else if ( $('.wpuxss-eml-clone-taxonomy[id='+current_taxonomy+'], .wpuxss-eml-taxonomy[id='+current_taxonomy+'], .wpuxss-non-eml-taxonomy[id='+current_taxonomy+']').length > 1 )
+            else if ( $('.wpuxss-eml-clone-taxonomy[id='+current_taxonomy+'], .wpuxss-eml-taxonomy[id='+current_taxonomy+'], .wpuxss-non-eml-taxonomy[id='+current_taxonomy+']').length > 1 || -1 !== $.inArray( current_taxonomy, built_in ) )
             {
                 submit_it = false;
-                alert_text = l10n.tax_error_duplicate;
+                alert_title = l10n.tax_error_duplicate_title;
+                alert_text = l10n.tax_error_duplicate_text;
             }
         });
 
-        if ( !submit_it ) alert(alert_text);
+
+        if ( ! submit_it ) {
+            emlAlertDialog( alert_title, alert_text, l10n.okay, 'button button-primary' )
+            .done( function() {
+                return false;
+            });
+        }
 
         return submit_it;
-    });
-
-
-
-    $( document ).ready( function() {
-
-        orderValue = $('#wpuxss_eml_tax_options_media_order').val();
-        $('#wpuxss_eml_tax_options_media_orderby').change();
-    });
-
-
-
-    $( document ).on( 'change', '#wpuxss_eml_tax_options_media_orderby', function( event ) {
-
-        var isMenuOrder = 'menuOrder' === $( event.target ).val(),
-            value;
-
-        orderValue = isMenuOrder ? $('#wpuxss_eml_tax_options_media_order').val() : orderValue;
-        value = isMenuOrder ? 'ASC' : orderValue;
-
-        $('#wpuxss_eml_tax_options_media_order').prop( 'disabled', isMenuOrder ).val( value );
     });
 
 

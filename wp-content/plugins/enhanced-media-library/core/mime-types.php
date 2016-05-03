@@ -25,18 +25,18 @@ if ( ! function_exists( 'wpuxss_eml_mimes_validate' ) ) {
             $input = $wpuxss_eml_mimes_backup;
 
             add_settings_error(
-                'wpuxss_eml_mimes',
+                'mime-types',
                 'eml_mime_types_restored',
-                __('MIME type settings restored.', 'eml'),
+                __('MIME Types settings restored.', 'enhanced-media-library'),
                 'updated'
             );
         }
         elseif ( ! isset( $_POST['eml-settings-import'] ) && ! isset( $_POST['eml-settings-restore'] ) ) {
 
             add_settings_error(
-                'wpuxss_eml_mimes',
+                'mime-types',
                 'eml_mime_types_saved',
-                __('MIME type settings saved.', 'eml'),
+                __('MIME Types settings saved.', 'enhanced-media-library'),
                 'updated'
             );
         }
