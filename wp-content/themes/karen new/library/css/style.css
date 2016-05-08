@@ -658,7 +658,7 @@ body {
   @media (min-width: 1030px) {
     .wrap {
       max-width: 1030px;
-      padding: 0 115px; } }
+      padding: 0 165px; } }
   @media (min-width: 1400px) {
     .wrap {
       max-width: 1400px;
@@ -706,7 +706,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
     color: #484848; }
 
 h1, .h1 {
-  font-size: 32px;
+  font-size: 34px;
   line-height: 1.333em;
   margin: 0 0 .25em 0; }
   h1.entry-title, .h1.entry-title {
@@ -735,6 +735,10 @@ OTHER TYPE STYLES
   color: #aeaeae;
   font-size: 14px;
   margin-bottom: 0 !important; }
+
+strong {
+  font-family: "scalabold";
+  font-weight: 500; }
 
 /******************************************************************
 Site Name:

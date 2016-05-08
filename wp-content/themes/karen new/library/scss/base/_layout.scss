@@ -13,7 +13,7 @@
 	}
 	@include breakpoint($bp_large) {
 		max-width: 1030px;
-		padding: 0 115px;
+		padding: 0 165px;
 	}
 	@include breakpoint($bp_x-large) {
 		max-width: 1400px;

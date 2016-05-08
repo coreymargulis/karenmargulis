@@ -54,7 +54,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-	font-size: 32px;
+	font-size: 34px;
 	line-height: 1.333em;
 	margin: 0 0 .25em 0;
   &.entry-title {
@@ -89,4 +89,9 @@ OTHER TYPE STYLES
   color: $gray-text;
   font-size: 14px;
   margin-bottom: 0 !important;
+}
+
+strong {
+  font-family: $bold;
+  font-weight: 500;
 }
