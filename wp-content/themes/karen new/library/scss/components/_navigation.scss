@@ -23,6 +23,7 @@ HEADER STYLES
 #logo {
 	font-family: $caps;
 	font-size: 24px;
+	display: inline-block;
 	margin: 0;
 
   #psa {
@@ -97,3 +98,7 @@ nav {
 	}  /* end current highlighters */
 
 } /* end .nav */
+
+body.single-post nav ul li.menu-item-369, body.single-workshops nav ul li.menu-item-399 > a{
+		color: $purple;
+}

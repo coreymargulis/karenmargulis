@@ -50,8 +50,8 @@ function custom_post_example() {
 			'query_var' => true,
 			'menu_position' => 8, /* this is what order you want it to appear in on the left hand side menu */
 			'menu_icon' => 'dashicons-universal-access-alt', /* the icon for the custom post type menu */
-			'rewrite'	=> array( 'slug' => 'classes', 'with_front' => false ), /* you can specify its url slug */
-			'has_archive' => 'classes', /* you can rename the slug here */
+			'rewrite'	=> array( 'slug' => 'workshops', 'with_front' => false ), /* you can specify its url slug */
+			'has_archive' => 'workshops', /* you can rename the slug here */
 			'capability_type' => 'post',
 			'hierarchical' => false,
 			/* the next one is important, it tells what's enabled in the post editor */
@@ -60,9 +60,9 @@ function custom_post_example() {
 	); /* end of register post type */
 
 	/* this adds your post categories to your custom post type */
-	register_taxonomy_for_object_type( 'category', 'classes' );
+	register_taxonomy_for_object_type( 'category', 'workshops' );
 	/* this adds your post tags to your custom post type */
-	register_taxonomy_for_object_type( 'post_tag', 'classes' );
+	register_taxonomy_for_object_type( 'post_tag', 'workshops' );
 
 }
 

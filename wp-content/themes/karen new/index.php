@@ -8,9 +8,9 @@
 
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
+							<article id="post-<?php the_ID(); ?>">
 
-								<header class="article-header">
+								<section class="article-preview">
 
 									<p class="byline">
 										<?php printf( __( '', 'bonestheme' ).' %1$s',
@@ -20,11 +20,9 @@
 									</p>
 
 									<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+									<?php echo custom_field_excerpt(); ?>
+									<a href="<?php the_permalink() ?>" id="excerpt-more">Read more...</a>
 
-								</header>
-
-								<section class="entry-content cf">
-									<?php the_content(); ?>
 								</section>
 
 							</article>
@@ -49,10 +47,7 @@
 
 							<?php endif; ?>
 
-
 						</main>
-
-					<?php get_sidebar(); ?>
 
 				</div>
 

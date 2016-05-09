@@ -4,6 +4,8 @@ body {
 	line-height: 1.5;
 	color: $text-color;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-weight: 500;
 }
 
 
@@ -66,7 +68,8 @@ h1, .h1 {
 }
 
 h2, .h2 {
-	font-size: 28px;
+	font-size: 26px;
+  font-family: $bold-sans;
 	line-height: 1.4em;
 	margin: 0 0 0.375em 0;
 }
@@ -84,11 +87,15 @@ OTHER TYPE STYLES
 
 .byline {
   font-family: $sans-serif;
-  text-rendering: optimizeLegibility;
-  font-weight: 500;
   color: $gray-text;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 0 !important;
+}
+
+#excerpt-more {
+  font-family: $sans-serif;
+  font-size: 16px;
+  color: $text-color;
 }
 
 strong {

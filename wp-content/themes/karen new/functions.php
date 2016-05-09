@@ -322,7 +322,7 @@ function custom_field_excerpt() {
   $text = get_field('introduction');
   if ( '' != $text ) {
     $text = strip_shortcodes( $text );
-    $text = apply_filters('the_content', $text);
+    // $text = apply_filters('the_content', $text);
     $text = str_replace(']]>;', ']]&gt;', $text);
     $excerpt_length = 40;
     // $excerpt_more = apply_filters('excerpt_more', ' ' . '[...]');
@@ -475,27 +475,27 @@ function woocommerce_show_product_images() {
 
 
 // Exclude demos from gallery page
-add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
-
-function custom_pre_get_posts_query( $q ) {
-
-	if ( ! $q->is_main_query() ) return;
-	if ( ! $q->is_post_type_archive() ) return;
-
-	if ( ! is_admin() && is_shop() ) {
-
-		$q->set( 'tax_query', array(array(
-			'taxonomy' => 'product_cat',
-			'field' => 'slug',
-			'terms' => array( 'demo' ), // Don't display demos on the gallery page
-			'operator' => 'NOT IN'
-		)));
-
-	}
-
-	remove_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
-
-}
+// add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
+//
+// function custom_pre_get_posts_query( $q ) {
+//
+// 	if ( ! $q->is_main_query() ) return;
+// 	if ( ! $q->is_post_type_archive() ) return;
+//
+// 	if ( ! is_admin() && is_shop() ) {
+//
+// 		$q->set( 'tax_query', array(array(
+// 			'taxonomy' => 'product_cat',
+// 			'field' => 'slug',
+// 			'terms' => array( 'demo' ), // Don't display demos on the gallery page
+// 			'operator' => 'NOT IN'
+// 		)));
+//
+// 	}
+//
+// 	remove_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
+//
+// }
 
 // Display # products per page
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 20 );

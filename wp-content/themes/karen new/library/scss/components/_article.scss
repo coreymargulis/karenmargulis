@@ -32,27 +32,37 @@
 	text-align: right;
 	max-width: 80%;
 
-		a {
-			color: #fff;
-			&:hover,
-			&:focus{
-				color: darken($white, 20%);
+		@include breakpoint($bp-medium) {
+			background: none;
+			color: $gray-text;
+			position: relative;
+			max-width: none;
+			padding-right: 0;
+			text-align: left;
+			font-size: 14px;
+
+			a {
+				&:hover, &:focus{
+					color: darken($white, 20%);
+				}
 			}
 		}
+
 		.price {
 			border: 1px solid;
 			border-radius: 2px;
 			padding: 5px;
 			margin-left: 5px;
 			color: #fff;
-			//border-color: rgba(255,255,255,0.8);
 
-				&:hover,
-				&:focus {
+			@include breakpoint($bp-medium) {
+				color: transparentize($purple, .5);
+
+				&:hover, &:focus {
 					color: darken($purple, 4%);
 
 				}
-
+			}
 		}
 }
 

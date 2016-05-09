@@ -672,7 +672,9 @@ body {
   font-size: 20px;
   line-height: 1.5;
   color: #484848;
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-weight: 500; }
 
 /*********************
 LINK STYLES
@@ -715,7 +717,8 @@ h1, .h1 {
     font-family: "scalasansbold"; }
 
 h2, .h2 {
-  font-size: 28px;
+  font-size: 26px;
+  font-family: "scalasansbold";
   line-height: 1.4em;
   margin: 0 0 0.375em 0; }
 
@@ -730,11 +733,14 @@ OTHER TYPE STYLES
 ******************************************************************/
 .byline {
   font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-rendering: optimizeLegibility;
-  font-weight: 500;
   color: #aeaeae;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 0 !important; }
+
+#excerpt-more {
+  font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #484848; }
 
 strong {
   font-family: "scalabold";
@@ -799,18 +805,28 @@ you can just remove this stylesheet.
   z-index: 300;
   text-align: right;
   max-width: 80%; }
-  .featured-image-caption a {
-    color: #fff; }
-    .featured-image-caption a:hover, .featured-image-caption a:focus {
-      color: #cccccc; }
+  @media (min-width: 768px) {
+    .featured-image-caption {
+      background: none;
+      color: #aeaeae;
+      position: relative;
+      max-width: none;
+      padding-right: 0;
+      text-align: left;
+      font-size: 14px; }
+      .featured-image-caption a:hover, .featured-image-caption a:focus {
+        color: #cccccc; } }
   .featured-image-caption .price {
     border: 1px solid;
     border-radius: 2px;
     padding: 5px;
     margin-left: 5px;
     color: #fff; }
-    .featured-image-caption .price:hover, .featured-image-caption .price:focus {
-      color: #8261ca; }
+    @media (min-width: 768px) {
+      .featured-image-caption .price {
+        color: rgba(142, 112, 207, 0.5); }
+        .featured-image-caption .price:hover, .featured-image-caption .price:focus {
+          color: #8261ca; } }
 
 .image-caption {
   color: #959595;
@@ -1335,6 +1351,7 @@ HEADER STYLES
 #logo {
   font-family: "scala_capsregular";
   font-size: 24px;
+  display: inline-block;
   margin: 0; }
   #logo #psa {
     display: none; }
@@ -1386,6 +1403,44 @@ nav {
     color: #8E70CF; }
 
 /* end .nav */
+body.single-post nav ul li.menu-item-369, body.single-workshops nav ul li.menu-item-399 > a {
+  color: #8E70CF; }
+
+.article-preview {
+  margin-bottom: 2em; }
+  .article-preview h2 {
+    margin-bottom: 0.1em !important; }
+  .article-preview p {
+    margin-bottom: 0 !important; }
+
+.related-posts {
+  background-color: #f1f2f3;
+  padding: 1.15em; }
+
+.related-post {
+  margin-bottom: 3em; }
+  .related-post .byline {
+    margin-bottom: 0.125em; }
+
+#read-next {
+  background-color: #e9eaec;
+  padding: 1.15em; }
+
+.related-post-image img {
+  width: 100%; }
+
+.article-footer {
+  padding: 0 1.15em;
+  margin-top: 2em;
+  margin-bottom: 4em; }
+
+.footer {
+  clear: both;
+  background-color: #fff;
+  font-size: 14px;
+  font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*margin-top: 4em;*/ }
+
 /*********************
 PRINT STYLESHEET
 Feel free to customize this. Remember to add things that won't make
