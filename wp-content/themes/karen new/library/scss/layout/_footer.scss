@@ -29,8 +29,8 @@
 }
 
 #read-next {
-	background-color: darken($background-shade, 3%);
-	padding: 1.15em;
+	background-color: $background-shade;
+	padding: 2em;
 }
 
 .related-post-image {
@@ -38,9 +38,8 @@
 }
 
 .article-footer {
-	padding: 0 1.15em;
 	margin-top: 2em;
-	margin-bottom: 4em;
+	margin-bottom: 3em;
 }
 
 .footer {

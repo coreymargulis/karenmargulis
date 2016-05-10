@@ -590,7 +590,7 @@ FULL WIDTH BACKGROUNDS
 .full:before, .full:after {
   content: "";
   position: absolute;
-  background-color: #f1f2f3;
+  background-color: #f5f5f5;
   top: 0;
   bottom: 0;
   width: 9999px;
@@ -599,7 +599,7 @@ FULL WIDTH BACKGROUNDS
 .darker:before {
   content: "";
   position: absolute;
-  background-color: #e9eaec;
+  background-color: #ededed;
   top: 0;
   bottom: 0;
   width: 9999px;
@@ -608,7 +608,7 @@ FULL WIDTH BACKGROUNDS
 .darker:after {
   content: "";
   position: absolute;
-  background-color: #e9eaec;
+  background-color: #ededed;
   top: 0;
   bottom: 0;
   width: 9999px;
@@ -636,7 +636,7 @@ FULL WIDTH BACKGROUNDS
   clear: both; }
 
 body {
-  background-color: #F8F9FA; }
+  background-color: #fbfbfb; }
 
 #content {
   margin-top: 4em; }
@@ -746,6 +746,10 @@ strong {
   font-family: "scalabold";
   font-weight: 500; }
 
+i {
+  font-family: "scalaitalic";
+  font-weight: 500; }
+
 /******************************************************************
 Site Name:
 Author:
@@ -793,40 +797,37 @@ you can just remove this stylesheet.
     vertical-align: top; }
 
 .featured-image-caption {
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
   display: block;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 10px 12px;
   font-family: "scalasansregular";
-  font-size: 12px;
-  z-index: 300;
+  color: #959595;
+  font-size: 14px;
   text-align: right;
-  max-width: 80%; }
+  z-index: 300;
+  max-width: 100%; }
   @media (min-width: 768px) {
     .featured-image-caption {
       background: none;
-      color: #aeaeae;
       position: relative;
-      max-width: none;
-      padding-right: 0;
-      text-align: left;
-      font-size: 14px; }
-      .featured-image-caption a:hover, .featured-image-caption a:focus {
-        color: #cccccc; } }
-  .featured-image-caption .price {
-    border: 1px solid;
-    border-radius: 2px;
-    padding: 5px;
-    margin-left: 5px;
-    color: #fff; }
-    @media (min-width: 768px) {
-      .featured-image-caption .price {
-        color: rgba(142, 112, 207, 0.5); }
-        .featured-image-caption .price:hover, .featured-image-caption .price:focus {
-          color: #8261ca; } }
+      padding-bottom: 50px; } }
+  .featured-image-caption #caption {
+    display: inline-block;
+    text-align: left;
+    position: absolute;
+    top: 17px;
+    right: 60px;
+    line-height: 1.25em; }
+  .featured-image-caption #price {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 0; }
+    .featured-image-caption #price a {
+      border: 1px solid #cabce9;
+      border-radius: 2px;
+      padding: 6px 8px;
+      color: #8E70CF; }
+      .featured-image-caption #price a:hover, .featured-image-caption #price a:focus {
+        border-color: #8E70CF; }
 
 .image-caption {
   color: #959595;
@@ -900,8 +901,7 @@ button:focus {
   font-family: "scalasansregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
   color: #fff;
-  font-size: 0.9em;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 34px;
   font-weight: normal;
   padding: 8px 24px;
@@ -939,7 +939,7 @@ and it will create a button dependant on those variables.
     background-color: #7f5dc9; }
 
 .secondary {
-  background-color: #F8F9FA;
+  background-color: #fbfbfb;
   border: 1px solid #cabce9;
   color: #8E70CF; }
   .secondary:hover, .secondary:focus {
@@ -1403,18 +1403,21 @@ nav {
     color: #8E70CF; }
 
 /* end .nav */
-body.single-post nav ul li.menu-item-369, body.single-workshops nav ul li.menu-item-399 > a {
+body.single-post nav ul li.menu-item-369 > a {
+  color: #8E70CF; }
+
+body.single-workshops nav ul li.menu-item-399 > a {
   color: #8E70CF; }
 
 .article-preview {
-  margin-bottom: 2em; }
+  margin-bottom: 4em; }
   .article-preview h2 {
     margin-bottom: 0.1em !important; }
   .article-preview p {
     margin-bottom: 0 !important; }
 
 .related-posts {
-  background-color: #f1f2f3;
+  background-color: #f5f5f5;
   padding: 1.15em; }
 
 .related-post {
@@ -1423,16 +1426,15 @@ body.single-post nav ul li.menu-item-369, body.single-workshops nav ul li.menu-i
     margin-bottom: 0.125em; }
 
 #read-next {
-  background-color: #e9eaec;
-  padding: 1.15em; }
+  background-color: #f5f5f5;
+  padding: 2em; }
 
 .related-post-image img {
   width: 100%; }
 
 .article-footer {
-  padding: 0 1.15em;
   margin-top: 2em;
-  margin-bottom: 4em; }
+  margin-bottom: 3em; }
 
 .footer {
   clear: both;

@@ -99,6 +99,10 @@ nav {
 
 } /* end .nav */
 
-body.single-post nav ul li.menu-item-369, body.single-workshops nav ul li.menu-item-399 > a{
+body.single-post nav ul li.menu-item-369 > a{
+		color: $purple;
+}
+
+body.single-workshops nav ul li.menu-item-399 > a{
 		color: $purple;
 }

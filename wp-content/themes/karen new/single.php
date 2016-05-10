@@ -32,8 +32,13 @@
 								    		<?php endif; ?>
 
 									    	<div class="featured-image-caption">
-												<?php the_title(); ?><br><?php the_field('width'); ?> x <?php the_field('height'); ?> <a class="price" href="<?php the_permalink(); ?>">$<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?></a>
-									    	</div>
+													<div id="caption">
+														<i><?php the_title(); ?></i><br><?php the_field('width'); ?> x <?php the_field('height'); ?>" pastel
+													</div>
+													<div id="price">
+														<a href="<?php the_field('etsy_link'); ?>">$<?php the_field('price'); ?></a>
+										    	</div>
+												</div>
 
 									  </div>
 
@@ -52,7 +57,7 @@
 
 				          <h1 class="entry-title single-title"><?php the_title(); ?></h1>
 
-                	<p><?php the_field('introduction'); ?></p>
+                	<?php the_field('introduction'); ?>
 
                 </section> <?php // end article section ?>
 
@@ -67,10 +72,11 @@
 
 			        </article> <?php // end article ?>
 
-			        <section id="read-next" class="wrap">
+			        <section id="read-next">
 
-              	<div id="next-post">
-									<h4>Next Post</h4>
+              	<div id="next-post" class="wrap">
+
+									<h3>Next Post</h3>
 
 				          <?php
 										$prev_post = get_previous_post();

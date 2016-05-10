@@ -566,7 +566,7 @@ body#tinymce.wp-editor {
   body#tinymce.wp-editor .full:before, body#tinymce.wp-editor .full:after {
     content: "";
     position: absolute;
-    background-color: #f1f2f3;
+    background-color: #f5f5f5;
     top: 0;
     bottom: 0;
     width: 9999px;
@@ -574,7 +574,7 @@ body#tinymce.wp-editor {
   body#tinymce.wp-editor .darker:before {
     content: "";
     position: absolute;
-    background-color: #e9eaec;
+    background-color: #ededed;
     top: 0;
     bottom: 0;
     width: 9999px;
@@ -582,7 +582,7 @@ body#tinymce.wp-editor {
   body#tinymce.wp-editor .darker:after {
     content: "";
     position: absolute;
-    background-color: #e9eaec;
+    background-color: #ededed;
     top: 0;
     bottom: 0;
     width: 9999px;
@@ -642,20 +642,20 @@ body#tinymce.wp-editor {
     body#tinymce.wp-editor table caption {
       margin: 0 0 7px;
       font-size: 0.75em;
-      color: #f1f2f3;
+      color: #f5f5f5;
       text-transform: uppercase;
       letter-spacing: 1px; }
   body#tinymce.wp-editor tr {
     border-bottom: 1px solid #484848; }
     body#tinymce.wp-editor tr:nth-child(even) {
-      background-color: #f1f2f3; }
+      background-color: #f5f5f5; }
   body#tinymce.wp-editor td {
     padding: 7px;
     border-right: 1px solid #484848; }
     body#tinymce.wp-editor td:last-child {
       border-right: 0; }
   body#tinymce.wp-editor th {
-    background-color: #f1f2f3;
+    background-color: #f5f5f5;
     border-bottom: 1px solid #484848;
     border-right: 1px solid #484848; }
     body#tinymce.wp-editor th:last-child {
@@ -665,7 +665,7 @@ body#tinymce.wp-editor {
     padding: 0 0 0 0.75em;
     border-left: 3px solid #2980b9;
     font-style: italic;
-    color: #f1f2f3; }
+    color: #f5f5f5; }
   body#tinymce.wp-editor dd {
     margin-left: 0;
     font-size: 0.9em;
@@ -684,7 +684,7 @@ body#tinymce.wp-editor {
     height: auto; }
   body#tinymce.wp-editor pre {
     background: #323944;
-    color: #f1f2f3;
+    color: #f5f5f5;
     font-size: 0.9em;
     padding: 1.5em;
     margin: 0 0 1.5em;

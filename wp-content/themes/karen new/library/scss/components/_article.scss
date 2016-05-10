@@ -2,7 +2,6 @@
 .featured-image-wrap {
 	text-align: center;
 }
-
 .featured-image {
 	position: relative;
 	display: inline-block;
@@ -18,50 +17,48 @@
 }
 
 .featured-image-caption {
-	background: rgba(0,0,0,0.5);
-	color: #fff;
 	display: block;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-
-	padding: 10px 12px;
 	font-family: "scalasansregular";
-	font-size: 12px;
-	z-index: 300;
+	color: darken($gray-text, 10%);
+	font-size: 14px;
 	text-align: right;
-	max-width: 80%;
+	z-index: 300;
+	max-width: 100%;
 
 		@include breakpoint($bp-medium) {
 			background: none;
-			color: $gray-text;
 			position: relative;
-			max-width: none;
-			padding-right: 0;
-			text-align: left;
-			font-size: 14px;
-
-			a {
-				&:hover, &:focus{
-					color: darken($white, 20%);
-				}
-			}
+			padding-bottom: 50px;
 		}
 
-		.price {
-			border: 1px solid;
-			border-radius: 2px;
-			padding: 5px;
-			margin-left: 5px;
-			color: #fff;
+		#caption {
+			display: inline-block;
+			text-align: left;
+			position: absolute;
+			top: 17px;
+			right: 60px;
+			line-height: 1.25em;
+		}
 
-			@include breakpoint($bp-medium) {
-				color: transparentize($purple, .5);
+		#price {
+			display: inline-block;
+			position: absolute;
+			top: 20px;
+			right: 0;
+
+			a {
+				border: 1px solid $light-purple;
+				border-radius: 2px;
+				padding: 6px 8px;
+				color: $purple;
 
 				&:hover, &:focus {
-					color: darken($purple, 4%);
-
+					border-color: $purple;
 				}
+			}
+
+			@include breakpoint($bp-medium) {
+
 			}
 		}
 }

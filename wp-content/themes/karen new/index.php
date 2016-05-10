@@ -10,20 +10,50 @@
 
 							<article id="post-<?php the_ID(); ?>">
 
-								<section class="article-preview">
+								<a href="<?php the_permalink() ?>">
 
-									<p class="byline">
-										<?php printf( __( '', 'bonestheme' ).' %1$s',
-											/* the time the post was published */
-											'<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>'
-										); ?>
-									</p>
+									<section class="featured-image-wrap">
 
-									<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-									<?php echo custom_field_excerpt(); ?>
-									<a href="<?php the_permalink() ?>" id="excerpt-more">Read more...</a>
+										<?php
+											$post_object = get_field('featured_painting');
+											if( $post_object ):
+												// override $post
+												$post = $post_object;
+												setup_postdata( $post );
+										?>
 
-								</section>
+										<div class="featured-image">
+
+											<?php
+												$image = get_field('painting');
+
+												if( !empty($image) ): ?>
+													<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+												<?php endif; ?>
+
+										</div>
+
+										<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+									<?php endif; // end featured image ?>
+
+									</section>
+
+									<section class="article-preview">
+
+										<p class="byline">
+											<?php printf( __( '', 'bonestheme' ).' %1$s',
+												/* the time the post was published */
+												'<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>'
+											); ?>
+										</p>
+
+										<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+										<?php echo custom_field_excerpt(); ?>
+										<a href="<?php the_permalink() ?>" id="excerpt-more">Read more...</a>
+
+									</section>
+
+								</a>
 
 							</article>
 
