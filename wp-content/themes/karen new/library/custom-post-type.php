@@ -90,7 +90,7 @@ function custom_post_example() {
 			'query_var' => true,
 			'menu_position' => 8, /* this is what order you want it to appear in on the left hand side menu */
 			'menu_icon' => 'dashicons-admin-customizer', /* the icon for the custom post type menu */
-			'rewrite'	=> array( 'slug' => 'workshops', 'with_front' => false ), /* you can specify its url slug */
+			'rewrite'	=> array( 'slug' => 'paintings', 'with_front' => false ), /* you can specify its url slug */
 			'has_archive' => 'paintings', /* you can rename the slug here */
 			'capability_type' => 'post',
 			'hierarchical' => false,
