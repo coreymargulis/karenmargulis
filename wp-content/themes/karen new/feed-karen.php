@@ -82,17 +82,13 @@ do_action( 'rss_tag_pre', 'rss2' );
 		<title><?php the_title_rss() ?></title>
 		<link><?php the_permalink_rss() ?></link>
 
-		<?php
-
-		$post_object = get_field('featured_painting');
-
-		if( $post_object ):
-
-			// override $post
-			$post = $post_object;
-			setup_postdata( $post );
-
-			?>
+		<!-- <?php
+			$post_object = get_field('featured_painting');
+			if( $post_object ):
+				// override $post
+				$post = $post_object;
+				setup_postdata( $post );
+		?>
 			<?php
 				$image = get_field('painting');
 
@@ -102,7 +98,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 					<enclosure url="<?php echo $image['url']; ?>" type="image/jpeg" length="0" />
 					<content:encoded><![CDATA[<i><?php the_title(); ?></i>, <?php the_field('width'); ?> x <?php the_field('height'); ?>", $<?php echo get_post_meta( get_the_ID(), '_regular_price', true ); ?> <a class="price" href="<?php the_permalink(); ?>" style="text-decoration:underline;">Buy</a>]]></content:encoded>
 
-			<?php endif; ?>
+			<?php endif; ?> -->
 
 		    	<!-- <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 		    	<span>Post Object Custom Field: <?php the_field('height'); ?></span> -->
