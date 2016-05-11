@@ -50,9 +50,6 @@ function bones_ahoy() {
   // launching this stuff after theme setup
   bones_theme_support();
 
-  // adding sidebars to Wordpress (these are created in functions.php)
-  add_action( 'widgets_init', 'bones_register_sidebars' );
-
   // cleaning up random code around images
   add_filter( 'the_content', 'bones_filter_ptags_on_images' );
   // cleaning up excerpt
@@ -64,54 +61,21 @@ function bones_ahoy() {
 add_action( 'after_setup_theme', 'bones_ahoy' );
 
 
+/**
+ * Registers an editor stylesheet for the theme.
+ */
+function wpdocs_theme_add_editor_styles() {
+    add_editor_style( '/library/css/editor-style.css' );
+}
+add_action( 'admin_init', 'wpdocs_theme_add_editor_styles' );
+
+
+
 /************* OEMBED SIZE OPTIONS *************/
 
 if ( ! isset( $content_width ) ) {
 	$content_width = 640;
 }
-
-/************* THUMBNAIL SIZE OPTIONS *************/
-
-// Thumbnail sizes
-// add_image_size( 'bones-thumb-600', 600, 150, true );
-// add_image_size( 'bones-thumb-300', 300, 100, true );
-
-/*
-to add more sizes, simply copy a line from above
-and change the dimensions & name. As long as you
-upload a "featured image" as large as the biggest
-set width or height, all the other sizes will be
-auto-cropped.
-
-To call a different size, simply change the text
-inside the thumbnail function.
-
-For example, to call the 300 x 100 sized image,
-we would use the function:
-<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
-for the 600 x 150 image:
-<?php the_post_thumbnail( 'bones-thumb-600' ); ?>
-
-You can change the names and dimensions to whatever
-you like. Enjoy!
-*/
-
-// add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
-
-// function bones_custom_image_sizes( $sizes ) {
-//     return array_merge( $sizes, array(
-//         'bones-thumb-600' => __('600px by 150px'),
-//         'bones-thumb-300' => __('300px by 100px'),
-//     ) );
-// }
-
-/*
-The function above adds the ability to use the dropdown menu to select
-the new images sizes you have just created from within the media manager
-when you add media to your content blocks. If you add more image sizes,
-duplicate one of the lines in the array and name it according to your
-new image size.
-*/
 
 /************* THEME CUSTOMIZE *********************/
 
@@ -149,46 +113,6 @@ function bones_theme_customizer($wp_customize) {
 }
 
 add_action( 'customize_register', 'bones_theme_customizer' );
-
-/************* ACTIVE SIDEBARS ********************/
-
-// Sidebars & Widgetizes Areas
-function bones_register_sidebars() {
-	register_sidebar(array(
-		'id' => 'sidebar1',
-		'name' => __( 'Sidebar 1', 'bonestheme' ),
-		'description' => __( 'The first (primary) sidebar.', 'bonestheme' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h4 class="widgettitle">',
-		'after_title' => '</h4>',
-	));
-
-	/*
-	to add more sidebars or widgetized areas, just copy
-	and edit the above sidebar code. In order to call
-	your new sidebar just use the following code:
-
-	Just change the name to whatever your new
-	sidebar's id is, for example:
-
-	register_sidebar(array(
-		'id' => 'sidebar2',
-		'name' => __( 'Sidebar 2', 'bonestheme' ),
-		'description' => __( 'The second (secondary) sidebar.', 'bonestheme' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h4 class="widgettitle">',
-		'after_title' => '</h4>',
-	));
-
-	To call the sidebar in your template, you can just copy
-	the sidebar.php file and rename it to your sidebar's name.
-	So using the above example, it would be:
-	sidebar-sidebar2.php
-
-	*/
-} // don't remove this bracket!
 
 
 /************* COMMENT LAYOUT *********************/
@@ -256,31 +180,6 @@ add_action('wp_enqueue_scripts', 'my_add_scripts');
 add_filter( 'disable_captions', create_function('$a', 'return true;') );
 
 
-// Options
-// if( function_exists('acf_add_options_page') ) {
-
-//   acf_add_options_page(array(
-//     'page_title'  => 'Theme General Settings',
-//     'menu_title'  => 'Theme Settings',
-//     'menu_slug'   => 'theme-general-settings',
-//     'capability'  => 'edit_posts',
-//     'redirect'    => false
-//   ));
-
-//   acf_add_options_sub_page(array(
-//     'page_title'  => 'Theme Header Settings',
-//     'menu_title'  => 'Header',
-//     'parent_slug' => 'theme-general-settings',
-//   ));
-
-//   acf_add_options_sub_page(array(
-//     'page_title'  => 'Theme Footer Settings',
-//     'menu_title'  => 'Footer',
-//     'parent_slug' => 'theme-general-settings',
-//   ));
-
-// }
-
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
 function my_toolbars( $toolbars )
 {
@@ -304,7 +203,7 @@ function my_toolbars( $toolbars )
 function change_default_title( $title ){
      $screen = get_current_screen();
 
-     if  ( 'class' == $screen->post_type ) {
+     if  ( 'workshops' == $screen->post_type ) {
           $title = 'Enter Workshop or Class Name';
      }
 
@@ -332,10 +231,6 @@ function custom_field_excerpt() {
 }
 
 
-//Remove extra <p> tags from text content
-// remove_filter ('introduction', 'wpautop');
-
-
 // Custom RSS feed
 
 add_action( 'after_setup_theme', 'my_rss_template' );
@@ -352,319 +247,6 @@ function my_rss_template() {
 function my_custom_rss_render() {
   get_template_part( 'feed', 'karen' );
 }
-
-
-/********************** WOOCOMMERCE *********************/
-
-
-/*
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
-remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
-
-add_action('woocommerce_before_main_content', 'my_theme_wrapper_start', 10);
-add_action('woocommerce_after_main_content', 'my_theme_wrapper_end', 10);
-
-function my_theme_wrapper_start() {
-  echo '<section id="main" class="gallery clearfix">';
-}
-
-function my_theme_wrapper_end() {
-  echo '</section>';
-}
-*/
-
-// Disable Woocommerce CSS
-add_filter( 'woocommerce_enqueue_styles', '__return_false' );
-
-
-/*--------------------
-HIDE THINGS
---------------------*/
-
-remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
-add_filter( 'wc_product_sku_enabled', '__return_false' );
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
-add_filter( 'wc_product_weight_enabled', '__return_false' );
-add_filter( 'wc_product_dimensions_enabled', '__return_false' );
-add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
-
-// Remove tabs
-function woo_remove_product_tabs( $tabs ) {
-
-    unset( $tabs['description'] );      	// Remove the description tab
-    unset( $tabs['reviews'] ); 			// Remove the reviews tab
-    unset( $tabs['additional_information'] );  	// Remove the additional information tab
-
-    return $tabs;
-
-}
-// Remove "buy" button from product list page
-add_action( 'woocommerce_after_shop_loop_item', 'remove_add_to_cart_buttons', 1 );
-
-function remove_add_to_cart_buttons() {
-    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
-}
-
-// Hide default sorting drop-down from WooCommerce
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-
-
-
-/*--------------------
-TEXT CHANGES
---------------------*/
-
-// Change "add to cart" text
-
-
-
-// Out of stock message
-add_filter('woocommerce_get_availability', 'availability_filter_func');
-
-function availability_filter_func($availability)
-{
-$availability['availability'] = str_ireplace('Out of stock', 'Sold', $availability['availability']);
-return $availability;
-}
-
-
-
-
-
-
-/*--------------------
-VISUAL/LAYOUT CHANGES
---------------------*/
-
-// Thumbnails
-function woocommerce_template_loop_product_thumbnail() {
-  $image = get_field('painting');
-
-  $url = $image['url'];
-  $alt = $image['alt'];
-
-  // thumbnail
-  $size = 'medium';
-  $thumb = $image['sizes'][ $size ];
-
-  if( !empty($image) ):
-
-    echo '<img src="' . $thumb . '" alt="' . $alt . '" />';
-
-  endif;
-}
-
-// Single Product Image
-function woocommerce_show_product_images() {
-  $image = get_field('painting');
-
-  $url = $image['url'];
-  $alt = $image['alt'];
-
-  // thumbnail
-  $size = 'medium';
-  $thumb = $image['sizes'][ $size ];
-
-  if( !empty($image) ):
-
-    echo '<img id="painting" src="' . $thumb . '" alt="' . $alt . '" />';
-
-  endif;
-}
-
-
-// Exclude demos from gallery page
-// add_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
-//
-// function custom_pre_get_posts_query( $q ) {
-//
-// 	if ( ! $q->is_main_query() ) return;
-// 	if ( ! $q->is_post_type_archive() ) return;
-//
-// 	if ( ! is_admin() && is_shop() ) {
-//
-// 		$q->set( 'tax_query', array(array(
-// 			'taxonomy' => 'product_cat',
-// 			'field' => 'slug',
-// 			'terms' => array( 'demo' ), // Don't display demos on the gallery page
-// 			'operator' => 'NOT IN'
-// 		)));
-//
-// 	}
-//
-// 	remove_action( 'pre_get_posts', 'custom_pre_get_posts_query' );
-//
-// }
-
-// Display # products per page
-add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 20 );
-
-// Custom single product pages for demos, workshops, paintings
-function my_custom_product_template($template, $slug, $name) {
-    if ($name === 'single-product' && $slug === 'content') {
-        global $product_cat;
-        $temp = locate_template(array("{$slug}-{$name}-{$product_cat}.php", WC()->template_path() . "{$slug}-{$name}-{$product_cat}.php"));
-        if($temp) {
-           $template = $temp;
-        }
-    }
-    return $template;
-}
-// Display custom attributes (need to work on this)
-add_filter('wc_get_template_part', 'my_custom_product_template', 10, 3);
-
-function isa_woocommerce_all_pa(){
-
-    global $product;
-    $attributes = $product->get_attributes();
-
-    if ( ! $attributes ) {
-        return;
-    }
-
-    $out = '<ul class="custom-attributes">';
-
-    foreach ( $attributes as $attribute ) {
-
-
-        // skip variations
-        if ( $attribute['is_variation'] ) {
-        continue;
-        }
-
-
-        if ( $attribute['is_taxonomy'] ) {
-
-            $terms = wp_get_post_terms( $product->id, $attribute['name'], 'all' );
-
-            // get the taxonomy
-            $tax = $terms[0]->taxonomy;
-
-            // get the tax object
-            $tax_object = get_taxonomy($tax);
-
-            // get tax label
-            if ( isset ($tax_object->labels->name) ) {
-                $tax_label = $tax_object->labels->name;
-            } elseif ( isset( $tax_object->label ) ) {
-                $tax_label = $tax_object->label;
-            }
-
-            foreach ( $terms as $term ) {
-
-                $out .= '<li class="' . esc_attr( $attribute['name'] ) . ' ' . esc_attr( $term->slug ) . '">';
-                $out .= '<span class="attribute-label">' . $tax_label . ': </span> ';
-                $out .= '<span class="attribute-value">' . $term->name . '</span></li>';
-
-            }
-
-        } else {
-
-            $out .= '<li class="' . sanitize_title($attribute['name']) . ' ' . sanitize_title($attribute['value']) . '">';
-            $out .= '<span class="attribute-label">' . $attribute['name'] . ': </span> ';
-            $out .= '<span class="attribute-value">' . $attribute['value'] . '</span></li>';
-        }
-    }
-
-    $out .= '</ul>';
-
-    echo $out;
-}
-add_action('woocommerce_single_product_summary', 'isa_woocommerce_all_pa', 25);
-
-
-/*--------------------
-CHECKOUT FORM CHANGES
---------------------*/
-
-// Checkout Field Changes
-add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
-
-// Our hooked in function - $fields is passed via the filter!
-function custom_override_checkout_fields( $fields ) {
-
-   // Change label text
-   $fields['order']['order_comments']['placeholder'] = 'Notes or instructions (optional)';
-   $fields['account']['account_password']['placeholder'] = '*******';
-   $fields['billing']['billing_first_name']['placeholder'] = 'First name';
-   $fields['billing']['billing_last_name']['placeholder'] = 'Last name';
-   $fields['billing']['billing_email']['placeholder'] = 'Email address';
-   $fields['billing']['billing_address_1']['placeholder'] = 'Address';
-   $fields['billing']['billing_address_2']['placeholder'] = 'Apartment number, suite, unit, etc. (optional)';
-   $fields['billing']['billing_city']['placeholder'] = 'City';
-   $fields['billing']['billing_postcode']['placeholder'] = 'Zip / Postal code';
-   $fields['billing']['billing_state']['placeholder'] = 'State / Province';
-
-   // Remove labels above input fields
-   unset ($fields['order']['order_comments']['label']);
-   unset ($fields['account']['account_password']['label']);
-   unset ($fields['billing']['billing_last_name']['label']);
-   unset ($fields['billing']['billing_first_name']['label']);
-   unset ($fields['billing']['billing_email']['label']);
-   unset ($fields['billing']['billing_address_1']['label']);
-   unset ($fields['billing']['billing_address_2']['label']);
-   unset ($fields['billing']['billing_city']['label']);
-   unset ($fields['billing']['billing_postcode']['label']);
-   unset ($fields['billing']['billing_state']['label']);
-   unset ($fields['billing']['billing_country']['label']);
-   unset ($fields['billing']['billing_country']['required']);
-
-    return $fields;
-}
-
-// Make phone number not required
-add_filter( 'woocommerce_billing_fields', 'wc_npr_filter_phone', 10, 1 );
-
-function wc_npr_filter_phone( $address_fields ) {
-  $address_fields['billing_phone']['required'] = false;
-  return $address_fields;
-}
-
-
-// Hook in
-add_filter( 'woocommerce_default_address_fields' , 'custom_override_default_address_fields' );
-
-// Our hooked in function - $address_fields is passed via the filter!
-function custom_override_default_address_fields( $address_fields ) {
-     $address_fields['country']['placeholder'] = 'United States';
-
-     return $address_fields;
-}
-
-/*--------------------
-ADMIN CHANGES
---------------------*/
-
-// Stock management default
-add_action('save_post', 'myWoo_savePost', 10, 2);
-
-function myWoo_savePost($postID, $post) {
-    if (isset($post->post_type) && $post->post_type == ('product'))  {
-
-        // update_post_meta($post->ID, '_manage_stock', 'yes');
-
-        update_post_meta($post->ID, '_stock', '1');
-    }
-}
-
-
-// Sold individually
-function default_no_quantities( $individually, $product ){
-$individually = true;
-return $individually;
-}
-add_filter( 'woocommerce_is_sold_individually', 'default_no_quantities', 10, 2 );
-
-// Hide tabs in admin for mom
-function remove_admin_tabs($tabs){
-    unset($tabs['linked_product']);
-    unset($tabs['shipping']);
-    unset($tabs['attribute']);
-    unset($tabs['advanced']);
-    return($tabs);
-}
-add_filter('woocommerce_product_data_tabs', 'remove_admin_tabs', 10, 1);
 
 
 

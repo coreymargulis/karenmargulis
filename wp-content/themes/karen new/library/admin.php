@@ -165,7 +165,7 @@ function wptutsplus_remove_comments_menu_item() {
      $user = wp_get_current_user();
      if ( ! $user->has_cap( 'manage_options' ) )
     {
-        remove_menu_page( 'edit.php?post_type=page' );
+        // remove_menu_page( 'edit.php?post_type=page' );
 				remove_menu_page( 'tools.php' );
         remove_submenu_page( 'themes.php','themes.php' );
         remove_submenu_page( 'themes.php','customize.php' );
@@ -182,9 +182,8 @@ function wptutsplus_change_menu_order( $menu_order ) {
         'index.php',
         'edit.php?post_type=page',
 				'edit.php',
-				'edit.php?post_type=workshopsclasses',
-				'edit.php?post_type=product',
-				'edit.php?post_type=shop_order',
+				'edit.php?post_type=workshops',
+				'edit.php?post_type=paintings',
 				'separator1',
         'upload.php',
         'edit-comments.php',

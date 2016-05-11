@@ -8,30 +8,26 @@
 
 			<div id="content">
 
-				<div id="inner-content" class="wrap cf">
+				<div id="inner-content">
 
 						<main id="main">
 
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+							<section id="learn-intro" <?php post_class( 'wrap' ); ?>>
 
 								<header class="article-header">
-
 									<h1 class="page-title"><?php the_title(); ?></h1>
-
 								</header>
 
-								<section class="entry-content cf">
-									<?php
-										// the content (pretty self explanatory huh)
-										the_content();
-									?>
+								<section class="entry-content">
+									<?php	the_content(); ?>
 								</section>
 
-							</article>
+							</section>
 
-							<section class="workshops">
+							<section id="workshops" class="wrap">
+
 								<h3>Upcoming Workshops</h3>
 
 								<?php
@@ -39,7 +35,10 @@
 										'numberposts' => 0,
 										'post_type' => 'workshops',
 										'post_status' => 'publish',
-										'post__not_in' => array($post->ID)
+										'post__not_in' => array($post->ID),
+										'meta_key'	=> 'start_date',
+										'orderby'	=> 'meta_value_num',
+										'order'		=> 'ASC'
 									);
 									$related = new WP_Query( $related_args );
 
@@ -48,13 +47,28 @@
 
 								<?php while( $related->have_posts() ): $related->the_post(); ?>
 
-									<div class="article-preview">
+								<div class="article-preview">
 
-										<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-										<?php echo custom_field_excerpt(); ?>
-										<a href="<?php the_permalink() ?>" id="excerpt-more">Read more...</a>
+									<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+									<div><?php the_field('location'); ?></div>
 
+									<?php
+									// get raw date
+									$end_date = get_field('end_date');
+
+									// make date object
+									$end_date = new DateTime($end_date);
+
+									$end_date_ya = get_field('end_date');
+									?>
+
+									<div>
+										<?php the_field('start_date');?><?php if ( $end_date_ya !== '' ) { echo "–", $end_date->format('j'); } ?>
 									</div>
+
+									<a href="<?php the_permalink() ?>" id="excerpt-more">Learn more...</a>
+
+								</div>
 
 								<?php endwhile; ?>
 
@@ -64,6 +78,11 @@
 								endif;
 								wp_reset_postdata();
 							?>
+
+							<section id="classes" class="wrap">
+								<h3>Upcoming Classes</h3>
+								<p>No upcoming classes</p>
+							</section>
 
 							<?php endwhile; else : ?>
 
