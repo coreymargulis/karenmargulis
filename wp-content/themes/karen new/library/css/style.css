@@ -642,6 +642,8 @@ body {
   margin-top: 4em; }
   #content p {
     margin: 0 0 1em; }
+  #content #main {
+    padding-bottom: 4em; }
 
 .wrap {
   margin: 0 auto;
@@ -725,7 +727,7 @@ h2, .h2 {
 h3, .h3 {
   font-size: 20px;
   line-height: 1.25em;
-  margin-bottom: .375em;
+  margin-bottom: .5em;
   margin-top: 0; }
 
 /******************************************************************
@@ -1414,6 +1416,9 @@ body.single-post nav ul li.menu-item-369 > a {
 
 body.single-workshops nav ul li.menu-item-399 > a {
   color: #8E70CF; }
+
+#question {
+  font-family: "scalasansbold"; }
 
 .article-preview {
   margin-bottom: 4em; }
