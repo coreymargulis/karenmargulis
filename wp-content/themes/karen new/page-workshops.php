@@ -50,23 +50,59 @@
 								<div class="article-preview">
 
 									<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-									<div><?php the_field('location'); ?></div>
 
-									<?php
-									// get raw date
-									$end_date = get_field('end_date');
+									<div class="workshop-details">
+										<?php the_field('location'); ?></br>
 
-									// make date object
-									$end_date = new DateTime($end_date);
+										<?php
+										// get raw date
+										$end_date = get_field('end_date');
 
-									$end_date_ya = get_field('end_date');
-									?>
+										// make date object
+										$end_date = new DateTime($end_date);
 
-									<div>
-										<?php the_field('start_date');?><?php if ( $end_date_ya !== '' ) { echo "–", $end_date->format('j'); } ?>
+										$end_date_ya = get_field('end_date');
+										?>
+
+										<?php the_field('start_date');?><?php if ( $end_date_ya !== '' ) { echo "–", $end_date->format('j'); } ?></br>
+
+										<div class="price">
+											<?php
+												if(get_field('space_available') == "space") :
+													the_field('cost'); ?><?php
+
+												elseif(get_field('space_available') == "limited") :
+													the_field('cost'); ?><div id="limited">Almost full!</div><?php
+
+												elseif(get_field('space_available') == "full") :
+													?><div id="full">Full</div><?php
+												endif;
+											?>
+										</div>
 									</div>
 
-									<a href="<?php the_permalink() ?>" id="excerpt-more">Learn more...</a>
+									<div class="workshop-description">
+										<?php the_field('description'); ?>
+									</div>
+
+									<div>
+										<div>
+											<a href="<?php the_field('website') ?>" class="button">More information</a>
+										</div>
+
+										<?php
+										if(get_field('registration_method') == "me") :
+											echo "Contact me to register";
+
+										elseif(get_field('registration_method') == "link") :
+											?><a href="<?php the_field('link_to_register'); ?>">Register online</a><?php
+
+										elseif(get_field('registration_method') == "someone") :
+											?>To register, contact <?php the_field('contact_name') ?> at <a href="mailto:<?php the_field('contact_email'); ?>"><?php the_field('contact_email'); ?></a>.<?php
+
+										endif;
+										?>
+									</div>
 
 								</div>
 
@@ -79,10 +115,10 @@
 								wp_reset_postdata();
 							?>
 
-							<section id="classes" class="wrap">
+							<!-- <section id="classes" class="wrap">
 								<h3>Upcoming Classes</h3>
 								<p>No upcoming classes</p>
-							</section>
+							</section> -->
 
 							<?php endwhile; else : ?>
 

@@ -38,6 +38,10 @@ body#tinymce.wp-editor {
 	color: $text-color;
   -webkit-font-smoothing: antialiased;
 
+	#acf-margin-fix {
+		margin-top: 0 !important;
+	}
+
   /*********************
 	LINK STYLES
 	*********************/
