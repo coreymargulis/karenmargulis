@@ -68,17 +68,12 @@ $italic:			"scalaitalic";
 
 @font-face {
     font-family: 'scalasansbold';
-    src: url('../fonts/scalasans-webfont.eot');
-    src: url('../fonts/scalasans-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/scalasans-webfont.woff') format('woff'),
-         url('../fonts/scalasans-webfont.ttf') format('truetype'),
-         url('../fonts/scalasans-webfont.svg#scalasansregular') format('svg');
-    // src: url('../fonts/scalasans-bold.eot');
-    // src: url('../fonts/scalasans-bold.eot?#iefix') format('embedded-opentype'),
-    //      url('../fonts/scalasans-bold.woff') format('woff'),
-    //      url('../fonts/scalasans-bold.ttf') format('truetype'),
-    //      url('../fonts/ScalaSans-Bold.svg#75d26880f9e4d73b286c49a276d10a7a') format('svg');
-    font-weight: normal;
+    src: url('../fonts/ScalaSans-Bold.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/ScalaSans-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/ScalaSans-Bold.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/ScalaSans-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/ScalaSans-Bold.svg#75d26880f9e4d73b286c49a276d10a7a') format('svg'); /* Legacy iOS */
+    font-weight: 700;
     font-style: normal;
 
 }
