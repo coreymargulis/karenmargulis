@@ -905,16 +905,16 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 button:focus {
   outline: 0 !important; }
 
-.blue-btn, .alt, .secondary {
+input[type="submit"], .alt, .secondary {
   display: inline-block;
   position: relative;
   font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
   color: #fff;
   font-size: 18px;
-  line-height: 34px;
+  line-height: 50px;
   font-weight: normal;
-  padding: 8px 24px;
+  padding: 0px 20px;
   border-radius: 2px;
   border: 0;
   cursor: pointer;
@@ -922,29 +922,21 @@ button:focus {
   transition: background-color 0.14s ease-in-out;
   -webkit-transition: border-color 0.14s ease-in-out;
   transition: border-color 0.14s ease-in-out; }
-  .blue-btn:hover, .alt:hover, .secondary:hover, .blue-btn:focus, .alt:focus, .secondary:focus {
+  input[type="submit"]:hover, .alt:hover, .secondary:hover, input[type="submit"]:focus, .alt:focus, .secondary:focus {
     color: #fff;
     text-decoration: none; }
-  .blue-btn:active, .alt:active, .secondary:active {
-    top: 1px; }
 
-/*
-An example button.
-You can use this example if you want. Just replace all the variables
-and it will create a button dependant on those variables.
-*/
-.blue-btn {
-  background-color: #2980b9; }
-  .blue-btn:hover, .blue-btn:focus {
-    background-color: #2574a8; }
-  .blue-btn:active {
-    background-color: #2472a4; }
+input[type="submit"] {
+  background-color: #8E70CF; }
+  input[type="submit"]:hover, input[type="submit"]:focus {
+    background-color: #8261ca; }
+  input[type="submit"]:active {
+    background-color: #7f5dc9; }
 
 .alt {
-  background-color: #8E70CF;
-  font-size: 20px; }
+  background-color: #8E70CF; }
   .alt:hover, .alt:focus {
-    background-color: #9a7fd4; }
+    background-color: #8261ca; }
   .alt:active {
     background-color: #7f5dc9; }
 
@@ -1094,14 +1086,15 @@ select,
 textarea,
 .field {
   display: block;
-  height: 44px;
-  line-height: 40px;
-  padding: 0 12px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 18px;
   margin-bottom: 14px;
-  font-size: 16px;
+  font-size: 18px;
   font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #484848;
   border-radius: 2px;
+  border: 1px solid #f5f5f5 !important;
   vertical-align: middle;
   box-shadow: none;
   border: 0;
@@ -1419,6 +1412,30 @@ body.single-post nav ul li.menu-item-369 > a {
 body.single-workshops nav ul li.menu-item-399 > a {
   color: #8E70CF; }
 
+.email {
+  display: inline-block !important; }
+
+#mc_embed_signup {
+  padding-bottom: 30px; }
+  #mc_embed_signup input.email {
+    box-sizing: border-box;
+    margin-right: 6px;
+    display: inline-block;
+    margin: 0;
+    width: 350px;
+    vertical-align: top;
+    border-color: #aeaeae !important; }
+  #mc_embed_signup .button {
+    box-sizing: border-box;
+    padding: 0 18px;
+    display: inline-block;
+    margin: 0;
+    transition: all 0.23s ease-in-out 0s; }
+
+.clear {
+  display: inline-block;
+  margin-left: 4px; }
+
 #question {
   font-family: "scalasansbold"; }
 
@@ -1468,7 +1485,9 @@ body.single-workshops nav ul li.menu-item-399 > a {
   background-color: #fff;
   font-size: 14px;
   font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /*margin-top: 4em;*/ }
+  text-align: center; }
+  .footer #inner-footer {
+    padding-top: 50px; }
 
 /*********************
 PRINT STYLESHEET

@@ -47,5 +47,18 @@
 	background-color: $white;
   font-size: 14px;
   font-family: $sans-serif;
-	/*margin-top: 4em;*/
+  text-align: center;
+
+  #inner-footer {
+    padding-top: 50px;
+
+    nav {
+      // display: inline-block;
+      // position: relative;
+      // left: -16px;
+    }
+    .copyright {
+      // display: inline-block;
+    }
+  }
 }

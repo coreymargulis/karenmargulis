@@ -33,9 +33,9 @@ button:focus {outline:0 !important;}
   text-decoration: none;
   color: $white;
   font-size: 18px;
-  line-height: 34px;
+  line-height: 50px;
   font-weight: normal;
-  padding: 8px 24px;
+  padding: 0px 20px;
   border-radius: 2px;
   border: 0;
   cursor: pointer;
@@ -48,39 +48,33 @@ button:focus {outline:0 !important;}
   }
 
   &:active {
-    top: 1px;
+    // top: 1px;
   }
 
 }
 
-/*
-An example button.
-You can use this example if you want. Just replace all the variables
-and it will create a button dependant on those variables.
-*/
-.blue-btn {
+
+input[type="submit"] {
   @extend %btn;
-  background-color: $blue;
+  background-color: $purple;
 
   &:hover,
   &:focus {
-    background-color: darken($blue, 4%);
+    background-color: darken($purple, 4%);
   }
 
   &:active {
-    background-color: darken($blue, 5%);
+    background-color: darken($purple, 5%);
   }
-
 }
 
 .alt {
   @extend %btn;
   background-color: $purple;
-  font-size: 20px;
 
   &:hover,
   &:focus {
-    background-color: lighten($purple, 4%);
+    background-color: darken($purple, 4%);
   }
 
   &:active {
