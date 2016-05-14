@@ -68,16 +68,11 @@ $italic:			"scalaitalic";
 
 @font-face {
     font-family: 'scalasansbold';
-    src: url('../fonts/scalasans-webfont.eot');
-    src: url('../fonts/scalasans-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/scalasans-webfont.woff') format('woff'),
-         url('../fonts/scalasans-webfont.ttf') format('truetype'),
-         url('../fonts/scalasans-webfont.svg#scalasansregular') format('svg');
-    // src: url('../fonts/scalasans-bold.eot');
-    // src: url('../fonts/scalasans-bold.eot?#iefix') format('embedded-opentype'),
-    //      url('../fonts/scalasans-bold.woff') format('woff'),
-    //      url('../fonts/scalasans-bold.ttf') format('truetype'),
-    //      url('../fonts/ScalaSans-Bold.svg#75d26880f9e4d73b286c49a276d10a7a') format('svg');
+    src: url('../fonts/scalasans-bold.eot');
+    src: url('../fonts/scalasans-bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/scalasans-bold.woff') format('woff'),
+         url('../fonts/scalasans-bold.ttf') format('truetype'),
+         url('../fonts/ScalaSans-Bold.svg#75d26880f9e4d73b286c49a276d10a7a') format('svg');
     font-weight: normal;
     font-style: normal;
 
