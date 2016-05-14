@@ -4,7 +4,7 @@
 <div id="mc_embed_signup">
 <form action="//coreymargulis.us9.list-manage.com/subscribe/post?u=295df7a2406a4120b81fb77f1&amp;id=ed254799fe" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
-	<h3>Follow by Email</h3>
+	<h3>Get my posts in your email!</h3>
 	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your email address" required>
     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_295df7a2406a4120b81fb77f1_ed254799fe" tabindex="-1" value=""></div>

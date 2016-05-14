@@ -100,7 +100,7 @@ function custom_post_example() {
 	); /* end of register post type */
 
 	/* this adds your post categories to your custom post type */
-	register_taxonomy_for_object_type( 'category', 'paintings' );
+	// register_taxonomy_for_object_type( 'category', 'paintings' );
 	/* this adds your post tags to your custom post type */
 	register_taxonomy_for_object_type( 'post_tag', 'paintings' );
 
@@ -116,43 +116,107 @@ function custom_post_example() {
 	*/
 
 	// now let's add custom categories (these act like categories)
-	register_taxonomy( 'custom_cat',
+	register_taxonomy( 'subject',
 		array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
 		array('hierarchical' => true,     /* if this is true, it acts like categories */
 			'labels' => array(
-				'name' => __( 'Custom Categories', 'bonestheme' ), /* name of the custom taxonomy */
-				'singular_name' => __( 'Custom Category', 'bonestheme' ), /* single taxonomy name */
-				'search_items' =>  __( 'Search Custom Categories', 'bonestheme' ), /* search title for taxomony */
-				'all_items' => __( 'All Custom Categories', 'bonestheme' ), /* all title for taxonomies */
-				'parent_item' => __( 'Parent Custom Category', 'bonestheme' ), /* parent title for taxonomy */
-				'parent_item_colon' => __( 'Parent Custom Category:', 'bonestheme' ), /* parent taxonomy title */
-				'edit_item' => __( 'Edit Custom Category', 'bonestheme' ), /* edit custom taxonomy title */
-				'update_item' => __( 'Update Custom Category', 'bonestheme' ), /* update title for taxonomy */
-				'add_new_item' => __( 'Add New Custom Category', 'bonestheme' ), /* add new title for taxonomy */
-				'new_item_name' => __( 'New Custom Category Name', 'bonestheme' ) /* name title for taxonomy */
+				'name' => __( 'Subjects', 'bonestheme' ), /* name of the custom taxonomy */
+				'singular_name' => __( 'Subject', 'bonestheme' ), /* single taxonomy name */
+				'search_items' =>  __( 'Search Subjects', 'bonestheme' ), /* search title for taxomony */
+				'all_items' => __( 'All Subjects', 'bonestheme' ), /* all title for taxonomies */
+				'parent_item' => __( 'Parent Subject', 'bonestheme' ), /* parent title for taxonomy */
+				'parent_item_colon' => __( 'Parent Subject:', 'bonestheme' ), /* parent taxonomy title */
+				'edit_item' => __( 'Edit Subject', 'bonestheme' ), /* edit custom taxonomy title */
+				'update_item' => __( 'Update Subjects', 'bonestheme' ), /* update title for taxonomy */
+				'add_new_item' => __( 'Add New Subject', 'bonestheme' ), /* add new title for taxonomy */
+				'new_item_name' => __( 'New Subject', 'bonestheme' ) /* name title for taxonomy */
 			),
 			'show_admin_column' => true,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'paintings' ),
+			'rewrite' => array( 'slug' => 'subject' ),
+		)
+	);
+
+	register_taxonomy( 'region',
+		array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+		array('hierarchical' => true,     /* if this is true, it acts like categories */
+			'labels' => array(
+				'name' => __( 'Regions', 'bonestheme' ), /* name of the custom taxonomy */
+				'singular_name' => __( 'Region', 'bonestheme' ), /* single taxonomy name */
+				'search_items' =>  __( 'Search Region', 'bonestheme' ), /* search title for taxomony */
+				'all_items' => __( 'All regions', 'bonestheme' ), /* all title for taxonomies */
+				'parent_item' => __( 'Parent Region', 'bonestheme' ), /* parent title for taxonomy */
+				'parent_item_colon' => __( 'Parent Region:', 'bonestheme' ), /* parent taxonomy title */
+				'edit_item' => __( 'Edit Region', 'bonestheme' ), /* edit custom taxonomy title */
+				'update_item' => __( 'Update Regions', 'bonestheme' ), /* update title for taxonomy */
+				'add_new_item' => __( 'Add New Region', 'bonestheme' ), /* add new title for taxonomy */
+				'new_item_name' => __( 'New Region', 'bonestheme' ) /* name title for taxonomy */
+			),
+			'show_admin_column' => true,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array( 'slug' => 'region' ),
 		)
 	);
 
 	// now let's add custom tags (these act like categories)
-	register_taxonomy( 'custom_tag',
-		array('custom_type'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+	register_taxonomy( 'medium',
+		array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
 		array('hierarchical' => false,    /* if this is false, it acts like tags */
 			'labels' => array(
-				'name' => __( 'Custom Tags', 'bonestheme' ), /* name of the custom taxonomy */
-				'singular_name' => __( 'Custom Tag', 'bonestheme' ), /* single taxonomy name */
-				'search_items' =>  __( 'Search Custom Tags', 'bonestheme' ), /* search title for taxomony */
-				'all_items' => __( 'All Custom Tags', 'bonestheme' ), /* all title for taxonomies */
-				'parent_item' => __( 'Parent Custom Tag', 'bonestheme' ), /* parent title for taxonomy */
+				'name' => __( 'Mediums', 'bonestheme' ), /* name of the custom taxonomy */
+				'singular_name' => __( 'Custom medium', 'bonestheme' ), /* single taxonomy name */
+				'search_items' =>  __( 'Search mediums', 'bonestheme' ), /* search title for taxomony */
+				'all_items' => __( 'All mediums', 'bonestheme' ), /* all title for taxonomies */
+				'parent_item' => __( 'Parent medium', 'bonestheme' ), /* parent title for taxonomy */
 				'parent_item_colon' => __( 'Parent Custom Tag:', 'bonestheme' ), /* parent taxonomy title */
 				'edit_item' => __( 'Edit Custom Tag', 'bonestheme' ), /* edit custom taxonomy title */
 				'update_item' => __( 'Update Custom Tag', 'bonestheme' ), /* update title for taxonomy */
 				'add_new_item' => __( 'Add New Custom Tag', 'bonestheme' ), /* add new title for taxonomy */
 				'new_item_name' => __( 'New Custom Tag Name', 'bonestheme' ) /* name title for taxonomy */
+			),
+			'show_admin_column' => true,
+			'show_ui' => true,
+			'query_var' => true,
+		)
+	);
+
+	register_taxonomy( 'season',
+		array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+		array('hierarchical' => false,    /* if this is false, it acts like tags */
+			'labels' => array(
+				'name' => __( 'Seasons', 'bonestheme' ), /* name of the custom taxonomy */
+				'singular_name' => __( 'Custom season', 'bonestheme' ), /* single taxonomy name */
+				'search_items' =>  __( 'Search seasons', 'bonestheme' ), /* search title for taxomony */
+				'all_items' => __( 'All seasons', 'bonestheme' ), /* all title for taxonomies */
+				'parent_item' => __( 'Parent season', 'bonestheme' ), /* parent title for taxonomy */
+				'parent_item_colon' => __( 'Parent Custom Tag:', 'bonestheme' ), /* parent taxonomy title */
+				'edit_item' => __( 'Edit Custom Tag', 'bonestheme' ), /* edit custom taxonomy title */
+				'update_item' => __( 'Update Custom Tag', 'bonestheme' ), /* update title for taxonomy */
+				'add_new_item' => __( 'Add New Custom Tag', 'bonestheme' ), /* add new title for taxonomy */
+				'new_item_name' => __( 'New Custom Tag Name', 'bonestheme' ) /* name title for taxonomy */
+			),
+			'show_admin_column' => true,
+			'show_ui' => true,
+			'query_var' => true,
+		)
+	);
+
+	register_taxonomy( 'colors',
+		array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+		array('hierarchical' => false,    /* if this is false, it acts like tags */
+			'labels' => array(
+				'name' => __( 'Colors', 'bonestheme' ), /* name of the custom taxonomy */
+				'singular_name' => __( 'Color', 'bonestheme' ), /* single taxonomy name */
+				'search_items' =>  __( 'Search colors', 'bonestheme' ), /* search title for taxomony */
+				'all_items' => __( 'All colors', 'bonestheme' ), /* all title for taxonomies */
+				'parent_item' => __( 'Parent color', 'bonestheme' ), /* parent title for taxonomy */
+				'parent_item_colon' => __( 'Parent Color:', 'bonestheme' ), /* parent taxonomy title */
+				'edit_item' => __( 'Edit Color', 'bonestheme' ), /* edit custom taxonomy title */
+				'update_item' => __( 'Update Color', 'bonestheme' ), /* update title for taxonomy */
+				'add_new_item' => __( 'Add New Color', 'bonestheme' ), /* add new title for taxonomy */
+				'new_item_name' => __( 'New Color', 'bonestheme' ) /* name title for taxonomy */
 			),
 			'show_admin_column' => true,
 			'show_ui' => true,

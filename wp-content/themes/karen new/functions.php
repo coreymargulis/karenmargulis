@@ -203,11 +203,13 @@ function my_toolbars( $toolbars )
 function change_default_title( $title ){
      $screen = get_current_screen();
 
-     if  ( 'workshops' == $screen->post_type ) {
+      if  ( 'workshops' == $screen->post_type ) :
           $title = 'Enter Workshop or Class Name';
-     }
 
-     else {}
+      elseif  ( 'paintings' == $screen->post_type ) :
+          $title = 'Enter Painting Title';
+
+      endif;
 
      return $title;
 }
