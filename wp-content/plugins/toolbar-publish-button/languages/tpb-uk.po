@@ -1,0 +1,101 @@
+# Copyright (C) 2015 Toolbar Publish Button
+# This file is distributed under the same license as the Toolbar Publish Button package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Toolbar Publish Button\n"
+"POT-Creation-Date: 2015-10-15 23:56+0300\n"
+"PO-Revision-Date: 2015-10-15 23:58+0300\n"
+"Last-Translator: wpUXsolutions <wpUXsolutions@gmail.com>\n"
+"Language-Team: wpUXsolutions <wpUXsolutions@gmail.com>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: toolbar-publish-button.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;"
+"esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;"
+"__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: toolbar-publish-button.php:205 toolbar-publish-button.php:236
+msgid "Toolbar Publish Button Settings"
+msgstr "Налаштування плагіна \"Кнопка публікації на тулбарі\""
+
+#. Plugin Name of the plugin/theme
+#: toolbar-publish-button.php:206
+msgid "Toolbar Publish Button"
+msgstr "Кнопка публікації на тулбарі"
+
+#: toolbar-publish-button.php:249
+msgid "Basic Settings"
+msgstr "Базові налаштування"
+
+#: toolbar-publish-button.php:261
+msgid "Remember scrollbar position"
+msgstr "Пам'ятати позицію прокрутки"
+
+#: toolbar-publish-button.php:263
+msgid ""
+"It will return an admin page (including code Editor page) scrollbar to its position "
+"after saving."
+msgstr ""
+"Поверне полосу прокрутки на місце після збереження сторінки у адмінці (включаючи "
+"сторінку редактора коду)."
+
+#: toolbar-publish-button.php:265
+msgid "Works for Plugins page after plugin actiation / deactivation."
+msgstr "Працює також для сторінки плагінів після активації / деактивації плагіну."
+
+#: toolbar-publish-button.php:270
+msgid "Button's Background"
+msgstr "Фон кнопки"
+
+#: toolbar-publish-button.php:438
+msgid "Settings"
+msgstr "Налаштування"
+
+#. Description of the plugin/theme
+msgid ""
+"Save a lot of your time by scrolling less in WP admin! A small UX improvement that "
+"keeps Publish button within reach and retains the scrollbar position after saving in "
+"WordPress admin."
+msgstr ""
+"Бережіть свій час прокручуючи менше у адмінці WP! Маленьке UX-вдосконалення, що "
+"тримає кнопку публікації у зоні доступності та повертає полосу прокрутки після "
+"операції збереження у адмінці WordPress."
+
+#~ msgid "It will return admin page scrollbar to its position after saving."
+#~ msgstr "Поверне полосу прокрутки у адмінці на місце після збереження сторінки."
+
+#~ msgid "The feature will also work for Plugins page with Activate/Deactivate buttons."
+#~ msgstr ""
+#~ "Буде працювати також для сторінки плагінів із кнопками \"Активувати/Деактивувати\"."
+
+#~ msgid ""
+#~ "Save a lot of your time by scrolling less in WP admin! A small UX improvement will "
+#~ "keep Publish Button within reach and return the scrollbar to its position after "
+#~ "saving."
+#~ msgstr ""
+#~ "Збережіть купу часу прокручуючи менше у адмінці Вордпресу! Маленьке UX-поліпшення "
+#~ "триматиме кнопку публікації у полі зору та поверне полосу прокрутки на місце після "
+#~ "збереження сторінки."
+
+#~ msgid ""
+#~ "It will return admin page scrollbar to the position that preceded a click on the "
+#~ "Save/Update button."
+#~ msgstr ""
+#~ "Поверне полосу прокрутки до позиції перед натисканням кнопки \"Зберегти/Оновити\""
+
+#~ msgid ""
+#~ "Save a lot of your time by scrolling less in WP admin! A small UX improvement will "
+#~ "keep Publish Button within reach and return you to the latest scroll position."
+#~ msgstr ""
+#~ "Збережіть купу часу прокручуючи менше у адмінці Вордпресу! Маленьке UX-поліпшення "
+#~ "триматиме кнопку публікації у зоні досяжності і поверне полосу прокрутки до "
+#~ "попередньої позиції."

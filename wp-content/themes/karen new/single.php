@@ -59,34 +59,39 @@
 
                 	<?php the_field('introduction'); ?>
 
-									<?php // additional content ?>
 									<?php
 
-// check if the flexible content field has rows of data
-if( have_rows('additional_content') ):
+										// check if the flexible content field has rows of data
+										if( have_rows('additional_content') ):
 
-     // loop through the rows of data
-    while ( have_rows('additional_content') ) : the_row();
+										     // loop through the rows of data
+										    while ( have_rows('additional_content') ) : the_row();
 
-        if( get_row_layout() == 'text' ):
+										        if( get_row_layout() == 'text' ):
 
-        	the_sub_field('text');
+										        	the_sub_field('text');
 
-        elseif( get_row_layout() == 'quote' ):
+										        elseif( get_row_layout() == 'image' ):
 
-        	?><blockquote><?php the_sub_field('quote');?></blockquote><?php
+															$image = get_sub_field('image');
 
-        endif;
+															if( !empty($image) ): ?>
 
-    endwhile;
+																<img class="inset-center" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
 
-else :
+															<?php endif;
 
-    // no layouts found
+										        endif;
 
-endif;
+										    endwhile;
 
-?>
+										else :
+
+										    // no layouts found
+
+										endif;
+
+										?>
 
                 </section> <?php // end article section ?>
 

@@ -286,7 +286,7 @@ body#tinymce.wp-editor {
   *********************/
   max-width: 731px;
   font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 100%;
+  font-size: 16px;
   line-height: 1.5;
   color: #484848;
   -webkit-font-smoothing: antialiased;
@@ -296,7 +296,7 @@ body#tinymce.wp-editor {
   /******************************************************************
   H1, H2, H3, H4, H5 STYLES
   ******************************************************************/
-  padding: 1.5em 1.5em 0;
+  padding: 1em 1em 0;
   /*********************
   LARGER MOBILE DEVICES
   This is for devices like the Galaxy Note or something that's
@@ -638,7 +638,7 @@ body#tinymce.wp-editor {
     text-transform: uppercase;
     letter-spacing: 2px; }
   body#tinymce.wp-editor p {
-    margin: 0 0 1.5em; }
+    margin: 0 0 1em; }
   body#tinymce.wp-editor table {
     width: 100%;
     border: 1px solid #484848;
@@ -693,6 +693,8 @@ body#tinymce.wp-editor {
     padding: 1.5em;
     margin: 0 0 1.5em;
     border-radius: 3px; }
+  body#tinymce.wp-editor li {
+    list-style-type: disc; }
   @media only screen and (min-width: 481px) {
     body#tinymce.wp-editor {
       /* at this larger size, we can start to align images */ }

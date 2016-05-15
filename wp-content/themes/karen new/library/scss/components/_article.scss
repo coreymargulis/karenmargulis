@@ -1,4 +1,6 @@
-/*single post*/
+/*single post styles*/
+
+/* IMAGES */
 .featured-image-wrap {
 	text-align: center;
 }
@@ -78,6 +80,10 @@
 	margin-bottom: 60px;
 	padding-top: 30px;
 }
+/* end IMAGES */
+
+
+/* DEMO */
 
 .demo {
 
@@ -120,4 +126,26 @@ hr {
 	border-top: 1px solid rgba(0,0,0,0.05);
 	border-bottom: 1px solid rgba(255,255,255,0.01);
 
+} /* end DEMO */
+
+/* LISTS & TYPE */
+body.single-post .entry-content{
+
+	li {
+		margin-left: 30px;
+		margin-bottom: 10px;
+
+		&:before {
+			content: "•";
+			padding-top: 0px;
+			padding-right: 12px;
+
+			position: absolute;
+			display: inline-block;
+			box-sizing: border-box;
+			width: 50px;
+			margin-left: -50px;
+			text-align: right;
+		}
+	}
 }

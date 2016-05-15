@@ -33,7 +33,7 @@ body#tinymce.wp-editor {
 
 	max-width: 731px;
   font-family: $sans-serif;;
-	font-size: 100%;
+	font-size: 16px;
 	line-height: 1.5;
 	color: $text-color;
   -webkit-font-smoothing: antialiased;
@@ -104,10 +104,10 @@ body#tinymce.wp-editor {
 		letter-spacing: 2px;
 	}
 
-	padding: 1.5em 1.5em 0;
+	padding: 1em 1em 0;
 
 		p {
-			margin: 0 0 1.5em;
+			margin: 0 0 1em;
 		}
 
 		table {
@@ -190,6 +190,10 @@ body#tinymce.wp-editor {
 			padding: 1.5em;
 			margin: 0 0 1.5em;
 			border-radius: 3px;
+		}
+
+		li {
+			list-style-type: disc;
 		}
 
 		/*********************

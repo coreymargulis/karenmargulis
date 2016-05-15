@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! Made with Bones: http://themble.com/bones :) */
 /******************************************************************
 Site Name:
@@ -671,6 +672,13 @@ body {
 img, media {
   max-width: 100%; }
 
+img.inset-center {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  display: block; }
+
 body {
   font-family: "scalaregular", "Georgia", Cambria, Times New Roman, Times, serif;
   font-size: 20px;
@@ -791,7 +799,8 @@ you can just remove this stylesheet.
   border-color: #deeaae;
   background: #e6efc2; }
 
-/*single post*/
+/*single post styles*/
+/* IMAGES */
 .featured-image-wrap {
   text-align: center; }
 
@@ -851,6 +860,8 @@ you can just remove this stylesheet.
   margin-bottom: 60px;
   padding-top: 30px; }
 
+/* end IMAGES */
+/* DEMO */
 .demo hr {
   padding: 25px 0;
   margin: 0px;
@@ -877,6 +888,22 @@ hr {
   height: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.01); }
+
+/* end DEMO */
+/* LISTS & TYPE */
+body.single-post .entry-content li {
+  margin-left: 30px;
+  margin-bottom: 10px; }
+  body.single-post .entry-content li:before {
+    content: "•";
+    padding-top: 0px;
+    padding-right: 12px;
+    position: absolute;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50px;
+    margin-left: -50px;
+    text-align: right; }
 
 /******************************************************************
 Site Name:
@@ -1044,6 +1071,35 @@ input[type="submit"] {
         display: inline-block;
         float: left;
         max-width: 550px; } }
+
+.related-posts {
+  background-color: #f5f5f5;
+  padding: 1.15em; }
+
+.related-post {
+  margin-bottom: 3em; }
+  .related-post .byline {
+    margin-bottom: 0.125em; }
+
+#read-next {
+  background-color: #f5f5f5;
+  padding: 2em; }
+
+.related-post-image img {
+  width: 100%; }
+
+.article-footer {
+  margin-top: 2em;
+  margin-bottom: 3em; }
+
+.footer {
+  clear: both;
+  background-color: #fff;
+  font-size: 14px;
+  font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center; }
+  .footer #inner-footer {
+    padding-top: 50px; }
 
 /******************************************************************
 Site Name:
@@ -1460,35 +1516,7 @@ body.single-workshops nav ul li.menu-item-399 > a {
 .workshop-description {
   margin-bottom: .5em; }
 
-.related-posts {
-  background-color: #f5f5f5;
-  padding: 1.15em; }
-
-.related-post {
-  margin-bottom: 3em; }
-  .related-post .byline {
-    margin-bottom: 0.125em; }
-
-#read-next {
-  background-color: #f5f5f5;
-  padding: 2em; }
-
-.related-post-image img {
-  width: 100%; }
-
-.article-footer {
-  margin-top: 2em;
-  margin-bottom: 3em; }
-
-.footer {
-  clear: both;
-  background-color: #fff;
-  font-size: 14px;
-  font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-align: center; }
-  .footer #inner-footer {
-    padding-top: 50px; }
-
+/* No files to import found in layout/* */
 /*********************
 PRINT STYLESHEET
 Feel free to customize this. Remember to add things that won't make
