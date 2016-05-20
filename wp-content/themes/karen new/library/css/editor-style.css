@@ -297,6 +297,7 @@ body#tinymce.wp-editor {
   H1, H2, H3, H4, H5 STYLES
   ******************************************************************/
   padding: 1em 1em 0;
+  /*ACF*/
   /*********************
   LARGER MOBILE DEVICES
   This is for devices like the Galaxy Note or something that's
@@ -605,8 +606,6 @@ body#tinymce.wp-editor {
     bottom: 0;
     width: 9999px;
     display: block; }
-  body#tinymce.wp-editor #acf-margin-fix {
-    margin-top: 0 !important; }
   body#tinymce.wp-editor a, body#tinymce.wp-editor a:visited {
     color: #8E70CF;
     /* on hover */

@@ -4,9 +4,12 @@ HEADER STYLES
 
 #inner-header {
   border-bottom: 1px solid transparentize($purple, .9);
-
-  text-align: center;
-  margin: 75px auto 0;
+  text-align: left;
+  margin: 25px auto 0;
+  @include breakpoint ($bp_medium) {
+    text-align: center;
+    margin-top: 75px;
+  }
 }
 
 #menu {
@@ -22,9 +25,19 @@ HEADER STYLES
 
 #logo {
 	font-family: $caps;
-	font-size: 24px;
 	display: inline-block;
-	margin: 0;
+  font-size: 22px;
+  margin: 0;
+  padding-left: 20px;
+  padding-bottom: 25px;
+
+  @include breakpoint($bp_medium) {
+    font-size: 24px;
+    margin: 0;
+    padding-left: 0;
+    padding-bottom: 25px;
+  }
+
 
   #psa {
 		display: none;
@@ -54,50 +67,55 @@ NAVIGATION STYLES
 *********************/
 
 nav {
-	font-family: $sans-serif;
-	font-size: 16px;
-	border-bottom: 0;
-	margin: 0 auto;
+  display: none;
+  
+  @include breakpoint($bp_medium) {
+    display: block;
+    font-family: $sans-serif;
+  	font-size: $txtsz-regular;
+  	border-bottom: 0;
+  	margin: 0 auto;
 
-	ul {
-		padding: 0px;
-		margin: 0px;
-		list-style: none;
+  	ul {
+  		padding: 0px;
+  		margin: 0px;
+  		list-style: none;
 
-		li {
-			display: inline-block;
-			padding: 0;
+  		li {
+  			display: inline-block;
+  			padding: 0;
 
-			a {
-				display: block;
-				height: 60px;
-				padding: 20px 12px;
-				color: $text-color;
-				text-decoration: none;
-				padding: 1em;
-				border: 0;
+  			a {
+  				display: block;
+  				height: 60px;
+  				padding: 20px 12px;
+  				color: $text-color;
+  				text-decoration: none;
+  				padding: 1em;
+  				border: 0;
 
-				&:hover, &:focus {}
-				&:active {
-					color: $black;
-				}
-			}
-		}
-	}
+  				&:hover, &:focus {}
+  				&:active {
+  					color: $black;
+  				}
+  			}
+  		}
+  	}
 
-	/* highlight current page */
-	li.current-menu-item,
-	li.current_page_item,
-	li.current_page_ancestor,
-	li.current_page_parent {
+  	/* highlight current page */
+  	li.current-menu-item,
+  	li.current_page_item,
+  	li.current_page_ancestor,
+  	li.current_page_parent {
 
-		a {
-			color: $purple;
-		}
+  		a {
+  			color: $purple;
+  		}
 
-	}  /* end current highlighters */
-
+  	}  /* end current highlighters */
+  }
 } /* end .nav */
+
 
 body.single-post nav ul li.menu-item-369 > a{
 		color: $purple;

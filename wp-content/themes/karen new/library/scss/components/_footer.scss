@@ -31,6 +31,10 @@
 #read-next {
 	background-color: $background-shade;
 	padding: 2em;
+
+  @include breakpoint($bp-medium) {
+    padding-bottom: 4em;
+  }
 }
 
 .related-post-image {

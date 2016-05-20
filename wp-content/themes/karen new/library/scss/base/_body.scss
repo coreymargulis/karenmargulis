@@ -3,13 +3,16 @@ body {
 }
 
 #content {
-	margin-top: 4em;
-
+	margin-top: 0em;
 	p {
 		margin: 0 0 1em;
 	}
 
-	#main {
-		padding-bottom: 4em;
+	@include breakpoint($bp-medium) {
+		margin-top: 4em;
+
+		#main {
+			padding-bottom: 4em;
+		}
 	}
 }

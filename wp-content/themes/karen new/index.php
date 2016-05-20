@@ -35,7 +35,7 @@
 
 										<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
 									<?php endif; // end featured image ?>
-
+									
 									</section>
 
 									<section class="article-preview">

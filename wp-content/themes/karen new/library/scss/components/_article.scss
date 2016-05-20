@@ -42,8 +42,12 @@ h1.single-title {
 			text-align: left;
 			position: absolute;
 			top: 17px;
-			right: 60px;
+			left: 20px;
 			line-height: 1.25em;
+			@include breakpoint($bp-small) {
+				right: 60px;
+				left: inherit;
+			}
 		}
 
 		#price {
@@ -136,10 +140,6 @@ hr {
 body.single-post {
 	#main {
 		padding-bottom: 0 !important;
-	}
-
-	#read-next {
-		padding-bottom: 4em;
 	}
 
 	.entry-content {

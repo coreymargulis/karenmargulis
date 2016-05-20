@@ -275,21 +275,13 @@ add_filter('acf/fields/relationship/query/name=featured_painting', 'acf_relation
 function my_relationship_result( $title, $post, $field, $post_id ) {
 
   // load a custom field from this $object and show it in the $result
-    $page_views = get_field('image', $post->ID);
+  $painting = get_field('painting', $post->ID);
 
-      // $image = get_field('painting');
-      //
-      // if( !empty($image) ):
-         /* <img src="<?php echo $image['url']; ?>" /> */
-      // <?php endif;
-
-
-          // vars
-          $class = 'thumbnail';
-          $thumbnail = 'hi' . get_field('painting');
+  // vars
+  $class = 'thumbnail';
 
 	// append to title
-    $title = '<div class="' . $class . '">' . $thumbnail . '</div>' . $title;
+  $title = '<div class="' . $class . '"><img src="' . $painting['url'] . '"/></div>' . $title;
 
 
 	// return

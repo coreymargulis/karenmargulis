@@ -38,9 +38,6 @@ body#tinymce.wp-editor {
 	color: $text-color;
   -webkit-font-smoothing: antialiased;
 
-	#acf-margin-fix {
-		margin-top: 0 !important;
-	}
 
   /*********************
 	LINK STYLES
@@ -194,6 +191,11 @@ body#tinymce.wp-editor {
 		li {
 			list-style-type: disc;
 		}
+
+		/*ACF*/
+		// .acf-relationship .list .acf-rel-item {
+		// 	min-height: 30px !important;
+		// }
 
 		/*********************
 		LARGER MOBILE DEVICES

@@ -107,25 +107,28 @@
 
 			        </article> <?php // end article ?>
 
-			        <section id="read-next">
+		          <?php
+								$prev_post = get_previous_post();
+								if (!empty( $prev_post )): ?>
 
-              	<div id="next-post" class="wrap">
+								<a href="<?php echo get_permalink( $prev_post->ID ); ?>">
 
-									<h3>Next Post</h3>
+									<section id="read-next">
 
-				          <?php
-										$prev_post = get_previous_post();
-										if (!empty( $prev_post )): ?>
-										  <h2><a href="<?php echo get_permalink( $prev_post->ID ); ?>"><?php echo $prev_post->post_title; ?></a></h2>
-									<?php endif; ?>
+										<div id="next-post" class="wrap">
 
-								</div>
+											<h3>Next Post</h3>
+											<h2><?php echo $prev_post->post_title; ?></h2>
 
-              	<!-- <div id="prev-post">
-              		<h4>Previous Post</h4>
-              	</div> -->
+										<?php endif; ?>
 
-			      	</section>
+										</div>
+
+									</section>
+
+								</a>
+
+
 
 						<?php endwhile; ?>
 
