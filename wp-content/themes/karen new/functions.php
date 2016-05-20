@@ -260,5 +260,45 @@ function my_remove_meta_boxes() {
 add_action( 'admin_menu' , 'my_remove_meta_boxes' );
 
 
+/*ACF STUFF*/
+/* Order featured paintings by date added */
+function acf_relationship_filter( $args, $field, $post_id ) {
+    $args['orderby'] = 'date';
+    $args['order'] = 'desc';
+    return $args;
+}
+
+add_filter('acf/fields/relationship/query/name=featured_painting', 'acf_relationship_filter', 10, 3);
+
+
+/* Add painting picture to results */
+function my_relationship_result( $title, $post, $field, $post_id ) {
+
+  // load a custom field from this $object and show it in the $result
+    $page_views = get_field('image', $post->ID);
+
+      // $image = get_field('painting');
+      //
+      // if( !empty($image) ):
+         /* <img src="<?php echo $image['url']; ?>" /> */
+      // <?php endif;
+
+
+          // vars
+          $class = 'thumbnail';
+          $thumbnail = 'hi' . get_field('painting');
+
+	// append to title
+    $title = '<div class="' . $class . '">' . $thumbnail . '</div>' . $title;
+
+
+	// return
+    return $title;
+
+}
+
+add_filter('acf/fields/relationship/result/name=featured_painting', 'my_relationship_result', 10, 4);
+
+
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

@@ -667,9 +667,8 @@ body#tinymce.wp-editor {
   body#tinymce.wp-editor blockquote {
     margin: 0 0 1.5em 0.75em;
     padding: 0 0 0 0.75em;
-    border-left: 3px solid #2980b9;
-    font-style: italic;
-    color: #f5f5f5; }
+    border-left: 3px solid #484848;
+    font-weight: bold; }
   body#tinymce.wp-editor dd {
     margin-left: 0;
     font-size: 0.9em;

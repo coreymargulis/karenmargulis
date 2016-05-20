@@ -153,9 +153,8 @@ body#tinymce.wp-editor {
 		blockquote {
 			margin: 0 0 1.5em 0.75em;
 			padding: 0 0 0 0.75em;
-			border-left: 3px solid $blue;
-			font-style: italic;
-			color: $light-gray;
+			border-left: 3px solid $text-color;
+			font-weight: bold;
 
 			&:before {}
 
