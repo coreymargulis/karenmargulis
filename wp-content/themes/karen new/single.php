@@ -12,7 +12,7 @@
 
 			          <header class="article-header">
 
-									<section class="featured-image-wrap">
+									<section class="featured-image-container">
 
 										<?php
 											$post_object = get_field('featured_painting');
@@ -76,9 +76,10 @@
 															$image = get_sub_field('image');
 
 															if( !empty($image) ): ?>
-
-																<img class="inset-center" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-
+															<div class="inset-center">
+																<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+																<div id="caption"><?php the_sub_field('caption'); ?></div>
+															</div>
 															<?php endif;
 
 										        endif;

@@ -92,10 +92,14 @@ OTHER TYPE STYLES
   margin-bottom: 0 !important;
 }
 
-#excerpt-more, .price {
+#excerpt-more, #price, #caption {
   font-family: $sans-serif;
-  font-size: 16px;
-  color: $text-color;
+  font-size: 14px;
+  color: $gray-text-darker;
+}
+
+.inset-center #caption {
+  color: $gray-text;
 }
 
 b, strong {

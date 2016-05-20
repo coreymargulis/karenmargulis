@@ -6,6 +6,12 @@ $bold-sans:   "scalasansbold";
 $caps:				"scala_capsregular";
 $italic:			"scalaitalic";
 
+//convert these to ems and then change body % for breakpoints
+$txtsz-large: 26px;
+$txtsz-regular: 16px;
+$txtsz-small: 14px;
+
+
 @font-face {
     font-family: 'scalabold';
     src: url('../fonts/scala-bold-webfont.eot');

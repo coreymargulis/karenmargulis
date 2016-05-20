@@ -250,6 +250,15 @@ function my_custom_rss_render() {
   get_template_part( 'feed', 'karen' );
 }
 
+// Hide custom categories
+function my_remove_meta_boxes() {
+    remove_meta_box( 'subjectdiv', 'paintings', 'side' );
+    remove_meta_box( 'regiondiv', 'paintings', 'side' );
+    // remove_meta_box( 'tagsdiv-workshop_person', 'workshop', 'side' );
+    // etc..
+}
+add_action( 'admin_menu' , 'my_remove_meta_boxes' );
+
 
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

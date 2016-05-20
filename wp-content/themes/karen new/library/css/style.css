@@ -672,12 +672,13 @@ body {
 img, media {
   max-width: 100%; }
 
-img.inset-center {
+.inset-center {
   width: 80%;
   margin: 0 auto;
   margin-top: 2em;
   margin-bottom: 2em;
-  display: block; }
+  display: block;
+  text-align: center; }
 
 body {
   font-family: "scalaregular", "Georgia", Cambria, Times New Roman, Times, serif;
@@ -749,10 +750,13 @@ OTHER TYPE STYLES
   font-size: 16px;
   margin-bottom: 0 !important; }
 
-#excerpt-more, .price {
+#excerpt-more, #price, #caption {
   font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  color: #484848; }
+  font-size: 14px;
+  color: #626262; }
+
+.inset-center #caption {
+  color: #aeaeae; }
 
 b, strong {
   font-family: "scalabold";
@@ -800,10 +804,11 @@ you can just remove this stylesheet.
   background: #e6efc2; }
 
 /*single post styles*/
-/* IMAGES */
-.featured-image-wrap {
-  text-align: center; }
+h1.single-title {
+  margin-bottom: .5em;
+  margin-top: .15em; }
 
+/* IMAGES */
 .featured-image {
   position: relative;
   display: inline-block;
@@ -818,16 +823,13 @@ you can just remove this stylesheet.
 .featured-image-caption {
   display: block;
   font-family: "scalasansregular";
-  color: #959595;
   font-size: 14px;
   text-align: right;
   z-index: 300;
-  max-width: 100%; }
-  @media (min-width: 768px) {
-    .featured-image-caption {
-      background: none;
-      position: relative;
-      padding-bottom: 50px; } }
+  max-width: 100%;
+  margin-right: 16px;
+  position: relative;
+  padding-bottom: 50px; }
   .featured-image-caption #caption {
     display: inline-block;
     text-align: left;
@@ -891,6 +893,10 @@ hr {
 
 /* end DEMO */
 /* LISTS & TYPE */
+body.single-post #main {
+  padding-bottom: 0 !important; }
+body.single-post #read-next {
+  padding-bottom: 4em; }
 body.single-post .entry-content li {
   margin-left: 30px;
   margin-bottom: 10px; }

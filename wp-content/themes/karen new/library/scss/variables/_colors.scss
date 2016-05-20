@@ -9,6 +9,7 @@ $white:             #fff;
 $gray:              #484848;
 $text-color:        $gray;
 $gray-text:					lighten($gray, 40%);
+$gray-text-darker:	lighten($gray, 10%);
 
 $background:        #fbfbfb; //F8F9FA
 $background-shade:	#f5f5f5;

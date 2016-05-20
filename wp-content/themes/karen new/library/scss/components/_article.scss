@@ -1,9 +1,10 @@
 /*single post styles*/
-
-/* IMAGES */
-.featured-image-wrap {
-	text-align: center;
+h1.single-title {
+	margin-bottom: .5em;
+	margin-top: .15em;
 }
+/* IMAGES */
+
 .featured-image {
 	position: relative;
 	display: inline-block;
@@ -21,16 +22,19 @@
 .featured-image-caption {
 	display: block;
 	font-family: "scalasansregular";
-	color: darken($gray-text, 10%);
 	font-size: 14px;
 	text-align: right;
 	z-index: 300;
 	max-width: 100%;
+	margin-right: 16px;
+	position: relative;
+	padding-bottom: 50px;
 
 		@include breakpoint($bp-medium) {
-			background: none;
-			position: relative;
-			padding-bottom: 50px;
+		}
+
+		@include breakpoint($bp-large) {
+			// margin-right: 0;
 		}
 
 		#caption {
@@ -129,23 +133,33 @@ hr {
 } /* end DEMO */
 
 /* LISTS & TYPE */
-body.single-post .entry-content{
+body.single-post {
+	#main {
+		padding-bottom: 0 !important;
+	}
 
-	li {
-		margin-left: 30px;
-		margin-bottom: 10px;
+	#read-next {
+		padding-bottom: 4em;
+	}
 
-		&:before {
-			content: "•";
-			padding-top: 0px;
-			padding-right: 12px;
+	.entry-content {
 
-			position: absolute;
-			display: inline-block;
-			box-sizing: border-box;
-			width: 50px;
-			margin-left: -50px;
-			text-align: right;
+		li {
+			margin-left: 30px;
+			margin-bottom: 10px;
+
+			&:before {
+				content: "•";
+				padding-top: 0px;
+				padding-right: 12px;
+
+				position: absolute;
+				display: inline-block;
+				box-sizing: border-box;
+				width: 50px;
+				margin-left: -50px;
+				text-align: right;
+			}
 		}
 	}
 }

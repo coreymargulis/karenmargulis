@@ -160,69 +160,69 @@ function custom_post_example() {
 		)
 	);
 
-	// now let's add custom tags (these act like categories)
-	register_taxonomy( 'medium',
-		array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
-		array('hierarchical' => false,    /* if this is false, it acts like tags */
-			'labels' => array(
-				'name' => __( 'Mediums', 'bonestheme' ), /* name of the custom taxonomy */
-				'singular_name' => __( 'Custom medium', 'bonestheme' ), /* single taxonomy name */
-				'search_items' =>  __( 'Search mediums', 'bonestheme' ), /* search title for taxomony */
-				'all_items' => __( 'All mediums', 'bonestheme' ), /* all title for taxonomies */
-				'parent_item' => __( 'Parent medium', 'bonestheme' ), /* parent title for taxonomy */
-				'parent_item_colon' => __( 'Parent Custom Tag:', 'bonestheme' ), /* parent taxonomy title */
-				'edit_item' => __( 'Edit Custom Tag', 'bonestheme' ), /* edit custom taxonomy title */
-				'update_item' => __( 'Update Custom Tag', 'bonestheme' ), /* update title for taxonomy */
-				'add_new_item' => __( 'Add New Custom Tag', 'bonestheme' ), /* add new title for taxonomy */
-				'new_item_name' => __( 'New Custom Tag Name', 'bonestheme' ) /* name title for taxonomy */
-			),
-			'show_admin_column' => true,
-			'show_ui' => true,
-			'query_var' => true,
-		)
-	);
+	// // now let's add custom tags (these act like categories)
+	// register_taxonomy( 'medium',
+	// 	array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+	// 	array('hierarchical' => false,    /* if this is false, it acts like tags */
+	// 		'labels' => array(
+	// 			'name' => __( 'Mediums', 'bonestheme' ), /* name of the custom taxonomy */
+	// 			'singular_name' => __( 'Custom medium', 'bonestheme' ), /* single taxonomy name */
+	// 			'search_items' =>  __( 'Search mediums', 'bonestheme' ), /* search title for taxomony */
+	// 			'all_items' => __( 'All mediums', 'bonestheme' ), /* all title for taxonomies */
+	// 			'parent_item' => __( 'Parent medium', 'bonestheme' ), /* parent title for taxonomy */
+	// 			'parent_item_colon' => __( 'Parent Custom Tag:', 'bonestheme' ), /* parent taxonomy title */
+	// 			'edit_item' => __( 'Edit Custom Tag', 'bonestheme' ), /* edit custom taxonomy title */
+	// 			'update_item' => __( 'Update Custom Tag', 'bonestheme' ), /* update title for taxonomy */
+	// 			'add_new_item' => __( 'Add New Custom Tag', 'bonestheme' ), /* add new title for taxonomy */
+	// 			'new_item_name' => __( 'New Custom Tag Name', 'bonestheme' ) /* name title for taxonomy */
+	// 		),
+	// 		'show_admin_column' => true,
+	// 		'show_ui' => true,
+	// 		'query_var' => true,
+	// 	)
+	// );
+	//
+	// register_taxonomy( 'season',
+	// 	array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+	// 	array('hierarchical' => false,    /* if this is false, it acts like tags */
+	// 		'labels' => array(
+	// 			'name' => __( 'Seasons', 'bonestheme' ), /* name of the custom taxonomy */
+	// 			'singular_name' => __( 'Custom season', 'bonestheme' ), /* single taxonomy name */
+	// 			'search_items' =>  __( 'Search seasons', 'bonestheme' ), /* search title for taxomony */
+	// 			'all_items' => __( 'All seasons', 'bonestheme' ), /* all title for taxonomies */
+	// 			'parent_item' => __( 'Parent season', 'bonestheme' ), /* parent title for taxonomy */
+	// 			'parent_item_colon' => __( 'Parent Custom Tag:', 'bonestheme' ), /* parent taxonomy title */
+	// 			'edit_item' => __( 'Edit Custom Tag', 'bonestheme' ), /* edit custom taxonomy title */
+	// 			'update_item' => __( 'Update Custom Tag', 'bonestheme' ), /* update title for taxonomy */
+	// 			'add_new_item' => __( 'Add New Custom Tag', 'bonestheme' ), /* add new title for taxonomy */
+	// 			'new_item_name' => __( 'New Custom Tag Name', 'bonestheme' ) /* name title for taxonomy */
+	// 		),
+	// 		'show_admin_column' => true,
+	// 		'show_ui' => true,
+	// 		'query_var' => true,
+	// 	)
+	// );
 
-	register_taxonomy( 'season',
-		array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
-		array('hierarchical' => false,    /* if this is false, it acts like tags */
-			'labels' => array(
-				'name' => __( 'Seasons', 'bonestheme' ), /* name of the custom taxonomy */
-				'singular_name' => __( 'Custom season', 'bonestheme' ), /* single taxonomy name */
-				'search_items' =>  __( 'Search seasons', 'bonestheme' ), /* search title for taxomony */
-				'all_items' => __( 'All seasons', 'bonestheme' ), /* all title for taxonomies */
-				'parent_item' => __( 'Parent season', 'bonestheme' ), /* parent title for taxonomy */
-				'parent_item_colon' => __( 'Parent Custom Tag:', 'bonestheme' ), /* parent taxonomy title */
-				'edit_item' => __( 'Edit Custom Tag', 'bonestheme' ), /* edit custom taxonomy title */
-				'update_item' => __( 'Update Custom Tag', 'bonestheme' ), /* update title for taxonomy */
-				'add_new_item' => __( 'Add New Custom Tag', 'bonestheme' ), /* add new title for taxonomy */
-				'new_item_name' => __( 'New Custom Tag Name', 'bonestheme' ) /* name title for taxonomy */
-			),
-			'show_admin_column' => true,
-			'show_ui' => true,
-			'query_var' => true,
-		)
-	);
-
-	register_taxonomy( 'colors',
-		array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
-		array('hierarchical' => false,    /* if this is false, it acts like tags */
-			'labels' => array(
-				'name' => __( 'Colors', 'bonestheme' ), /* name of the custom taxonomy */
-				'singular_name' => __( 'Color', 'bonestheme' ), /* single taxonomy name */
-				'search_items' =>  __( 'Search colors', 'bonestheme' ), /* search title for taxomony */
-				'all_items' => __( 'All colors', 'bonestheme' ), /* all title for taxonomies */
-				'parent_item' => __( 'Parent color', 'bonestheme' ), /* parent title for taxonomy */
-				'parent_item_colon' => __( 'Parent Color:', 'bonestheme' ), /* parent taxonomy title */
-				'edit_item' => __( 'Edit Color', 'bonestheme' ), /* edit custom taxonomy title */
-				'update_item' => __( 'Update Color', 'bonestheme' ), /* update title for taxonomy */
-				'add_new_item' => __( 'Add New Color', 'bonestheme' ), /* add new title for taxonomy */
-				'new_item_name' => __( 'New Color', 'bonestheme' ) /* name title for taxonomy */
-			),
-			'show_admin_column' => true,
-			'show_ui' => true,
-			'query_var' => true,
-		)
-	);
+	// register_taxonomy( 'colors',
+	// 	array('paintings'), /* if you change the name of register_post_type( 'custom_type', then you have to change this */
+	// 	array('hierarchical' => false,    /* if this is false, it acts like tags */
+	// 		'labels' => array(
+	// 			'name' => __( 'Colors', 'bonestheme' ), /* name of the custom taxonomy */
+	// 			'singular_name' => __( 'Color', 'bonestheme' ), /* single taxonomy name */
+	// 			'search_items' =>  __( 'Search colors', 'bonestheme' ), /* search title for taxomony */
+	// 			'all_items' => __( 'All colors', 'bonestheme' ), /* all title for taxonomies */
+	// 			'parent_item' => __( 'Parent color', 'bonestheme' ), /* parent title for taxonomy */
+	// 			'parent_item_colon' => __( 'Parent Color:', 'bonestheme' ), /* parent taxonomy title */
+	// 			'edit_item' => __( 'Edit Color', 'bonestheme' ), /* edit custom taxonomy title */
+	// 			'update_item' => __( 'Update Color', 'bonestheme' ), /* update title for taxonomy */
+	// 			'add_new_item' => __( 'Add New Color', 'bonestheme' ), /* add new title for taxonomy */
+	// 			'new_item_name' => __( 'New Color', 'bonestheme' ) /* name title for taxonomy */
+	// 		),
+	// 		'show_admin_column' => true,
+	// 		'show_ui' => true,
+	// 		'query_var' => true,
+	// 	)
+	// );
 
 	/*
 		looking for custom meta boxes?
