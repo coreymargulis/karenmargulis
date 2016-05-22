@@ -70,7 +70,7 @@
 					<?php // to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> ?>
 					<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a><span id="psa">psa</span></p>
 
-					<nav role="navigation">
+					<nav id="menu" role="navigation">
 						<?php wp_nav_menu(array(
     					         'container' => false,                           // remove nav container
     					         'container_class' => 'menu',                 // class of container (should you choose to use it)

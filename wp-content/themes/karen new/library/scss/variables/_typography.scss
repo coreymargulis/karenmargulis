@@ -7,9 +7,10 @@ $caps:				"scala_capsregular";
 $italic:			"scalaitalic";
 
 //convert these to ems and then change body % for breakpoints
-$txtsz-large: 26px;
-$txtsz-regular: 16px;
-$txtsz-small: 14px;
+$fsz-x-large: 26px;
+$fsz-large: 20px;
+$fsz-regular: 16px;
+$fsz-small: 14px;
 
 
 @font-face {

@@ -23,7 +23,7 @@ $light-purple:	   	lighten($purple, 20%);
 $blue:              #2980b9;
 
 $link-color:        $purple;
-$link-hover:        lighten($link-color, 9%);
+$link-hover:        darken($link-color, 9%);
 
 $border-color:      #ccc;
 $disabled-gray:     #cfcfcf;

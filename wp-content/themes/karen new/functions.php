@@ -283,9 +283,8 @@ function my_relationship_result( $title, $post, $field, $post_id ) {
 	// append to title
   $title = '<div class="' . $class . '"><img src="' . $painting['url'] . '"/></div>' . $title;
 
-
 	// return
-    return $title;
+  return $title;
 
 }
 

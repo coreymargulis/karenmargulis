@@ -8,3 +8,12 @@
     margin-bottom: 0 !important;
   }
 }
+
+#archive-message {
+  font-family: $sans-serif;
+  color: darken($gray-text, 20%);
+}
+
+.home #main {
+  margin-bottom: 2em;
+}

@@ -4,12 +4,10 @@
 
 					<?php get_template_part( 'component', 'subscribe' ); ?>
 
-					<nav>
+					<nav class="footer-links cf">
 						<?php wp_nav_menu(array(
-    					'container' => 'div',                           // enter '' to remove nav container (just make sure .footer-links in _base.scss isn't wrapping)
-    					'container_class' => 'footer-links cf',         // class of container (should you choose to use it)
+    					'container' => '',                           // enter '' to remove nav container (just make sure .footer-links in _base.scss isn't wrapping)
     					'menu' => __( 'Footer Links', 'bonestheme' ),   // nav name
-    					'menu_class' => 'nav footer-nav cf',            // adding custom nav class
     					'theme_location' => 'footer-links',             // where it's located in the theme
     					'before' => '',                                 // before the menu
     					'after' => '',                                  // after the menu
@@ -20,9 +18,9 @@
 						)); ?>
 					</nav>
 
-					<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?></p>
-
 				</div>
+
+				<div class="copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?></div>
 
 			</footer>
 

@@ -15,35 +15,30 @@
 									<section class="featured-image-container">
 
 										<?php
-											$post_object = get_field('featured_painting');
-											if( $post_object ):
-												// override $post
-												$post = $post_object;
-												setup_postdata( $post );
-										?>
+										$relationships = get_field('featured_painting');
+										if( $relationships ): ?>
 
-									  <div class="featured-image">
+										<div class="featured-image">
+									    <?php foreach( $relationships as $post): // variable must be called $post (IMPORTANT) ?>
+								        <?php setup_postdata($post);
+													$image = get_field('painting');
 
-							    		<?php
-								    		$image = get_field('painting');
+													if( !empty($image) ): ?>
+														<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+														<div class="featured-image-caption">
+															<div id="caption">
+																<i><?php the_title(); ?></i><br><?php the_field('width'); ?> x <?php the_field('height'); ?>" pastel
+															</div>
+															<div id="price">
+																<a href="<?php the_field('etsy_link'); ?>">$<?php the_field('price'); ?></a>
+												    	</div>
+														</div>
+													<?php endif; ?>
+									    <?php endforeach; ?>
+									    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+										</div>
+										<?php endif; ?>
 
-												if( !empty($image) ): ?>
-													<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-								    		<?php endif; ?>
-
-									    	<div class="featured-image-caption">
-													<div id="caption">
-														<i><?php the_title(); ?></i><br><?php the_field('width'); ?> x <?php the_field('height'); ?>" pastel
-													</div>
-													<div id="price">
-														<a href="<?php the_field('etsy_link'); ?>">$<?php the_field('price'); ?></a>
-										    	</div>
-												</div>
-
-									  </div>
-
-									  <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-									<?php endif; // end featured image ?>
 
 									</section>
 
@@ -101,32 +96,82 @@
 			            <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
 										<button type="submit" class="secondary">Share</button>
 										<button type="submit" class="secondary">Comment</button>
-			            </footer> <?php // end article footer ?>
+
+								</footer> <?php // end article footer ?>
 
 								<?php // comments go here eventually ?>
 
 			        </article> <?php // end article ?>
 
-		          <?php
-								$prev_post = get_previous_post();
-								if (!empty( $prev_post )): ?>
+							<footer class="more-reading">
 
-								<a href="<?php echo get_permalink( $prev_post->ID ); ?>">
+			          <?php
+									$prev_post = get_next_post();
+									if (!empty( $prev_post )): ?>
 
-									<section id="read-next">
+									<a href="<?php echo get_permalink( $prev_post->ID ); ?>">
 
-										<div id="next-post" class="wrap">
+										<section id="read-next">
 
-											<h3>Next Post</h3>
-											<h2><?php echo $prev_post->post_title; ?></h2>
+											<div id="next-post" class="wrap">
 
-										<?php endif; ?>
+												<h3>Next Post</h3>
+												<h2><?php echo $prev_post->post_title; ?></h2>
 
-										</div>
+											</div>
+
+										</section>
+
+									</a>
+
+								<?php else: ?>
+
+								<section id="related-posts">
+
+									<?php
+										$related_args = array(
+											'posts_per_page' => 3,
+											'orderby' => 'rand',
+											'category__in' => wp_get_post_categories($post->ID),
+											'post_status' => 'publish',
+											'post__not_in' => array($post->ID)
+										);
+										$related = new WP_Query( $related_args );
+
+										if( $related->have_posts() ) :
+									?>
+
+									<div class="wrap"><h3>Related Posts</h3></div>
+
+										<?php while( $related->have_posts() ): $related->the_post(); ?>
+
+										<?php //image goes here ?>
+
+										<section id="related-post" class="wrap">
+
+											<p class="byline">
+													<!-- <?php printf( __( '<time class="updated" datetime="%1$s" pubdate>%2$s</time>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?> -->
+												<!-- <?php printf( '<span class="category">' . __('', 'bonestheme' ) . '%1$s</span>' , get_the_category_list(', ') ); ?> -->
+											</p>
+
+											<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+											<!-- <?php echo custom_field_excerpt(); ?> -->
+											<!-- <a href="<?php the_permalink() ?>" id="excerpt-more">Continue Reading</a> -->
+
+										</section>
+
+									<?php endwhile; ?>
 
 									</section>
+								</section>
 
-								</a>
+								<?php
+									endif;
+									wp_reset_postdata();
+								?>
+
+								<?php endif; ?>
+
 
 
 
