@@ -35,12 +35,11 @@ button:focus {outline:0 !important;}
   font-size: 18px;
   line-height: 50px;
   font-weight: normal;
-  padding: 0px 20px;
+  padding: 0px 30px;
   border-radius: 2px;
   border: 0;
   cursor: pointer;
-  @include transition(background-color 0.14s ease-in-out);
-  @include transition(border-color 0.14s ease-in-out);
+  @include transition(all 0.14s ease-in-out);
 
   &:hover, &:focus {
     color: $white;
@@ -53,50 +52,59 @@ button:focus {outline:0 !important;}
 
 }
 
-
 input[type="submit"] {
   @extend %btn;
-  background-color: $purple;
+  background-color: darken($purple, 4%);
 
   &:hover,
   &:focus {
-    background-color: darken($purple, 4%);
+    // background-color: darken($purple, 8%);
   }
 
   &:active {
-    background-color: darken($purple, 5%);
+    // background-color: darken($purple, 9%);
   }
-}
-
-.alt {
-  @extend %btn;
-  background-color: $purple;
-
-  &:hover,
-  &:focus {
-    background-color: darken($purple, 4%);
-  }
-
-  &:active {
-  background-color: darken($purple, 5%);
-  }
-
 }
 
 .secondary {
   @extend %btn;
   background-color: $background;
   border: 1px solid $light-purple;
-  color: $purple;
+  color: $purple !important;
 
-  &:hover,
-  &:focus {
+  &:hover {
     border-color: $purple;
-    color: $purple;
+    color: darken($purple, 2%);
   }
 
   &:active {
-  background-color: darken($purple, 5%);
+    color: $purple;
+  }
+}
+
+.dark {
+  @extend %btn;
+
+  &:hover,
+  &:focus {
+    background-color: darken($purple, 8%);
   }
 
+  &:active {
+    background-color: darken($purple, 9%);
+  }
 }
+
+// .alt {
+//   @extend %btn;
+//   background-color: $purple;
+//
+//   &:hover,
+//   &:focus {
+//     background-color: darken($purple, 4%);
+//   }
+//
+//   &:active {
+//   background-color: darken($purple, 5%);
+//   }
+// }

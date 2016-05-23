@@ -83,29 +83,21 @@ do_action( 'rss_tag_pre', 'rss2' );
 		<link><?php the_permalink_rss() ?></link>
 
 		<?php
-			$post_object = get_field('featured_painting');
-			if( $post_object ):
-				// override $post
-				$post = $post_object;
-				setup_postdata( $post );
-		?>
-			<?php
-				$image = get_field('painting');
+		$relationships = get_field('featured_painting');
+		if( $relationships ): ?>
+			<?php foreach( $relationships as $post): // variable must be called $post (IMPORTANT) ?>
+				<?php setup_postdata($post);
+					$image = get_field('painting');
 
-				if( !empty($image) ): ?>
-
-
+					if( !empty($image) ): ?>
 					<enclosure url="<?php echo $image['url']; ?>" type="image/jpeg" length="0" />
 					<content:encoded><![CDATA[<i><?php the_title(); ?></i>, <?php the_field('width'); ?> x <?php the_field('height'); ?>"]]></content:encoded>
-
-			<?php endif; ?>
-
-		    	<!-- <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-		    	<span>Post Object Custom Field: <?php the_field('height'); ?></span> -->
-
-		    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+					<?php endif; ?>
+			<?php endforeach; ?>
+			<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
 		<?php endif; ?>
 
+		
 		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
 
 		<?php the_category_rss('rss2') ?>

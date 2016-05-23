@@ -480,23 +480,6 @@ span.amp {
 some nice typographical defaults
 more here: http://www.newnet-soft.com/blog/csstypography
 */
-p {
-  -ms-word-break: break-all;
-  -ms-word-wrap: break-all;
-  word-break: break-word;
-  word-break: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
-  -webkit-hyphenate-before: 2;
-  -webkit-hyphenate-after: 3;
-  hyphenate-lines: 3;
-  -webkit-font-feature-settings: "liga", "dlig";
-  -moz-font-feature-settings: "liga=1, dlig=1";
-  -ms-font-feature-settings: "liga", "dlig";
-  -o-font-feature-settings: "liga", "dlig";
-  font-feature-settings: "liga", "dlig"; }
-
 /******************************************************************
 Site Name:
 Author:
@@ -951,7 +934,7 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 button:focus {
   outline: 0 !important; }
 
-input[type="submit"], .alt, .secondary {
+input[type="submit"], .secondary, .dark {
   display: inline-block;
   position: relative;
   font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -960,41 +943,33 @@ input[type="submit"], .alt, .secondary {
   font-size: 18px;
   line-height: 50px;
   font-weight: normal;
-  padding: 0px 20px;
+  padding: 0px 30px;
   border-radius: 2px;
   border: 0;
   cursor: pointer;
-  -webkit-transition: background-color 0.14s ease-in-out;
-  transition: background-color 0.14s ease-in-out;
-  -webkit-transition: border-color 0.14s ease-in-out;
-  transition: border-color 0.14s ease-in-out; }
-  input[type="submit"]:hover, .alt:hover, .secondary:hover, input[type="submit"]:focus, .alt:focus, .secondary:focus {
+  -webkit-transition: all 0.14s ease-in-out;
+  transition: all 0.14s ease-in-out; }
+  input[type="submit"]:hover, .secondary:hover, .dark:hover, input[type="submit"]:focus, .secondary:focus, .dark:focus {
     color: #fff;
     text-decoration: none; }
 
 input[type="submit"] {
-  background-color: #8E70CF; }
-  input[type="submit"]:hover, input[type="submit"]:focus {
-    background-color: #8261ca; }
-  input[type="submit"]:active {
-    background-color: #7f5dc9; }
-
-.alt {
-  background-color: #8E70CF; }
-  .alt:hover, .alt:focus {
-    background-color: #8261ca; }
-  .alt:active {
-    background-color: #7f5dc9; }
+  background-color: #8261ca; }
 
 .secondary {
   background-color: #fbfbfb;
   border: 1px solid #cabce9;
-  color: #8E70CF; }
-  .secondary:hover, .secondary:focus {
+  color: #8E70CF !important; }
+  .secondary:hover {
     border-color: #8E70CF;
-    color: #8E70CF; }
+    color: #8868cc; }
   .secondary:active {
-    background-color: #7f5dc9; }
+    color: #8E70CF; }
+
+.dark:hover, .dark:focus {
+  background-color: #7651c5; }
+.dark:active {
+  background-color: #734ec3; }
 
 .chunk_image_caption {
   display: inline-block; }
@@ -1156,6 +1131,9 @@ http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/
 input:focus {
   outline: 0 !important; }
 
+input.adminbar-input {
+  border: none !important; }
+
 /*********************
 INPUTS
 *********************/
@@ -1185,6 +1163,7 @@ textarea,
   font-family: "scalasansregular", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #484848;
   border-radius: 2px;
+  border: 1px solid #eeeeee !important;
   vertical-align: middle;
   box-shadow: none;
   border: 0;
@@ -1226,7 +1205,7 @@ textarea,
   textarea:active,
   .field:focus,
   .field:active {
-    border: 1px solid #ac96dc; }
+    border: 1px solid #cabce9 !important; }
   input[type="text"].error, input[type="text"].is-invalid,
   input[type="password"].error,
   input[type="password"].is-invalid,
@@ -1410,13 +1389,12 @@ textarea,
     .field.is-disabled:active {
       background-color: #d5edf8; }
 
-/*input[type="password"] {
-  letter-spacing: 0.3em;
-}*/
 textarea {
   max-width: 100%;
   min-height: 120px;
-  line-height: 1.5em; }
+  line-height: 1.5;
+  padding-top: 14px;
+  outline: 0 !important; }
 
 select {
   -webkit-appearance: none;
@@ -1522,6 +1500,9 @@ body.single-post nav ul li.menu-item-369 > a {
 body.single-workshops nav ul li.menu-item-399 > a {
   color: #8E70CF; }
 
+h3 {
+  margin-bottom: 1em; }
+
 .email {
   display: inline-block !important; }
 
@@ -1532,19 +1513,23 @@ body.single-workshops nav ul li.menu-item-399 > a {
     margin-right: 6px;
     display: inline-block;
     margin: 0;
-    width: 350px;
+    width: 100%;
     vertical-align: top;
     border-color: #aeaeae !important; }
-  #mc_embed_signup .button {
-    box-sizing: border-box;
-    padding: 0 18px;
-    display: inline-block;
-    margin: 0;
-    transition: all 0.23s ease-in-out 0s; }
+    @media (min-width: 768px) {
+      #mc_embed_signup input.email {
+        width: 350px; } }
 
-.clear {
+#mce-email {
+  border: none; }
+
+#subscribe {
   display: inline-block;
-  margin-left: 4px; }
+  margin-top: 8px; }
+  @media (min-width: 768px) {
+    #subscribe {
+      margin-left: 4px;
+      margin-top: 0; } }
 
 #question {
   font-family: "scalasansbold"; }
