@@ -11,7 +11,13 @@
 		<?php // force Internet Explorer to use the latest rendering engine available ?>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title><?php wp_title(''); ?></title>
+		<title><?php the_title(); ?></title>
+
+		<meta property="og:url"           content="<?php get_permalink(); ?>" />
+		<meta property="og:type"          content="website" />
+		<meta property="og:title"         content="Your Website Title" />
+		<meta property="og:description"   content="Your description" />
+		<meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
 
 		<?php // mobile meta (hooray!) ?>
 		<meta name="HandheldFriendly" content="True">

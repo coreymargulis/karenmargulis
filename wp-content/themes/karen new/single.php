@@ -108,6 +108,13 @@
 			            <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
 										<button type="submit" id="share" class="secondary">Share</button>
 										<button type="submit" id="comments" class="secondary"><?php comments_number( __( 'Comment', 'bonestheme' ), __( '<span>1</span> Comment', 'bonestheme' ), __( '<span>%</span> Comments', 'bonestheme' ) );?></button>
+										<div class="share-modal">
+											<div id="twitter"><a href="https://twitter.com/intent/tweet?text=&ldquo;<?php the_title();?>&rdquo;&via=karenmargulis&url=<?php the_permalink();?>">Share on Twitter</a></div>
+											<div id="facebook"><div data-href="<?php the_permalink(); ?>" data-layout="link" data-mobile-iframe="true"></div></div>
+
+											<a href="https://www.facebook.com/dialog/share?app_id=0&href=<?php the_permalink(); ?>&display=popup" target="_blank">
+  Share on Facebook
+</a>
 
 								</footer> <?php // end article footer ?>
 
