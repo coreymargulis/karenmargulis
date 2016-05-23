@@ -847,18 +847,23 @@ h1.single-title {
       .featured-image-caption #caption {
         right: 60px;
         left: inherit; } }
-  .featured-image-caption #price {
+  .featured-image-caption .price {
     display: inline-block;
     position: absolute;
     top: 20px;
     right: 0; }
-    .featured-image-caption #price a {
+    .featured-image-caption .price a {
       border: 1px solid #cabce9;
       border-radius: 2px;
       padding: 6px 8px;
       color: #8E70CF; }
-      .featured-image-caption #price a:hover, .featured-image-caption #price a:focus {
+      .featured-image-caption .price a:hover, .featured-image-caption .price a:focus {
         border-color: #8E70CF; }
+    .featured-image-caption .price #sold {
+      border: 1px solid #e1e1e1;
+      border-radius: 2px;
+      padding: 6px 8px;
+      color: #aeaeae; }
 
 .image-caption {
   color: #959595;

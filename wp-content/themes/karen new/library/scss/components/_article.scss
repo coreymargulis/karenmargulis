@@ -54,7 +54,7 @@ h1.single-title {
 			}
 		}
 
-		#price {
+		.price {
 			display: inline-block;
 			position: absolute;
 			top: 20px;
@@ -70,12 +70,14 @@ h1.single-title {
 					border-color: $purple;
 				}
 			}
-
-			@include breakpoint($bp-medium) {
-
+			#sold {
+				border: 1px solid lighten($gray-text, 20%);
+				border-radius: 2px;
+				padding: 6px 8px;
+				color: $gray-text;
 			}
 		}
-}
+	}
 
 .image-caption {
 	color: lighten($gray, 30%);

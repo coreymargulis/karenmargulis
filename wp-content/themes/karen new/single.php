@@ -22,6 +22,7 @@
 									    <?php foreach( $relationships as $post): // variable must be called $post (IMPORTANT) ?>
 								        <?php setup_postdata($post);
 													$image = get_field('painting');
+													$available = get_field('available');
 
 													if( !empty($image) ): ?>
 														<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
@@ -29,8 +30,19 @@
 															<div id="caption">
 																<i><?php the_title(); ?></i><br><?php the_field('width'); ?> x <?php the_field('height'); ?>" pastel
 															</div>
-															<div id="price">
-																<a href="<?php the_field('etsy_link'); ?>">$<?php the_field('price'); ?></a>
+																	<?php if( !empty($available) ):
+																		?>
+																		<div class="price">
+																			<a href="<?php the_field('etsy_link'); ?>">
+																				$<?php the_field('price'); ?>
+																			</a>
+																		</div>
+																	<?php else: ?>
+																		<div class="price">
+																			<span id="sold">Sold</span>
+																		</div>
+																	<?php endif; ?>
+																</a>
 												    	</div>
 														</div>
 													<?php endif; ?>
