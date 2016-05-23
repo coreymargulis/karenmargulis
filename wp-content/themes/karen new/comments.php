@@ -21,7 +21,6 @@ if ( post_password_required() ) {
         wp_list_comments( array(
           'style'             => 'div',
           'short_ping'        => true,
-          'avatar_size'       => 40,
           'callback'          => 'bones_comments',
           'type'              => 'all',
           'reply_text'        => __('Reply', 'bonestheme'),
@@ -47,4 +46,3 @@ if ( post_password_required() ) {
   <?php endif; ?>
 
   <?php comment_form(); ?>
-

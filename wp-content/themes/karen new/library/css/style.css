@@ -1086,6 +1086,11 @@ input[type="submit"] {
         float: left;
         max-width: 550px; } }
 
+.comments {
+  padding: 3em 0;
+  background-color: #fff;
+  display: none; }
+
 a #read-next, a #related-posts {
   color: #484848;
   -webkit-transition: all 0.3s ease;

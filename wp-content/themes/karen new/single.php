@@ -94,12 +94,16 @@
 			          <footer class="article-footer wrap">
 
 			            <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
-										<button type="submit" class="secondary">Share</button>
-										<button type="submit" class="secondary">Comment</button>
+										<button type="submit" id="share" class="secondary">Share</button>
+										<button type="submit" id="comments" class="secondary"><?php comments_number( __( 'Comment', 'bonestheme' ), __( '<span>1</span> Comment', 'bonestheme' ), __( '<span>%</span> Comments', 'bonestheme' ) );?></button>
 
 								</footer> <?php // end article footer ?>
 
-								<?php // comments go here eventually ?>
+								<footer class="comments">
+									<div class="wrap">
+										<?php comments_template(); ?>
+									</div>
+								</footer>
 
 			        </article> <?php // end article ?>
 
@@ -162,20 +166,18 @@
 
 									<?php endwhile; ?>
 
-									</section>
-								</section>
+								</section> <?php //end related posts ?>
 
-								<?php
-									endif;
-									wp_reset_postdata();
-								?>
+									<?php
+										endif;
+										wp_reset_postdata();
+									?>
 
 								<?php endif; ?>
 
+							<?php endwhile; ?>
 
-
-
-						<?php endwhile; ?>
+						</footer> <?php //end read more footer ?>
 
 						<?php else : ?>
 
