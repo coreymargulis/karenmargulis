@@ -107,20 +107,13 @@
 
 			            <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
 
-									<div class="popover">
+									<div class="popover" tabindex="-1">
 										<ul>
-										  <li>
-										    <a class="facebook customer share" href="http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>" title="Facebook share" target="_blank">Facebook</a>
-										  </li>
-										  <li>
-										    <a class="twitter customer share" href="http://twitter.com/share?text=&ldquo;<?php the_title();?>&rdquo;&via=karenmargulis&url=<?php the_permalink();?>" title="Twitter share" target="_blank">Twitter</a>
-										  </li>
-										  <li>
-										    <a class="google_plus customer share" href="https://plus.google.com/share?url=<?php the_permalink(); ?>" title="Google Plus Share" target="_blank">Google Plus</a>
-										  </li>
+										  <li><a class="twitter customer share" href="http://twitter.com/share?text=&ldquo;<?php the_title();?>&rdquo;&via=karenmargulis&url=<?php the_permalink();?>" title="Twitter share" target="_blank">Share on Twitter</a></li>
+										  <li><a class="facebook customer share" href="http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>" title="Facebook share" target="_blank">Share on Facebook</a></li>
+										  <li><a class="google_plus customer share" href="https://plus.google.com/share?url=<?php the_permalink(); ?>" title="Google Plus Share" target="_blank">Share on Google+</a></li>
 										</ul>
 									</div>
-
 
 									<button type="submit" id="share" class="secondary">Share</button>
 									<button type="submit" id="comments" class="secondary"><?php comments_number( __( 'Comment', 'bonestheme' ), __( '<span>1</span> Comment', 'bonestheme' ), __( '<span>%</span> Comments', 'bonestheme' ) );?></button>

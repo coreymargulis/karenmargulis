@@ -16,9 +16,8 @@
 		<meta property="og:url"           content="<?php get_permalink(); ?>" />
 		<meta property="og:type"          content="website" />
 		<meta property="og:site_name" 		content="Karen Margulis">
-		<meta property="og:title"         content="Your Website Title" />
-		<meta property="og:description"   content="Your description" />
-		<meta property="og:image"         content="https://codepen.io/patrickkahl/details/DxmfG" />
+		<meta property="og:title"         content="<?php the_title(); ?>" />
+		<meta property="og:description"   content="<?php get_field('introduction'); ?>" />
 
 		<?php // mobile meta (hooray!) ?>
 		<meta name="HandheldFriendly" content="True">

@@ -55,6 +55,15 @@ jQuery(document).ready(function($) {
 					$(".share-modal").toggle();
 			});
 
+			$("#share").click(function(e){
+			    e.preventDefault();
+			    $(".popover").fadeIn(300,function(){$(this).focus();});
+			});
+			$(".popover").on('blur',function(){
+			    $(this).fadeOut(300);
+			});
+
+
 
 			//Share popups
 
