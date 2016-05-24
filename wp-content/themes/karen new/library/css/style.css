@@ -1502,6 +1502,7 @@ body.single-workshops nav ul li.menu-item-399 > a {
   color: #8E70CF; }
 
 .popover {
+  display: none;
   background-color: #fff;
   width: auto;
   position: absolute;
