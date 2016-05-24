@@ -106,15 +106,24 @@
 			          <footer class="article-footer wrap">
 
 			            <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
-										<button type="submit" id="share" class="secondary">Share</button>
-										<button type="submit" id="comments" class="secondary"><?php comments_number( __( 'Comment', 'bonestheme' ), __( '<span>1</span> Comment', 'bonestheme' ), __( '<span>%</span> Comments', 'bonestheme' ) );?></button>
-										<div class="share-modal">
-											<div id="twitter"><a href="https://twitter.com/intent/tweet?text=&ldquo;<?php the_title();?>&rdquo;&via=karenmargulis&url=<?php the_permalink();?>">Share on Twitter</a></div>
-											<div id="facebook"><div data-href="<?php the_permalink(); ?>" data-layout="link" data-mobile-iframe="true"></div></div>
 
-											<a href="https://www.facebook.com/dialog/share?app_id=0&href=<?php the_permalink(); ?>&display=popup" target="_blank">
-  Share on Facebook
-</a>
+									<div class="popover">
+										<ul>
+										  <li>
+										    <a class="facebook customer share" href="http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>" title="Facebook share" target="_blank">Facebook</a>
+										  </li>
+										  <li>
+										    <a class="twitter customer share" href="http://twitter.com/share?text=&ldquo;<?php the_title();?>&rdquo;&via=karenmargulis&url=<?php the_permalink();?>" title="Twitter share" target="_blank">Twitter</a>
+										  </li>
+										  <li>
+										    <a class="google_plus customer share" href="https://plus.google.com/share?url=<?php the_permalink(); ?>" title="Google Plus Share" target="_blank">Google Plus</a>
+										  </li>
+										</ul>
+									</div>
+
+
+									<button type="submit" id="share" class="secondary">Share</button>
+									<button type="submit" id="comments" class="secondary"><?php comments_number( __( 'Comment', 'bonestheme' ), __( '<span>1</span> Comment', 'bonestheme' ), __( '<span>%</span> Comments', 'bonestheme' ) );?></button>
 
 								</footer> <?php // end article footer ?>
 

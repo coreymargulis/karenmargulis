@@ -1500,6 +1500,12 @@ body.single-post nav ul li.menu-item-369 > a {
 body.single-workshops nav ul li.menu-item-399 > a {
   color: #8E70CF; }
 
+.popover {
+  background-color: #fff;
+  width: 300px;
+  position: absolute;
+  z-index: 999; }
+
 h3 {
   margin-bottom: 1em; }
 
