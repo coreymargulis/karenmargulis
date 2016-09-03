@@ -92,17 +92,28 @@
     					         'fallback_cb' => ''                             // fallback function (if there is one)
 						)); ?>
 
+						<li id="search-container">
+						  <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+						    <label>
+									<!-- <i class="ion-search"></i> -->
+									<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Press Enter to Search', 'label' ) ?>" />
+						    </label>
+						    <!-- <input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ) ?>" /> -->
+						  </form>
+						</li>
+						<!-- <div id="sb-search" class="sb-search">
+							<form>
+								<input class="sb-search-input" placeholder="Search..." type="text" value="" name="search" id="search">
+								<input class="sb-search-submit" type="submit" value="">
+								<span class="sb-icon-search"><i class="ion-search"></i></span>
+							</form>
+						</div> -->
 					</nav>
 
-					<!-- <div id="search-container">
-						<form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
-							<label>
-								<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Press Enter to Search', 'label' ) ?>" />
-								<i class="ion-ios-search-strong"></i>
-							</label>
-							  <input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ) ?>" />
-						</form>
-					</div> -->
+
+<script>
+	new UISearch( document.getElementById( 'sb-search' ) );
+</script>
 
 				</div>
 

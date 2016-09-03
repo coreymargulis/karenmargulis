@@ -150,6 +150,9 @@ function bones_scripts_and_styles() {
 
 		// enqueue styles and scripts
 		wp_enqueue_script( 'bones-modernizr' );
+		wp_enqueue_script( 'classie' );
+		wp_enqueue_script( 'uisearch' );
+
 		wp_enqueue_style( 'bones-stylesheet' );
 		wp_enqueue_style( 'ion-icons' );
 		wp_enqueue_style( 'bones-ie-only' );
