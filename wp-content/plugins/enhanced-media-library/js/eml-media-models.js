@@ -6,11 +6,45 @@ window.eml = window.eml || { l10n: {} };
 
     var media = wp.media,
         Attachments = media.model.Attachments,
-        Query = media.model.Query;
+        Query = media.model.Query,
+        original = {};
 
 
 
     _.extend( eml.l10n, wpuxss_eml_media_models_l10n );
+
+
+
+    original.Attachment = {
+
+        sync: media.model.Attachment.prototype.sync
+    };
+
+    _.extend( media.model.Attachment.prototype, {
+
+        sync: function( method, model, options ) {
+
+            var result = original.Attachment.sync.apply( this, arguments );
+
+
+            if ( 'delete' === method ) {
+
+                result.done( function( resp ) {
+
+                    _.each( resp.tcount, function( count, term_id ) {
+
+                        var $option = $( '.eml-taxonomy-filters option[value="'+term_id+'"]' ),
+                            text = $option.text();
+
+                        text = text.replace( /\(.*?\)/, '('+count+')' );
+                        $option.text( text );
+                    });
+                });
+            }
+
+            return result;
+        }
+    });
 
 
 
@@ -64,6 +98,11 @@ window.eml = window.eml || { l10n: {} };
             this.created  = new Date();
 
             this.filters.order = function( attachment ) {
+
+                if ( ! this.comparator ) {
+                    return true;
+                }
+
                 return attachment.get( 'menuOrder' ) === 0;
             };
 

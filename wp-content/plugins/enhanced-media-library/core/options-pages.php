@@ -92,7 +92,7 @@ if ( ! function_exists( 'wpuxss_eml_admin_menu' ) ) {
         }
 
 
-        add_submenu_page(
+        $eml_media_options_page = add_submenu_page(
             null,
             __('Media Settings','enhanced-media-library'), //page_title
             '',                                //menu_title
@@ -140,12 +140,31 @@ if ( ! function_exists( 'wpuxss_eml_admin_menu' ) ) {
         );
 
 
+
+        add_action( 'load-' . $eml_media_options_page, 'wpuxss_eml_load_media_options_page' );
+
         add_action('admin_print_scripts-' . $eml_medialibrary_options_page, 'wpuxss_eml_medialibrary_options_page_scripts');
         add_action('admin_print_scripts-' . $eml_taxonomies_options_page, 'wpuxss_eml_taxonomies_options_page_scripts');
         add_action('admin_print_scripts-' . $eml_mimetype_options_page, 'wpuxss_eml_mimetype_options_page_scripts');
 
         add_action('admin_print_scripts-' . $eml_options_page, 'wpuxss_eml_options_page_scripts');
     }
+}
+
+
+
+/**
+ *  wpuxss_eml_load_media_options_page
+ *
+ *  Ensure compatibility with default options-media.php for third-parties
+ *
+ *  @since    2.3
+ *  @created  14/06/16
+ */
+
+function wpuxss_eml_load_media_options_page() {
+
+    do_action( 'load-options-media.php' );
 }
 
 
@@ -400,7 +419,7 @@ if ( ! function_exists( 'wpuxss_eml_taxonomies_options_page_scripts' ) ) {
 
             'tax_error_empty_fileds_title' => __( 'Empty Fields', 'enhanced-media-library' ),
             'tax_error_empty_both' => __( 'Please choose Singular and Plural names for all new taxomonies.', 'enhanced-media-library' ),
-            'tax_error_empty_singular' => __( 'Please choose Singilar name for all new taxomonies.', 'enhanced-media-library' ),
+            'tax_error_empty_singular' => __( 'Please choose Singular name for all new taxomonies.', 'enhanced-media-library' ),
             'tax_error_empty_plural' => __( 'Please choose Plural Name for all new taxomonies.', 'enhanced-media-library' ),
 
             'okay' => __( 'Ok', 'enhanced-media-library' ),
@@ -448,7 +467,13 @@ if ( ! function_exists( 'wpuxss_eml_mimetype_options_page_scripts' ) ) {
         );
 
         $l10n_data = array(
-            'mime_deletion_confirm' => __( 'Warning! All your custom MIME Types will be deleted by this operation.', 'enhanced-media-library' ),
+            'mime_restoring_confirm_title' => __( 'Restore WordPress default MIME Types', 'enhanced-media-library' ),
+            'mime_restoring_confirm_text' => __( 'Warning! All your custom MIME Types will be deleted by this operation.', 'enhanced-media-library' ),
+            'mime_restoring_yes' => __( 'Restore Defaults', 'enhanced-media-library' ),
+            'in_progress_restoring_text' => __( 'Restoring...', 'enhanced-media-library' ),
+
+            'cancel' => __( 'Cancel', 'enhanced-media-library' ),
+
             'mime_error_empty_fields' => __( 'Please fill into all fields.', 'enhanced-media-library' ),
             'mime_error_duplicate' => __( 'Duplicate extensions or MIME types. Please chose other one.', 'enhanced-media-library' )
         );
@@ -727,14 +752,9 @@ if ( ! function_exists( 'wpuxss_eml_settings_import' ) ) {
             return;
 
 
-        // backup settings
-        $settings = wpuxss_eml_get_settings();
-        update_option( 'wpuxss_eml_backup', $settings );
-
-
         $import_file = $_FILES['import_file'];
 
-        if( empty( $import_file['tmp_name'] ) ) {
+        if ( empty( $import_file['tmp_name'] ) ) {
 
             add_settings_error(
                 'eml-settings',
@@ -745,6 +765,12 @@ if ( ! function_exists( 'wpuxss_eml_settings_import' ) ) {
 
             return;
         }
+
+
+        // backup settings
+        $settings = wpuxss_eml_get_settings();
+        update_option( 'wpuxss_eml_backup', $settings );
+
 
         $json_data = file_get_contents( $import_file['tmp_name'] );
         $settings = json_decode( $json_data, true );
@@ -840,18 +866,63 @@ if ( ! function_exists( 'wpuxss_eml_settings_cleanup' ) ) {
             return;
 
 
-        $wpuxss_eml_taxonomies = wpuxss_eml_get_eml_taxonomies();
+        foreach ( get_option( 'wpuxss_eml_taxonomies', array() ) as $taxonomy => $params ) {
 
-        foreach ( (array) $wpuxss_eml_taxonomies as $taxonomy => $params ) {
+            $terms = get_terms( $taxonomy, array( 'fields' => 'all', 'get' => 'all' ) );
+            $term_pairs = wpuxss_eml_get_media_term_pairs( $terms, 'id=>tt_id' );
 
-            $terms = get_terms( $taxonomy, array( 'fields' => 'ids', 'hide_empty' => false ) );
+            if ( (bool) $params['eml_media'] ) {
 
-            foreach ( $terms as $id ) {
-                wp_delete_term( $id, $taxonomy );
+                foreach ( $term_pairs as $id => $tt_id ) {
+                    wp_delete_term( $id, $taxonomy );
+                }
+
+                $wpdb->delete( $wpdb->term_taxonomy, array( 'taxonomy' => $taxonomy ), array( '%s' ) );
+                delete_option( $taxonomy . '_children' );
             }
+            elseif ( ! empty( $term_pairs ) ) {
 
-            $wpdb->delete( $wpdb->term_taxonomy, array( 'taxonomy' => $taxonomy ), array( '%s' ) );
-            delete_option( $taxonomy . '_children' );
+                $deleted_tt_ids = array();
+                $rows2remove_format = join( ', ', array_fill( 0, count( $term_pairs ), '%d' ) );
+
+                $results = $wpdb->get_results( $wpdb->prepare(
+                	"
+                        SELECT $wpdb->term_relationships.term_taxonomy_id, $wpdb->term_relationships.object_id
+                        FROM $wpdb->term_relationships
+                        INNER JOIN $wpdb->posts
+                        ON $wpdb->term_relationships.object_id = $wpdb->posts.ID
+                        WHERE $wpdb->posts.post_type = 'attachment'
+                        AND $wpdb->term_relationships.term_taxonomy_id IN ($rows2remove_format)
+                	",
+                    $term_pairs
+                ) );
+
+                foreach ( $results as $result ) {
+                    $deleted_tt_ids[$result->object_id][] = $result->term_taxonomy_id;
+                }
+
+                foreach( $deleted_tt_ids as $attachment_id => $tt_ids ) {
+                    do_action( 'delete_term_relationships', $attachment_id, $tt_ids );
+                }
+
+                $removed = $wpdb->query( $wpdb->prepare(
+                	"
+                        DELETE $wpdb->term_relationships.* FROM $wpdb->term_relationships
+                        INNER JOIN $wpdb->posts
+                        ON $wpdb->term_relationships.object_id = $wpdb->posts.ID
+                        WHERE $wpdb->posts.post_type = 'attachment'
+                        AND $wpdb->term_relationships.term_taxonomy_id IN ($rows2remove_format)
+                	",
+                    $term_pairs
+                ) );
+
+                if ( false !== $removed ) {
+
+                    foreach( $deleted_tt_ids as $attachment_id => $tt_ids ) {
+                        do_action( 'deleted_term_relationships', $attachment_id, $tt_ids );
+                    }
+                }
+            }
         }
 
 
@@ -960,9 +1031,9 @@ if ( ! function_exists( 'wpuxss_eml_print_media_library_options' ) ) {
                                             <th scope="row"><label for="wpuxss_eml_lib_options[media_orderby]"><?php _e('Order media items by','enhanced-media-library'); ?></label></th>
                                             <td>
                                                 <select name="wpuxss_eml_lib_options[media_orderby]" id="wpuxss_eml_lib_options_media_orderby">
-                                                    <option value="date" <?php selected( $wpuxss_eml_lib_options['media_orderby'], 'date' ); ?>>Date</option>
-                                                    <option value="title" <?php selected( $wpuxss_eml_lib_options['media_orderby'], 'title' ); ?>>Title</option>
-                                                    <option value="menuOrder" <?php selected( $wpuxss_eml_lib_options['media_orderby'], 'menuOrder' ); ?>>Custom Order</option>
+                                                    <option value="date" <?php selected( $wpuxss_eml_lib_options['media_orderby'], 'date' ); ?>><?php _e('Date','enhanced-media-library'); ?></option>
+                                                    <option value="title" <?php selected( $wpuxss_eml_lib_options['media_orderby'], 'title' ); ?>><?php _e('Title','enhanced-media-library'); ?></option>
+                                                    <option value="menuOrder" <?php selected( $wpuxss_eml_lib_options['media_orderby'], 'menuOrder' ); ?>><?php _e('Custom Order','enhanced-media-library'); ?></option>
                                                 </select>
                                                 <?php _e('For media library and media popups','enhanced-media-library'); ?>
                                                 <p class="description"><?php _e( 'Option allows to change order by drag and drop with Custom Order value.', 'enhanced-media-library' ); ?></p>
@@ -973,8 +1044,8 @@ if ( ! function_exists( 'wpuxss_eml_print_media_library_options' ) ) {
                                             <th scope="row"><label for="wpuxss_eml_lib_options[media_order]"><?php _e('Sort order','enhanced-media-library'); ?></label></th>
                                             <td>
                                                 <select name="wpuxss_eml_lib_options[media_order]" id="wpuxss_eml_lib_options_media_order">
-                                                    <option value="ASC" <?php selected( $wpuxss_eml_lib_options['media_order'], 'ASC' ); ?>>Ascending</option>
-                                                    <option value="DESC" <?php selected( $wpuxss_eml_lib_options['media_order'], 'DESC' ); ?>>Descending</option>
+                                                    <option value="ASC" <?php selected( $wpuxss_eml_lib_options['media_order'], 'ASC' ); ?>><?php _e('Ascending','enhanced-media-library'); ?></option>
+                                                    <option value="DESC" <?php selected( $wpuxss_eml_lib_options['media_order'], 'DESC' ); ?>><?php _e('Descending','enhanced-media-library'); ?></option>
                                                 </select>
                                                 <?php _e('For media library and media popups','enhanced-media-library'); ?>
                                             </td>
@@ -1324,6 +1395,16 @@ if ( ! function_exists( 'wpuxss_eml_print_taxonomies_options' ) ) {
                                             </td>
                                         </tr>
 
+                                        <tr>
+                                            <th scope="row"><?php _e('Show count','enhanced-media-library'); ?></th>
+                                            <td>
+                                                <fieldset>
+                                                    <legend class="screen-reader-text"><span><?php _e('Show count','enhanced-media-library'); ?></span></legend>
+                                                    <label><input name="wpuxss_eml_tax_options[show_count]" type="hidden" value="0" /><input name="wpuxss_eml_tax_options[show_count]" type="checkbox" value="1" <?php checked( true, $wpuxss_eml_tax_options['show_count'], true ); ?> /> <?php _e('Show item count per category for media filters','enhanced-media-library'); ?></label>
+                                                </fieldset>
+                                            </td>
+                                        </tr>
+
                                     </table>
 
                                     <?php submit_button(); ?>
@@ -1388,6 +1469,8 @@ if ( ! function_exists( 'wpuxss_eml_print_mimetypes_options' ) ) {
 
                             <?php settings_fields( 'mime-types' ); ?>
 
+                            <?php wpuxss_eml_print_mimetypes_buttons(); ?>
+
                             <table class="wpuxss-eml-mime-type-list wp-list-table widefat" cellspacing="0">
                                 <thead>
                                 <tr>
@@ -1427,7 +1510,7 @@ if ( ! function_exists( 'wpuxss_eml_print_mimetypes_options' ) ) {
                                         <td><input type="text" name="wpuxss_eml_mimes[<?php echo $type; ?>][plural]" value="<?php echo esc_html($wpuxss_eml_mimes[$type]['plural']); ?>" /></td>
                                         <td class="checkbox_td"><input type="checkbox" name="wpuxss_eml_mimes[<?php echo $type; ?>][filter]" title="<?php _e('Add Filter','enhanced-media-library'); ?>" value="1" <?php checked(1, $wpuxss_eml_mimes[$type]['filter']); ?> /></td>
                                         <td class="checkbox_td"><input type="checkbox" name="wpuxss_eml_mimes[<?php echo $type; ?>][upload]" title="<?php _e('Allow Upload','enhanced-media-library'); ?>" value="1" <?php checked(true, $allowed); ?> /></td>
-                                        <td><a class="wpuxss-eml-button-remove" title="Delete MIME Type" href="javascript:;">&ndash;</a></td>
+                                        <td><a class="wpuxss-eml-button-remove" title="<?php _e('Delete MIME Type','enhanced-media-library'); ?>" href="javascript:;">&ndash;</a></td>
                                         </tr>
 
                                     <?php endif; ?>
@@ -1457,9 +1540,7 @@ if ( ! function_exists( 'wpuxss_eml_print_mimetypes_options' ) ) {
                                 </tfoot>
                             </table>
 
-                            <?php submit_button(__('Restore WordPress default MIME Types','enhanced-media-library'),'secondary','eml-restore-mime-types-settings'); ?>
-
-                            <?php submit_button( __( 'Save Changes', 'enhanced-media-library' ), 'primary', 'eml-save-mime-types-settings' ); ?>
+                            <?php wpuxss_eml_print_mimetypes_buttons(); ?>
 
                         </form>
 
@@ -1470,6 +1551,29 @@ if ( ! function_exists( 'wpuxss_eml_print_mimetypes_options' ) ) {
             </div>
 
         </div>
+
+        <?php
+    }
+}
+
+
+
+/**
+ *  wpuxss_eml_print_mimetypes_buttons
+ *
+ *  @since    2.3.1
+ *  @created  01/08/16
+ */
+
+if ( ! function_exists( 'wpuxss_eml_print_mimetypes_buttons' ) ) {
+
+    function wpuxss_eml_print_mimetypes_buttons() { ?>
+
+        <p class="submit">
+            <?php submit_button( __( 'Save Changes', 'enhanced-media-library' ), 'primary', 'eml-save-mime-types-settings', false ); ?>
+
+            <input type="button" name="eml-restore-mime-types-settings" id="eml-restore-mime-types-settings" class="button" value="<?php _e('Restore WordPress default MIME Types','enhanced-media-library'); ?>">
+        </p>
 
         <?php
     }
@@ -1564,14 +1668,17 @@ if ( ! function_exists( 'wpuxss_eml_settings_link' ) ) {
 
 add_filter( 'plugin_row_meta', 'wpuxss_eml_plugin_row_meta', 10, 2 );
 
-function wpuxss_eml_plugin_row_meta( $links, $file ) {
+if ( ! function_exists( 'wpuxss_eml_plugin_row_meta' ) ) {
 
-	if ( wpuxss_get_eml_basename() == $file ) {
+    function wpuxss_eml_plugin_row_meta( $links, $file ) {
 
-		$links[] = '<a href="https://wordpress.org/support/view/plugin-reviews/enhanced-media-library" target="_blank"><span class="dashicons dashicons-thumbs-up"></span> ' . __( 'Vote!', 'enhanced-media-library' ) . '</a>';
-	}
+    	if ( wpuxss_get_eml_basename() == $file ) {
 
-	return $links;
+    		$links[] = '<a href="https://wordpress.org/support/view/plugin-reviews/enhanced-media-library" target="_blank"><span class="dashicons dashicons-thumbs-up"></span> ' . __( 'Vote!', 'enhanced-media-library' ) . '</a>';
+    	}
+
+    	return $links;
+    }
 }
 
 ?>

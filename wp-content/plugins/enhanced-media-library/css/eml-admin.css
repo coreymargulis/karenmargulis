@@ -190,6 +190,9 @@ body.eml-media-css .media-modal.acf-expanded .attachments-browser .media-toolbar
 .wpuxss-eml-column-delete {
     width: 30px;
 }
+#eml-restore-mime-types-settings {
+    margin-left:  20px;
+}
 
 
 
@@ -382,7 +385,7 @@ body.rtl .wpuxss-eml-button-container-right {
 
 /* == ui-dialog Styles == */
 
-.ui-dialog {
+.eml-dialog-modal {
     z-index: 300000 !important;
 }
 

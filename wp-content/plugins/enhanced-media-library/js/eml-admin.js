@@ -15,15 +15,16 @@
 
         var def = $.Deferred(),
 
-            confirmdialog = $('<div id="dialog-modal"></div>').appendTo('body')
+            confirmdialog = $('<div id="eml-dialog-modal"></div>').appendTo('body')
             .html( html )
             .dialog({
-                modal     : true,
-                resizable : false,
-                width     : w,
-                autoOpen  : false,
-                title     : title,
-                buttons   : [
+                dialogClass : 'eml-dialog-modal',
+                modal       : true,
+                resizable   : false,
+                width       : w,
+                autoOpen    : false,
+                title       : title,
+                buttons     : [
                     {
                         'text'  : yes,
                         'class' : yesClass,
@@ -55,15 +56,16 @@
 
         var def = $.Deferred(),
 
-            alertdialog = $('<div id="dialog-modal"></div>').appendTo('body')
+            alertdialog = $('<div id="eml-dialog-modal"></div>').appendTo('body')
             .html( html )
             .dialog({
-                modal     : true,
-                resizable : false,
-                width     : w,
-                autoOpen  : false,
-                title     : title,
-                buttons   : [
+                dialogClass : 'eml-dialog-modal',
+                modal       : true,
+                resizable   : false,
+                width       : w,
+                autoOpen    : false,
+                title       : title,
+                buttons     : [
                     {
                         'text'  : yes,
                         'class' : yesClass,
@@ -89,7 +91,7 @@
     }
 
 
-    window.emlFullscreenSpinnerStop = function( text ) {
+    window.emlFullscreenSpinnerStop = function() {
         $('.fullscreen-spinner-box').remove();
     }
 

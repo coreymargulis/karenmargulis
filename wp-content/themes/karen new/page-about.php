@@ -14,9 +14,9 @@
 
 							<section id="learn-intro" class="wrap">
 
-								<header class="article-header">
+								<!-- <header class="article-header">
 									<h1 class="page-title"><?php the_title(); ?></h1>
-								</header>
+								</header> -->
 
 								<section class="entry-content">
 									<?php	the_field('intro'); ?>

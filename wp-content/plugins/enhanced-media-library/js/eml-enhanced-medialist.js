@@ -17,7 +17,7 @@ function emlIsFilterBased( attrs ) {
         return true;
     }
 
-    return _.some( eml.l10n.all_taxonomies, function( terms, taxonomy ) {
+    return _.some( eml.l10n.taxonomies, function( terms, taxonomy ) {
         return ( ! _.isUndefined( attrs[taxonomy] ) && ! _.isNull( attrs[taxonomy] ) );
     });
 }
@@ -209,7 +209,7 @@ function emlIsFilterBased( attrs ) {
 
             append = '<br class="clear" /><h3>' + eml.l10n.based_on + '</h3><label class="setting eml-filter-based"><ul class="eml-filter-based">';
 
-            _.each( eml.l10n.all_taxonomies, function( attrs, taxonomy ) {
+            _.each( eml.l10n.taxonomies, function( attrs, taxonomy ) {
 
                 var ids = library.props.get( taxonomy ),
                     taxonomy_string;

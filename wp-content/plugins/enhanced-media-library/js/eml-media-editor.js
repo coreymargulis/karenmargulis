@@ -76,7 +76,7 @@ window.eml = window.eml || { l10n: {} };
                     args.uploadedTo = attrs.id;
                 }
 
-                _.each( eml.l10n.all_taxonomies, function( terms, taxonomy ) {
+                _.each( eml.l10n.taxonomies, function( terms, taxonomy ) {
 
                     if ( attrs[taxonomy] ) {
 
@@ -174,7 +174,7 @@ window.eml = window.eml || { l10n: {} };
             }
 
 
-            _.each( eml.l10n.all_taxonomies, function( terms, taxonomy ) {
+            _.each( eml.l10n.taxonomies, function( terms, taxonomy ) {
 
                 if ( props[taxonomy] ) {
                     attrs[taxonomy] = props[taxonomy];

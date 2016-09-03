@@ -15,14 +15,14 @@ if ( ! defined( 'ABSPATH' ) )
 
 if ( ! function_exists( 'wpuxss_eml_mimes_validate' ) ) {
 
-    function wpuxss_eml_mimes_validate($input) {
+    function wpuxss_eml_mimes_validate( $input ) {
 
         if ( ! $input ) $input = array();
 
+
         if ( isset( $_POST['eml-restore-mime-types-settings'] ) ) {
 
-            $wpuxss_eml_mimes_backup = get_option('wpuxss_eml_mimes_backup');
-            $input = $wpuxss_eml_mimes_backup;
+            $input = get_option( 'wpuxss_eml_mimes_backup' , array() );
 
             add_settings_error(
                 'mime-types',
@@ -31,7 +31,7 @@ if ( ! function_exists( 'wpuxss_eml_mimes_validate' ) ) {
                 'updated'
             );
         }
-        elseif ( ! isset( $_POST['eml-settings-import'] ) && ! isset( $_POST['eml-settings-restore'] ) ) {
+        else {
 
             add_settings_error(
                 'mime-types',
@@ -41,9 +41,10 @@ if ( ! function_exists( 'wpuxss_eml_mimes_validate' ) ) {
             );
         }
 
+
         foreach ( $input as $type => $mime ) {
 
-            $sanitized_type = wpuxss_eml_sanitize_extension($type);
+            $sanitized_type = wpuxss_eml_sanitize_extension( $type );
 
             if ( $sanitized_type !== $type ) {
 

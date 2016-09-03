@@ -5,7 +5,7 @@
 
 
     $( document ).ready( function() {
-        
+
         var $mainFilter = $('select[name="attachment-filter"]'),
             $dataFilter = $('select#filter-by-date'),
             $taxFilters = $('select.eml-taxonomy-filters'),
@@ -27,12 +27,11 @@
 
         if ( ! $mainFilter.prop( 'selectedIndex' ) &&
              ! $dataFilter.prop( 'selectedIndex' ) &&
-             ! $taxFilters.filter( function() { return $(this).prop( 'selectedIndex' ) } ).get().length )
-        {
+             ! $taxFilters.filter( function() { return $(this).prop( 'selectedIndex' ) } ).get().length ) {
+
             $resetFilters.prop( 'disabled', true );
         }
-        else
-        {
+        else {
             $resetFilters.prop( 'disabled', false );
         }
 
@@ -57,12 +56,10 @@
 
     });
 
-    function resetFilters( event )
-    {
+    function resetFilters( event ) {
+
         if ( 'uncategorized' == event.data.checkFilter.val() )
-        {
             event.data.resetFilter.prop( 'selectedIndex', 0 );
-        }
     }
 
 })( jQuery );

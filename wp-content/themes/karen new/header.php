@@ -18,6 +18,7 @@
 		<meta property="og:site_name" 		content="Karen Margulis">
 		<meta property="og:title"         content="<?php the_title(); ?>" />
 		<meta property="og:description"   content="<?php get_field('introduction'); ?>" />
+		<meta property="og:image"         content="" />
 
 		<?php // mobile meta (hooray!) ?>
 		<meta name="HandheldFriendly" content="True">
