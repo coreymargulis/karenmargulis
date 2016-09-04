@@ -1149,12 +1149,11 @@ input[type="week"],
 input[type="number"],
 input[type="email"],
 input[type="url"],
-input[type="search"],
 input[type="tel"],
 input[type="color"],
 select,
 textarea,
-.field {
+.field, input[type="search"] {
   display: block;
   height: 50px;
   line-height: 50px;
@@ -1173,73 +1172,69 @@ textarea,
   background-color: #fff;
   -webkit-transition: background-color 0.24s ease-in-out;
   transition: background-color 0.24s ease-in-out; }
-  input[type="text"]:focus, input[type="text"]:active,
+  input[type="text"]:focus,
   input[type="password"]:focus,
-  input[type="password"]:active,
   input[type="datetime"]:focus,
-  input[type="datetime"]:active,
   input[type="datetime-local"]:focus,
-  input[type="datetime-local"]:active,
   input[type="date"]:focus,
-  input[type="date"]:active,
   input[type="month"]:focus,
-  input[type="month"]:active,
   input[type="time"]:focus,
-  input[type="time"]:active,
   input[type="week"]:focus,
-  input[type="week"]:active,
   input[type="number"]:focus,
-  input[type="number"]:active,
   input[type="email"]:focus,
-  input[type="email"]:active,
   input[type="url"]:focus,
-  input[type="url"]:active,
-  input[type="search"]:focus,
-  input[type="search"]:active,
   input[type="tel"]:focus,
-  input[type="tel"]:active,
   input[type="color"]:focus,
-  input[type="color"]:active,
   select:focus,
-  select:active,
   textarea:focus,
+  .field:focus, input[type="search"]:focus, input[type="text"]:active,
+  input[type="password"]:active,
+  input[type="datetime"]:active,
+  input[type="datetime-local"]:active,
+  input[type="date"]:active,
+  input[type="month"]:active,
+  input[type="time"]:active,
+  input[type="week"]:active,
+  input[type="number"]:active,
+  input[type="email"]:active,
+  input[type="url"]:active,
+  input[type="tel"]:active,
+  input[type="color"]:active,
+  select:active,
   textarea:active,
-  .field:focus,
-  .field:active {
+  .field:active, input[type="search"]:active {
     border: 1px solid #cabce9 !important; }
-  input[type="text"].error, input[type="text"].is-invalid,
-  input[type="password"].error,
-  input[type="password"].is-invalid,
-  input[type="datetime"].error,
-  input[type="datetime"].is-invalid,
-  input[type="datetime-local"].error,
-  input[type="datetime-local"].is-invalid,
-  input[type="date"].error,
-  input[type="date"].is-invalid,
-  input[type="month"].error,
-  input[type="month"].is-invalid,
-  input[type="time"].error,
-  input[type="time"].is-invalid,
-  input[type="week"].error,
-  input[type="week"].is-invalid,
-  input[type="number"].error,
-  input[type="number"].is-invalid,
-  input[type="email"].error,
-  input[type="email"].is-invalid,
-  input[type="url"].error,
-  input[type="url"].is-invalid,
-  input[type="search"].error,
-  input[type="search"].is-invalid,
-  input[type="tel"].error,
-  input[type="tel"].is-invalid,
-  input[type="color"].error,
-  input[type="color"].is-invalid,
+  input.error[type="text"],
+  input.error[type="password"],
+  input.error[type="datetime"],
+  input.error[type="datetime-local"],
+  input.error[type="date"],
+  input.error[type="month"],
+  input.error[type="time"],
+  input.error[type="week"],
+  input.error[type="number"],
+  input.error[type="email"],
+  input.error[type="url"],
+  input.error[type="tel"],
+  input.error[type="color"],
   select.error,
-  select.is-invalid,
   textarea.error,
+  .error.field, input.error[type="search"], input.is-invalid[type="text"],
+  input.is-invalid[type="password"],
+  input.is-invalid[type="datetime"],
+  input.is-invalid[type="datetime-local"],
+  input.is-invalid[type="date"],
+  input.is-invalid[type="month"],
+  input.is-invalid[type="time"],
+  input.is-invalid[type="week"],
+  input.is-invalid[type="number"],
+  input.is-invalid[type="email"],
+  input.is-invalid[type="url"],
+  input.is-invalid[type="tel"],
+  input.is-invalid[type="color"],
+  select.is-invalid,
   textarea.is-invalid,
-  .field.error,
-  .field.is-invalid {
+  .is-invalid.field, input.is-invalid[type="search"] {
     color: #fbe3e4;
     border-color: #fbe3e4;
     background-color: #fff;
@@ -1247,39 +1242,37 @@ textarea,
     background-repeat: no-repeat;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2NDM0NDREQkYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2NDM0NDREQ0YwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjQ3ODRGRkE2RjA0QTExRTI5MjhERkZBMTMzMDYwNzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY0MzQ0NERBRjA0QjExRTI5MjhERkZBMTMzMDYwNzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+U8iT5wAAAedJREFUeNqk1U9I02Ecx/HtV3aIFAc1hcRDUoGXRAq0oNLA2CrsEFmHbikZu0iQYIFGYAiegkCpLipBxPpDEBMUzB0EhSG2LhG7hMR2GviPgUTvB57Bw8P3+U23B16HPX8+e/b8nt93wezZSMCnhXETF3AcB5BDCnH8Dq98ExcGHcFn8Ah3cdDni+fxnPDv9oAnTB7CKu6VCFXtChZy56LxUjt+jfuB8toSOth9wd7xWAWhqrUjYR/FRTwWJm+iIPT/w7bQf5ljiZnBg45dtKFX6H+LU8gIY8OEV6vgTkStwXWE8BPTGDHGPqNPz2mCfSOOYkA99TvCt1bhGPL68zMcwmncMuape10jrI+q4BbHi/FLn31S9z2x5tRhTc+1W506ipM+T3oRD4X+8+qtc4SqFvL0z/Fr14S+Szjis8bz9Lvvaq8cwS/wwGfdlqfPSWqTiFlX77o13u9Ym1PBs8JAytpRoy44X9Ft9E/gvbA+rYKn8NcaaMVc8UHgBw4b9/iqUQZ6hOAJFbyDcUflmsEX4a6+wTtHGfhAIUqa1U29Zc2BytouThD8x6xuN5CtMPi2CrXLZkZf/HyZoRFCP7n+QVR4PV7uI/AjGghN7OU/r1ilnqILtfpNC+o6vIFljBKYlhb/F2AAgaBsWR5wRiIAAAAASUVORK5CYII=);
     outline-color: #fbe3e4; }
-  input[type="text"].success, input[type="text"].is-valid,
-  input[type="password"].success,
-  input[type="password"].is-valid,
-  input[type="datetime"].success,
-  input[type="datetime"].is-valid,
-  input[type="datetime-local"].success,
-  input[type="datetime-local"].is-valid,
-  input[type="date"].success,
-  input[type="date"].is-valid,
-  input[type="month"].success,
-  input[type="month"].is-valid,
-  input[type="time"].success,
-  input[type="time"].is-valid,
-  input[type="week"].success,
-  input[type="week"].is-valid,
-  input[type="number"].success,
-  input[type="number"].is-valid,
-  input[type="email"].success,
-  input[type="email"].is-valid,
-  input[type="url"].success,
-  input[type="url"].is-valid,
-  input[type="search"].success,
-  input[type="search"].is-valid,
-  input[type="tel"].success,
-  input[type="tel"].is-valid,
-  input[type="color"].success,
-  input[type="color"].is-valid,
+  input.success[type="text"],
+  input.success[type="password"],
+  input.success[type="datetime"],
+  input.success[type="datetime-local"],
+  input.success[type="date"],
+  input.success[type="month"],
+  input.success[type="time"],
+  input.success[type="week"],
+  input.success[type="number"],
+  input.success[type="email"],
+  input.success[type="url"],
+  input.success[type="tel"],
+  input.success[type="color"],
   select.success,
-  select.is-valid,
   textarea.success,
+  .success.field, input.success[type="search"], input.is-valid[type="text"],
+  input.is-valid[type="password"],
+  input.is-valid[type="datetime"],
+  input.is-valid[type="datetime-local"],
+  input.is-valid[type="date"],
+  input.is-valid[type="month"],
+  input.is-valid[type="time"],
+  input.is-valid[type="week"],
+  input.is-valid[type="number"],
+  input.is-valid[type="email"],
+  input.is-valid[type="url"],
+  input.is-valid[type="tel"],
+  input.is-valid[type="color"],
+  select.is-valid,
   textarea.is-valid,
-  .field.success,
-  .field.is-valid {
+  .is-valid.field, input.is-valid[type="search"] {
     color: #e6efc2;
     border-color: #e6efc2;
     background-color: #fff;
@@ -1287,108 +1280,107 @@ textarea,
     background-repeat: no-repeat;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2NDM0NDRERkYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2NDM0NDRFMEYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjY0MzQ0NERERjA0QjExRTI5MjhERkZBMTMzMDYwNzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY0MzQ0NERFRjA0QjExRTI5MjhERkZBMTMzMDYwNzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+7olkTQAAAfhJREFUeNqklU9oE0EUhzdroWjw0tBeWlDxkEaIp55TsCU9VKIgCrHBelA8CQ1Kr1WPbZrQ3gqtQqvGqxpQc2jBk6BIIaAGD4qNCKURpDSKiPi98gLDsJt//uBjsztvfnk7895sIPAw6/joGMThFJyAXn2+A+9gA57/TaY/eU0OeBgfhGm4DiGnsb7DAszxBz/NAdcKjMJLuNWCqagHbsscN5+L+hmH4QkMOe1L5jzFfNA2PgT34ajTuY7AGuZB0/hmh5m+gS0r8xv1zRvg+gGCHZiOwnF4DP3iB3sQkYxPd2C6CWfhB9Xwlus5+K1j4jXuaq3a+gM1H9OPcAa+7q9lPidZJqHbiIm7Wg22rsEI7FrPSzAMX/T+ADyAKSsu7Fr1KplehLvwCs5DvfBf65p+MypqRbO1FXK9utH4/QKuaqYTsG3E3INJv00Q46px3+XxanJ/Ute2/vqP4FKDza2KcdljIKdnhS0xXYULTaqmLMZFn8FFSFtvt6x70ExFCS5oUXspq2ssa7oEl1swFa+CGFdgtkHgPDyDKy02zyxNU6lXRUZb1EuHYayNNs+Yh5B0WQo+/8fpJnNTZFuzz2OpjoQ2QruSOQlMy35fEGmEGMxY9e1brxobw7TkWA1h6xfckUPb+JhGoE/Hpfvew7qUld/H9J8AAwDpw3WYrxcZ3QAAAABJRU5ErkJggg==);
     outline-color: #e6efc2; }
-  input[type="text"][disabled], input[type="text"].is-disabled,
-  input[type="password"][disabled],
-  input[type="password"].is-disabled,
-  input[type="datetime"][disabled],
-  input[type="datetime"].is-disabled,
-  input[type="datetime-local"][disabled],
-  input[type="datetime-local"].is-disabled,
-  input[type="date"][disabled],
-  input[type="date"].is-disabled,
-  input[type="month"][disabled],
-  input[type="month"].is-disabled,
-  input[type="time"][disabled],
-  input[type="time"].is-disabled,
-  input[type="week"][disabled],
-  input[type="week"].is-disabled,
-  input[type="number"][disabled],
-  input[type="number"].is-disabled,
-  input[type="email"][disabled],
-  input[type="email"].is-disabled,
-  input[type="url"][disabled],
-  input[type="url"].is-disabled,
-  input[type="search"][disabled],
-  input[type="search"].is-disabled,
-  input[type="tel"][disabled],
-  input[type="tel"].is-disabled,
-  input[type="color"][disabled],
-  input[type="color"].is-disabled,
+  input[disabled][type="text"],
+  input[disabled][type="password"],
+  input[disabled][type="datetime"],
+  input[disabled][type="datetime-local"],
+  input[disabled][type="date"],
+  input[disabled][type="month"],
+  input[disabled][type="time"],
+  input[disabled][type="week"],
+  input[disabled][type="number"],
+  input[disabled][type="email"],
+  input[disabled][type="url"],
+  input[disabled][type="tel"],
+  input[disabled][type="color"],
   select[disabled],
-  select.is-disabled,
   textarea[disabled],
+  [disabled].field, input[disabled][type="search"], input.is-disabled[type="text"],
+  input.is-disabled[type="password"],
+  input.is-disabled[type="datetime"],
+  input.is-disabled[type="datetime-local"],
+  input.is-disabled[type="date"],
+  input.is-disabled[type="month"],
+  input.is-disabled[type="time"],
+  input.is-disabled[type="week"],
+  input.is-disabled[type="number"],
+  input.is-disabled[type="email"],
+  input.is-disabled[type="url"],
+  input.is-disabled[type="tel"],
+  input.is-disabled[type="color"],
+  select.is-disabled,
   textarea.is-disabled,
-  .field[disabled],
-  .field.is-disabled {
+  .is-disabled.field, input.is-disabled[type="search"] {
     cursor: not-allowed;
     border-color: #cfcfcf;
     opacity: 0.6; }
-    input[type="text"][disabled]:focus, input[type="text"][disabled]:active, input[type="text"].is-disabled:focus, input[type="text"].is-disabled:active,
-    input[type="password"][disabled]:focus,
-    input[type="password"][disabled]:active,
-    input[type="password"].is-disabled:focus,
-    input[type="password"].is-disabled:active,
-    input[type="datetime"][disabled]:focus,
-    input[type="datetime"][disabled]:active,
-    input[type="datetime"].is-disabled:focus,
-    input[type="datetime"].is-disabled:active,
-    input[type="datetime-local"][disabled]:focus,
-    input[type="datetime-local"][disabled]:active,
-    input[type="datetime-local"].is-disabled:focus,
-    input[type="datetime-local"].is-disabled:active,
-    input[type="date"][disabled]:focus,
-    input[type="date"][disabled]:active,
-    input[type="date"].is-disabled:focus,
-    input[type="date"].is-disabled:active,
-    input[type="month"][disabled]:focus,
-    input[type="month"][disabled]:active,
-    input[type="month"].is-disabled:focus,
-    input[type="month"].is-disabled:active,
-    input[type="time"][disabled]:focus,
-    input[type="time"][disabled]:active,
-    input[type="time"].is-disabled:focus,
-    input[type="time"].is-disabled:active,
-    input[type="week"][disabled]:focus,
-    input[type="week"][disabled]:active,
-    input[type="week"].is-disabled:focus,
-    input[type="week"].is-disabled:active,
-    input[type="number"][disabled]:focus,
-    input[type="number"][disabled]:active,
-    input[type="number"].is-disabled:focus,
-    input[type="number"].is-disabled:active,
-    input[type="email"][disabled]:focus,
-    input[type="email"][disabled]:active,
-    input[type="email"].is-disabled:focus,
-    input[type="email"].is-disabled:active,
-    input[type="url"][disabled]:focus,
-    input[type="url"][disabled]:active,
-    input[type="url"].is-disabled:focus,
-    input[type="url"].is-disabled:active,
-    input[type="search"][disabled]:focus,
-    input[type="search"][disabled]:active,
-    input[type="search"].is-disabled:focus,
-    input[type="search"].is-disabled:active,
-    input[type="tel"][disabled]:focus,
-    input[type="tel"][disabled]:active,
-    input[type="tel"].is-disabled:focus,
-    input[type="tel"].is-disabled:active,
-    input[type="color"][disabled]:focus,
-    input[type="color"][disabled]:active,
-    input[type="color"].is-disabled:focus,
-    input[type="color"].is-disabled:active,
+    input[disabled][type="text"]:focus,
+    input[disabled][type="password"]:focus,
+    input[disabled][type="datetime"]:focus,
+    input[disabled][type="datetime-local"]:focus,
+    input[disabled][type="date"]:focus,
+    input[disabled][type="month"]:focus,
+    input[disabled][type="time"]:focus,
+    input[disabled][type="week"]:focus,
+    input[disabled][type="number"]:focus,
+    input[disabled][type="email"]:focus,
+    input[disabled][type="url"]:focus,
+    input[disabled][type="tel"]:focus,
+    input[disabled][type="color"]:focus,
     select[disabled]:focus,
-    select[disabled]:active,
-    select.is-disabled:focus,
-    select.is-disabled:active,
     textarea[disabled]:focus,
+    [disabled].field:focus, input[disabled][type="search"]:focus, input[disabled][type="text"]:active,
+    input[disabled][type="password"]:active,
+    input[disabled][type="datetime"]:active,
+    input[disabled][type="datetime-local"]:active,
+    input[disabled][type="date"]:active,
+    input[disabled][type="month"]:active,
+    input[disabled][type="time"]:active,
+    input[disabled][type="week"]:active,
+    input[disabled][type="number"]:active,
+    input[disabled][type="email"]:active,
+    input[disabled][type="url"]:active,
+    input[disabled][type="tel"]:active,
+    input[disabled][type="color"]:active,
+    select[disabled]:active,
     textarea[disabled]:active,
+    [disabled].field:active, input[disabled][type="search"]:active, input.is-disabled[type="text"]:focus,
+    input.is-disabled[type="password"]:focus,
+    input.is-disabled[type="datetime"]:focus,
+    input.is-disabled[type="datetime-local"]:focus,
+    input.is-disabled[type="date"]:focus,
+    input.is-disabled[type="month"]:focus,
+    input.is-disabled[type="time"]:focus,
+    input.is-disabled[type="week"]:focus,
+    input.is-disabled[type="number"]:focus,
+    input.is-disabled[type="email"]:focus,
+    input.is-disabled[type="url"]:focus,
+    input.is-disabled[type="tel"]:focus,
+    input.is-disabled[type="color"]:focus,
+    select.is-disabled:focus,
     textarea.is-disabled:focus,
+    .is-disabled.field:focus, input.is-disabled[type="search"]:focus, input.is-disabled[type="text"]:active,
+    input.is-disabled[type="password"]:active,
+    input.is-disabled[type="datetime"]:active,
+    input.is-disabled[type="datetime-local"]:active,
+    input.is-disabled[type="date"]:active,
+    input.is-disabled[type="month"]:active,
+    input.is-disabled[type="time"]:active,
+    input.is-disabled[type="week"]:active,
+    input.is-disabled[type="number"]:active,
+    input.is-disabled[type="email"]:active,
+    input.is-disabled[type="url"]:active,
+    input.is-disabled[type="tel"]:active,
+    input.is-disabled[type="color"]:active,
+    select.is-disabled:active,
     textarea.is-disabled:active,
-    .field[disabled]:focus,
-    .field[disabled]:active,
-    .field.is-disabled:focus,
-    .field.is-disabled:active {
+    .is-disabled.field:active, input.is-disabled[type="search"]:active {
       background-color: #d5edf8; }
+
+input[type="search"] {
+  margin-bottom: 0;
+  padding-left: 40px;
+  width: auto; }
 
 textarea {
   max-width: 100%;
@@ -1487,11 +1479,9 @@ nav {
         color: #8E70CF; } }
 
 /* end .nav */
-nav#menu {
-  display: none; }
-  @media (min-width: 480px) {
-    nav#menu {
-      display: block; } }
+@media (min-width: 480px) {
+  nav#menu {
+    display: block; } }
 
 nav.pagination {
   font-size: 20px; }
@@ -1502,9 +1492,92 @@ body.single-post nav ul li.menu-item-369 > a {
 body.single-workshops nav ul li.menu-item-399 > a {
   color: #8E70CF; }
 
+@media (min-width: 768px) {
+  button#trigger-overlay {
+    display: none; } }
+
+/* Overlay style */
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.9); }
+  @media (min-width: 768px) {
+    .overlay {
+      position: relative;
+      background: none; } }
+
+/* Overlay closing cross */
+.overlay .overlay-close {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  overflow: hidden;
+  border: none;
+  font-size: 40px;
+  outline: none;
+  z-index: 100; }
+  @media (min-width: 768px) {
+    .overlay .overlay-close {
+      display: none; } }
+
+/* Menu style */
+/* Effects */
+.overlay-hugeinc {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+  transition: opacity 0.5s, visibility 0s 0.5s; }
+  @media (min-width: 768px) {
+    .overlay-hugeinc {
+      opacity: 1;
+      visibility: visible;
+      z-index: 999; } }
+
+.overlay-hugeinc.open {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  z-index: 999; }
+
+.overlay-hugeinc.open nav ul {
+  opacity: 1; }
+
+@media screen and (max-height: 30.5em) {
+  .overlay nav {
+    height: 70%;
+    font-size: 34px; }
+
+  .overlay ul li {
+    min-height: 34px; } }
 #search-container {
   display: inline-block;
-  padding-left: 12px; }
+  position: relative; }
+
+.ion-search {
+  display: inline-block;
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  top: 0;
+  margin: 0;
+  right: auto;
+  left: 1px;
+  text-align: center;
+  font-size: 20px;
+  opacity: .8; }
+  .ion-search:before {
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+    margin-top: -.5em; }
 
 .sb-search {
   position: relative;

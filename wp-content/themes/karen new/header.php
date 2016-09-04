@@ -76,44 +76,38 @@
 
 					<?php // to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> ?>
 					<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a><span id="psa">psa</span></p>
+					<button id="trigger-overlay" type="button"><i class="ion-navicon"></i>Menu</button>
 
-					<nav id="menu" role="navigation">
-						<?php wp_nav_menu(array(
-    					         'container' => false,                           // remove nav container
-    					         'container_class' => 'menu',                 // class of container (should you choose to use it)
-    					         'menu' => __( 'The Main Menu', 'bonestheme' ),  // nav name
-    					         'menu_class' => 'nav',               // adding custom nav class
-    					         'theme_location' => 'main-nav',                 // where it's located in the theme
-    					         'before' => '',                                 // before the menu
-        			               'after' => '',                                  // after the menu
-        			               'link_before' => '',                            // before each link
-        			               'link_after' => '',                             // after each link
-        			               'depth' => 0,                                   // limit the depth of the nav
-    					         'fallback_cb' => ''                             // fallback function (if there is one)
-						)); ?>
+					<?php //mobilie nav ?>
+					<div class="overlay overlay-hugeinc">
+						<button type="button" class="overlay-close"><i class="ion-android-close"></i></button>
 
-						<li id="search-container">
-						  <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
-						    <label>
-									<!-- <i class="ion-search"></i> -->
-									<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Press Enter to Search', 'label' ) ?>" />
-						    </label>
-						    <!-- <input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ) ?>" /> -->
-						  </form>
-						</li>
-						<!-- <div id="sb-search" class="sb-search">
-							<form>
-								<input class="sb-search-input" placeholder="Search..." type="text" value="" name="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search"><i class="ion-search"></i></span>
-							</form>
-						</div> -->
-					</nav>
+						<nav id="menu" role="navigation">
+							<?php wp_nav_menu(array(
+	    					         'container' => false,                        // remove nav container
+	    					         'container_class' => 'menu',                 // class of container (should you choose to use it)
+	    					         'menu' => __( 'The Main Menu', 'bonestheme' ),  // nav name
+	    					         'menu_class' => 'nav',              					 // adding custom nav class
+	    					         'theme_location' => 'main-nav',               // where it's located in the theme
+	    					         'before' => '',                               // before the menu
+    			               'after' => '',                                  // after the menu
+    			               'link_before' => '',                            // before each link
+    			               'link_after' => '',                             // after each link
+    			               'depth' => 0,                                   // limit the depth of the nav
+	    					         'fallback_cb' => ''                             // fallback function (if there is one)
+							)); ?>
+							<li id="search-container">
+							  <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+							    <label>
+										<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Press Enter to Search', 'label' ) ?>" />
+										<i class="ion-search"></i>
+									</label>
+							  </form>
+							</li>
 
+						</nav>
 
-<script>
-	new UISearch( document.getElementById( 'sb-search' ) );
-</script>
+					</div>
 
 				</div>
 

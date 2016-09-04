@@ -113,12 +113,15 @@ nav {
 
 nav#menu {
 
-  display: none;
+  // display: none;
 
   @include breakpoint($bp-small) {
     display: block;
   }
 }
+
+
+
 
 nav.pagination {
   font-size: 20px;
@@ -127,8 +130,7 @@ nav.pagination {
   }
 }
 
-
-
+//show active pages
 body.single-post nav ul li.menu-item-369 > a{
 		color: $purple;
 }
