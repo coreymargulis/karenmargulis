@@ -1483,15 +1483,6 @@ nav {
   nav#menu {
     display: block; } }
 
-nav.pagination {
-  font-size: 20px; }
-
-body.single-post nav ul li.menu-item-369 > a {
-  color: #8E70CF; }
-
-body.single-workshops nav ul li.menu-item-399 > a {
-  color: #8E70CF; }
-
 @media (min-width: 768px) {
   button#trigger-overlay {
     display: none; } }
@@ -1509,21 +1500,23 @@ body.single-workshops nav ul li.menu-item-399 > a {
       position: relative;
       background: none; } }
 
-/* Overlay closing cross */
-.overlay .overlay-close {
-  width: 80px;
-  height: 80px;
+.nav-button {
+  width: 84px;
+  height: 84px;
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 0px;
+  top: 0px;
   overflow: hidden;
   border: none;
-  font-size: 40px;
+  font-size: 36px;
   outline: none;
-  z-index: 100; }
-  @media (min-width: 768px) {
-    .overlay .overlay-close {
-      display: none; } }
+  z-index: 100;
+  background: none; }
+
+/* Overlay closing cross */
+@media (min-width: 768px) {
+  .overlay .overlay-close {
+    display: none; } }
 
 /* Menu style */
 /* Effects */
@@ -1555,6 +1548,15 @@ body.single-workshops nav ul li.menu-item-399 > a {
 
   .overlay ul li {
     min-height: 34px; } }
+nav.pagination {
+  font-size: 20px; }
+
+body.single-post nav ul li.menu-item-369 > a {
+  color: #8E70CF; }
+
+body.single-workshops nav ul li.menu-item-399 > a {
+  color: #8E70CF; }
+
 #search-container {
   display: inline-block;
   position: relative; }

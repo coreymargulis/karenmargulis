@@ -76,11 +76,11 @@
 
 					<?php // to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> ?>
 					<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a><span id="psa">psa</span></p>
-					<button id="trigger-overlay" type="button"><i class="ion-navicon"></i>Menu</button>
+					<button id="trigger-overlay" class="nav-button" type="button"><i class="ion-navicon"></i></button>
 
 					<?php //mobilie nav ?>
 					<div class="overlay overlay-hugeinc">
-						<button type="button" class="overlay-close"><i class="ion-android-close"></i></button>
+						<button type="button" class="nav-button overlay-close"><i class="ion-android-close"></i></button>
 
 						<nav id="menu" role="navigation">
 							<?php wp_nav_menu(array(
