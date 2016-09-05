@@ -57,7 +57,7 @@
 //search modal
 (function() {
 	var triggerBttn = document.getElementById( 'trigger-overlay-search' ),
-		overlay = document.querySelector( 'div.overlay' ),
+		overlay = document.querySelector( 'div.overlay-search' ),
 		closeBttn = overlay.querySelector( 'button.overlay-close' );
 		transEndEventNames = {
 			'WebkitTransition': 'webkitTransitionEnd',
@@ -88,7 +88,7 @@
 			}
 		}
 		else if( !classie.has( overlay, 'close' ) ) {
-			// classie.add( overlay, 'open' );
+			classie.add( overlay, 'open' );
 		}
 	}
 

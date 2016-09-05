@@ -1662,7 +1662,7 @@ body.single-workshops nav ul li.menu-item-399 > a {
   visibility: hidden;
   -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
   transition: opacity 0.5s, visibility 0s 0.5s;
-  padding: 8em; }
+  padding: 7em; }
 
 .overlay-search.open {
   opacity: 1;
