@@ -4,8 +4,8 @@
 
 				<div id="inner-content" class="wrap cf">
 
-					<main id="main" class="m-all t-2of3 d-5of7 cf" role="main">
-						<h1 class="archive-title"><span><?php _e( 'Search Results for:', 'bonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
+					<main id="main" role="main">
+						<h1 class="archive-title"><span><?php _e( 'Search Results for', 'bonestheme' ); ?></span> <span id="search-query"><?php echo esc_attr(get_search_query()); ?></span></h1>
 
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -13,14 +13,13 @@
 
 								<header class="entry-header article-header">
 
-									<h3 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+									<h2 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
                   						<p class="byline entry-meta vcard">
-                    							<?php printf( __( 'Posted %1$s by %2$s', 'bonestheme' ),
+                    							<?php printf( __( '%1$s', 'bonestheme' ),
                    							    /* the time the post was published */
-                   							    '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
-                      							    /* the author of the post */
-                       							    '<span class="by">by</span> <span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . get_the_author_link( get_the_author_meta( 'ID' ) ) . '</span>'
+                   							    '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>'
+
                     							); ?>
                   						</p>
 
@@ -51,13 +50,19 @@
 
 									<article id="post-not-found" class="hentry cf">
 										<header class="article-header">
-											<h1><?php _e( 'Sorry, No Results.', 'bonestheme' ); ?></h1>
+											<h2><?php _e( 'Sorry, no results found.', 'bonestheme' ); ?></h2>
 										</header>
 										<section class="entry-content">
 											<p><?php _e( 'Try your search again.', 'bonestheme' ); ?></p>
+											<form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+												<label>
+													<input type="search" class="search-field" id="search-field" placeholder="<?php echo esc_attr_x( 'Search', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Press Enter to Search', 'label' ) ?>" autofocus/>
+													<i class="ion-search"></i>
+												</label>
+											</form>
 										</section>
 										<footer class="article-footer">
-												<p><?php _e( 'This is the error message in the search.php template.', 'bonestheme' ); ?></p>
+
 										</footer>
 									</article>
 

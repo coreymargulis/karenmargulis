@@ -35,9 +35,14 @@ h3 {
 
 #subscribe {
   display: inline-block;
-  margin-top: 8px;
+  margin-left: 4px;
+
   @include breakpoint($bp-medium) {
-    margin-left: 4px;
+    margin-top: 8px;
     margin-top: 0;
   }
+}
+
+#inner-footer input[type="email"] {
+  width: 60% !important;
 }

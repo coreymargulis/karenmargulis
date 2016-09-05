@@ -2,11 +2,12 @@
 HEADER STYLES
 *********************/
 
-header {
+.header {
   position: fixed;
   z-index: 100;
   width: 100%;
   background-color: $background;
+  
 
   @include breakpoint($bp-medium) {
     position: relative;
@@ -85,6 +86,7 @@ nav {
     list-style: none;
     display: inline-block;
   	height: 100%;
+    width: 100%;
   	position: relative;
 
     li {
@@ -154,18 +156,6 @@ nav {
   	}  /* end current highlighters */
   }
 } /* end .nav */
-
-nav#menu {
-
-  // display: none;
-
-  @include breakpoint($bp-small) {
-    display: block;
-  }
-}
-
-
-
 
 
 

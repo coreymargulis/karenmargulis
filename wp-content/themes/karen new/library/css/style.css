@@ -656,7 +656,7 @@ body {
       padding: 0 350px; } }
 
 #inner-content {
-  padding-top: 1.5em; }
+  padding-top: 5.25em; }
   @media (min-width: 768px) {
     #inner-content {
       padding-top: 0; } }
@@ -820,7 +820,7 @@ h1.single-title {
   font-family: "scalasansregular";
   font-size: 14px;
   text-align: right;
-  z-index: 300;
+  z-index: 2;
   max-width: 100%;
   margin-right: 16px;
   position: relative;
@@ -1412,13 +1412,13 @@ select {
 /*********************
 HEADER STYLES
 *********************/
-header {
+.header {
   position: fixed;
   z-index: 100;
   width: 100%;
   background-color: #fbfbfb; }
   @media (min-width: 768px) {
-    header {
+    .header {
       position: relative;
       width: auto; } }
 
@@ -1477,6 +1477,7 @@ nav {
     list-style: none;
     display: inline-block;
     height: 100%;
+    width: 100%;
     position: relative; }
     nav ul li {
       display: block; }
@@ -1521,10 +1522,6 @@ nav {
         color: #8E70CF; } }
 
 /* end .nav */
-@media (min-width: 480px) {
-  nav#menu {
-    display: block; } }
-
 /* Overlay style */
 .overlay {
   position: fixed;
@@ -1673,6 +1670,10 @@ body.single-workshops nav ul li.menu-item-399 > a {
   .overlay-search.open .ion-search {
     display: none; }
 
+#search-query {
+  color: #8E70CF;
+  font-family: "scalasansbold"; }
+
 .popover {
   display: none;
   background-color: #fff;
@@ -1717,11 +1718,14 @@ h3 {
 
 #subscribe {
   display: inline-block;
-  margin-top: 8px; }
+  margin-left: 4px; }
   @media (min-width: 768px) {
     #subscribe {
-      margin-left: 4px;
+      margin-top: 8px;
       margin-top: 0; } }
+
+#inner-footer input[type="email"] {
+  width: 60% !important; }
 
 #question {
   font-family: "scalasansbold"; }
