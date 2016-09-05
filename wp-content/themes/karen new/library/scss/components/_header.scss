@@ -2,6 +2,18 @@
 HEADER STYLES
 *********************/
 
+header {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  background-color: $background;
+
+  @include breakpoint($bp-medium) {
+    position: relative;
+    width: auto;
+  }
+}
+
 #inner-header {
   border-bottom: 1px solid transparentize($purple, .9);
   text-align: left;
@@ -61,8 +73,40 @@ NAVIGATION STYLES
 
 nav {
   font-family: $sans-serif;
-  font-size: $fsz-regular;
+  font-size: $fsz-x_large;
+	top: 10%;
+	// height: 60%;
+  position: relative;
 
+
+  ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    display: inline-block;
+  	height: 100%;
+  	position: relative;
+
+    li {
+      display: block;
+    	// height: 20%;
+    	// height: calc(100% / 5);
+    	// min-height: 54px;
+
+      a {
+        display: block;
+        color: $text-color;
+        text-decoration: none;
+        padding: 1em;
+        border: 0;
+
+        &:hover, &:focus {}
+        &:active {
+          color: $black;
+        }
+      }
+    }
+  }
 
   @include breakpoint($bp_medium) {
     font-family: $sans-serif;
@@ -132,7 +176,7 @@ nav#menu {
 button#trigger-overlay {
 
     @include breakpoint($bp-medium) {
-      display: none;
+      // display: none;
     }
 }
 
@@ -143,7 +187,7 @@ button#trigger-overlay {
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: transparentize($white, 0.1);
+	background: transparentize($white, 0.05);
 
   @include breakpoint($bp-medium) {
     position: relative;
@@ -153,60 +197,31 @@ button#trigger-overlay {
 
 .nav-button {
   width: 84px;
-	height: 84px;
+	height: 80px;
 	position: absolute;
 	right: 0px;
-	top: 0px;
+	top: 4px;
 	overflow: hidden;
 	border: none;
   font-size: 36px;
 	outline: none;
 	z-index: 100;
   background: none;
-}
 
-/* Overlay closing cross */
-.overlay .overlay-close {
   @include breakpoint($bp-medium) {
     display: none;
   }
 }
 
-/* Menu style */
-// .overlay nav {
-// 	text-align: left;
-// 	position: relative;
-// 	top: 50%;
-// 	height: 60%;
-// 	-webkit-transform: translateY(-50%);
-// 	transform: translateY(-50%);
-// }
-//
-// .overlay ul {
-// 	list-style: none;
-// 	padding: 0;
-// 	margin: 0 auto;
-// 	display: inline-block;
-// 	height: 100%;
-// 	position: relative;
-// }
-//
-// .overlay ul li {
-// 	display: block;
-// 	height: 20%;
-// 	height: calc(100% / 5);
-// 	min-height: 54px;
-// }
-//
-// .overlay ul li a {
-// 	font-weight: 300;
-// 	display: block;
-// 	-webkit-transition: color 0.2s;
-// 	transition: color 0.2s;
+/* Overlay closing cross */
+// .overlay .overlay-close {
+//   @include breakpoint($bp-medium) {
+//     display: none;
+//   }
 // }
 
 /* Effects */
-.overlay-hugeinc {
+.overlay-menu {
 	opacity: 0;
 	visibility: hidden;
 	-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
@@ -219,7 +234,7 @@ button#trigger-overlay {
   }
 }
 
-.overlay-hugeinc.open {
+.overlay-menu.open {
 	opacity: 1;
 	visibility: visible;
 	-webkit-transition: opacity 0.5s;
@@ -227,12 +242,12 @@ button#trigger-overlay {
   z-index: 999;
 }
 
-.overlay-hugeinc nav {
+.overlay-menu nav {
 	// -webkit-perspective: 1200px;
 	// perspective: 1200px;
 }
 
-.overlay-hugeinc nav ul {
+.overlay-menu nav ul {
 	// opacity: 0.4;
 	// -webkit-transform: translateY(-25%) rotateX(35deg);
 	// transform: translateY(-25%) rotateX(35deg);
@@ -240,28 +255,100 @@ button#trigger-overlay {
 	// transition: transform 0.5s, opacity 0.5s;
 }
 
-.overlay-hugeinc.open nav ul {
+.overlay-menu.open nav ul {
 	opacity: 1;
 	// -webkit-transform: rotateX(0deg);
 	// transform: rotateX(0deg);
 }
 
-.overlay-hugeinc.close nav ul {
+.overlay-menu.close nav ul {
 	// -webkit-transform: translateY(25%) rotateX(-35deg);
 	// transform: translateY(25%) rotateX(-35deg);
 }
 
 @media screen and (max-height: 30.5em) {
 	.overlay nav {
-		height: 70%;
-		font-size: 34px;
+		height: 40%;
 	}
 	.overlay ul li {
-		min-height: 34px;
+		min-height: 24px;
+    padding: 0;
 	}
 }
 
 
+
+
+
+//search
+#search-container {
+  display: block;
+  position: relative;
+  margin: 1em;
+
+  @include breakpoint($bp-medium) {
+    display: inline-block;
+    position: relative;
+    margin-left: 12px;
+    display: none;
+  }
+}
+
+.ion-search {
+  display: inline-block;
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  top: 0;
+  margin: 0;
+  right: auto;
+  left: 1px;
+  text-align: center;
+  font-size: 20px;
+  opacity: .8;
+
+  &:before {
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+    margin-top: -.5em;
+  }
+
+  @include breakpoint ($bp-medium) {
+    // display: none;
+  }
+}
+
+#search-container-large {
+  display: none;
+  @include breakpoint($bp-medium) {
+    display: inline-block;
+    position: relative;
+  }
+
+  .search-button {
+    border: none;
+    font-size: 36px;
+    outline: none;
+    background: none;
+  }
+}
+
+.overlay-close {
+  width: 84px;
+  height: 80px;
+  position: absolute;
+  right: 0px;
+  top: 4px;
+  overflow: hidden;
+  border: none;
+  font-size: 36px;
+  outline: none;
+  z-index: 100;
+  background: none;
+}
 
 
 

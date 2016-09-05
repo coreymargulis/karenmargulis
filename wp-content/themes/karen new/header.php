@@ -74,12 +74,11 @@
 
 				<div id="inner-header">
 
-					<?php // to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> ?>
 					<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a><span id="psa">psa</span></p>
 					<button id="trigger-overlay" class="nav-button" type="button"><i class="ion-navicon"></i></button>
 
-					<?php //mobilie nav ?>
-					<div class="overlay overlay-hugeinc">
+
+					<div class="overlay overlay-menu">
 						<button type="button" class="nav-button overlay-close"><i class="ion-android-close"></i></button>
 
 						<nav id="menu" role="navigation">
@@ -105,8 +104,22 @@
 							  </form>
 							</li>
 
+							<div id="search-container-large">
+								<button id="trigger-overlay-search" class="search-button" type="button"><i class="ion-search"></i></button>
+							</div>
+
 						</nav>
 
+					</div>
+
+					<div class="search overlay-search">
+						<button type="button" class="overlay-close"><i class="ion-android-close"></i></button>
+						<form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+							<label>
+								<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Press Enter to Search', 'label' ) ?>" />
+								<i class="ion-search"></i>
+							</label>
+						</form>
 					</div>
 
 				</div>

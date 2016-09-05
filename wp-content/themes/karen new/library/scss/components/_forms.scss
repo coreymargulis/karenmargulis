@@ -117,6 +117,14 @@ input[type="search"] {
   margin-bottom: 0;
   padding-left: 40px;
   width: auto;
+
+  @include breakpoint($bp-medium) {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    height: 66px;
+    font-size: $fsz-large;
+  }
 }
 
 
