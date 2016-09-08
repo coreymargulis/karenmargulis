@@ -1477,7 +1477,6 @@ nav {
     list-style: none;
     display: inline-block;
     height: 100%;
-    width: 100%;
     position: relative; }
     nav ul li {
       display: block; }
@@ -1646,15 +1645,13 @@ body.single-post nav ul li.menu-item-369 > a {
 body.single-workshops nav ul li.menu-item-399 > a {
   color: #8E70CF; }
 
-.search {
+.overlay-search {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.95); }
-
-.overlay-search {
+  background: rgba(255, 255, 255, 0.95);
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
