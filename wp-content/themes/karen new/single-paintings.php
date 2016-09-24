@@ -10,7 +10,31 @@
 
 							<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
 
-								This is a painting <?php the_content(); ?>
+								<?php
+								$image = get_field('painting');
+								$available = get_field('available');
+								?>
+
+								<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+
+								<div class="featured-image-caption">
+									<div id="caption">
+										<i><?php the_title(); ?></i><br><?php the_field('width'); ?> x <?php the_field('height'); ?>" pastel
+									</div>
+											<?php if( !empty($available) ):
+												?>
+												<div class="price">
+													<a href="<?php the_field('etsy_link'); ?>">
+														$<?php the_field('price'); ?>
+													</a>
+												</div>
+											<?php else: ?>
+												<div class="price">
+													<span id="sold">Sold</span>
+												</div>
+											<?php endif; ?>
+										</a>
+									</div>
 
 							</article>
 
